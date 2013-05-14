@@ -5,7 +5,7 @@ class ControllerSaleCustomerGroup extends Controller {
 	public function index() {
 		$this->language->load('sale/customer_group');
  
-		$this->document->setTitle($this->language->get('heading_title'));
+		$this->document->setTitle(__('heading_title'));
  		
 		$this->load->model('sale/customer_group');
 		
@@ -15,14 +15,14 @@ class ControllerSaleCustomerGroup extends Controller {
 	public function insert() {
 		$this->language->load('sale/customer_group');
 
-		$this->document->setTitle($this->language->get('heading_title'));
+		$this->document->setTitle(__('heading_title'));
 		
 		$this->load->model('sale/customer_group');
 		
 		if (($this->request->server['REQUEST_METHOD'] == 'POST') && $this->validateForm()) {
 			$this->model_sale_customer_group->addCustomerGroup($this->request->post);
 			
-			$this->session->data['success'] = $this->language->get('text_success');
+			$this->session->data['success'] = __('text_success');
 
 			$url = '';
 
@@ -47,14 +47,14 @@ class ControllerSaleCustomerGroup extends Controller {
 	public function update() {
 		$this->language->load('sale/customer_group');
 
-		$this->document->setTitle($this->language->get('heading_title'));
+		$this->document->setTitle(__('heading_title'));
 		
 		$this->load->model('sale/customer_group');
 		
 		if (($this->request->server['REQUEST_METHOD'] == 'POST') && $this->validateForm()) {
 			$this->model_sale_customer_group->editCustomerGroup($this->request->get['customer_group_id'], $this->request->post);
 			
-			$this->session->data['success'] = $this->language->get('text_success');
+			$this->session->data['success'] = __('text_success');
 			
 			$url = '';
 
@@ -79,7 +79,7 @@ class ControllerSaleCustomerGroup extends Controller {
 	public function delete() { 
 		$this->language->load('sale/customer_group');
 
-		$this->document->setTitle($this->language->get('heading_title'));
+		$this->document->setTitle(__('heading_title'));
 		
 		$this->load->model('sale/customer_group');
 		
@@ -88,7 +88,7 @@ class ControllerSaleCustomerGroup extends Controller {
 				$this->model_sale_customer_group->deleteCustomerGroup($customer_group_id);	
 			}
 						
-			$this->session->data['success'] = $this->language->get('text_success');
+			$this->session->data['success'] = __('text_success');
 			
 			$url = '';
 
@@ -146,12 +146,12 @@ class ControllerSaleCustomerGroup extends Controller {
   		$this->data['breadcrumbs'] = array();
 
    		$this->data['breadcrumbs'][] = array(
-       		'text' => $this->language->get('text_home'),
+       		'text' => __('text_home'),
 			'href' => $this->url->link('common/home', 'token=' . $this->session->data['token'], 'SSL')
    		);
 
    		$this->data['breadcrumbs'][] = array(
-       		'text' => $this->language->get('heading_title'),
+       		'text' => __('heading_title'),
 			'href' => $this->url->link('sale/customer_group', 'token=' . $this->session->data['token'] . $url, 'SSL')
    		);
 							
@@ -175,29 +175,29 @@ class ControllerSaleCustomerGroup extends Controller {
 			$action = array();
 			
 			$action[] = array(
-				'text' => $this->language->get('text_edit'),
+				'text' => __('text_edit'),
 				'href' => $this->url->link('sale/customer_group/update', 'token=' . $this->session->data['token'] . '&customer_group_id=' . $result['customer_group_id'] . $url, 'SSL')
 			);		
 		
 			$this->data['customer_groups'][] = array(
 				'customer_group_id' => $result['customer_group_id'],
-				'name'              => $result['name'] . (($result['customer_group_id'] == $this->config->get('config_customer_group_id')) ? $this->language->get('text_default') : null),
+				'name'              => $result['name'] . (($result['customer_group_id'] == $this->config->get('config_customer_group_id')) ? __('text_default') : null),
 				'sort_order'        => $result['sort_order'],
 				'selected'          => isset($this->request->post['selected']) && in_array($result['customer_group_id'], $this->request->post['selected']),
 				'action'            => $action
 			);
 		}	
 	
-		$this->data['heading_title'] = $this->language->get('heading_title');
+		$this->data['heading_title'] = __('heading_title');
 		
-		$this->data['text_no_results'] = $this->language->get('text_no_results');
+		$this->data['text_no_results'] = __('text_no_results');
 
-		$this->data['column_name'] = $this->language->get('column_name');
-		$this->data['column_sort_order'] = $this->language->get('column_sort_order');
-		$this->data['column_action'] = $this->language->get('column_action');
+		$this->data['column_name'] = __('column_name');
+		$this->data['column_sort_order'] = __('column_sort_order');
+		$this->data['column_action'] = __('column_action');
 
-		$this->data['button_insert'] = $this->language->get('button_insert');
-		$this->data['button_delete'] = $this->language->get('button_delete');
+		$this->data['button_insert'] = __('button_insert');
+		$this->data['button_delete'] = __('button_delete');
  
  		if (isset($this->error['warning'])) {
 			$this->data['error_warning'] = $this->error['warning'];
@@ -246,7 +246,7 @@ class ControllerSaleCustomerGroup extends Controller {
 		
 		$this->data['pagination'] = $pagination->render();				
 		
-		$this->data['results'] = sprintf($this->language->get('text_pagination'), ($customer_group_total) ? (($page - 1) * $this->config->get('config_admin_limit')) + 1 : 0, ((($page - 1) * $this->config->get('config_admin_limit')) > ($customer_group_total - $this->config->get('config_admin_limit'))) ? $customer_group_total : ((($page - 1) * $this->config->get('config_admin_limit')) + $this->config->get('config_admin_limit')), $customer_group_total, ceil($customer_group_total / $this->config->get('config_admin_limit')));
+		$this->data['results'] = sprintf(__('text_pagination'), ($customer_group_total) ? (($page - 1) * $this->config->get('config_admin_limit')) + 1 : 0, ((($page - 1) * $this->config->get('config_admin_limit')) > ($customer_group_total - $this->config->get('config_admin_limit'))) ? $customer_group_total : ((($page - 1) * $this->config->get('config_admin_limit')) + $this->config->get('config_admin_limit')), $customer_group_total, ceil($customer_group_total / $this->config->get('config_admin_limit')));
 
 		$this->data['sort'] = $sort; 
 		$this->data['order'] = $order;
@@ -261,20 +261,20 @@ class ControllerSaleCustomerGroup extends Controller {
  	}
 
 	protected function getForm() {
-		$this->data['heading_title'] = $this->language->get('heading_title');
+		$this->data['heading_title'] = __('heading_title');
 		
-		$this->data['text_yes'] = $this->language->get('text_yes');
-		$this->data['text_no'] = $this->language->get('text_no');
+		$this->data['text_yes'] = __('text_yes');
+		$this->data['text_no'] = __('text_no');
 				
-		$this->data['entry_name'] = $this->language->get('entry_name');
-		$this->data['entry_description'] = $this->language->get('entry_description');
-		$this->data['entry_approval'] = $this->language->get('entry_approval');
-		$this->data['entry_sort_order'] = $this->language->get('entry_sort_order');
+		$this->data['entry_name'] = __('entry_name');
+		$this->data['entry_description'] = __('entry_description');
+		$this->data['entry_approval'] = __('entry_approval');
+		$this->data['entry_sort_order'] = __('entry_sort_order');
 		
-		$this->data['help_approval'] = $this->language->get('help_approval');
+		$this->data['help_approval'] = __('help_approval');
 		
-		$this->data['button_save'] = $this->language->get('button_save');
-		$this->data['button_cancel'] = $this->language->get('button_cancel');
+		$this->data['button_save'] = __('button_save');
+		$this->data['button_cancel'] = __('button_cancel');
 
  		if (isset($this->error['warning'])) {
 			$this->data['error_warning'] = $this->error['warning'];
@@ -305,12 +305,12 @@ class ControllerSaleCustomerGroup extends Controller {
   		$this->data['breadcrumbs'] = array();
 
    		$this->data['breadcrumbs'][] = array(
-       		'text' => $this->language->get('text_home'),
+       		'text' => __('text_home'),
 			'href' => $this->url->link('common/home', 'token=' . $this->session->data['token'], 'SSL')
    		);
 
    		$this->data['breadcrumbs'][] = array(
-       		'text' => $this->language->get('heading_title'),
+       		'text' => __('heading_title'),
 			'href' => $this->url->link('sale/customer_group', 'token=' . $this->session->data['token'] . $url, 'SSL')
    		);
 			
@@ -365,12 +365,12 @@ class ControllerSaleCustomerGroup extends Controller {
 
 	protected function validateForm() {
 		if (!$this->user->hasPermission('modify', 'sale/customer_group')) {
-			$this->error['warning'] = $this->language->get('error_permission');
+			$this->error['warning'] = __('error_permission');
 		}
 		
 		foreach ($this->request->post['customer_group_description'] as $language_id => $value) {
 			if ((utf8_strlen($value['name']) < 3) || (utf8_strlen($value['name']) > 32)) {
-				$this->error['name'][$language_id] = $this->language->get('error_name');
+				$this->error['name'][$language_id] = __('error_name');
 			}
 		}
 		
@@ -383,7 +383,7 @@ class ControllerSaleCustomerGroup extends Controller {
 
 	protected function validateDelete() {
 		if (!$this->user->hasPermission('modify', 'sale/customer_group')) {
-			$this->error['warning'] = $this->language->get('error_permission');
+			$this->error['warning'] = __('error_permission');
 		}
 		
 		$this->load->model('setting/store');
@@ -391,19 +391,19 @@ class ControllerSaleCustomerGroup extends Controller {
       	
 		foreach ($this->request->post['selected'] as $customer_group_id) {
     		if ($this->config->get('config_customer_group_id') == $customer_group_id) {
-	  			$this->error['warning'] = $this->language->get('error_default');	
+	  			$this->error['warning'] = __('error_default');	
 			}  
 			
 			$store_total = $this->model_setting_store->getTotalStoresByCustomerGroupId($customer_group_id);
 
 			if ($store_total) {
-				$this->error['warning'] = sprintf($this->language->get('error_store'), $store_total);
+				$this->error['warning'] = sprintf(__('error_store'), $store_total);
 			}
 			
 			$customer_total = $this->model_sale_customer->getTotalCustomersByCustomerGroupId($customer_group_id);
 
 			if ($customer_total) {
-				$this->error['warning'] = sprintf($this->language->get('error_customer'), $customer_total);
+				$this->error['warning'] = sprintf(__('error_customer'), $customer_total);
 			}
 		}
 		

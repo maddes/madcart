@@ -3,9 +3,9 @@ class ControllerPaymentPPStandard extends Controller {
 	protected function index() {
 		$this->language->load('payment/pp_standard');
 		
-		$this->data['text_testmode'] = $this->language->get('text_testmode');		
+		$this->data['text_testmode'] = __('text_testmode');		
     	
-		$this->data['button_confirm'] = $this->language->get('button_confirm');
+		$this->data['button_confirm'] = __('button_confirm');
 
 		$this->data['testmode'] = $this->config->get('pp_standard_test');
 		
@@ -59,7 +59,7 @@ class ControllerPaymentPPStandard extends Controller {
 
 			if ($total > 0) {
 				$this->data['products'][] = array(
-					'name'     => $this->language->get('text_total'),
+					'name'     => __('text_total'),
 					'model'    => '',
 					'price'    => $total,
 					'quantity' => 1,

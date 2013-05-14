@@ -5,7 +5,7 @@ class ControllerCatalogManufacturer extends Controller {
   	public function index() {
 		$this->language->load('catalog/manufacturer');
 		
-		$this->document->setTitle($this->language->get('heading_title'));
+		$this->document->setTitle(__('heading_title'));
 		 
 		$this->load->model('catalog/manufacturer');
 		
@@ -15,14 +15,14 @@ class ControllerCatalogManufacturer extends Controller {
   	public function insert() {
 		$this->language->load('catalog/manufacturer');
 
-    	$this->document->setTitle($this->language->get('heading_title'));
+    	$this->document->setTitle(__('heading_title'));
 		
 		$this->load->model('catalog/manufacturer');
 			
 		if (($this->request->server['REQUEST_METHOD'] == 'POST') && $this->validateForm()) {
 			$this->model_catalog_manufacturer->addManufacturer($this->request->post);
 
-			$this->session->data['success'] = $this->language->get('text_success');
+			$this->session->data['success'] = __('text_success');
 			
 			$url = '';
 			
@@ -47,14 +47,14 @@ class ControllerCatalogManufacturer extends Controller {
   	public function update() {
 		$this->language->load('catalog/manufacturer');
 
-    	$this->document->setTitle($this->language->get('heading_title'));
+    	$this->document->setTitle(__('heading_title'));
 		
 		$this->load->model('catalog/manufacturer');
 		
     	if (($this->request->server['REQUEST_METHOD'] == 'POST') && $this->validateForm()) {
 			$this->model_catalog_manufacturer->editManufacturer($this->request->get['manufacturer_id'], $this->request->post);
 
-			$this->session->data['success'] = $this->language->get('text_success');
+			$this->session->data['success'] = __('text_success');
 
 			$url = '';
 			
@@ -79,7 +79,7 @@ class ControllerCatalogManufacturer extends Controller {
   	public function delete() {
 		$this->language->load('catalog/manufacturer');
 
-    	$this->document->setTitle($this->language->get('heading_title'));
+    	$this->document->setTitle(__('heading_title'));
 		
 		$this->load->model('catalog/manufacturer');
 			
@@ -88,7 +88,7 @@ class ControllerCatalogManufacturer extends Controller {
 				$this->model_catalog_manufacturer->deleteManufacturer($manufacturer_id);
 			}
 
-			$this->session->data['success'] = $this->language->get('text_success');
+			$this->session->data['success'] = __('text_success');
 			
 			$url = '';
 			
@@ -146,12 +146,12 @@ class ControllerCatalogManufacturer extends Controller {
   		$this->data['breadcrumbs'] = array();
 
    		$this->data['breadcrumbs'][] = array(
-       		'text' => $this->language->get('text_home'),
+       		'text' => __('text_home'),
 			'href' => $this->url->link('common/home', 'token=' . $this->session->data['token'], 'SSL')
    		);
 
    		$this->data['breadcrumbs'][] = array(
-       		'text' => $this->language->get('heading_title'),
+       		'text' => __('heading_title'),
 			'href' => $this->url->link('catalog/manufacturer', 'token=' . $this->session->data['token'] . $url, 'SSL')
    		);
 							
@@ -175,7 +175,7 @@ class ControllerCatalogManufacturer extends Controller {
 			$action = array();
 			
 			$action[] = array(
-				'text' => $this->language->get('text_edit'),
+				'text' => __('text_edit'),
 				'href' => $this->url->link('catalog/manufacturer/update', 'token=' . $this->session->data['token'] . '&manufacturer_id=' . $result['manufacturer_id'] . $url, 'SSL')
 			);
 						
@@ -188,16 +188,16 @@ class ControllerCatalogManufacturer extends Controller {
 			);
 		}	
 	
-		$this->data['heading_title'] = $this->language->get('heading_title');
+		$this->data['heading_title'] = __('heading_title');
 		
-		$this->data['text_no_results'] = $this->language->get('text_no_results');
+		$this->data['text_no_results'] = __('text_no_results');
 
-		$this->data['column_name'] = $this->language->get('column_name');
-		$this->data['column_sort_order'] = $this->language->get('column_sort_order');
-		$this->data['column_action'] = $this->language->get('column_action');		
+		$this->data['column_name'] = __('column_name');
+		$this->data['column_sort_order'] = __('column_sort_order');
+		$this->data['column_action'] = __('column_action');		
 		
-		$this->data['button_insert'] = $this->language->get('button_insert');
-		$this->data['button_delete'] = $this->language->get('button_delete');
+		$this->data['button_insert'] = __('button_insert');
+		$this->data['button_delete'] = __('button_delete');
  
  		if (isset($this->error['warning'])) {
 			$this->data['error_warning'] = $this->error['warning'];
@@ -246,7 +246,7 @@ class ControllerCatalogManufacturer extends Controller {
 			
 		$this->data['pagination'] = $pagination->render();
 		
-		$this->data['results'] = sprintf($this->language->get('text_pagination'), ($manufacturer_total) ? (($page - 1) * $this->config->get('config_admin_limit')) + 1 : 0, ((($page - 1) * $this->config->get('config_admin_limit')) > ($manufacturer_total - $this->config->get('config_admin_limit'))) ? $manufacturer_total : ((($page - 1) * $this->config->get('config_admin_limit')) + $this->config->get('config_admin_limit')), $manufacturer_total, ceil($manufacturer_total / $this->config->get('config_admin_limit')));
+		$this->data['results'] = sprintf(__('text_pagination'), ($manufacturer_total) ? (($page - 1) * $this->config->get('config_admin_limit')) + 1 : 0, ((($page - 1) * $this->config->get('config_admin_limit')) > ($manufacturer_total - $this->config->get('config_admin_limit'))) ? $manufacturer_total : ((($page - 1) * $this->config->get('config_admin_limit')) + $this->config->get('config_admin_limit')), $manufacturer_total, ceil($manufacturer_total / $this->config->get('config_admin_limit')));
 
 		$this->data['sort'] = $sort;
 		$this->data['order'] = $order;
@@ -261,28 +261,28 @@ class ControllerCatalogManufacturer extends Controller {
 	}
   
   	protected function getForm() {
-    	$this->data['heading_title'] = $this->language->get('heading_title');
+    	$this->data['heading_title'] = __('heading_title');
 
-    	$this->data['text_enabled'] = $this->language->get('text_enabled');
-    	$this->data['text_disabled'] = $this->language->get('text_disabled');
-		$this->data['text_default'] = $this->language->get('text_default');
-    	$this->data['text_image_manager'] = $this->language->get('text_image_manager');
-		$this->data['text_browse'] = $this->language->get('text_browse');
-		$this->data['text_clear'] = $this->language->get('text_clear');			
-		$this->data['text_percent'] = $this->language->get('text_percent');
-		$this->data['text_amount'] = $this->language->get('text_amount');
+    	$this->data['text_enabled'] = __('text_enabled');
+    	$this->data['text_disabled'] = __('text_disabled');
+		$this->data['text_default'] = __('text_default');
+    	$this->data['text_image_manager'] = __('text_image_manager');
+		$this->data['text_browse'] = __('text_browse');
+		$this->data['text_clear'] = __('text_clear');			
+		$this->data['text_percent'] = __('text_percent');
+		$this->data['text_amount'] = __('text_amount');
 				
-		$this->data['entry_name'] = $this->language->get('entry_name');
-		$this->data['entry_store'] = $this->language->get('entry_store');
-		$this->data['entry_keyword'] = $this->language->get('entry_keyword');
-    	$this->data['entry_image'] = $this->language->get('entry_image');
-		$this->data['entry_sort_order'] = $this->language->get('entry_sort_order');
-		$this->data['entry_customer_group'] = $this->language->get('entry_customer_group');
+		$this->data['entry_name'] = __('entry_name');
+		$this->data['entry_store'] = __('entry_store');
+		$this->data['entry_keyword'] = __('entry_keyword');
+    	$this->data['entry_image'] = __('entry_image');
+		$this->data['entry_sort_order'] = __('entry_sort_order');
+		$this->data['entry_customer_group'] = __('entry_customer_group');
 		
-		$this->data['help_keyword'] = $this->language->get('help_keyword');
+		$this->data['help_keyword'] = __('help_keyword');
 
-    	$this->data['button_save'] = $this->language->get('button_save');
-    	$this->data['button_cancel'] = $this->language->get('button_cancel');
+    	$this->data['button_save'] = __('button_save');
+    	$this->data['button_cancel'] = __('button_cancel');
 			  
  		if (isset($this->error['warning'])) {
 			$this->data['error_warning'] = $this->error['warning'];
@@ -313,12 +313,12 @@ class ControllerCatalogManufacturer extends Controller {
   		$this->data['breadcrumbs'] = array();
 
    		$this->data['breadcrumbs'][] = array(
-       		'text' => $this->language->get('text_home'),
+       		'text' => __('text_home'),
 			'href' => $this->url->link('common/home', 'token=' . $this->session->data['token'], 'SSL')
    		);
 
    		$this->data['breadcrumbs'][] = array(
-       		'text' => $this->language->get('heading_title'),
+       		'text' => __('heading_title'),
 			'href' => $this->url->link('catalog/manufacturer', 'token=' . $this->session->data['token'] . $url, 'SSL')
    		);
 							
@@ -403,11 +403,11 @@ class ControllerCatalogManufacturer extends Controller {
 	 
   	protected function validateForm() {
     	if (!$this->user->hasPermission('modify', 'catalog/manufacturer')) {
-      		$this->error['warning'] = $this->language->get('error_permission');
+      		$this->error['warning'] = __('error_permission');
     	}
 
     	if ((utf8_strlen($this->request->post['name']) < 3) || (utf8_strlen($this->request->post['name']) > 64)) {
-      		$this->error['name'] = $this->language->get('error_name');
+      		$this->error['name'] = __('error_name');
     	}
 		
 		if (!$this->error) {
@@ -419,7 +419,7 @@ class ControllerCatalogManufacturer extends Controller {
 
   	protected function validateDelete() {
     	if (!$this->user->hasPermission('modify', 'catalog/manufacturer')) {
-			$this->error['warning'] = $this->language->get('error_permission');
+			$this->error['warning'] = __('error_permission');
     	}	
 		
 		$this->load->model('catalog/product');
@@ -428,7 +428,7 @@ class ControllerCatalogManufacturer extends Controller {
   			$product_total = $this->model_catalog_product->getTotalProductsByManufacturerId($manufacturer_id);
     
 			if ($product_total) {
-	  			$this->error['warning'] = sprintf($this->language->get('error_product'), $product_total);	
+	  			$this->error['warning'] = sprintf(__('error_product'), $product_total);	
 			}	
 	  	} 
 		

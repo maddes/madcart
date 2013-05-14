@@ -3,10 +3,10 @@ class ControllerModuleInformation extends Controller {
 	protected function index() {
 		$this->language->load('module/information');
 		
-    	$this->data['heading_title'] = $this->language->get('heading_title');
+    	$this->data['heading_title'] = __('heading_title');
     	
-		$this->data['text_contact'] = $this->language->get('text_contact');
-    	$this->data['text_sitemap'] = $this->language->get('text_sitemap');
+		$this->data['text_contact'] = __('text_contact');
+    	$this->data['text_sitemap'] = __('text_sitemap');
 		
 		$this->load->model('catalog/information');
 		

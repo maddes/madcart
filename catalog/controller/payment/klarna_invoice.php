@@ -8,25 +8,25 @@ class ControllerPaymentKlarnaInvoice extends Controller {
 		if ($order_info) {      
 			$this->language->load('payment/klarna_invoice');
 			
-			$this->data['text_additional'] = $this->language->get('text_additional');
-			$this->data['text_payment_option'] = $this->language->get('text_payment_option');	
-			$this->data['text_wait'] = $this->language->get('text_wait');
-			$this->data['text_day'] = $this->language->get('text_day');	
-			$this->data['text_month'] = $this->language->get('text_month');	
-			$this->data['text_year'] = $this->language->get('text_year');	
-			$this->data['text_male'] = $this->language->get('text_male');	
-			$this->data['text_female'] = $this->language->get('text_female');		
+			$this->data['text_additional'] = __('text_additional');
+			$this->data['text_payment_option'] = __('text_payment_option');	
+			$this->data['text_wait'] = __('text_wait');
+			$this->data['text_day'] = __('text_day');	
+			$this->data['text_month'] = __('text_month');	
+			$this->data['text_year'] = __('text_year');	
+			$this->data['text_male'] = __('text_male');	
+			$this->data['text_female'] = __('text_female');		
 					
-			$this->data['entry_pno'] = $this->language->get('entry_pno');
-			$this->data['entry_dob'] = $this->language->get('entry_dob');	
-			$this->data['entry_gender'] = $this->language->get('entry_gender');	
-			$this->data['entry_street'] = $this->language->get('entry_street');	
-			$this->data['entry_house_no'] = $this->language->get('entry_house_no');	
-			$this->data['entry_house_ext'] = $this->language->get('entry_house_ext');
-			$this->data['entry_phone_no'] = $this->language->get('entry_phone_no');	
-			$this->data['entry_company'] = $this->language->get('entry_company');
+			$this->data['entry_pno'] = __('entry_pno');
+			$this->data['entry_dob'] = __('entry_dob');	
+			$this->data['entry_gender'] = __('entry_gender');	
+			$this->data['entry_street'] = __('entry_street');	
+			$this->data['entry_house_no'] = __('entry_house_no');	
+			$this->data['entry_house_ext'] = __('entry_house_ext');
+			$this->data['entry_phone_no'] = __('entry_phone_no');	
+			$this->data['entry_company'] = __('entry_company');
 			
-			$this->data['button_confirm'] = $this->language->get('button_confirm');		
+			$this->data['button_confirm'] = __('button_confirm');		
 			
 			$this->data['days'] = array();
 			
@@ -109,13 +109,13 @@ class ControllerPaymentKlarnaInvoice extends Controller {
 						
 			// Order must have identical shipping and billing address or have no shipping address at all
 			if ($this->cart->hasShipping() && !($order_info['payment_firstname'] == $order_info['shipping_firstname'] && $order_info['payment_lastname'] == $order_info['shipping_lastname'] && $order_info['payment_address_1'] == $order_info['shipping_address_1'] && $order_info['payment_address_2'] == $order_info['shipping_address_2'] && $order_info['payment_postcode'] == $order_info['shipping_postcode'] && $order_info['payment_city'] == $order_info['shipping_city'] && $order_info['payment_zone_id'] == $order_info['shipping_zone_id'] && $order_info['payment_zone_code'] == $order_info['shipping_zone_code'] && $order_info['payment_country_id'] == $order_info['shipping_country_id'] && $order_info['payment_country'] == $order_info['shipping_country'] && $order_info['payment_iso_code_3'] == $order_info['shipping_iso_code_3'])) {
-				$this->data['error_warning'] = $this->language->get('error_address_match');
+				$this->data['error_warning'] = __('error_address_match');
 			} else {
 				$this->data['error_warning'] = '';
 			}
 						
 			// The title stored in the DB gets truncated which causes order_info.tpl to not be displayed properly
-			$this->db->query("UPDATE `" . DB_PREFIX . "order` SET `payment_method` = '" . $this->db->escape($this->language->get('text_title')) . "' WHERE `order_id` = " . (int)$this->session->data['order_id']);
+			$this->db->query("UPDATE `" . DB_PREFIX . "order` SET `payment_method` = '" . $this->db->escape(__('text_title')) . "' WHERE `order_id` = " . (int)$this->session->data['order_id']);
 			
 			$klarna_invoice = $this->config->get('klarna_invoice');
 			
@@ -173,11 +173,11 @@ class ControllerPaymentKlarnaInvoice extends Controller {
 		// Order must have identical shipping and billing address or have no shipping address at all
 		if ($order_info) {
 			if ($order_info['payment_iso_code_3'] == 'DEU' && empty($this->request->post['deu_terms'])) {
-				$json['error'] =  $this->language->get('error_deu_terms');
+				$json['error'] =  __('error_deu_terms');
 			}
 						
 			if ($this->cart->hasShipping() && !($order_info['payment_firstname'] == $order_info['shipping_firstname'] && $order_info['payment_lastname'] == $order_info['shipping_lastname'] && $order_info['payment_address_1'] == $order_info['shipping_address_1'] && $order_info['payment_address_2'] == $order_info['shipping_address_2'] && $order_info['payment_postcode'] == $order_info['shipping_postcode'] && $order_info['payment_city'] == $order_info['shipping_city'] && $order_info['payment_zone_id'] == $order_info['shipping_zone_id'] && $order_info['payment_zone_code'] == $order_info['shipping_zone_code'] && $order_info['payment_country_id'] == $order_info['shipping_country_id'] && $order_info['payment_country'] == $order_info['shipping_country'] && $order_info['payment_iso_code_3'] == $order_info['shipping_iso_code_3'])) {
-				$json['error'] = $this->language->get('error_address_match');
+				$json['error'] = __('error_address_match');
 			}
 			
 			if (!$json) {		
@@ -397,7 +397,7 @@ class ControllerPaymentKlarnaInvoice extends Controller {
 					$log = new Log('klarna_invoice.log');
 					$log->write('HTTP Error for order #' . $order_info['order_id'] . '. Code: ' . curl_errno($curl) . ' message: ' . curl_error($curl));
 					
-					$json['error'] = $this->language->get('error_network');
+					$json['error'] = __('error_network');
 				} else {
 					preg_match('/<member><name>faultString<\/name><value><string>(.+)<\/string><\/value><\/member>/', $response, $match);
 		
@@ -423,7 +423,7 @@ class ControllerPaymentKlarnaInvoice extends Controller {
 							$order_status = $this->config->get('config_order_status_id');
 						}
 						
-						$comment = sprintf($this->language->get('text_comment'), $invoice_number, $this->config->get('config_currency'), $country_to_currency[$order_info['payment_iso_code_3']], $this->currency->getValue($country_to_currency[$order_info['payment_iso_code_3']]));
+						$comment = sprintf(__('text_comment'), $invoice_number, $this->config->get('config_currency'), $country_to_currency[$order_info['payment_iso_code_3']], $this->currency->getValue($country_to_currency[$order_info['payment_iso_code_3']]));
 						
 						$this->model_checkout_order->confirm($this->session->data['order_id'], $order_status, $comment, 1);
 						

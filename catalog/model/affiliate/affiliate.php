@@ -5,13 +5,13 @@ class ModelAffiliateAffiliate extends Model {
 	
 		$this->language->load('mail/affiliate');
 		
-		$subject = sprintf($this->language->get('text_subject'), $this->config->get('config_name'));
+		$subject = sprintf(__('text_subject'), $this->config->get('config_name'));
 		
-		$message  = sprintf($this->language->get('text_welcome'), $this->config->get('config_name')) . "\n\n";
-		$message .= $this->language->get('text_approval') . "\n";
+		$message  = sprintf(__('text_welcome'), $this->config->get('config_name')) . "\n\n";
+		$message .= __('text_approval') . "\n";
 		$message .= $this->url->link('affiliate/login', '', 'SSL') . "\n\n";
-		$message .= $this->language->get('text_services') . "\n\n";
-		$message .= $this->language->get('text_thanks') . "\n";
+		$message .= __('text_services') . "\n\n";
+		$message .= __('text_thanks') . "\n";
 		$message .= $this->config->get('config_name');
 		
 		$mail = new Mail();

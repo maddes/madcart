@@ -1,7 +1,7 @@
 <?php 
 class ControllerPaymentPaymate extends Controller {
 	protected function index() {
-    	$this->data['button_confirm'] = $this->language->get('button_confirm');
+    	$this->data['button_confirm'] = __('button_confirm');
 
 		if (!$this->config->get('paymate_test')) {
 			$this->data['action'] = 'https://www.paymate.com/PayMate/ExpressPayment';
@@ -59,44 +59,44 @@ class ControllerPaymentPaymate extends Controller {
 			$error = '';
 			
 			if (!isset($this->request->post['responseCode']) || !isset($this->request->get['hash'])) {
-				$error = $this->language->get('text_unable');
+				$error = __('text_unable');
 			} elseif ($this->request->get['hash'] != md5($order_info['order_id'] . $this->currency->format($this->request->post['paymentAmount'], $this->request->post['currency'], 1.0000000, false) . $this->request->post['currency'] . $this->config->get('paymate_password'))) {
-				$error = $this->language->get('text_unable');
+				$error = __('text_unable');
 			} elseif ($this->request->post['responseCode'] != 'PA' && $this->request->post['responseCode'] != 'PP') {
-				$error = $this->language->get('text_declined');
+				$error = __('text_declined');
 			}
 		} else {
-			$error = $this->language->get('text_unable');
+			$error = __('text_unable');
 		}	
 
 		if ($error) {
 			$this->data['breadcrumbs'] = array();
 
 			$this->data['breadcrumbs'][] = array(
-				'text' => $this->language->get('text_home'),
+				'text' => __('text_home'),
 				'href' => $this->url->link('common/home')
 			);
 
 			$this->data['breadcrumbs'][] = array(
-				'text' => $this->language->get('text_basket'),
+				'text' => __('text_basket'),
 				'href' => $this->url->link('checkout/cart')
 			);
 
 			$this->data['breadcrumbs'][] = array(
-				'text' => $this->language->get('text_checkout'),
+				'text' => __('text_checkout'),
 				'href' => $this->url->link('checkout/checkout', '', 'SSL')
 			);
 
 			$this->data['breadcrumbs'][] = array(
-				'text' => $this->language->get('text_failed'),
+				'text' => __('text_failed'),
 				'href' => $this->url->link('checkout/success')
 			);
 						
-			$this->data['heading_title'] = $this->language->get('text_failed');
+			$this->data['heading_title'] = __('text_failed');
 
-			$this->data['text_message'] = sprintf($this->language->get('text_failed_message'), $error, $this->url->link('information/contact'));
+			$this->data['text_message'] = sprintf(__('text_failed_message'), $error, $this->url->link('information/contact'));
 			
-			$this->data['button_continue'] = $this->language->get('button_continue');
+			$this->data['button_continue'] = __('button_continue');
 			
 			$this->data['continue'] = $this->url->link('common/home');
 			

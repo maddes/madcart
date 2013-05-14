@@ -36,7 +36,7 @@ class ControllerAccountOrder extends Controller {
 						}
 					}
 							
-					$this->session->data['success'] = sprintf($this->language->get('text_success'), $this->request->get['order_id']);
+					$this->session->data['success'] = sprintf(__('text_success'), $this->request->get['order_id']);
 							
 					$this->cart->add($order_product['product_id'], $order_product['quantity'], $option_data);
 				}
@@ -45,17 +45,17 @@ class ControllerAccountOrder extends Controller {
 			}
 		}
 
-    	$this->document->setTitle($this->language->get('heading_title'));
+    	$this->document->setTitle(__('heading_title'));
 
       	$this->data['breadcrumbs'] = array();
 
       	$this->data['breadcrumbs'][] = array(
-        	'text' => $this->language->get('text_home'),
+        	'text' => __('text_home'),
 			'href' => $this->url->link('common/home')
       	); 
 
       	$this->data['breadcrumbs'][] = array(
-        	'text' => $this->language->get('text_account'),
+        	'text' => __('text_account'),
 			'href' => $this->url->link('account/account', '', 'SSL')
       	);
 		
@@ -66,23 +66,23 @@ class ControllerAccountOrder extends Controller {
 		}
 				
       	$this->data['breadcrumbs'][] = array(
-        	'text' => $this->language->get('heading_title'),
+        	'text' => __('heading_title'),
 			'href' => $this->url->link('account/order', $url, 'SSL')
       	);
 
-		$this->data['heading_title'] = $this->language->get('heading_title');
+		$this->data['heading_title'] = __('heading_title');
 
-		$this->data['text_order_id'] = $this->language->get('text_order_id');
-		$this->data['text_status'] = $this->language->get('text_status');
-		$this->data['text_date_added'] = $this->language->get('text_date_added');
-		$this->data['text_customer'] = $this->language->get('text_customer');
-		$this->data['text_products'] = $this->language->get('text_products');
-		$this->data['text_total'] = $this->language->get('text_total');
-		$this->data['text_empty'] = $this->language->get('text_empty');
+		$this->data['text_order_id'] = __('text_order_id');
+		$this->data['text_status'] = __('text_status');
+		$this->data['text_date_added'] = __('text_date_added');
+		$this->data['text_customer'] = __('text_customer');
+		$this->data['text_products'] = __('text_products');
+		$this->data['text_total'] = __('text_total');
+		$this->data['text_empty'] = __('text_empty');
 
-		$this->data['button_view'] = $this->language->get('button_view');
-		$this->data['button_reorder'] = $this->language->get('button_reorder');
-		$this->data['button_continue'] = $this->language->get('button_continue');
+		$this->data['button_view'] = __('button_view');
+		$this->data['button_reorder'] = __('button_reorder');
+		$this->data['button_continue'] = __('button_continue');
 		
 		if (isset($this->request->get['page'])) {
 			$page = $this->request->get['page'];
@@ -104,7 +104,7 @@ class ControllerAccountOrder extends Controller {
 				'order_id'   => $result['order_id'],
 				'name'       => $result['firstname'] . ' ' . $result['lastname'],
 				'status'     => $result['status'],
-				'date_added' => date($this->language->get('date_format_short'), strtotime($result['date_added'])),
+				'date_added' => date(__('date_format_short'), strtotime($result['date_added'])),
 				'products'   => ($product_total + $voucher_total),
 				'total'      => $this->currency->format($result['total'], $result['currency_code'], $result['currency_value']),
 				'href'       => $this->url->link('account/order/info', 'order_id=' . $result['order_id'], 'SSL'),
@@ -120,7 +120,7 @@ class ControllerAccountOrder extends Controller {
 		
 		$this->data['pagination'] = $pagination->render();
 		
-		$this->data['results'] = sprintf($this->language->get('text_pagination'), ($order_total) ? (($page - 1) * 10) + 1 : 0, ((($page - 1) * 10) > ($order_total - 10)) ? $order_total : ((($page - 1) * 10) + 10), $order_total, ceil($order_total / 10));
+		$this->data['results'] = sprintf(__('text_pagination'), ($order_total) ? (($page - 1) * 10) + 1 : 0, ((($page - 1) * 10) > ($order_total - 10)) ? $order_total : ((($page - 1) * 10) + 10), $order_total, ceil($order_total / 10));
 
 		$this->data['continue'] = $this->url->link('account/account', '', 'SSL');
 
@@ -162,17 +162,17 @@ class ControllerAccountOrder extends Controller {
 		$order_info = $this->model_account_order->getOrder($order_id);
 		
 		if ($order_info) {
-			$this->document->setTitle($this->language->get('text_order'));
+			$this->document->setTitle(__('text_order'));
 			
 			$this->data['breadcrumbs'] = array();
 		
 			$this->data['breadcrumbs'][] = array(
-				'text' => $this->language->get('text_home'),
+				'text' => __('text_home'),
 				'href' => $this->url->link('common/home')
 			); 
 		
 			$this->data['breadcrumbs'][] = array(
-				'text' => $this->language->get('text_account'),
+				'text' => __('text_account'),
 				'href' => $this->url->link('account/account', '', 'SSL')       	
 			);
 			
@@ -183,40 +183,40 @@ class ControllerAccountOrder extends Controller {
 			}
 						
 			$this->data['breadcrumbs'][] = array(
-				'text' => $this->language->get('heading_title'),
+				'text' => __('heading_title'),
 				'href' => $this->url->link('account/order', $url, 'SSL')
 			);
 			
 			$this->data['breadcrumbs'][] = array(
-				'text' => $this->language->get('text_order'),
+				'text' => __('text_order'),
 				'href' => $this->url->link('account/order/info', 'order_id=' . $this->request->get['order_id'] . $url, 'SSL')
 			);
 					
-      		$this->data['heading_title'] = $this->language->get('text_order');
+      		$this->data['heading_title'] = __('text_order');
 			
-			$this->data['text_order_detail'] = $this->language->get('text_order_detail');
-			$this->data['text_invoice_no'] = $this->language->get('text_invoice_no');
-    		$this->data['text_order_id'] = $this->language->get('text_order_id');
-			$this->data['text_date_added'] = $this->language->get('text_date_added');
-      		$this->data['text_shipping_method'] = $this->language->get('text_shipping_method');
-			$this->data['text_shipping_address'] = $this->language->get('text_shipping_address');
-      		$this->data['text_payment_method'] = $this->language->get('text_payment_method');
-      		$this->data['text_payment_address'] = $this->language->get('text_payment_address');
-      		$this->data['text_history'] = $this->language->get('text_history');
-			$this->data['text_comment'] = $this->language->get('text_comment');
+			$this->data['text_order_detail'] = __('text_order_detail');
+			$this->data['text_invoice_no'] = __('text_invoice_no');
+    		$this->data['text_order_id'] = __('text_order_id');
+			$this->data['text_date_added'] = __('text_date_added');
+      		$this->data['text_shipping_method'] = __('text_shipping_method');
+			$this->data['text_shipping_address'] = __('text_shipping_address');
+      		$this->data['text_payment_method'] = __('text_payment_method');
+      		$this->data['text_payment_address'] = __('text_payment_address');
+      		$this->data['text_history'] = __('text_history');
+			$this->data['text_comment'] = __('text_comment');
 
-      		$this->data['column_name'] = $this->language->get('column_name');
-      		$this->data['column_model'] = $this->language->get('column_model');
-      		$this->data['column_quantity'] = $this->language->get('column_quantity');
-      		$this->data['column_price'] = $this->language->get('column_price');
-      		$this->data['column_total'] = $this->language->get('column_total');
-			$this->data['column_action'] = $this->language->get('column_action');
-			$this->data['column_date_added'] = $this->language->get('column_date_added');
-      		$this->data['column_status'] = $this->language->get('column_status');
-      		$this->data['column_comment'] = $this->language->get('column_comment');
+      		$this->data['column_name'] = __('column_name');
+      		$this->data['column_model'] = __('column_model');
+      		$this->data['column_quantity'] = __('column_quantity');
+      		$this->data['column_price'] = __('column_price');
+      		$this->data['column_total'] = __('column_total');
+			$this->data['column_action'] = __('column_action');
+			$this->data['column_date_added'] = __('column_date_added');
+      		$this->data['column_status'] = __('column_status');
+      		$this->data['column_comment'] = __('column_comment');
 			
-			$this->data['button_return'] = $this->language->get('button_return');
-      		$this->data['button_continue'] = $this->language->get('button_continue');
+			$this->data['button_return'] = __('button_return');
+      		$this->data['button_continue'] = __('button_continue');
 		
 			if ($order_info['invoice_no']) {
 				$this->data['invoice_no'] = $order_info['invoice_prefix'] . $order_info['invoice_no'];
@@ -225,7 +225,7 @@ class ControllerAccountOrder extends Controller {
 			}
 			
 			$this->data['order_id'] = $this->request->get['order_id'];
-			$this->data['date_added'] = date($this->language->get('date_format_short'), strtotime($order_info['date_added']));
+			$this->data['date_added'] = date(__('date_format_short'), strtotime($order_info['date_added']));
 			
 			if ($order_info['payment_address_format']) {
       			$format = $order_info['payment_address_format'];
@@ -354,7 +354,7 @@ class ControllerAccountOrder extends Controller {
 
       		foreach ($results as $result) {
         		$this->data['histories'][] = array(
-          			'date_added' => date($this->language->get('date_format_short'), strtotime($result['date_added'])),
+          			'date_added' => date(__('date_format_short'), strtotime($result['date_added'])),
           			'status'     => $result['status'],
           			'comment'    => nl2br($result['comment'])
         		);
@@ -379,33 +379,33 @@ class ControllerAccountOrder extends Controller {
 								
 			$this->response->setOutput($this->render());		
     	} else {
-			$this->document->setTitle($this->language->get('text_order'));
+			$this->document->setTitle(__('text_order'));
 			
-      		$this->data['heading_title'] = $this->language->get('text_order');
+      		$this->data['heading_title'] = __('text_order');
 
-      		$this->data['text_error'] = $this->language->get('text_error');
+      		$this->data['text_error'] = __('text_error');
 
-      		$this->data['button_continue'] = $this->language->get('button_continue');
+      		$this->data['button_continue'] = __('button_continue');
 			
 			$this->data['breadcrumbs'] = array();
 
 			$this->data['breadcrumbs'][] = array(
-				'text' => $this->language->get('text_home'),
+				'text' => __('text_home'),
 				'href' => $this->url->link('common/home')
 			);
 			
 			$this->data['breadcrumbs'][] = array(
-				'text' => $this->language->get('text_account'),
+				'text' => __('text_account'),
 				'href' => $this->url->link('account/account', '', 'SSL')
 			);
 
 			$this->data['breadcrumbs'][] = array(
-				'text' => $this->language->get('heading_title'),
+				'text' => __('heading_title'),
 				'href' => $this->url->link('account/order', '', 'SSL')
 			);
 			
 			$this->data['breadcrumbs'][] = array(
-				'text' => $this->language->get('text_order'),
+				'text' => __('text_order'),
 				'href' => $this->url->link('account/order/info', 'order_id=' . $order_id, 'SSL')
 			);
 												

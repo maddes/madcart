@@ -5,49 +5,49 @@ class ControllerPaymentPPProUK extends Controller {
 	public function index() {
 		$this->language->load('payment/pp_pro_uk');
 
-		$this->document->setTitle($this->language->get('heading_title'));
+		$this->document->setTitle(__('heading_title'));
 		
 		$this->load->model('setting/setting');
 			
 		if (($this->request->server['REQUEST_METHOD'] == 'POST') && $this->validate()) {
 			$this->model_setting_setting->editSetting('pp_pro_uk', $this->request->post);				
 			
-			$this->session->data['success'] = $this->language->get('text_success');
+			$this->session->data['success'] = __('text_success');
 
 			$this->redirect($this->url->link('extension/payment', 'token=' . $this->session->data['token'], 'SSL'));
 		}
 
-		$this->data['heading_title'] = $this->language->get('heading_title');
+		$this->data['heading_title'] = __('heading_title');
 
-		$this->data['text_enabled'] = $this->language->get('text_enabled');
-		$this->data['text_disabled'] = $this->language->get('text_disabled');
-		$this->data['text_all_zones'] = $this->language->get('text_all_zones');
-		$this->data['text_yes'] = $this->language->get('text_yes');
-		$this->data['text_no'] = $this->language->get('text_no');
-		$this->data['text_authorization'] = $this->language->get('text_authorization');
-		$this->data['text_sale'] = $this->language->get('text_sale');
+		$this->data['text_enabled'] = __('text_enabled');
+		$this->data['text_disabled'] = __('text_disabled');
+		$this->data['text_all_zones'] = __('text_all_zones');
+		$this->data['text_yes'] = __('text_yes');
+		$this->data['text_no'] = __('text_no');
+		$this->data['text_authorization'] = __('text_authorization');
+		$this->data['text_sale'] = __('text_sale');
 		
-		$this->data['entry_vendor'] = $this->language->get('entry_vendor');
-		$this->data['entry_user'] = $this->language->get('entry_user');
-		$this->data['entry_password'] = $this->language->get('entry_password');
-		$this->data['entry_partner'] = $this->language->get('entry_partner');
-		$this->data['entry_test'] = $this->language->get('entry_test');
-		$this->data['entry_transaction'] = $this->language->get('entry_transaction');
-		$this->data['entry_total'] = $this->language->get('entry_total');	
-		$this->data['entry_order_status'] = $this->language->get('entry_order_status');		
-		$this->data['entry_geo_zone'] = $this->language->get('entry_geo_zone');
-		$this->data['entry_status'] = $this->language->get('entry_status');
-		$this->data['entry_sort_order'] = $this->language->get('entry_sort_order');
+		$this->data['entry_vendor'] = __('entry_vendor');
+		$this->data['entry_user'] = __('entry_user');
+		$this->data['entry_password'] = __('entry_password');
+		$this->data['entry_partner'] = __('entry_partner');
+		$this->data['entry_test'] = __('entry_test');
+		$this->data['entry_transaction'] = __('entry_transaction');
+		$this->data['entry_total'] = __('entry_total');	
+		$this->data['entry_order_status'] = __('entry_order_status');		
+		$this->data['entry_geo_zone'] = __('entry_geo_zone');
+		$this->data['entry_status'] = __('entry_status');
+		$this->data['entry_sort_order'] = __('entry_sort_order');
 		
-		$this->data['help_vendor'] = $this->language->get('help_vendor');
-		$this->data['help_user'] = $this->language->get('help_user');
-		$this->data['help_password'] = $this->language->get('help_password');
-		$this->data['help_partner'] = $this->language->get('help_partner');
-		$this->data['help_test'] = $this->language->get('help_test');
-		$this->data['help_total'] = $this->language->get('help_total');
+		$this->data['help_vendor'] = __('help_vendor');
+		$this->data['help_user'] = __('help_user');
+		$this->data['help_password'] = __('help_password');
+		$this->data['help_partner'] = __('help_partner');
+		$this->data['help_test'] = __('help_test');
+		$this->data['help_total'] = __('help_total');
 		
-		$this->data['button_save'] = $this->language->get('button_save');
-		$this->data['button_cancel'] = $this->language->get('button_cancel');
+		$this->data['button_save'] = __('button_save');
+		$this->data['button_cancel'] = __('button_cancel');
 
  		if (isset($this->error['warning'])) {
 			$this->data['error_warning'] = $this->error['warning'];
@@ -82,17 +82,17 @@ class ControllerPaymentPPProUK extends Controller {
 		$this->data['breadcrumbs'] = array();
 
    		$this->data['breadcrumbs'][] = array(
-       		'text' => $this->language->get('text_home'),
+       		'text' => __('text_home'),
 			'href' => $this->url->link('common/home', 'token=' . $this->session->data['token'], 'SSL')
    		);
 
    		$this->data['breadcrumbs'][] = array(
-       		'text' => $this->language->get('text_payment'),
+       		'text' => __('text_payment'),
 			'href' => $this->url->link('extension/payment', 'token=' . $this->session->data['token'], 'SSL')
    		);
 
    		$this->data['breadcrumbs'][] = array(
-       		'text' => $this->language->get('heading_title'),
+       		'text' => __('heading_title'),
 			'href' => $this->url->link('payment/pp_pro_uk', 'token=' . $this->session->data['token'], 'SSL')
    		);
 				
@@ -187,23 +187,23 @@ class ControllerPaymentPPProUK extends Controller {
 
 	protected function validate() {
 		if (!$this->user->hasPermission('modify', 'payment/pp_pro_uk')) {
-			$this->error['warning'] = $this->language->get('error_permission');
+			$this->error['warning'] = __('error_permission');
 		}
 
 		if (!$this->request->post['pp_pro_uk_vendor']) {
-			$this->error['vendor'] = $this->language->get('error_vendor');
+			$this->error['vendor'] = __('error_vendor');
 		}
 		
 		if (!$this->request->post['pp_pro_uk_user']) {
-			$this->error['user'] = $this->language->get('error_user');
+			$this->error['user'] = __('error_user');
 		}
 
 		if (!$this->request->post['pp_pro_uk_password']) {
-			$this->error['password'] = $this->language->get('error_password');
+			$this->error['password'] = __('error_password');
 		}
 
 		if (!$this->request->post['pp_pro_uk_partner']) {
-			$this->error['partner'] = $this->language->get('error_partner');
+			$this->error['partner'] = __('error_partner');
 		}
 		
 		if (!$this->error) {

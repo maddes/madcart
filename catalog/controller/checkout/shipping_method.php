@@ -39,14 +39,14 @@ class ControllerCheckoutShippingMethod extends Controller {
 			$this->session->data['shipping_methods'] = $quote_data;
 		}
 					
-		$this->data['text_shipping_method'] = $this->language->get('text_shipping_method');
-		$this->data['text_comments'] = $this->language->get('text_comments');
-		$this->data['text_modify'] = $this->language->get('text_modify');
+		$this->data['text_shipping_method'] = __('text_shipping_method');
+		$this->data['text_comments'] = __('text_comments');
+		$this->data['text_modify'] = __('text_modify');
 	
-		$this->data['button_continue'] = $this->language->get('button_continue');
+		$this->data['button_continue'] = __('button_continue');
 		
 		if (empty($this->session->data['shipping_methods'])) {
-			$this->data['error_warning'] = sprintf($this->language->get('error_no_shipping'), $this->url->link('information/contact'));
+			$this->data['error_warning'] = sprintf(__('error_no_shipping'), $this->url->link('information/contact'));
 		} else {
 			$this->data['error_warning'] = '';
 		}	
@@ -119,12 +119,12 @@ class ControllerCheckoutShippingMethod extends Controller {
 				
 		if (!$json) {
 			if (!isset($this->request->post['shipping_method'])) {
-				$json['error']['warning'] = $this->language->get('error_shipping');
+				$json['error']['warning'] = __('error_shipping');
 			} else {
 				$shipping = explode('.', $this->request->post['shipping_method']);
 					
 				if (!isset($shipping[0]) || !isset($shipping[1]) || !isset($this->session->data['shipping_methods'][$shipping[0]]['quote'][$shipping[1]])) {			
-					$json['error']['warning'] = $this->language->get('error_shipping');
+					$json['error']['warning'] = __('error_shipping');
 				}
 			}
 			

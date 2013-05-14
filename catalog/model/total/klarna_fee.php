@@ -30,7 +30,7 @@ class ModelTotalKlarnaFee extends Model {
         if ($status) {
 			$total_data[] = array(
 				'code'       => 'klarna_fee',
-				'title'      => $this->language->get('text_klarna_fee'),
+				'title'      => __('text_klarna_fee'),
 				'text'       => $this->currency->format($klarna_fee[$address['iso_code_3']]['fee']),
 				'value'      => $klarna_fee[$address['iso_code_3']]['fee'],
 				'sort_order' => $klarna_fee[$address['iso_code_3']]['sort_order']

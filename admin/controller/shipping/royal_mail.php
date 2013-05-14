@@ -5,70 +5,70 @@ class ControllerShippingRoyalMail extends Controller {
 	public function index() {   
 		$this->language->load('shipping/royal_mail');
 
-		$this->document->setTitle($this->language->get('heading_title'));
+		$this->document->setTitle(__('heading_title'));
 		
 		$this->load->model('setting/setting');
 				
 		if (($this->request->server['REQUEST_METHOD'] == 'POST') && $this->validate()) {
 			$this->model_setting_setting->editSetting('royal_mail', $this->request->post);		
 					
-			$this->session->data['success'] = $this->language->get('text_success');
+			$this->session->data['success'] = __('text_success');
 						
 			$this->redirect($this->url->link('extension/shipping', 'token=' . $this->session->data['token'], 'SSL'));
 		}
 				
-		$this->data['heading_title'] = $this->language->get('heading_title');
+		$this->data['heading_title'] = __('heading_title');
 
-		$this->data['text_enabled'] = $this->language->get('text_enabled');
-		$this->data['text_disabled'] = $this->language->get('text_disabled');
-		$this->data['text_all_zones'] = $this->language->get('text_all_zones');
-		$this->data['text_none'] = $this->language->get('text_none');
-		$this->data['text_yes'] = $this->language->get('text_yes');
-		$this->data['text_no'] = $this->language->get('text_no');
-		$this->data['text_select_all'] = $this->language->get('text_select_all');
-		$this->data['text_unselect_all'] = $this->language->get('text_unselect_all');		
+		$this->data['text_enabled'] = __('text_enabled');
+		$this->data['text_disabled'] = __('text_disabled');
+		$this->data['text_all_zones'] = __('text_all_zones');
+		$this->data['text_none'] = __('text_none');
+		$this->data['text_yes'] = __('text_yes');
+		$this->data['text_no'] = __('text_no');
+		$this->data['text_select_all'] = __('text_select_all');
+		$this->data['text_unselect_all'] = __('text_unselect_all');		
 
-		$this->data['entry_rate'] = $this->language->get('entry_rate');
-		$this->data['entry_insurance'] = $this->language->get('entry_insurance');
-		$this->data['entry_display_weight'] = $this->language->get('entry_display_weight');
-		$this->data['entry_display_insurance'] = $this->language->get('entry_display_insurance');
-		$this->data['entry_weight_class'] = $this->language->get('entry_weight_class');
-		$this->data['entry_tax_class'] = $this->language->get('entry_tax_class');
-		$this->data['entry_geo_zone'] = $this->language->get('entry_geo_zone');
-		$this->data['entry_status'] = $this->language->get('entry_status');
-		$this->data['entry_sort_order'] = $this->language->get('entry_sort_order');
+		$this->data['entry_rate'] = __('entry_rate');
+		$this->data['entry_insurance'] = __('entry_insurance');
+		$this->data['entry_display_weight'] = __('entry_display_weight');
+		$this->data['entry_display_insurance'] = __('entry_display_insurance');
+		$this->data['entry_weight_class'] = __('entry_weight_class');
+		$this->data['entry_tax_class'] = __('entry_tax_class');
+		$this->data['entry_geo_zone'] = __('entry_geo_zone');
+		$this->data['entry_status'] = __('entry_status');
+		$this->data['entry_sort_order'] = __('entry_sort_order');
 		
-		$this->data['help_rate'] = $this->language->get('help_rate');
-		$this->data['help_insurance'] = $this->language->get('help_insurance');
-		$this->data['help_airmail_rate_1'] = $this->language->get('help_airmail_rate_1');
-		$this->data['help_airmail_rate_2'] = $this->language->get('help_airmail_rate_2');
-		$this->data['help_international_signed_rate_1'] = $this->language->get('help_international_signed_rate_1');
-		$this->data['help_international_signed_insurance_1'] = $this->language->get('help_international_signed_insurance_1');
-		$this->data['help_international_signed_rate_2'] = $this->language->get('help_international_signed_rate_2');
-		$this->data['help_international_signed_insurance_2'] = $this->language->get('help_international_signed_insurance_2');
-		$this->data['help_airsure_rate_1'] = $this->language->get('help_airsure_rate_1');
-		$this->data['help_airsure_insurance_1'] = $this->language->get('help_airsure_insurance_1');
-		$this->data['help_airsure_rate_2'] = $this->language->get('help_airsure_rate_2');
-		$this->data['help_airsure_insurance_2'] = $this->language->get('help_airsure_insurance_2');
-		$this->data['help_display_weight'] = $this->language->get('help_display_weight');
-		$this->data['help_display_insurance'] = $this->language->get('help_display_insurance');
+		$this->data['help_rate'] = __('help_rate');
+		$this->data['help_insurance'] = __('help_insurance');
+		$this->data['help_airmail_rate_1'] = __('help_airmail_rate_1');
+		$this->data['help_airmail_rate_2'] = __('help_airmail_rate_2');
+		$this->data['help_international_signed_rate_1'] = __('help_international_signed_rate_1');
+		$this->data['help_international_signed_insurance_1'] = __('help_international_signed_insurance_1');
+		$this->data['help_international_signed_rate_2'] = __('help_international_signed_rate_2');
+		$this->data['help_international_signed_insurance_2'] = __('help_international_signed_insurance_2');
+		$this->data['help_airsure_rate_1'] = __('help_airsure_rate_1');
+		$this->data['help_airsure_insurance_1'] = __('help_airsure_insurance_1');
+		$this->data['help_airsure_rate_2'] = __('help_airsure_rate_2');
+		$this->data['help_airsure_insurance_2'] = __('help_airsure_insurance_2');
+		$this->data['help_display_weight'] = __('help_display_weight');
+		$this->data['help_display_insurance'] = __('help_display_insurance');
 		
-		$this->data['button_save'] = $this->language->get('button_save');
-		$this->data['button_cancel'] = $this->language->get('button_cancel');
+		$this->data['button_save'] = __('button_save');
+		$this->data['button_cancel'] = __('button_cancel');
 
-		$this->data['tab_general'] = $this->language->get('tab_general');
-		$this->data['tab_1st_class_standard'] = $this->language->get('tab_1st_class_standard');
-		$this->data['tab_1st_class_recorded'] = $this->language->get('tab_1st_class_recorded');
-		$this->data['tab_2nd_class_standard'] = $this->language->get('tab_2nd_class_standard');
-		$this->data['tab_2nd_class_recorded'] = $this->language->get('tab_2nd_class_recorded');
-		$this->data['tab_special_delivery_500'] = $this->language->get('tab_special_delivery_500');
-		$this->data['tab_special_delivery_1000'] = $this->language->get('tab_special_delivery_1000');
-		$this->data['tab_special_delivery_2500'] = $this->language->get('tab_special_delivery_2500');		
-		$this->data['tab_standard_parcels'] = $this->language->get('tab_standard_parcels');
-		$this->data['tab_airmail'] = $this->language->get('tab_airmail');
-		$this->data['tab_international_signed'] = $this->language->get('tab_international_signed');
-		$this->data['tab_airsure'] = $this->language->get('tab_airsure');
-		$this->data['tab_surface'] = $this->language->get('tab_surface');
+		$this->data['tab_general'] = __('tab_general');
+		$this->data['tab_1st_class_standard'] = __('tab_1st_class_standard');
+		$this->data['tab_1st_class_recorded'] = __('tab_1st_class_recorded');
+		$this->data['tab_2nd_class_standard'] = __('tab_2nd_class_standard');
+		$this->data['tab_2nd_class_recorded'] = __('tab_2nd_class_recorded');
+		$this->data['tab_special_delivery_500'] = __('tab_special_delivery_500');
+		$this->data['tab_special_delivery_1000'] = __('tab_special_delivery_1000');
+		$this->data['tab_special_delivery_2500'] = __('tab_special_delivery_2500');		
+		$this->data['tab_standard_parcels'] = __('tab_standard_parcels');
+		$this->data['tab_airmail'] = __('tab_airmail');
+		$this->data['tab_international_signed'] = __('tab_international_signed');
+		$this->data['tab_airsure'] = __('tab_airsure');
+		$this->data['tab_surface'] = __('tab_surface');
 		
 		if (isset($this->error['warning']))  {
 			$this->data['error_warning'] = $this->error['warning'];
@@ -79,17 +79,17 @@ class ControllerShippingRoyalMail extends Controller {
   		$this->data['breadcrumbs'] = array();
 
    		$this->data['breadcrumbs'][] = array(
-       		'text' => $this->language->get('text_home'),
+       		'text' => __('text_home'),
 			'href' => $this->url->link('common/home', 'token=' . $this->session->data['token'], 'SSL')
    		);
 
    		$this->data['breadcrumbs'][] = array(
-       		'text' => $this->language->get('text_shipping'),
+       		'text' => __('text_shipping'),
 			'href' => $this->url->link('extension/shipping', 'token=' . $this->session->data['token'], 'SSL')
    		);
 		
    		$this->data['breadcrumbs'][] = array(
-       		'text' => $this->language->get('heading_title'),
+       		'text' => __('heading_title'),
 			'href' => $this->url->link('shipping/royal_mail', 'token=' . $this->session->data['token'], 'SSL')
    		);
 		
@@ -454,7 +454,7 @@ class ControllerShippingRoyalMail extends Controller {
 	
 	protected function validate() {
 		if (!$this->user->hasPermission('modify', 'shipping/royal_mail')) {
-			$this->error['warning'] = $this->language->get('error_permission');
+			$this->error['warning'] = __('error_permission');
 		}
 		
 		if (!$this->error) {

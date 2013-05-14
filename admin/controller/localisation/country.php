@@ -5,7 +5,7 @@ class ControllerLocalisationCountry extends Controller {
 	public function index() {
 		$this->language->load('localisation/country');
 
-		$this->document->setTitle($this->language->get('heading_title'));
+		$this->document->setTitle(__('heading_title'));
 		
 		$this->load->model('localisation/country');
 		
@@ -15,14 +15,14 @@ class ControllerLocalisationCountry extends Controller {
 	public function insert() {
 		$this->language->load('localisation/country');
 
-		$this->document->setTitle($this->language->get('heading_title'));
+		$this->document->setTitle(__('heading_title'));
 		
 		$this->load->model('localisation/country');
 		
 		if (($this->request->server['REQUEST_METHOD'] == 'POST') && $this->validateForm()) {
 			$this->model_localisation_country->addCountry($this->request->post);
 			
-			$this->session->data['success'] = $this->language->get('text_success');
+			$this->session->data['success'] = __('text_success');
 
 			$url = '';
 			
@@ -47,14 +47,14 @@ class ControllerLocalisationCountry extends Controller {
 	public function update() {
 		$this->language->load('localisation/country');
 
-		$this->document->setTitle($this->language->get('heading_title'));
+		$this->document->setTitle(__('heading_title'));
 		
 		$this->load->model('localisation/country');
 		
 		if (($this->request->server['REQUEST_METHOD'] == 'POST') && $this->validateForm()) {
 			$this->model_localisation_country->editCountry($this->request->get['country_id'], $this->request->post);
 
-			$this->session->data['success'] = $this->language->get('text_success');
+			$this->session->data['success'] = __('text_success');
 
 			$url = '';
 			
@@ -79,7 +79,7 @@ class ControllerLocalisationCountry extends Controller {
 	public function delete() {
 		$this->language->load('localisation/country');
  
-		$this->document->setTitle($this->language->get('heading_title'));
+		$this->document->setTitle(__('heading_title'));
 		
 		$this->load->model('localisation/country');
 		
@@ -88,7 +88,7 @@ class ControllerLocalisationCountry extends Controller {
 				$this->model_localisation_country->deleteCountry($country_id);
 			}
 			
-			$this->session->data['success'] = $this->language->get('text_success');
+			$this->session->data['success'] = __('text_success');
 
 			$url = '';
 			
@@ -146,12 +146,12 @@ class ControllerLocalisationCountry extends Controller {
   		$this->data['breadcrumbs'] = array();
 
    		$this->data['breadcrumbs'][] = array(
-       		'text' => $this->language->get('text_home'),
+       		'text' => __('text_home'),
 			'href' => $this->url->link('common/home', 'token=' . $this->session->data['token'], 'SSL')
    		);
 
    		$this->data['breadcrumbs'][] = array(
-       		'text' => $this->language->get('heading_title'),
+       		'text' => __('heading_title'),
 			'href' => $this->url->link('localisation/country', 'token=' . $this->session->data['token'] . $url, 'SSL')
    		);
 		
@@ -175,13 +175,13 @@ class ControllerLocalisationCountry extends Controller {
 			$action = array();
 			
 			$action[] = array(
-				'text' => $this->language->get('text_edit'),
+				'text' => __('text_edit'),
 				'href' => $this->url->link('localisation/country/update', 'token=' . $this->session->data['token'] . '&country_id=' . $result['country_id'] . $url, 'SSL')
 			);
 
 			$this->data['countries'][] = array(
 				'country_id' => $result['country_id'],
-				'name'       => $result['name'] . (($result['country_id'] == $this->config->get('config_country_id')) ? $this->language->get('text_default') : null),
+				'name'       => $result['name'] . (($result['country_id'] == $this->config->get('config_country_id')) ? __('text_default') : null),
 				'iso_code_2' => $result['iso_code_2'],
 				'iso_code_3' => $result['iso_code_3'],
 				'selected'   => isset($this->request->post['selected']) && in_array($result['country_id'], $this->request->post['selected']),				
@@ -189,17 +189,17 @@ class ControllerLocalisationCountry extends Controller {
 			);
 		}
 
-		$this->data['heading_title'] = $this->language->get('heading_title');
+		$this->data['heading_title'] = __('heading_title');
 		
-		$this->data['text_no_results'] = $this->language->get('text_no_results');
+		$this->data['text_no_results'] = __('text_no_results');
 		
-		$this->data['column_name'] = $this->language->get('column_name');
-		$this->data['column_iso_code_2'] = $this->language->get('column_iso_code_2');
-		$this->data['column_iso_code_3'] = $this->language->get('column_iso_code_3');
-		$this->data['column_action'] = $this->language->get('column_action');	
+		$this->data['column_name'] = __('column_name');
+		$this->data['column_iso_code_2'] = __('column_iso_code_2');
+		$this->data['column_iso_code_3'] = __('column_iso_code_3');
+		$this->data['column_action'] = __('column_action');	
 
-		$this->data['button_insert'] = $this->language->get('button_insert');
-		$this->data['button_delete'] = $this->language->get('button_delete');
+		$this->data['button_insert'] = __('button_insert');
+		$this->data['button_delete'] = __('button_delete');
  
  		if (isset($this->error['warning'])) {
 			$this->data['error_warning'] = $this->error['warning'];
@@ -249,7 +249,7 @@ class ControllerLocalisationCountry extends Controller {
 
 		$this->data['pagination'] = $pagination->render();
 		
-		$this->data['results'] = sprintf($this->language->get('text_pagination'), ($country_total) ? (($page - 1) * $this->config->get('config_admin_limit')) + 1 : 0, ((($page - 1) * $this->config->get('config_admin_limit')) > ($country_total - $this->config->get('config_admin_limit'))) ? $country_total : ((($page - 1) * $this->config->get('config_admin_limit')) + $this->config->get('config_admin_limit')), $country_total, ceil($country_total / $this->config->get('config_admin_limit')));
+		$this->data['results'] = sprintf(__('text_pagination'), ($country_total) ? (($page - 1) * $this->config->get('config_admin_limit')) + 1 : 0, ((($page - 1) * $this->config->get('config_admin_limit')) > ($country_total - $this->config->get('config_admin_limit'))) ? $country_total : ((($page - 1) * $this->config->get('config_admin_limit')) + $this->config->get('config_admin_limit')), $country_total, ceil($country_total / $this->config->get('config_admin_limit')));
 		
 		$this->data['sort'] = $sort;
 		$this->data['order'] = $order;
@@ -264,24 +264,24 @@ class ControllerLocalisationCountry extends Controller {
 	}
 
 	protected function getForm() {
-		$this->data['heading_title'] = $this->language->get('heading_title');
+		$this->data['heading_title'] = __('heading_title');
 	
-		$this->data['text_enabled'] = $this->language->get('text_enabled');
-		$this->data['text_disabled'] = $this->language->get('text_disabled');
-		$this->data['text_yes'] = $this->language->get('text_yes');
-		$this->data['text_no'] = $this->language->get('text_no');
+		$this->data['text_enabled'] = __('text_enabled');
+		$this->data['text_disabled'] = __('text_disabled');
+		$this->data['text_yes'] = __('text_yes');
+		$this->data['text_no'] = __('text_no');
 				
-		$this->data['entry_name'] = $this->language->get('entry_name');
-		$this->data['entry_iso_code_2'] = $this->language->get('entry_iso_code_2');
-		$this->data['entry_iso_code_3'] = $this->language->get('entry_iso_code_3');
-		$this->data['entry_address_format'] = $this->language->get('entry_address_format');
-		$this->data['entry_postcode_required'] = $this->language->get('entry_postcode_required');
-		$this->data['entry_status'] = $this->language->get('entry_status');
+		$this->data['entry_name'] = __('entry_name');
+		$this->data['entry_iso_code_2'] = __('entry_iso_code_2');
+		$this->data['entry_iso_code_3'] = __('entry_iso_code_3');
+		$this->data['entry_address_format'] = __('entry_address_format');
+		$this->data['entry_postcode_required'] = __('entry_postcode_required');
+		$this->data['entry_status'] = __('entry_status');
 		
-		$this->data['help_address_format'] = $this->language->get('help_address_format');
+		$this->data['help_address_format'] = __('help_address_format');
 		
-		$this->data['button_save'] = $this->language->get('button_save');
-		$this->data['button_cancel'] = $this->language->get('button_cancel');
+		$this->data['button_save'] = __('button_save');
+		$this->data['button_cancel'] = __('button_cancel');
 
  		if (isset($this->error['warning'])) {
 			$this->data['error_warning'] = $this->error['warning'];
@@ -312,12 +312,12 @@ class ControllerLocalisationCountry extends Controller {
   		$this->data['breadcrumbs'] = array();
 
    		$this->data['breadcrumbs'][] = array(
-       		'text' => $this->language->get('text_home'),
+       		'text' => __('text_home'),
 			'href' => $this->url->link('common/home', 'token=' . $this->session->data['token'], 'SSL')
    		);
 
    		$this->data['breadcrumbs'][] = array(
-       		'text' => $this->language->get('heading_title'),
+       		'text' => __('heading_title'),
 			'href' => $this->url->link('localisation/country', 'token=' . $this->session->data['token'] . $url, 'SSL')
    		);
 							
@@ -392,11 +392,11 @@ class ControllerLocalisationCountry extends Controller {
 
 	protected function validateForm() {
 		if (!$this->user->hasPermission('modify', 'localisation/country')) {
-			$this->error['warning'] = $this->language->get('error_permission');
+			$this->error['warning'] = __('error_permission');
 		}
 
 		if ((utf8_strlen($this->request->post['name']) < 3) || (utf8_strlen($this->request->post['name']) > 128)) {
-			$this->error['name'] = $this->language->get('error_name');
+			$this->error['name'] = __('error_name');
 		}
 
 		if (!$this->error) {
@@ -408,7 +408,7 @@ class ControllerLocalisationCountry extends Controller {
 
 	protected function validateDelete() {
 		if (!$this->user->hasPermission('modify', 'localisation/country')) {
-			$this->error['warning'] = $this->language->get('error_permission');
+			$this->error['warning'] = __('error_permission');
 		}
 		
 		$this->load->model('setting/store');
@@ -419,37 +419,37 @@ class ControllerLocalisationCountry extends Controller {
 		
 		foreach ($this->request->post['selected'] as $country_id) {
 			if ($this->config->get('config_country_id') == $country_id) {
-				$this->error['warning'] = $this->language->get('error_default');
+				$this->error['warning'] = __('error_default');
 			}
 			
 			$store_total = $this->model_setting_store->getTotalStoresByCountryId($country_id);
 
 			if ($store_total) {
-				$this->error['warning'] = sprintf($this->language->get('error_store'), $store_total);
+				$this->error['warning'] = sprintf(__('error_store'), $store_total);
 			}
 			
 			$address_total = $this->model_sale_customer->getTotalAddressesByCountryId($country_id);
 	
 			if ($address_total) {
-				$this->error['warning'] = sprintf($this->language->get('error_address'), $address_total);
+				$this->error['warning'] = sprintf(__('error_address'), $address_total);
 			}
 
 			$affiliate_total = $this->model_sale_affiliate->getTotalAffiliatesByCountryId($country_id);
 	
 			if ($affiliate_total) {
-				$this->error['warning'] = sprintf($this->language->get('error_affiliate'), $affiliate_total);
+				$this->error['warning'] = sprintf(__('error_affiliate'), $affiliate_total);
 			}
 							
 			$zone_total = $this->model_localisation_zone->getTotalZonesByCountryId($country_id);
 		
 			if ($zone_total) {
-				$this->error['warning'] = sprintf($this->language->get('error_zone'), $zone_total);
+				$this->error['warning'] = sprintf(__('error_zone'), $zone_total);
 			}
 		
 			$zone_to_geo_zone_total = $this->model_localisation_geo_zone->getTotalZoneToGeoZoneByCountryId($country_id);
 		
 			if ($zone_to_geo_zone_total) {
-				$this->error['warning'] = sprintf($this->language->get('error_zone_to_geo_zone'), $zone_to_geo_zone_total);
+				$this->error['warning'] = sprintf(__('error_zone_to_geo_zone'), $zone_to_geo_zone_total);
 			}
 		}
 	

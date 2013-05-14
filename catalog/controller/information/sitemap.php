@@ -3,34 +3,34 @@ class ControllerInformationSitemap extends Controller {
 	public function index() {
     	$this->language->load('information/sitemap');
  
-		$this->document->setTitle($this->language->get('heading_title')); 
+		$this->document->setTitle(__('heading_title')); 
 
       	$this->data['breadcrumbs'] = array();
 
       	$this->data['breadcrumbs'][] = array(
-        	'text' => $this->language->get('text_home'),
+        	'text' => __('text_home'),
 			'href' => $this->url->link('common/home')
       	);
 
       	$this->data['breadcrumbs'][] = array(
-        	'text' => $this->language->get('heading_title'),
+        	'text' => __('heading_title'),
 			'href' => $this->url->link('information/sitemap')
       	);	
 		
-    	$this->data['heading_title'] = $this->language->get('heading_title');
+    	$this->data['heading_title'] = __('heading_title');
 
-		$this->data['text_special'] = $this->language->get('text_special');
-		$this->data['text_account'] = $this->language->get('text_account');
-    	$this->data['text_edit'] = $this->language->get('text_edit');
-    	$this->data['text_password'] = $this->language->get('text_password');
-    	$this->data['text_address'] = $this->language->get('text_address');
-    	$this->data['text_history'] = $this->language->get('text_history');
-    	$this->data['text_download'] = $this->language->get('text_download');
-    	$this->data['text_cart'] = $this->language->get('text_cart');
-    	$this->data['text_checkout'] = $this->language->get('text_checkout');
-    	$this->data['text_search'] = $this->language->get('text_search');
-    	$this->data['text_information'] = $this->language->get('text_information');
-    	$this->data['text_contact'] = $this->language->get('text_contact');
+		$this->data['text_special'] = __('text_special');
+		$this->data['text_account'] = __('text_account');
+    	$this->data['text_edit'] = __('text_edit');
+    	$this->data['text_password'] = __('text_password');
+    	$this->data['text_address'] = __('text_address');
+    	$this->data['text_history'] = __('text_history');
+    	$this->data['text_download'] = __('text_download');
+    	$this->data['text_cart'] = __('text_cart');
+    	$this->data['text_checkout'] = __('text_checkout');
+    	$this->data['text_search'] = __('text_search');
+    	$this->data['text_information'] = __('text_information');
+    	$this->data['text_contact'] = __('text_contact');
 			
 		$this->load->model('catalog/category');
 		$this->load->model('catalog/product');

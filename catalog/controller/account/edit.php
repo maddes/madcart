@@ -9,39 +9,39 @@ class ControllerAccountEdit extends Controller {
 
 		$this->language->load('account/edit');
 		
-		$this->document->setTitle($this->language->get('heading_title'));
+		$this->document->setTitle(__('heading_title'));
 		
 		$this->load->model('account/customer');
 		
       	$this->data['breadcrumbs'] = array();
 
       	$this->data['breadcrumbs'][] = array(
-        	'text' => $this->language->get('text_home'),
+        	'text' => __('text_home'),
 			'href' => $this->url->link('common/home')
       	); 
 
       	$this->data['breadcrumbs'][] = array(
-        	'text' => $this->language->get('text_account'),
+        	'text' => __('text_account'),
 			'href' => $this->url->link('account/account', '', 'SSL')
       	);
 
       	$this->data['breadcrumbs'][] = array(
-        	'text' => $this->language->get('text_edit'),
+        	'text' => __('text_edit'),
 			'href' => $this->url->link('account/edit', '', 'SSL')
       	);
 		
-		$this->data['heading_title'] = $this->language->get('heading_title');
+		$this->data['heading_title'] = __('heading_title');
 
-		$this->data['text_your_details'] = $this->language->get('text_your_details');
+		$this->data['text_your_details'] = __('text_your_details');
 
-		$this->data['entry_firstname'] = $this->language->get('entry_firstname');
-		$this->data['entry_lastname'] = $this->language->get('entry_lastname');
-		$this->data['entry_email'] = $this->language->get('entry_email');
-		$this->data['entry_telephone'] = $this->language->get('entry_telephone');
-		$this->data['entry_fax'] = $this->language->get('entry_fax');
+		$this->data['entry_firstname'] = __('entry_firstname');
+		$this->data['entry_lastname'] = __('entry_lastname');
+		$this->data['entry_email'] = __('entry_email');
+		$this->data['entry_telephone'] = __('entry_telephone');
+		$this->data['entry_fax'] = __('entry_fax');
 
-		$this->data['button_continue'] = $this->language->get('button_continue');
-		$this->data['button_back'] = $this->language->get('button_back');
+		$this->data['button_continue'] = __('button_continue');
+		$this->data['button_back'] = __('button_back');
 
 		$customer_info = $this->model_account_customer->getCustomer($this->customer->getId());
 
@@ -84,23 +84,23 @@ class ControllerAccountEdit extends Controller {
 			$this->load->model('account/customer');
 			
 			if ((utf8_strlen($this->request->post['firstname']) < 1) || (utf8_strlen($this->request->post['firstname']) > 32)) {
-				$json['error']['firstname'] = $this->language->get('error_firstname');
+				$json['error']['firstname'] = __('error_firstname');
 			}
 	
 			if ((utf8_strlen($this->request->post['lastname']) < 1) || (utf8_strlen($this->request->post['lastname']) > 32)) {
-				$json['error']['lastname'] = $this->language->get('error_lastname');
+				$json['error']['lastname'] = __('error_lastname');
 			}
 	
 			if ((utf8_strlen($this->request->post['email']) > 96) || !preg_match('/^[^\@]+@.*\.[a-z]{2,6}$/i', $this->request->post['email'])) {
-				$json['error']['email'] = $this->language->get('error_email');
+				$json['error']['email'] = __('error_email');
 			}
 			
 			if (($this->customer->getEmail() != $this->request->post['email']) && $this->model_account_customer->getTotalCustomersByEmail($this->request->post['email'])) {
-				$json['error']['warning'] = $this->language->get('error_exists');
+				$json['error']['warning'] = __('error_exists');
 			}
 	
 			if ((utf8_strlen($this->request->post['telephone']) < 3) || (utf8_strlen($this->request->post['telephone']) > 32)) {
-				$json['error']['telephone'] = $this->language->get('error_telephone');
+				$json['error']['telephone'] = __('error_telephone');
 			}
 
 			// Custom Fields
@@ -110,7 +110,7 @@ class ControllerAccountEdit extends Controller {
 			 
 			foreach ($custom_fields as $custom_field) {
 				if ($custom_field['required'] && empty($this->request->post['custom_field'][$custom_field['custom_field_id']])) {
-					$json['error']['custom_field'][$custom_field['custom_field_id']] = sprintf($this->language->get('error_required'), $custom_field['name']);
+					$json['error']['custom_field'][$custom_field['custom_field_id']] = sprintf(__('error_required'), $custom_field['name']);
 				}
 			}		
 		}
@@ -118,7 +118,7 @@ class ControllerAccountEdit extends Controller {
 		if (!$json) {
 			$this->model_account_customer->editCustomer($this->request->post);
 			
-			$this->session->data['success'] = $this->language->get('text_success');
+			$this->session->data['success'] = __('text_success');
 
 			$json['redirect'] = $this->url->link('account/account', '', 'SSL');
 		}

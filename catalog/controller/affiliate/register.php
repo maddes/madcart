@@ -9,7 +9,7 @@ class ControllerAffiliateRegister extends Controller {
 
     	$this->language->load('affiliate/register');
 		
-		$this->document->setTitle($this->language->get('heading_title'));
+		$this->document->setTitle(__('heading_title'));
 		$this->document->addScript('catalog/view/javascript/jquery/colorbox/jquery.colorbox-min.js');
 		$this->document->addStyle('catalog/view/javascript/jquery/colorbox/colorbox.css');
 					
@@ -26,60 +26,60 @@ class ControllerAffiliateRegister extends Controller {
       	$this->data['breadcrumbs'] = array();
 
       	$this->data['breadcrumbs'][] = array(
-        	'text' => $this->language->get('text_home'),
+        	'text' => __('text_home'),
 			'href' => $this->url->link('common/home')
       	); 
 
       	$this->data['breadcrumbs'][] = array(
-        	'text' => $this->language->get('text_account'),
+        	'text' => __('text_account'),
 			'href' => $this->url->link('affiliate/account', '', 'SSL')
       	);
 		
       	$this->data['breadcrumbs'][] = array(
-        	'text' => $this->language->get('text_register'),
+        	'text' => __('text_register'),
 			'href' => $this->url->link('affiliate/register', '', 'SSL')
       	);
 		
-    	$this->data['heading_title'] = $this->language->get('heading_title');
+    	$this->data['heading_title'] = __('heading_title');
 
-		$this->data['text_select'] = $this->language->get('text_select');
-		$this->data['text_none'] = $this->language->get('text_none');
-		$this->data['text_account_already'] = sprintf($this->language->get('text_account_already'), $this->url->link('affiliate/login', '', 'SSL'));
-    	$this->data['text_signup'] = $this->language->get('text_signup');
-		$this->data['text_your_details'] = $this->language->get('text_your_details');
-    	$this->data['text_your_address'] = $this->language->get('text_your_address');
-		$this->data['text_payment'] = $this->language->get('text_payment');
-    	$this->data['text_your_password'] = $this->language->get('text_your_password');
-		$this->data['text_cheque'] = $this->language->get('text_cheque');
-		$this->data['text_paypal'] = $this->language->get('text_paypal');
-		$this->data['text_bank'] = $this->language->get('text_bank');
+		$this->data['text_select'] = __('text_select');
+		$this->data['text_none'] = __('text_none');
+		$this->data['text_account_already'] = sprintf(__('text_account_already'), $this->url->link('affiliate/login', '', 'SSL'));
+    	$this->data['text_signup'] = __('text_signup');
+		$this->data['text_your_details'] = __('text_your_details');
+    	$this->data['text_your_address'] = __('text_your_address');
+		$this->data['text_payment'] = __('text_payment');
+    	$this->data['text_your_password'] = __('text_your_password');
+		$this->data['text_cheque'] = __('text_cheque');
+		$this->data['text_paypal'] = __('text_paypal');
+		$this->data['text_bank'] = __('text_bank');
 				
-    	$this->data['entry_firstname'] = $this->language->get('entry_firstname');
-    	$this->data['entry_lastname'] = $this->language->get('entry_lastname');
-    	$this->data['entry_email'] = $this->language->get('entry_email');
-    	$this->data['entry_telephone'] = $this->language->get('entry_telephone');
-    	$this->data['entry_fax'] = $this->language->get('entry_fax');
-    	$this->data['entry_company'] = $this->language->get('entry_company');
-		$this->data['entry_website'] = $this->language->get('entry_website');
-    	$this->data['entry_address_1'] = $this->language->get('entry_address_1');
-    	$this->data['entry_address_2'] = $this->language->get('entry_address_2');
-    	$this->data['entry_postcode'] = $this->language->get('entry_postcode');
-    	$this->data['entry_city'] = $this->language->get('entry_city');
-    	$this->data['entry_country'] = $this->language->get('entry_country');
-    	$this->data['entry_zone'] = $this->language->get('entry_zone');
-		$this->data['entry_tax'] = $this->language->get('entry_tax');
-		$this->data['entry_payment'] = $this->language->get('entry_payment');
-		$this->data['entry_cheque'] = $this->language->get('entry_cheque');
-		$this->data['entry_paypal'] = $this->language->get('entry_paypal');
-		$this->data['entry_bank_name'] = $this->language->get('entry_bank_name');
-		$this->data['entry_bank_branch_number'] = $this->language->get('entry_bank_branch_number');
-		$this->data['entry_bank_swift_code'] = $this->language->get('entry_bank_swift_code');
-		$this->data['entry_bank_account_name'] = $this->language->get('entry_bank_account_name');
-		$this->data['entry_bank_account_number'] = $this->language->get('entry_bank_account_number');
-    	$this->data['entry_password'] = $this->language->get('entry_password');
-    	$this->data['entry_confirm'] = $this->language->get('entry_confirm');
+    	$this->data['entry_firstname'] = __('entry_firstname');
+    	$this->data['entry_lastname'] = __('entry_lastname');
+    	$this->data['entry_email'] = __('entry_email');
+    	$this->data['entry_telephone'] = __('entry_telephone');
+    	$this->data['entry_fax'] = __('entry_fax');
+    	$this->data['entry_company'] = __('entry_company');
+		$this->data['entry_website'] = __('entry_website');
+    	$this->data['entry_address_1'] = __('entry_address_1');
+    	$this->data['entry_address_2'] = __('entry_address_2');
+    	$this->data['entry_postcode'] = __('entry_postcode');
+    	$this->data['entry_city'] = __('entry_city');
+    	$this->data['entry_country'] = __('entry_country');
+    	$this->data['entry_zone'] = __('entry_zone');
+		$this->data['entry_tax'] = __('entry_tax');
+		$this->data['entry_payment'] = __('entry_payment');
+		$this->data['entry_cheque'] = __('entry_cheque');
+		$this->data['entry_paypal'] = __('entry_paypal');
+		$this->data['entry_bank_name'] = __('entry_bank_name');
+		$this->data['entry_bank_branch_number'] = __('entry_bank_branch_number');
+		$this->data['entry_bank_swift_code'] = __('entry_bank_swift_code');
+		$this->data['entry_bank_account_name'] = __('entry_bank_account_name');
+		$this->data['entry_bank_account_number'] = __('entry_bank_account_number');
+    	$this->data['entry_password'] = __('entry_password');
+    	$this->data['entry_confirm'] = __('entry_confirm');
 
-		$this->data['button_continue'] = $this->language->get('button_continue');
+		$this->data['button_continue'] = __('button_continue');
     
 		if (isset($this->error['warning'])) {
 			$this->data['error_warning'] = $this->error['warning'];
@@ -309,7 +309,7 @@ class ControllerAffiliateRegister extends Controller {
 			$information_info = $this->model_catalog_information->getInformation($this->config->get('config_affiliate_id'));
 			
 			if ($information_info) {
-				$this->data['text_agree'] = sprintf($this->language->get('text_agree'), $this->url->link('information/information/info', 'information_id=' . $this->config->get('config_affiliate_id'), 'SSL'), $information_info['title'], $information_info['title']);
+				$this->data['text_agree'] = sprintf(__('text_agree'), $this->url->link('information/information/info', 'information_id=' . $this->config->get('config_affiliate_id'), 'SSL'), $information_info['title'], $information_info['title']);
 			} else {
 				$this->data['text_agree'] = '';
 			}
@@ -343,31 +343,31 @@ class ControllerAffiliateRegister extends Controller {
 
   	protected function validate() {
     	if ((utf8_strlen($this->request->post['firstname']) < 1) || (utf8_strlen($this->request->post['firstname']) > 32)) {
-      		$this->error['firstname'] = $this->language->get('error_firstname');
+      		$this->error['firstname'] = __('error_firstname');
     	}
 
     	if ((utf8_strlen($this->request->post['lastname']) < 1) || (utf8_strlen($this->request->post['lastname']) > 32)) {
-      		$this->error['lastname'] = $this->language->get('error_lastname');
+      		$this->error['lastname'] = __('error_lastname');
     	}
 
     	if ((utf8_strlen($this->request->post['email']) > 96) || !preg_match('/^[^\@]+@.*\.[a-z]{2,6}$/i', $this->request->post['email'])) {
-      		$this->error['email'] = $this->language->get('error_email');
+      		$this->error['email'] = __('error_email');
     	}
 
     	if ($this->model_affiliate_affiliate->getTotalAffiliatesByEmail($this->request->post['email'])) {
-      		$this->error['warning'] = $this->language->get('error_exists');
+      		$this->error['warning'] = __('error_exists');
     	}
 		
     	if ((utf8_strlen($this->request->post['telephone']) < 3) || (utf8_strlen($this->request->post['telephone']) > 32)) {
-      		$this->error['telephone'] = $this->language->get('error_telephone');
+      		$this->error['telephone'] = __('error_telephone');
     	}
 
     	if ((utf8_strlen($this->request->post['address_1']) < 3) || (utf8_strlen($this->request->post['address_1']) > 128)) {
-      		$this->error['address_1'] = $this->language->get('error_address_1');
+      		$this->error['address_1'] = __('error_address_1');
     	}
 
     	if ((utf8_strlen($this->request->post['city']) < 2) || (utf8_strlen($this->request->post['city']) > 128)) {
-      		$this->error['city'] = $this->language->get('error_city');
+      		$this->error['city'] = __('error_city');
     	}
 		
 		$this->load->model('localisation/country');
@@ -375,23 +375,23 @@ class ControllerAffiliateRegister extends Controller {
 		$country_info = $this->model_localisation_country->getCountry($this->request->post['country_id']);
 		
 		if ($country_info && $country_info['postcode_required'] && (utf8_strlen($this->request->post['postcode']) < 2) || (utf8_strlen($this->request->post['postcode']) > 10)) {
-			$this->error['postcode'] = $this->language->get('error_postcode');
+			$this->error['postcode'] = __('error_postcode');
 		}
 
     	if ($this->request->post['country_id'] == '') {
-      		$this->error['country'] = $this->language->get('error_country');
+      		$this->error['country'] = __('error_country');
     	}
 		
     	if (!isset($this->request->post['zone_id']) || $this->request->post['zone_id'] == '') {
-      		$this->error['zone'] = $this->language->get('error_zone');
+      		$this->error['zone'] = __('error_zone');
     	}
 
     	if ((utf8_strlen($this->request->post['password']) < 4) || (utf8_strlen($this->request->post['password']) > 20)) {
-      		$this->error['password'] = $this->language->get('error_password');
+      		$this->error['password'] = __('error_password');
     	}
 
     	if ($this->request->post['confirm'] != $this->request->post['password']) {
-      		$this->error['confirm'] = $this->language->get('error_confirm');
+      		$this->error['confirm'] = __('error_confirm');
     	}
 		
 		if ($this->config->get('config_affiliate_id')) {
@@ -400,7 +400,7 @@ class ControllerAffiliateRegister extends Controller {
 			$information_info = $this->model_catalog_information->getInformation($this->config->get('config_affiliate_id'));
 			
 			if ($information_info && !isset($this->request->post['agree'])) {
-      			$this->error['warning'] = sprintf($this->language->get('error_agree'), $information_info['title']);
+      			$this->error['warning'] = sprintf(__('error_agree'), $information_info['title']);
 			}
 		}
 		

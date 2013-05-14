@@ -14,9 +14,9 @@ class ControllerModuleStore extends Controller {
 		if ($status) {
 			$this->language->load('module/store');
 			
-			$this->data['heading_title'] = $this->language->get('heading_title');
+			$this->data['heading_title'] = __('heading_title');
 			
-			$this->data['text_store'] = $this->language->get('text_store');
+			$this->data['text_store'] = __('text_store');
 			
 			$this->data['store_id'] = $this->config->get('config_store_id');
 			
@@ -24,7 +24,7 @@ class ControllerModuleStore extends Controller {
 			
 			$this->data['stores'][] = array(
 				'store_id' => 0,
-				'name'     => $this->language->get('text_default'),
+				'name'     => __('text_default'),
 				'url'      => HTTP_SERVER . 'index.php?route=common/home&session_id=' . $this->session->getId()
 			);
 			

@@ -78,13 +78,13 @@ class Currency {
 		}
 
 		if ($format) {
-			$decimal_point = $this->language->get('decimal_point');
+			$decimal_point = __('decimal_point');
 		} else {
 			$decimal_point = '.';
 		}
 
 		if ($format) {
-			$thousand_point = $this->language->get('thousand_point');
+			$thousand_point = __('thousand_point');
 		} else {
 			$thousand_point = '';
 		}

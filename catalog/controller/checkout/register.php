@@ -3,33 +3,33 @@ class ControllerCheckoutRegister extends Controller {
   	public function index() {
 		$this->language->load('checkout/checkout');
 		
-		$this->data['text_checkout_payment_address'] = $this->language->get('text_checkout_payment_address');
-		$this->data['text_your_details'] = $this->language->get('text_your_details');
-		$this->data['text_your_address'] = $this->language->get('text_your_address');
-		$this->data['text_your_password'] = $this->language->get('text_your_password');
-		$this->data['text_select'] = $this->language->get('text_select');
-		$this->data['text_none'] = $this->language->get('text_none');
- 		$this->data['text_modify'] = $this->language->get('text_modify');
+		$this->data['text_checkout_payment_address'] = __('text_checkout_payment_address');
+		$this->data['text_your_details'] = __('text_your_details');
+		$this->data['text_your_address'] = __('text_your_address');
+		$this->data['text_your_password'] = __('text_your_password');
+		$this->data['text_select'] = __('text_select');
+		$this->data['text_none'] = __('text_none');
+ 		$this->data['text_modify'] = __('text_modify');
 						
-		$this->data['entry_firstname'] = $this->language->get('entry_firstname');
-		$this->data['entry_lastname'] = $this->language->get('entry_lastname');
-		$this->data['entry_email'] = $this->language->get('entry_email');
-		$this->data['entry_telephone'] = $this->language->get('entry_telephone');
-		$this->data['entry_fax'] = $this->language->get('entry_fax');
-		$this->data['entry_company'] = $this->language->get('entry_company');
-		$this->data['entry_customer_group'] = $this->language->get('entry_customer_group');
-		$this->data['entry_address_1'] = $this->language->get('entry_address_1');
-		$this->data['entry_address_2'] = $this->language->get('entry_address_2');
-		$this->data['entry_postcode'] = $this->language->get('entry_postcode');
-		$this->data['entry_city'] = $this->language->get('entry_city');
-		$this->data['entry_country'] = $this->language->get('entry_country');
-		$this->data['entry_zone'] = $this->language->get('entry_zone');
-		$this->data['entry_newsletter'] = sprintf($this->language->get('entry_newsletter'), $this->config->get('config_name'));
-		$this->data['entry_password'] = $this->language->get('entry_password');
-		$this->data['entry_confirm'] = $this->language->get('entry_confirm');
-		$this->data['entry_shipping'] = $this->language->get('entry_shipping');
+		$this->data['entry_firstname'] = __('entry_firstname');
+		$this->data['entry_lastname'] = __('entry_lastname');
+		$this->data['entry_email'] = __('entry_email');
+		$this->data['entry_telephone'] = __('entry_telephone');
+		$this->data['entry_fax'] = __('entry_fax');
+		$this->data['entry_company'] = __('entry_company');
+		$this->data['entry_customer_group'] = __('entry_customer_group');
+		$this->data['entry_address_1'] = __('entry_address_1');
+		$this->data['entry_address_2'] = __('entry_address_2');
+		$this->data['entry_postcode'] = __('entry_postcode');
+		$this->data['entry_city'] = __('entry_city');
+		$this->data['entry_country'] = __('entry_country');
+		$this->data['entry_zone'] = __('entry_zone');
+		$this->data['entry_newsletter'] = sprintf(__('entry_newsletter'), $this->config->get('config_name'));
+		$this->data['entry_password'] = __('entry_password');
+		$this->data['entry_confirm'] = __('entry_confirm');
+		$this->data['entry_shipping'] = __('entry_shipping');
 
-		$this->data['button_continue'] = $this->language->get('button_continue');
+		$this->data['button_continue'] = __('button_continue');
 
 		$this->data['customer_groups'] = array();
 		
@@ -75,7 +75,7 @@ class ControllerCheckoutRegister extends Controller {
 			$information_info = $this->model_catalog_information->getInformation($this->config->get('config_account_id'));
 			
 			if ($information_info) {
-				$this->data['text_agree'] = sprintf($this->language->get('text_agree'), $this->url->link('information/information/info', 'information_id=' . $this->config->get('config_account_id'), 'SSL'), $information_info['title'], $information_info['title']);
+				$this->data['text_agree'] = sprintf(__('text_agree'), $this->url->link('information/information/info', 'information_id=' . $this->config->get('config_account_id'), 'SSL'), $information_info['title'], $information_info['title']);
 			} else {
 				$this->data['text_agree'] = '';
 			}
@@ -132,23 +132,23 @@ class ControllerCheckoutRegister extends Controller {
 			$this->load->model('account/customer');					
 			
 			if ((utf8_strlen($this->request->post['firstname']) < 1) || (utf8_strlen($this->request->post['firstname']) > 32)) {
-				$json['error']['firstname'] = $this->language->get('error_firstname');
+				$json['error']['firstname'] = __('error_firstname');
 			}
 		
 			if ((utf8_strlen($this->request->post['lastname']) < 1) || (utf8_strlen($this->request->post['lastname']) > 32)) {
-				$json['error']['lastname'] = $this->language->get('error_lastname');
+				$json['error']['lastname'] = __('error_lastname');
 			}
 		
 			if ((utf8_strlen($this->request->post['email']) > 96) || !preg_match('/^[^\@]+@.*\.[a-z]{2,6}$/i', $this->request->post['email'])) {
-				$json['error']['email'] = $this->language->get('error_email');
+				$json['error']['email'] = __('error_email');
 			}
 	
 			if ($this->model_account_customer->getTotalCustomersByEmail($this->request->post['email'])) {
-				$json['error']['warning'] = $this->language->get('error_exists');
+				$json['error']['warning'] = __('error_exists');
 			}
 			
 			if ((utf8_strlen($this->request->post['telephone']) < 3) || (utf8_strlen($this->request->post['telephone']) > 32)) {
-				$json['error']['telephone'] = $this->language->get('error_telephone');
+				$json['error']['telephone'] = __('error_telephone');
 			}
 			
 			// Customer Group
@@ -167,11 +167,11 @@ class ControllerCheckoutRegister extends Controller {
 			}
 			 
 			if ((utf8_strlen($this->request->post['address_1']) < 3) || (utf8_strlen($this->request->post['address_1']) > 128)) {
-				$json['error']['address_1'] = $this->language->get('error_address_1');
+				$json['error']['address_1'] = __('error_address_1');
 			}
 	
 			if ((utf8_strlen($this->request->post['city']) < 2) || (utf8_strlen($this->request->post['city']) > 128)) {
-				$json['error']['city'] = $this->language->get('error_city');
+				$json['error']['city'] = __('error_city');
 			}
 	
 			$this->load->model('localisation/country');
@@ -179,23 +179,23 @@ class ControllerCheckoutRegister extends Controller {
 			$country_info = $this->model_localisation_country->getCountry($this->request->post['country_id']);
 			
 			if ($country_info && $country_info['postcode_required'] && (utf8_strlen($this->request->post['postcode']) < 2) || (utf8_strlen($this->request->post['postcode']) > 10)) {
-				$json['error']['postcode'] = $this->language->get('error_postcode');
+				$json['error']['postcode'] = __('error_postcode');
 			}
 	
 			if ($this->request->post['country_id'] == '') {
-				$json['error']['country'] = $this->language->get('error_country');
+				$json['error']['country'] = __('error_country');
 			}
 			
 			if (!isset($this->request->post['zone_id']) || $this->request->post['zone_id'] == '') {
-				$json['error']['zone'] = $this->language->get('error_zone');
+				$json['error']['zone'] = __('error_zone');
 			}
 	
 			if ((utf8_strlen($this->request->post['password']) < 4) || (utf8_strlen($this->request->post['password']) > 20)) {
-				$json['error']['password'] = $this->language->get('error_password');
+				$json['error']['password'] = __('error_password');
 			}
 	
 			if ($this->request->post['confirm'] != $this->request->post['password']) {
-				$json['error']['confirm'] = $this->language->get('error_confirm');
+				$json['error']['confirm'] = __('error_confirm');
 			}
 			
 			if ($this->config->get('config_account_id')) {
@@ -204,7 +204,7 @@ class ControllerCheckoutRegister extends Controller {
 				$information_info = $this->model_catalog_information->getInformation($this->config->get('config_account_id'));
 				
 				if ($information_info && !isset($this->request->post['agree'])) {
-					$json['error']['warning'] = sprintf($this->language->get('error_agree'), $information_info['title']);
+					$json['error']['warning'] = sprintf(__('error_agree'), $information_info['title']);
 				}
 			}
 		}

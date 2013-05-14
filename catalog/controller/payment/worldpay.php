@@ -1,7 +1,7 @@
 <?php
 class ControllerPaymentWorldPay extends Controller {
 	protected function index() {
-    	$this->data['button_confirm'] = $this->language->get('button_confirm');
+    	$this->data['button_confirm'] = __('button_confirm');
 
 		$this->load->model('checkout/order');
 		
@@ -44,7 +44,7 @@ class ControllerPaymentWorldPay extends Controller {
 	public function callback() {
 		$this->language->load('payment/worldpay');
 	
-		$this->data['title'] = sprintf($this->language->get('heading_title'), $this->config->get('config_name'));
+		$this->data['title'] = sprintf(__('heading_title'), $this->config->get('config_name'));
 
 		if (!isset($this->request->server['HTTPS']) || ($this->request->server['HTTPS'] != 'on')) {
 			$this->data['base'] = $this->config->get('config_url');
@@ -52,16 +52,16 @@ class ControllerPaymentWorldPay extends Controller {
 			$this->data['base'] = $this->config->get('config_ssl');
 		}
 	
-		$this->data['language'] = $this->language->get('code');
-		$this->data['direction'] = $this->language->get('direction');
+		$this->data['language'] = __('code');
+		$this->data['direction'] = __('direction');
 	
-		$this->data['heading_title'] = sprintf($this->language->get('heading_title'), $this->config->get('config_name'));
+		$this->data['heading_title'] = sprintf(__('heading_title'), $this->config->get('config_name'));
 		
-		$this->data['text_response'] = $this->language->get('text_response');
-		$this->data['text_success'] = $this->language->get('text_success');
-		$this->data['text_success_wait'] = sprintf($this->language->get('text_success_wait'), $this->url->link('checkout/success'));
-		$this->data['text_failure'] = $this->language->get('text_failure');
-		$this->data['text_failure_wait'] = sprintf($this->language->get('text_failure_wait'), $this->url->link('checkout/checkout', '', 'SSL'));
+		$this->data['text_response'] = __('text_response');
+		$this->data['text_success'] = __('text_success');
+		$this->data['text_success_wait'] = sprintf(__('text_success_wait'), $this->url->link('checkout/success'));
+		$this->data['text_failure'] = __('text_failure');
+		$this->data['text_failure_wait'] = sprintf(__('text_failure_wait'), $this->url->link('checkout/checkout', '', 'SSL'));
 	
 		if (isset($this->request->post['transStatus']) && $this->request->post['transStatus'] == 'Y') { 
 			$this->load->model('checkout/order');
@@ -70,7 +70,7 @@ class ControllerPaymentWorldPay extends Controller {
 			if (isset($this->request->post['callbackPW']) && ($this->request->post['callbackPW'] == $this->config->get('worldpay_password'))) {
 				$this->model_checkout_order->confirm($this->request->post['cartId'], $this->config->get('worldpay_order_status_id'));
 			} else {
-				$this->model_checkout_order->confirm($this->request->post['cartId'], $this->config->get('config_order_status_id'), $this->language->get('text_pw_mismatch'));
+				$this->model_checkout_order->confirm($this->request->post['cartId'], $this->config->get('config_order_status_id'), __('text_pw_mismatch'));
 			}
 	
 			$message = '';

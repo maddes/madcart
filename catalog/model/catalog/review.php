@@ -10,13 +10,13 @@ class ModelCatalogReview extends Model {
 			$this->load->model('catalog/product');
 			$product_info = $this->model_catalog_product->getProduct($product_id);
 			
-			$subject = sprintf($this->language->get('text_subject'), $this->config->get('config_name'));
+			$subject = sprintf(__('text_subject'), $this->config->get('config_name'));
 
-			$message  = $this->language->get('text_waiting') . "\n";
-			$message .= sprintf($this->language->get('text_product'), $this->db->escape(strip_tags($product_info['name']))) . "\n";
-			$message .= sprintf($this->language->get('text_reviewer'), $this->db->escape(strip_tags($data['name']))) . "\n";
-			$message .= sprintf($this->language->get('text_rating'), $this->db->escape(strip_tags($data['rating']))) . "\n";
-			$message .= $this->language->get('text_review') . "\n";
+			$message  = __('text_waiting') . "\n";
+			$message .= sprintf(__('text_product'), $this->db->escape(strip_tags($product_info['name']))) . "\n";
+			$message .= sprintf(__('text_reviewer'), $this->db->escape(strip_tags($data['name']))) . "\n";
+			$message .= sprintf(__('text_rating'), $this->db->escape(strip_tags($data['rating']))) . "\n";
+			$message .= __('text_review') . "\n";
 			$message .= $this->db->escape(strip_tags($data['text'])) . "\n\n";
 
 			$mail = new Mail();

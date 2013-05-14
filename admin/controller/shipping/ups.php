@@ -5,102 +5,102 @@ class ControllerShippingUPS extends Controller {
 	public function index() {
 		$this->language->load('shipping/ups');
 			
-		$this->document->setTitle($this->language->get('heading_title'));
+		$this->document->setTitle(__('heading_title'));
 		
 		$this->load->model('setting/setting');
 				
 		if (($this->request->server['REQUEST_METHOD'] == 'POST') && $this->validate()) {
 			$this->model_setting_setting->editSetting('ups', $this->request->post);		
 					
-			$this->session->data['success'] = $this->language->get('text_success');
+			$this->session->data['success'] = __('text_success');
 						
 			$this->redirect($this->url->link('extension/shipping', 'token=' . $this->session->data['token'], 'SSL'));
 		}
 		
-		$this->data['heading_title'] = $this->language->get('heading_title');
+		$this->data['heading_title'] = __('heading_title');
 		
-		$this->data['text_enabled'] = $this->language->get('text_enabled');
-		$this->data['text_disabled'] = $this->language->get('text_disabled');
-		$this->data['text_yes'] = $this->language->get('text_yes');
-		$this->data['text_no'] = $this->language->get('text_no');		
-		$this->data['text_select_all'] = $this->language->get('text_select_all');
-		$this->data['text_unselect_all'] = $this->language->get('text_unselect_all');		
-		$this->data['text_all_zones'] = $this->language->get('text_all_zones');
-		$this->data['text_none'] = $this->language->get('text_none');
-		$this->data['text_next_day_air'] = $this->language->get('text_next_day_air');
-		$this->data['text_2nd_day_air'] = $this->language->get('text_2nd_day_air');
-		$this->data['text_ground'] = $this->language->get('text_ground');
-		$this->data['text_worldwide_express'] = $this->language->get('text_worldwide_express');
-		$this->data['text_worldwide_express_plus'] = $this->language->get('text_worldwide_express_plus');
-		$this->data['text_worldwide_expedited'] = $this->language->get('text_worldwide_expedited');
-		$this->data['text_express'] = $this->language->get('text_express');
-		$this->data['text_standard'] = $this->language->get('text_standard');
-		$this->data['text_3_day_select'] = $this->language->get('text_3_day_select');
-		$this->data['text_next_day_air_saver'] = $this->language->get('text_next_day_air_saver');
-		$this->data['text_next_day_air_early_am'] = $this->language->get('text_next_day_air_early_am');
-		$this->data['text_expedited'] = $this->language->get('text_expedited');
-		$this->data['text_2nd_day_air_am'] = $this->language->get('text_2nd_day_air_am');
-		$this->data['text_saver'] = $this->language->get('text_saver');
-		$this->data['text_express_early_am'] = $this->language->get('text_express_early_am');
-		$this->data['text_express_plus'] = $this->language->get('text_express_plus');
-		$this->data['text_today_standard'] = $this->language->get('text_today_standard');
-		$this->data['text_today_dedicated_courier'] = $this->language->get('text_today_dedicated_courier');
-		$this->data['text_today_intercity'] = $this->language->get('text_today_intercity');
-		$this->data['text_today_express'] = $this->language->get('text_today_express');
-		$this->data['text_today_express_saver'] = $this->language->get('text_today_express_saver');
+		$this->data['text_enabled'] = __('text_enabled');
+		$this->data['text_disabled'] = __('text_disabled');
+		$this->data['text_yes'] = __('text_yes');
+		$this->data['text_no'] = __('text_no');		
+		$this->data['text_select_all'] = __('text_select_all');
+		$this->data['text_unselect_all'] = __('text_unselect_all');		
+		$this->data['text_all_zones'] = __('text_all_zones');
+		$this->data['text_none'] = __('text_none');
+		$this->data['text_next_day_air'] = __('text_next_day_air');
+		$this->data['text_2nd_day_air'] = __('text_2nd_day_air');
+		$this->data['text_ground'] = __('text_ground');
+		$this->data['text_worldwide_express'] = __('text_worldwide_express');
+		$this->data['text_worldwide_express_plus'] = __('text_worldwide_express_plus');
+		$this->data['text_worldwide_expedited'] = __('text_worldwide_expedited');
+		$this->data['text_express'] = __('text_express');
+		$this->data['text_standard'] = __('text_standard');
+		$this->data['text_3_day_select'] = __('text_3_day_select');
+		$this->data['text_next_day_air_saver'] = __('text_next_day_air_saver');
+		$this->data['text_next_day_air_early_am'] = __('text_next_day_air_early_am');
+		$this->data['text_expedited'] = __('text_expedited');
+		$this->data['text_2nd_day_air_am'] = __('text_2nd_day_air_am');
+		$this->data['text_saver'] = __('text_saver');
+		$this->data['text_express_early_am'] = __('text_express_early_am');
+		$this->data['text_express_plus'] = __('text_express_plus');
+		$this->data['text_today_standard'] = __('text_today_standard');
+		$this->data['text_today_dedicated_courier'] = __('text_today_dedicated_courier');
+		$this->data['text_today_intercity'] = __('text_today_intercity');
+		$this->data['text_today_express'] = __('text_today_express');
+		$this->data['text_today_express_saver'] = __('text_today_express_saver');
 		 
-		$this->data['entry_key'] = $this->language->get('entry_key');
-		$this->data['entry_username'] = $this->language->get('entry_username');
-		$this->data['entry_password'] = $this->language->get('entry_password');
-		$this->data['entry_pickup'] = $this->language->get('entry_pickup');
-		$this->data['entry_packaging'] = $this->language->get('entry_packaging');
-		$this->data['entry_classification'] = $this->language->get('entry_classification');
-		$this->data['entry_origin'] = $this->language->get('entry_origin');
-		$this->data['entry_city'] = $this->language->get('entry_city');
-		$this->data['entry_state'] = $this->language->get('entry_state');
-		$this->data['entry_country'] = $this->language->get('entry_country');
-		$this->data['entry_postcode'] = $this->language->get('entry_postcode');
-		$this->data['entry_test'] = $this->language->get('entry_test');
-		$this->data['entry_quote_type'] = $this->language->get('entry_quote_type');
-		$this->data['entry_service'] = $this->language->get('entry_service');
-		$this->data['entry_insurance'] = $this->language->get('entry_insurance');
-		$this->data['entry_display_weight'] = $this->language->get('entry_display_weight');
-		$this->data['entry_weight_class'] = $this->language->get('entry_weight_class');
-		$this->data['entry_length_code'] = $this->language->get('entry_length_code');
-		$this->data['entry_length_class'] = $this->language->get('entry_length_class');
-		$this->data['entry_dimension'] = $this->language->get('entry_dimension');
-		$this->data['entry_length'] = $this->language->get('entry_length');
-		$this->data['entry_width'] = $this->language->get('entry_width');
-		$this->data['entry_height'] = $this->language->get('entry_height');			
-		$this->data['entry_tax_class'] = $this->language->get('entry_tax_class');
-		$this->data['entry_geo_zone'] = $this->language->get('entry_geo_zone');
-		$this->data['entry_status'] = $this->language->get('entry_status');
-		$this->data['entry_sort_order'] = $this->language->get('entry_sort_order');
-		$this->data['entry_debug'] = $this->language->get('entry_debug');
+		$this->data['entry_key'] = __('entry_key');
+		$this->data['entry_username'] = __('entry_username');
+		$this->data['entry_password'] = __('entry_password');
+		$this->data['entry_pickup'] = __('entry_pickup');
+		$this->data['entry_packaging'] = __('entry_packaging');
+		$this->data['entry_classification'] = __('entry_classification');
+		$this->data['entry_origin'] = __('entry_origin');
+		$this->data['entry_city'] = __('entry_city');
+		$this->data['entry_state'] = __('entry_state');
+		$this->data['entry_country'] = __('entry_country');
+		$this->data['entry_postcode'] = __('entry_postcode');
+		$this->data['entry_test'] = __('entry_test');
+		$this->data['entry_quote_type'] = __('entry_quote_type');
+		$this->data['entry_service'] = __('entry_service');
+		$this->data['entry_insurance'] = __('entry_insurance');
+		$this->data['entry_display_weight'] = __('entry_display_weight');
+		$this->data['entry_weight_class'] = __('entry_weight_class');
+		$this->data['entry_length_code'] = __('entry_length_code');
+		$this->data['entry_length_class'] = __('entry_length_class');
+		$this->data['entry_dimension'] = __('entry_dimension');
+		$this->data['entry_length'] = __('entry_length');
+		$this->data['entry_width'] = __('entry_width');
+		$this->data['entry_height'] = __('entry_height');			
+		$this->data['entry_tax_class'] = __('entry_tax_class');
+		$this->data['entry_geo_zone'] = __('entry_geo_zone');
+		$this->data['entry_status'] = __('entry_status');
+		$this->data['entry_sort_order'] = __('entry_sort_order');
+		$this->data['entry_debug'] = __('entry_debug');
 		
-		$this->data['help_key'] = $this->language->get('help_key');
-		$this->data['help_username'] = $this->language->get('help_username');
-		$this->data['help_password'] = $this->language->get('help_password');
-		$this->data['help_pickup'] = $this->language->get('help_pickup');
-		$this->data['help_packaging'] = $this->language->get('help_packaging');
-		$this->data['help_classification'] = $this->language->get('help_classification');
-		$this->data['help_origin'] = $this->language->get('help_origin');
-		$this->data['help_city'] = $this->language->get('help_city');
-		$this->data['help_state'] = $this->language->get('help_state');
-		$this->data['help_country'] = $this->language->get('help_country');
-		$this->data['help_postcode'] = $this->language->get('help_postcode');
-		$this->data['help_test'] = $this->language->get('help_test');
-		$this->data['help_quote_type'] = $this->language->get('help_quote_type');
-		$this->data['help_service'] = $this->language->get('help_service');
-		$this->data['help_insurance'] = $this->language->get('help_insurance');
-		$this->data['help_display_weight'] = $this->language->get('help_display_weight');
-		$this->data['help_weight_class'] = $this->language->get('help_weight_class');
-		$this->data['help_length_class'] = $this->language->get('help_length_class');
-		$this->data['help_dimension'] = $this->language->get('help_dimension');
-		$this->data['help_debug'] = $this->language->get('help_debug');
+		$this->data['help_key'] = __('help_key');
+		$this->data['help_username'] = __('help_username');
+		$this->data['help_password'] = __('help_password');
+		$this->data['help_pickup'] = __('help_pickup');
+		$this->data['help_packaging'] = __('help_packaging');
+		$this->data['help_classification'] = __('help_classification');
+		$this->data['help_origin'] = __('help_origin');
+		$this->data['help_city'] = __('help_city');
+		$this->data['help_state'] = __('help_state');
+		$this->data['help_country'] = __('help_country');
+		$this->data['help_postcode'] = __('help_postcode');
+		$this->data['help_test'] = __('help_test');
+		$this->data['help_quote_type'] = __('help_quote_type');
+		$this->data['help_service'] = __('help_service');
+		$this->data['help_insurance'] = __('help_insurance');
+		$this->data['help_display_weight'] = __('help_display_weight');
+		$this->data['help_weight_class'] = __('help_weight_class');
+		$this->data['help_length_class'] = __('help_length_class');
+		$this->data['help_dimension'] = __('help_dimension');
+		$this->data['help_debug'] = __('help_debug');
 		
-		$this->data['button_save'] = $this->language->get('button_save');
-		$this->data['button_cancel'] = $this->language->get('button_cancel');
+		$this->data['button_save'] = __('button_save');
+		$this->data['button_cancel'] = __('button_cancel');
 
 		if (isset($this->error['warning'])) {
 			$this->data['error_warning'] = $this->error['warning'];
@@ -153,17 +153,17 @@ class ControllerShippingUPS extends Controller {
   		$this->data['breadcrumbs'] = array();
 
    		$this->data['breadcrumbs'][] = array(
-       		'text' => $this->language->get('text_home'),
+       		'text' => __('text_home'),
 			'href' => $this->url->link('common/home', 'token=' . $this->session->data['token'], 'SSL')
    		);
 
    		$this->data['breadcrumbs'][] = array(
-       		'text' => $this->language->get('text_shipping'),
+       		'text' => __('text_shipping'),
 			'href' => $this->url->link('extension/shipping', 'token=' . $this->session->data['token'], 'SSL')
    		);
 		
    		$this->data['breadcrumbs'][] = array(
-       		'text' => $this->language->get('heading_title'),
+       		'text' => __('heading_title'),
 			'href' => $this->url->link('shipping/ups', 'token=' . $this->session->data['token'], 'SSL')
    		);
 		
@@ -199,37 +199,37 @@ class ControllerShippingUPS extends Controller {
 		  
 		$this->data['pickups'][] = array(
 			'value' => '01',
-			'text'  => $this->language->get('text_daily_pickup')
+			'text'  => __('text_daily_pickup')
 		);
 
 		$this->data['pickups'][] = array(
 			'value' => '03',
-			'text'  => $this->language->get('text_customer_counter')
+			'text'  => __('text_customer_counter')
 		);
 
 		$this->data['pickups'][] = array(
 			'value' => '06',
-			'text'  => $this->language->get('text_one_time_pickup')
+			'text'  => __('text_one_time_pickup')
 		);
 
 		$this->data['pickups'][] = array(
 			'value' => '07',
-			'text'  => $this->language->get('text_on_call_air_pickup')
+			'text'  => __('text_on_call_air_pickup')
 		);
 
 		$this->data['pickups'][] = array(
 			'value' => '19',
-			'text'  => $this->language->get('text_letter_center')
+			'text'  => __('text_letter_center')
 		);		
 		
 		$this->data['pickups'][] = array(
 			'value' => '20',
-			'text'  => $this->language->get('text_air_service_center')
+			'text'  => __('text_air_service_center')
 		);	
 		
 		$this->data['pickups'][] = array(
 			'value' => '11',
-			'text'  => $this->language->get('text_suggested_retail_rates')
+			'text'  => __('text_suggested_retail_rates')
 		);	
 			
 		if (isset($this->request->post['ups_packaging'])) {
@@ -242,37 +242,37 @@ class ControllerShippingUPS extends Controller {
 		  
 		$this->data['packages'][] = array(
 			'value' => '02',
-			'text'  => $this->language->get('text_package')
+			'text'  => __('text_package')
 		);
 
 		$this->data['packages'][] = array(
 			'value' => '01',
-			'text'  => $this->language->get('text_ups_letter')
+			'text'  => __('text_ups_letter')
 		);
 
 		$this->data['packages'][] = array(
 			'value' => '03',
-			'text'  => $this->language->get('text_ups_tube')
+			'text'  => __('text_ups_tube')
 		);
 
 		$this->data['packages'][] = array(
 			'value' => '04',
-			'text'  => $this->language->get('text_ups_pak')
+			'text'  => __('text_ups_pak')
 		);
 
 		$this->data['packages'][] = array(
 			'value' => '21',
-			'text'  => $this->language->get('text_ups_express_box')
+			'text'  => __('text_ups_express_box')
 		);		
 		
 		$this->data['packages'][] = array(
 			'value' => '24',
-			'text'  => $this->language->get('text_ups_25kg_box')
+			'text'  => __('text_ups_25kg_box')
 		);	
 		
 		$this->data['packages'][] = array(
 			'value' => '25',
-			'text'  => $this->language->get('text_ups_10kg_box')
+			'text'  => __('text_ups_10kg_box')
 		);	
 		
 		if (isset($this->request->post['ups_classification'])) {
@@ -306,32 +306,32 @@ class ControllerShippingUPS extends Controller {
 		  
 		$this->data['origins'][] = array(
 			'value' => 'US',
-			'text'  => $this->language->get('text_us')
+			'text'  => __('text_us')
 		);
 
 		$this->data['origins'][] = array(
 			'value' => 'CA',
-			'text'  => $this->language->get('text_ca')
+			'text'  => __('text_ca')
 		);
 
 		$this->data['origins'][] = array(
 			'value' => 'EU',
-			'text'  => $this->language->get('text_eu')
+			'text'  => __('text_eu')
 		);
 
 		$this->data['origins'][] = array(
 			'value' => 'PR',
-			'text'  => $this->language->get('text_pr')
+			'text'  => __('text_pr')
 		);
 
 		$this->data['origins'][] = array(
 			'value' => 'MX',
-			'text'  => $this->language->get('text_mx')
+			'text'  => __('text_mx')
 		);		
 
 		$this->data['origins'][] = array(
 			'value' => 'other',
-			'text'  => $this->language->get('text_other')
+			'text'  => __('text_other')
 		);	
 		
 		if (isset($this->request->post['ups_city'])) {
@@ -374,12 +374,12 @@ class ControllerShippingUPS extends Controller {
 		  
 		$this->data['quote_types'][] = array(
 			'value' => 'residential',
-			'text'  => $this->language->get('text_residential')
+			'text'  => __('text_residential')
 		);
 
 		$this->data['quote_types'][] = array(
 			'value' => 'commercial',
-			'text'  => $this->language->get('text_commercial')
+			'text'  => __('text_commercial')
 		);
 		
 		// US
@@ -787,43 +787,43 @@ class ControllerShippingUPS extends Controller {
 	
 	protected function validate() {
 		if (!$this->user->hasPermission('modify', 'shipping/ups')) {
-			$this->error['warning'] = $this->language->get('error_permission');
+			$this->error['warning'] = __('error_permission');
 		}
 
 		if (!$this->request->post['ups_key']) {
-			$this->error['key'] = $this->language->get('error_key');
+			$this->error['key'] = __('error_key');
 		}
 		
 		if (!$this->request->post['ups_username']) {
-			$this->error['username'] = $this->language->get('error_username');
+			$this->error['username'] = __('error_username');
 		}
 
 		if (!$this->request->post['ups_password']) {
-			$this->error['password'] = $this->language->get('error_password');
+			$this->error['password'] = __('error_password');
 		}
 
 		if (!$this->request->post['ups_city']) {
-			$this->error['city'] = $this->language->get('error_city');
+			$this->error['city'] = __('error_city');
 		}
 
 		if (!$this->request->post['ups_state']) {
-			$this->error['state'] = $this->language->get('error_state');
+			$this->error['state'] = __('error_state');
 		}
 
 		if (!$this->request->post['ups_country']) {
-			$this->error['country'] = $this->language->get('error_country');
+			$this->error['country'] = __('error_country');
 		}
 		
 		if (empty($this->request->post['ups_length'])) {
-			$this->error['dimension'] = $this->language->get('error_dimension');
+			$this->error['dimension'] = __('error_dimension');
 		}
 		
 		if (empty($this->request->post['ups_width'])) {
-			$this->error['dimension'] = $this->language->get('error_dimension');
+			$this->error['dimension'] = __('error_dimension');
 		}
 		
 		if (empty($this->request->post['ups_height'])) {
-			$this->error['dimension'] = $this->language->get('error_dimension');
+			$this->error['dimension'] = __('error_dimension');
 		}
 		
 		if (!$this->error) {

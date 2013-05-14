@@ -32,7 +32,7 @@ class ModelPaymentPayMate extends Model {
 		if ($status) {  
       		$method_data = array( 
         		'code'       => 'paymate',
-        		'title'      => $this->language->get('text_title'),
+        		'title'      => __('text_title'),
 				'sort_order' => $this->config->get('paymate_sort_order')
       		);
     	}

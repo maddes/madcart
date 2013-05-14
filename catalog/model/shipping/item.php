@@ -26,7 +26,7 @@ class ModelShippingItem extends Model {
 			
       		$quote_data['item'] = array(
         		'code'         => 'item.item',
-        		'title'        => $this->language->get('text_description'),
+        		'title'        => __('text_description'),
         		'cost'         => $this->config->get('item_cost') * $items,
          		'tax_class_id' => $this->config->get('item_tax_class_id'),
 				'text'         => $this->currency->format($this->tax->calculate($this->config->get('item_cost') * $items, $this->config->get('item_tax_class_id'), $this->config->get('config_tax')))
@@ -34,7 +34,7 @@ class ModelShippingItem extends Model {
 
       		$method_data = array(
         		'code'       => 'item',
-        		'title'      => $this->language->get('text_title'),
+        		'title'      => __('text_title'),
         		'quote'      => $quote_data,
 				'sort_order' => $this->config->get('item_sort_order'),
         		'error'      => false

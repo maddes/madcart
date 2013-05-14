@@ -20,7 +20,7 @@ class ModelPaymentAuthorizeNetAim extends Model {
 		if ($status) {  
       		$method_data = array( 
         		'code'       => 'authorizenet_aim',
-        		'title'      => $this->language->get('text_title'),
+        		'title'      => __('text_title'),
 				'sort_order' => $this->config->get('authorizenet_aim_sort_order')
       		);
     	}

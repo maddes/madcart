@@ -3,7 +3,7 @@ class ControllerReportCustomerOrder extends Controller {
 	public function index() {     
 		$this->language->load('report/customer_order');
 
-		$this->document->setTitle($this->language->get('heading_title'));
+		$this->document->setTitle(__('heading_title'));
 		
 		if (isset($this->request->get['filter_date_start'])) {
 			$filter_date_start = $this->request->get['filter_date_start'];
@@ -50,12 +50,12 @@ class ControllerReportCustomerOrder extends Controller {
 		$this->data['breadcrumbs'] = array();
 
    		$this->data['breadcrumbs'][] = array(
-       		'text' => $this->language->get('text_home'),
+       		'text' => __('text_home'),
 			'href' => $this->url->link('common/home', 'token=' . $this->session->data['token'], 'SSL')
    		);
 
    		$this->data['breadcrumbs'][] = array(
-       		'text' => $this->language->get('heading_title'),
+       		'text' => __('heading_title'),
 			'href' => $this->url->link('report/customer_order', 'token=' . $this->session->data['token'] . $url, 'SSL')
    		);		
 		
@@ -79,7 +79,7 @@ class ControllerReportCustomerOrder extends Controller {
 			$action = array();
 		
 			$action[] = array(
-				'text' => $this->language->get('text_edit'),
+				'text' => __('text_edit'),
 				'href' => $this->url->link('sale/customer/update', 'token=' . $this->session->data['token'] . '&customer_id=' . $result['customer_id'] . $url, 'SSL')
 			);
 						
@@ -87,7 +87,7 @@ class ControllerReportCustomerOrder extends Controller {
 				'customer'       => $result['customer'],
 				'email'          => $result['email'],
 				'customer_group' => $result['customer_group'],
-				'status'         => ($result['status'] ? $this->language->get('text_enabled') : $this->language->get('text_disabled')),
+				'status'         => ($result['status'] ? __('text_enabled') : __('text_disabled')),
 				'orders'         => $result['orders'],
 				'products'       => $result['products'],
 				'total'          => $this->currency->format($result['total'], $this->config->get('config_currency')),
@@ -95,25 +95,25 @@ class ControllerReportCustomerOrder extends Controller {
 			);
 		}
 		 
- 		$this->data['heading_title'] = $this->language->get('heading_title');
+ 		$this->data['heading_title'] = __('heading_title');
 		 
-		$this->data['text_no_results'] = $this->language->get('text_no_results');
-		$this->data['text_all_status'] = $this->language->get('text_all_status');
+		$this->data['text_no_results'] = __('text_no_results');
+		$this->data['text_all_status'] = __('text_all_status');
 		
-		$this->data['column_customer'] = $this->language->get('column_customer');
-		$this->data['column_email'] = $this->language->get('column_email');
-		$this->data['column_customer_group'] = $this->language->get('column_customer_group');
-		$this->data['column_status'] = $this->language->get('column_status');
-		$this->data['column_orders'] = $this->language->get('column_orders');
-		$this->data['column_products'] = $this->language->get('column_products');
-		$this->data['column_total'] = $this->language->get('column_total');
-		$this->data['column_action'] = $this->language->get('column_action');
+		$this->data['column_customer'] = __('column_customer');
+		$this->data['column_email'] = __('column_email');
+		$this->data['column_customer_group'] = __('column_customer_group');
+		$this->data['column_status'] = __('column_status');
+		$this->data['column_orders'] = __('column_orders');
+		$this->data['column_products'] = __('column_products');
+		$this->data['column_total'] = __('column_total');
+		$this->data['column_action'] = __('column_action');
 		
-		$this->data['entry_date_start'] = $this->language->get('entry_date_start');
-		$this->data['entry_date_end'] = $this->language->get('entry_date_end');
-		$this->data['entry_status'] = $this->language->get('entry_status');
+		$this->data['entry_date_start'] = __('entry_date_start');
+		$this->data['entry_date_end'] = __('entry_date_end');
+		$this->data['entry_status'] = __('entry_status');
 
-		$this->data['button_filter'] = $this->language->get('button_filter');
+		$this->data['button_filter'] = __('button_filter');
 		
 		$this->data['token'] = $this->session->data['token'];
 		
@@ -143,7 +143,7 @@ class ControllerReportCustomerOrder extends Controller {
 			
 		$this->data['pagination'] = $pagination->render();
 		
-		$this->data['results'] = sprintf($this->language->get('text_pagination'), ($customer_total) ? (($page - 1) * $this->config->get('config_admin_limit')) + 1 : 0, ((($page - 1) * $this->config->get('config_admin_limit')) > ($customer_total - $this->config->get('config_admin_limit'))) ? $customer_total : ((($page - 1) * $this->config->get('config_admin_limit')) + $this->config->get('config_admin_limit')), $customer_total, ceil($customer_total / $this->config->get('config_admin_limit')));
+		$this->data['results'] = sprintf(__('text_pagination'), ($customer_total) ? (($page - 1) * $this->config->get('config_admin_limit')) + 1 : 0, ((($page - 1) * $this->config->get('config_admin_limit')) > ($customer_total - $this->config->get('config_admin_limit'))) ? $customer_total : ((($page - 1) * $this->config->get('config_admin_limit')) + $this->config->get('config_admin_limit')), $customer_total, ceil($customer_total / $this->config->get('config_admin_limit')));
 		
 		$this->data['filter_date_start'] = $filter_date_start;
 		$this->data['filter_date_end'] = $filter_date_end;		

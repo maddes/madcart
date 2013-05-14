@@ -5,47 +5,47 @@ class ControllerShippingParcelforce48 extends Controller {
 	public function index() {   
 		$this->language->load('shipping/parcelforce_48');
 
-		$this->document->setTitle($this->language->get('heading_title'));
+		$this->document->setTitle(__('heading_title'));
 		
 		$this->load->model('setting/setting');
 				
 		if (($this->request->server['REQUEST_METHOD'] == 'POST') && $this->validate()) {
 			$this->model_setting_setting->editSetting('parcelforce_48', $this->request->post);		
 					
-			$this->session->data['success'] = $this->language->get('text_success');
+			$this->session->data['success'] = __('text_success');
 						
 			$this->redirect($this->url->link('extension/shipping', 'token=' . $this->session->data['token'], 'SSL'));
 		}
 				
-		$this->data['heading_title'] = $this->language->get('heading_title');
+		$this->data['heading_title'] = __('heading_title');
 
-		$this->data['text_enabled'] = $this->language->get('text_enabled');
-		$this->data['text_disabled'] = $this->language->get('text_disabled');
-		$this->data['text_all_zones'] = $this->language->get('text_all_zones');
-		$this->data['text_none'] = $this->language->get('text_none');
-		$this->data['text_yes'] = $this->language->get('text_yes');
-		$this->data['text_no'] = $this->language->get('text_no');
+		$this->data['text_enabled'] = __('text_enabled');
+		$this->data['text_disabled'] = __('text_disabled');
+		$this->data['text_all_zones'] = __('text_all_zones');
+		$this->data['text_none'] = __('text_none');
+		$this->data['text_yes'] = __('text_yes');
+		$this->data['text_no'] = __('text_no');
 		
-		$this->data['entry_rate'] = $this->language->get('entry_rate');
-		$this->data['entry_insurance'] = $this->language->get('entry_insurance');
-		$this->data['entry_display_weight'] = $this->language->get('entry_display_weight');
-		$this->data['entry_display_insurance'] = $this->language->get('entry_display_insurance');
-		$this->data['entry_display_time'] = $this->language->get('entry_display_time');
-		$this->data['entry_tax_class'] = $this->language->get('entry_tax_class');
-		$this->data['entry_geo_zone'] = $this->language->get('entry_geo_zone');
-		$this->data['entry_status'] = $this->language->get('entry_status');
-		$this->data['entry_sort_order'] = $this->language->get('entry_sort_order');
+		$this->data['entry_rate'] = __('entry_rate');
+		$this->data['entry_insurance'] = __('entry_insurance');
+		$this->data['entry_display_weight'] = __('entry_display_weight');
+		$this->data['entry_display_insurance'] = __('entry_display_insurance');
+		$this->data['entry_display_time'] = __('entry_display_time');
+		$this->data['entry_tax_class'] = __('entry_tax_class');
+		$this->data['entry_geo_zone'] = __('entry_geo_zone');
+		$this->data['entry_status'] = __('entry_status');
+		$this->data['entry_sort_order'] = __('entry_sort_order');
 		
-		$this->data['help_rate'] = $this->language->get('help_rate');
-		$this->data['help_insurance'] = $this->language->get('help_insurance');
-		$this->data['help_display_weight'] = $this->language->get('help_display_weight');
-		$this->data['help_display_insurance'] = $this->language->get('help_display_insurance');
-		$this->data['help_display_time'] = $this->language->get('help_display_time');
+		$this->data['help_rate'] = __('help_rate');
+		$this->data['help_insurance'] = __('help_insurance');
+		$this->data['help_display_weight'] = __('help_display_weight');
+		$this->data['help_display_insurance'] = __('help_display_insurance');
+		$this->data['help_display_time'] = __('help_display_time');
 		
-		$this->data['button_save'] = $this->language->get('button_save');
-		$this->data['button_cancel'] = $this->language->get('button_cancel');
+		$this->data['button_save'] = __('button_save');
+		$this->data['button_cancel'] = __('button_cancel');
 
-		$this->data['tab_general'] = $this->language->get('tab_general');
+		$this->data['tab_general'] = __('tab_general');
 
  		if (isset($this->error['warning'])) {
 			$this->data['error_warning'] = $this->error['warning'];
@@ -56,17 +56,17 @@ class ControllerShippingParcelforce48 extends Controller {
   		$this->data['breadcrumbs'] = array();
 
    		$this->data['breadcrumbs'][] = array(
-       		'text' => $this->language->get('text_home'),
+       		'text' => __('text_home'),
 			'href' => $this->url->link('common/home', 'token=' . $this->session->data['token'], 'SSL')
    		);
 
    		$this->data['breadcrumbs'][] = array(
-       		'text' => $this->language->get('text_shipping'),
+       		'text' => __('text_shipping'),
 			'href' => $this->url->link('extension/shipping', 'token=' . $this->session->data['token'], 'SSL')
    		);
 		
    		$this->data['breadcrumbs'][] = array(
-       		'text' => $this->language->get('heading_title'),
+       		'text' => __('heading_title'),
 			'href' => $this->url->link('shipping/parcelforce_48', 'token=' . $this->session->data['token'], 'SSL')
    		);
 		
@@ -151,7 +151,7 @@ class ControllerShippingParcelforce48 extends Controller {
 	
 	protected function validate() {
 		if (!$this->user->hasPermission('modify', 'shipping/parcelforce_48')) {
-			$this->error['warning'] = $this->language->get('error_permission');
+			$this->error['warning'] = __('error_permission');
 		}
 		
 		if (!$this->error) {

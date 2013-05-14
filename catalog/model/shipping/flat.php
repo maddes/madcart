@@ -20,7 +20,7 @@ class ModelShippingFlat extends Model {
 			
       		$quote_data['flat'] = array(
         		'code'         => 'flat.flat',
-        		'title'        => $this->language->get('text_description'),
+        		'title'        => __('text_description'),
         		'cost'         => $this->config->get('flat_cost'),
         		'tax_class_id' => $this->config->get('flat_tax_class_id'),
 				'text'         => $this->currency->format($this->tax->calculate($this->config->get('flat_cost'), $this->config->get('flat_tax_class_id'), $this->config->get('config_tax')))
@@ -28,7 +28,7 @@ class ModelShippingFlat extends Model {
 
       		$method_data = array(
         		'code'       => 'flat',
-        		'title'      => $this->language->get('text_title'),
+        		'title'      => __('text_title'),
         		'quote'      => $quote_data,
 				'sort_order' => $this->config->get('flat_sort_order'),
         		'error'      => false

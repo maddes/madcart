@@ -9,17 +9,17 @@ class ControllerAccountAccount extends Controller {
 	
 		$this->language->load('account/account');
 
-		$this->document->setTitle($this->language->get('heading_title'));
+		$this->document->setTitle(__('heading_title'));
 
       	$this->data['breadcrumbs'] = array();
 
       	$this->data['breadcrumbs'][] = array(
-        	'text' => $this->language->get('text_home'),
+        	'text' => __('text_home'),
 			'href' => $this->url->link('common/home')
       	); 
 
       	$this->data['breadcrumbs'][] = array(       	
-        	'text' => $this->language->get('text_account'),
+        	'text' => __('text_account'),
 			'href' => $this->url->link('account/account', '', 'SSL')
       	);
 		
@@ -31,21 +31,21 @@ class ControllerAccountAccount extends Controller {
 			$this->data['success'] = '';
 		}
 		
-    	$this->data['heading_title'] = $this->language->get('heading_title');
+    	$this->data['heading_title'] = __('heading_title');
 
-    	$this->data['text_my_account'] = $this->language->get('text_my_account');
-		$this->data['text_my_orders'] = $this->language->get('text_my_orders');
-		$this->data['text_my_newsletter'] = $this->language->get('text_my_newsletter');
-    	$this->data['text_edit'] = $this->language->get('text_edit');
-    	$this->data['text_password'] = $this->language->get('text_password');
-    	$this->data['text_address'] = $this->language->get('text_address');
-		$this->data['text_wishlist'] = $this->language->get('text_wishlist');
-    	$this->data['text_order'] = $this->language->get('text_order');
-    	$this->data['text_download'] = $this->language->get('text_download');
-		$this->data['text_reward'] = $this->language->get('text_reward');
-		$this->data['text_return'] = $this->language->get('text_return');
-		$this->data['text_transaction'] = $this->language->get('text_transaction');
-		$this->data['text_newsletter'] = $this->language->get('text_newsletter');
+    	$this->data['text_my_account'] = __('text_my_account');
+		$this->data['text_my_orders'] = __('text_my_orders');
+		$this->data['text_my_newsletter'] = __('text_my_newsletter');
+    	$this->data['text_edit'] = __('text_edit');
+    	$this->data['text_password'] = __('text_password');
+    	$this->data['text_address'] = __('text_address');
+		$this->data['text_wishlist'] = __('text_wishlist');
+    	$this->data['text_order'] = __('text_order');
+    	$this->data['text_download'] = __('text_download');
+		$this->data['text_reward'] = __('text_reward');
+		$this->data['text_return'] = __('text_return');
+		$this->data['text_transaction'] = __('text_transaction');
+		$this->data['text_newsletter'] = __('text_newsletter');
 
     	$this->data['edit'] = $this->url->link('account/edit', '', 'SSL');
     	$this->data['password'] = $this->url->link('account/password', '', 'SSL');

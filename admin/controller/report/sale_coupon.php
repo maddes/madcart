@@ -3,7 +3,7 @@ class ControllerReportSaleCoupon extends Controller {
 	public function index() {     
 		$this->language->load('report/sale_coupon');
 
-		$this->document->setTitle($this->language->get('heading_title'));
+		$this->document->setTitle(__('heading_title'));
 		
 		if (isset($this->request->get['filter_date_start'])) {
 			$filter_date_start = $this->request->get['filter_date_start'];
@@ -40,12 +40,12 @@ class ControllerReportSaleCoupon extends Controller {
 		$this->data['breadcrumbs'] = array();
 
    		$this->data['breadcrumbs'][] = array(
-       		'text' => $this->language->get('text_home'),
+       		'text' => __('text_home'),
 			'href' => $this->url->link('common/home', 'token=' . $this->session->data['token'], 'SSL')
    		);
 
    		$this->data['breadcrumbs'][] = array(
-       		'text' => $this->language->get('heading_title'),
+       		'text' => __('heading_title'),
 			'href' => $this->url->link('report/sale_coupon', 'token=' . $this->session->data['token'] . $url, 'SSL')
    		);		
 		
@@ -68,7 +68,7 @@ class ControllerReportSaleCoupon extends Controller {
 			$action = array();
 		
 			$action[] = array(
-				'text' => $this->language->get('text_edit'),
+				'text' => __('text_edit'),
 				'href' => $this->url->link('sale/coupon/update', 'token=' . $this->session->data['token'] . '&coupon_id=' . $result['coupon_id'] . $url, 'SSL')
 			);
 						
@@ -81,20 +81,20 @@ class ControllerReportSaleCoupon extends Controller {
 			);
 		}
 				 
- 		$this->data['heading_title'] = $this->language->get('heading_title');
+ 		$this->data['heading_title'] = __('heading_title');
 		 
-		$this->data['text_no_results'] = $this->language->get('text_no_results');
+		$this->data['text_no_results'] = __('text_no_results');
 		
-		$this->data['column_name'] = $this->language->get('column_name');
-		$this->data['column_code'] = $this->language->get('column_code');
-		$this->data['column_orders'] = $this->language->get('column_orders');
-		$this->data['column_total'] = $this->language->get('column_total');
-		$this->data['column_action'] = $this->language->get('column_action');
+		$this->data['column_name'] = __('column_name');
+		$this->data['column_code'] = __('column_code');
+		$this->data['column_orders'] = __('column_orders');
+		$this->data['column_total'] = __('column_total');
+		$this->data['column_action'] = __('column_action');
 		
-		$this->data['entry_date_start'] = $this->language->get('entry_date_start');
-		$this->data['entry_date_end'] = $this->language->get('entry_date_end');
+		$this->data['entry_date_start'] = __('entry_date_start');
+		$this->data['entry_date_end'] = __('entry_date_end');
 		
-		$this->data['button_filter'] = $this->language->get('button_filter');
+		$this->data['button_filter'] = __('button_filter');
 		
 		$this->data['token'] = $this->session->data['token'];
 		
@@ -116,7 +116,7 @@ class ControllerReportSaleCoupon extends Controller {
 			
 		$this->data['pagination'] = $pagination->render();
 		
-		$this->data['results'] = sprintf($this->language->get('text_pagination'), ($coupon_total) ? (($page - 1) * $this->config->get('config_admin_limit')) + 1 : 0, ((($page - 1) * $this->config->get('config_admin_limit')) > ($coupon_total - $this->config->get('config_admin_limit'))) ? $coupon_total : ((($page - 1) * $this->config->get('config_admin_limit')) + $this->config->get('config_admin_limit')), $coupon_total, ceil($coupon_total / $this->config->get('config_admin_limit')));
+		$this->data['results'] = sprintf(__('text_pagination'), ($coupon_total) ? (($page - 1) * $this->config->get('config_admin_limit')) + 1 : 0, ((($page - 1) * $this->config->get('config_admin_limit')) > ($coupon_total - $this->config->get('config_admin_limit'))) ? $coupon_total : ((($page - 1) * $this->config->get('config_admin_limit')) + $this->config->get('config_admin_limit')), $coupon_total, ceil($coupon_total / $this->config->get('config_admin_limit')));
 		
 		$this->data['filter_date_start'] = $filter_date_start;
 		$this->data['filter_date_end'] = $filter_date_end;	

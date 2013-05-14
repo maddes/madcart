@@ -5,7 +5,7 @@ class ControllerPaymentNochex extends Controller {
 	protected function index() {
 		$this->language->load('payment/nochex');
 		
-		$this->data['button_confirm'] = $this->language->get('button_confirm');
+		$this->data['button_confirm'] = __('button_confirm');
 		
 		$this->load->model('checkout/order');
 
@@ -78,7 +78,7 @@ class ControllerPaymentNochex extends Controller {
 		$this->language->load('payment/nochex');
 		
 		if (isset($this->request->get['method']) && $this->request->get['method'] == 'decline') {
-			$this->session->data['error'] = $this->language->get('error_declined');
+			$this->session->data['error'] = __('error_declined');
 			
 			$this->redirect($this->url->link('checkout/cart')); 
 		}
@@ -94,7 +94,7 @@ class ControllerPaymentNochex extends Controller {
 		$order_info = $this->model_checkout_order->getOrder($order_id);
 		
 		if (!$order_info) {
-			$this->session->data['error'] = $this->language->get('error_no_order');
+			$this->session->data['error'] = __('error_no_order');
 			
 			$this->redirect($this->url->link('checkout/cart'));
 		}

@@ -392,7 +392,7 @@ function addAddress() {
 
 	html += '  <div class="control-group">';
 	html += '    <label class="control-label" for="input-zone' + address_row + '"><span class="required">*</span> <?php echo $entry_zone; ?></label>';
-	html += '    <div class="controls"><select name="address[' + address_row + '][zone_id]" id="input-zone' + address_row + '"><option value="false"><?php echo $this->language->get('text_none'); ?></option></select></div>';
+	html += '    <div class="controls"><select name="address[' + address_row + '][zone_id]" id="input-zone' + address_row + '"><option value="false"><?php echo __('text_none'); ?></option></select></div>';
 	html += '  </div>'; 
 
 	html += '  <div class="control-group">';

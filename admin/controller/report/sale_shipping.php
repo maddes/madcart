@@ -3,7 +3,7 @@ class ControllerReportSaleShipping extends Controller {
 	public function index() {     
 		$this->language->load('report/sale_shipping');
 
-		$this->document->setTitle($this->language->get('heading_title'));
+		$this->document->setTitle(__('heading_title'));
 		
 		if (isset($this->request->get['filter_date_start'])) {
 			$filter_date_start = $this->request->get['filter_date_start'];
@@ -60,12 +60,12 @@ class ControllerReportSaleShipping extends Controller {
 		$this->data['breadcrumbs'] = array();
 
    		$this->data['breadcrumbs'][] = array(
-       		'text' => $this->language->get('text_home'),
+       		'text' => __('text_home'),
 			'href' => $this->url->link('common/home', 'token=' . $this->session->data['token'], 'SSL')
    		);
 
    		$this->data['breadcrumbs'][] = array(
-       		'text' => $this->language->get('heading_title'),
+       		'text' => __('heading_title'),
 			'href' => $this->url->link('report/sale_shipping', 'token=' . $this->session->data['token'] . $url, 'SSL')
    		);		
 		
@@ -88,31 +88,31 @@ class ControllerReportSaleShipping extends Controller {
 		
 		foreach ($results as $result) {
 			$this->data['orders'][] = array(
-				'date_start' => date($this->language->get('date_format_short'), strtotime($result['date_start'])),
-				'date_end'   => date($this->language->get('date_format_short'), strtotime($result['date_end'])),
+				'date_start' => date(__('date_format_short'), strtotime($result['date_start'])),
+				'date_end'   => date(__('date_format_short'), strtotime($result['date_end'])),
 				'title'      => $result['title'],
 				'orders'     => $result['orders'],
 				'total'      => $this->currency->format($result['total'], $this->config->get('config_currency'))
 			);
 		}
 		 
- 		$this->data['heading_title'] = $this->language->get('heading_title');
+ 		$this->data['heading_title'] = __('heading_title');
 		 
-		$this->data['text_no_results'] = $this->language->get('text_no_results');
-		$this->data['text_all_status'] = $this->language->get('text_all_status');
+		$this->data['text_no_results'] = __('text_no_results');
+		$this->data['text_all_status'] = __('text_all_status');
 
-		$this->data['column_date_start'] = $this->language->get('column_date_start');
-		$this->data['column_date_end'] = $this->language->get('column_date_end');
-		$this->data['column_title'] = $this->language->get('column_title');
-		$this->data['column_orders'] = $this->language->get('column_orders');
-		$this->data['column_total'] = $this->language->get('column_total');
+		$this->data['column_date_start'] = __('column_date_start');
+		$this->data['column_date_end'] = __('column_date_end');
+		$this->data['column_title'] = __('column_title');
+		$this->data['column_orders'] = __('column_orders');
+		$this->data['column_total'] = __('column_total');
 		
-		$this->data['entry_date_start'] = $this->language->get('entry_date_start');
-		$this->data['entry_date_end'] = $this->language->get('entry_date_end');
-		$this->data['entry_group'] = $this->language->get('entry_group');	
-		$this->data['entry_status'] = $this->language->get('entry_status');
+		$this->data['entry_date_start'] = __('entry_date_start');
+		$this->data['entry_date_end'] = __('entry_date_end');
+		$this->data['entry_group'] = __('entry_group');	
+		$this->data['entry_status'] = __('entry_status');
 		
-		$this->data['button_filter'] = $this->language->get('button_filter');
+		$this->data['button_filter'] = __('button_filter');
 		
 		$this->data['token'] = $this->session->data['token'];
 		
@@ -123,22 +123,22 @@ class ControllerReportSaleShipping extends Controller {
 		$this->data['groups'] = array();
 
 		$this->data['groups'][] = array(
-			'text'  => $this->language->get('text_year'),
+			'text'  => __('text_year'),
 			'value' => 'year',
 		);
 
 		$this->data['groups'][] = array(
-			'text'  => $this->language->get('text_month'),
+			'text'  => __('text_month'),
 			'value' => 'month',
 		);
 
 		$this->data['groups'][] = array(
-			'text'  => $this->language->get('text_week'),
+			'text'  => __('text_week'),
 			'value' => 'week',
 		);
 
 		$this->data['groups'][] = array(
-			'text'  => $this->language->get('text_day'),
+			'text'  => __('text_day'),
 			'value' => 'day',
 		);
 		
@@ -168,7 +168,7 @@ class ControllerReportSaleShipping extends Controller {
 			
 		$this->data['pagination'] = $pagination->render();
 		
-		$this->data['results'] = sprintf($this->language->get('text_pagination'), ($order_total) ? (($page - 1) * $this->config->get('config_admin_limit')) + 1 : 0, ((($page - 1) * $this->config->get('config_admin_limit')) > ($order_total - $this->config->get('config_admin_limit'))) ? $order_total : ((($page - 1) * $this->config->get('config_admin_limit')) + $this->config->get('config_admin_limit')), $order_total, ceil($order_total / $this->config->get('config_admin_limit')));
+		$this->data['results'] = sprintf(__('text_pagination'), ($order_total) ? (($page - 1) * $this->config->get('config_admin_limit')) + 1 : 0, ((($page - 1) * $this->config->get('config_admin_limit')) > ($order_total - $this->config->get('config_admin_limit'))) ? $order_total : ((($page - 1) * $this->config->get('config_admin_limit')) + $this->config->get('config_admin_limit')), $order_total, ceil($order_total / $this->config->get('config_admin_limit')));
 		
 		$this->data['filter_date_start'] = $filter_date_start;
 		$this->data['filter_date_end'] = $filter_date_end;		

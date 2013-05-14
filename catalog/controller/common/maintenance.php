@@ -26,18 +26,18 @@ class ControllerCommonMaintenance extends Controller {
 	public function info() {
         $this->language->load('common/maintenance');
         
-        $this->document->setTitle($this->language->get('heading_title'));
+        $this->document->setTitle(__('heading_title'));
         
-        $this->data['heading_title'] = $this->language->get('heading_title');
+        $this->data['heading_title'] = __('heading_title');
                 
         $this->data['breadcrumbs'] = array();
 
         $this->data['breadcrumbs'][] = array(
-            'text' => $this->language->get('text_maintenance'),
+            'text' => __('text_maintenance'),
 			'href' => $this->url->link('common/maintenance')
         ); 
         
-        $this->data['message'] = $this->language->get('text_message');
+        $this->data['message'] = __('text_message');
       
 		if (file_exists(DIR_TEMPLATE . $this->config->get('config_template') . '/template/common/maintenance.tpl')) {
             $this->template = $this->config->get('config_template') . '/template/common/maintenance.tpl';

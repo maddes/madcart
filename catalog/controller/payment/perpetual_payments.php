@@ -3,18 +3,18 @@ class ControllerPaymentPerpetualPayments extends Controller {
 	protected function index() {
     	$this->language->load('payment/perpetual_payments');
 		
-		$this->data['text_credit_card'] = $this->language->get('text_credit_card');
-		$this->data['text_start_date'] = $this->language->get('text_start_date');
-		$this->data['text_issue'] = $this->language->get('text_issue');
-		$this->data['text_wait'] = $this->language->get('text_wait');
+		$this->data['text_credit_card'] = __('text_credit_card');
+		$this->data['text_start_date'] = __('text_start_date');
+		$this->data['text_issue'] = __('text_issue');
+		$this->data['text_wait'] = __('text_wait');
 		
-		$this->data['entry_cc_number'] = $this->language->get('entry_cc_number');
-		$this->data['entry_cc_start_date'] = $this->language->get('entry_cc_start_date');
-		$this->data['entry_cc_expire_date'] = $this->language->get('entry_cc_expire_date');
-		$this->data['entry_cc_cvv2'] = $this->language->get('entry_cc_cvv2');
-		$this->data['entry_cc_issue'] = $this->language->get('entry_cc_issue');
+		$this->data['entry_cc_number'] = __('entry_cc_number');
+		$this->data['entry_cc_start_date'] = __('entry_cc_start_date');
+		$this->data['entry_cc_expire_date'] = __('entry_cc_expire_date');
+		$this->data['entry_cc_cvv2'] = __('entry_cc_cvv2');
+		$this->data['entry_cc_issue'] = __('entry_cc_issue');
 		
-		$this->data['button_confirm'] = $this->language->get('button_confirm');
+		$this->data['button_confirm'] = __('button_confirm');
 	
 		$this->data['months'] = array();
 		
@@ -107,19 +107,19 @@ class ControllerPaymentPerpetualPayments extends Controller {
 				$message = '';
 				
 				if (isset($data[1])) {
-					$message .= $this->language->get('text_transaction') . ' ' . $data[1] . "\n";
+					$message .= __('text_transaction') . ' ' . $data[1] . "\n";
 				}
 				
 				if (isset($data[2])) {
 					if ($data[2] == '232') {
-						$message .= $this->language->get('text_avs') . ' ' . $this->language->get('text_avs_full_match') . "\n";
+						$message .= __('text_avs') . ' ' . __('text_avs_full_match') . "\n";
 					} elseif ($data[2] == '400') {
-						$message .= $this->language->get('text_avs') . ' ' . $this->language->get('text_avs_not_match') . "\n";
+						$message .= __('text_avs') . ' ' . __('text_avs_not_match') . "\n";
 					}
 				}
 				
 				if (isset($data[3])) {
-					$message .= $this->language->get('text_authorisation') . ' ' . $data[3] . "\n";
+					$message .= __('text_authorisation') . ' ' . $data[3] . "\n";
 				}
 				
 				$this->model_checkout_order->update($this->session->data['order_id'], $this->config->get('perpetual_payments_order_status_id'), $message, false);

@@ -19,39 +19,39 @@ class ControllerCheckoutSuccess extends Controller {
 									   
 		$this->language->load('checkout/success');
 		
-		$this->document->setTitle($this->language->get('heading_title'));
+		$this->document->setTitle(__('heading_title'));
 		
 		$this->data['breadcrumbs'] = array(); 
 
       	$this->data['breadcrumbs'][] = array(
-        	'text' => $this->language->get('text_home'),
+        	'text' => __('text_home'),
 			'href' => $this->url->link('common/home')
       	); 
 		
       	$this->data['breadcrumbs'][] = array(
-        	'text' => $this->language->get('text_basket'),
+        	'text' => __('text_basket'),
 			'href' => $this->url->link('checkout/cart')
       	);
 				
 		$this->data['breadcrumbs'][] = array(
-			'text' => $this->language->get('text_checkout'),
+			'text' => __('text_checkout'),
 			'href' => $this->url->link('checkout/checkout', '', 'SSL')
 		);	
 					
       	$this->data['breadcrumbs'][] = array(
-        	'text' => $this->language->get('text_success'),
+        	'text' => __('text_success'),
 			'href' => $this->url->link('checkout/success')
       	);
 
-		$this->data['heading_title'] = $this->language->get('heading_title');
+		$this->data['heading_title'] = __('heading_title');
 		
 		if ($this->customer->isLogged()) {
-    		$this->data['text_message'] = sprintf($this->language->get('text_customer'), $this->url->link('account/account', '', 'SSL'), $this->url->link('account/order', '', 'SSL'), $this->url->link('account/download', '', 'SSL'), $this->url->link('information/contact'));
+    		$this->data['text_message'] = sprintf(__('text_customer'), $this->url->link('account/account', '', 'SSL'), $this->url->link('account/order', '', 'SSL'), $this->url->link('account/download', '', 'SSL'), $this->url->link('information/contact'));
 		} else {
-    		$this->data['text_message'] = sprintf($this->language->get('text_guest'), $this->url->link('information/contact'));
+    		$this->data['text_message'] = sprintf(__('text_guest'), $this->url->link('information/contact'));
 		}
 		
-    	$this->data['button_continue'] = $this->language->get('button_continue');
+    	$this->data['button_continue'] = __('button_continue');
 
     	$this->data['continue'] = $this->url->link('common/home');
 

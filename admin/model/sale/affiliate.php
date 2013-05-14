@@ -108,11 +108,11 @@ class ModelSaleAffiliate extends Model {
 			
 			$this->language->load('mail/affiliate');
 	
-			$message  = sprintf($this->language->get('text_approve_welcome'), $this->config->get('config_name')) . "\n\n";
-			$message .= $this->language->get('text_approve_login') . "\n";
+			$message  = sprintf(__('text_approve_welcome'), $this->config->get('config_name')) . "\n\n";
+			$message .= __('text_approve_login') . "\n";
 			$message .= HTTP_CATALOG . 'index.php?route=affiliate/login' . "\n\n";
-			$message .= $this->language->get('text_approve_services') . "\n\n";
-			$message .= $this->language->get('text_approve_thanks') . "\n";
+			$message .= __('text_approve_services') . "\n\n";
+			$message .= __('text_approve_thanks') . "\n";
 			$message .= $this->config->get('config_name');
 	
 			$mail = new Mail();
@@ -125,7 +125,7 @@ class ModelSaleAffiliate extends Model {
 			$mail->setTo($affiliate_info['email']);
 			$mail->setFrom($this->config->get('config_email'));
 			$mail->setSender($this->config->get('config_name'));
-			$mail->setSubject(html_entity_decode(sprintf($this->language->get('text_approve_subject'), $this->config->get('config_name')), ENT_QUOTES, 'UTF-8'));
+			$mail->setSubject(html_entity_decode(sprintf(__('text_approve_subject'), $this->config->get('config_name')), ENT_QUOTES, 'UTF-8'));
 			$mail->setText(html_entity_decode($message, ENT_QUOTES, 'UTF-8'));
 			$mail->send();
 		}
@@ -197,8 +197,8 @@ class ModelSaleAffiliate extends Model {
 		
 			$this->language->load('mail/affiliate');
 							
-			$message  = sprintf($this->language->get('text_transaction_received'), $this->currency->format($amount, $this->config->get('config_currency'))) . "\n\n";
-			$message .= sprintf($this->language->get('text_transaction_total'), $this->currency->format($this->getTransactionTotal($affiliate_id), $this->config->get('config_currency')));
+			$message  = sprintf(__('text_transaction_received'), $this->currency->format($amount, $this->config->get('config_currency'))) . "\n\n";
+			$message .= sprintf(__('text_transaction_total'), $this->currency->format($this->getTransactionTotal($affiliate_id), $this->config->get('config_currency')));
 								
 			$mail = new Mail();
 			$mail->protocol = $this->config->get('config_mail_protocol');
@@ -211,7 +211,7 @@ class ModelSaleAffiliate extends Model {
 			$mail->setTo($affiliate_info['email']);
 			$mail->setFrom($this->config->get('config_email'));
 			$mail->setSender($this->config->get('config_name'));
-			$mail->setSubject(html_entity_decode(sprintf($this->language->get('text_transaction_subject'), $this->config->get('config_name')), ENT_QUOTES, 'UTF-8'));
+			$mail->setSubject(html_entity_decode(sprintf(__('text_transaction_subject'), $this->config->get('config_name')), ENT_QUOTES, 'UTF-8'));
 			$mail->setText(html_entity_decode($message, ENT_QUOTES, 'UTF-8'));
 			$mail->send();
 		}

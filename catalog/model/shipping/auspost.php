@@ -45,10 +45,10 @@ class ModelShippingAusPost extends Model {
 					if ($response_info['err_msg'] != 'OK') {
 						$error = $response_info['err_msg'];
 					} else {
-						$title = $this->language->get('text_standard');
+						$title = __('text_standard');
 					
 						if ($this->config->get('auspost_display_time')) {
-							$title .= ' (' . $response_info['days'] . ' ' . $this->language->get('text_eta') . ')';
+							$title .= ' (' . $response_info['days'] . ' ' . __('text_eta') . ')';
 						}	
 			
 						$quote_data['standard'] = array(
@@ -87,10 +87,10 @@ class ModelShippingAusPost extends Model {
 					if ($response_info['err_msg'] != 'OK') {
 						$error = $response_info['err_msg'];
 					} else {
-						$title = $this->language->get('text_express');
+						$title = __('text_express');
 						
 						if ($this->config->get('auspost_display_time')) {
-							$title .= ' (' . $response_info['days'] . ' ' . $this->language->get('text_eta') . ')';
+							$title .= ' (' . $response_info['days'] . ' ' . __('text_eta') . ')';
 						}	
 		
 						$quote_data['express'] = array(
@@ -110,7 +110,7 @@ class ModelShippingAusPost extends Model {
 		if ($quote_data) {
 			$method_data = array(
 				'code'       => 'auspost',
-				'title'      => $this->language->get('text_title'),
+				'title'      => __('text_title'),
 				'quote'      => $quote_data,
 				'sort_order' => $this->config->get('auspost_sort_order'),
 				'error'      => $error 

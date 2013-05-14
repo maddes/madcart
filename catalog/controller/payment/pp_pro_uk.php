@@ -3,20 +3,20 @@ class ControllerPaymentPPProUK extends Controller {
 	protected function index() {
 		$this->language->load('payment/pp_pro_uk');
 		 
-		$this->data['text_credit_card'] = $this->language->get('text_credit_card');
-		$this->data['text_start_date'] = $this->language->get('text_start_date');
-		$this->data['text_issue'] = $this->language->get('text_issue');
-		$this->data['text_wait'] = $this->language->get('text_wait');
+		$this->data['text_credit_card'] = __('text_credit_card');
+		$this->data['text_start_date'] = __('text_start_date');
+		$this->data['text_issue'] = __('text_issue');
+		$this->data['text_wait'] = __('text_wait');
 		
-		$this->data['entry_cc_owner'] = $this->language->get('entry_cc_owner');
-		$this->data['entry_cc_type'] = $this->language->get('entry_cc_type');
-		$this->data['entry_cc_number'] = $this->language->get('entry_cc_number');
-		$this->data['entry_cc_start_date'] = $this->language->get('entry_cc_start_date');
-		$this->data['entry_cc_expire_date'] = $this->language->get('entry_cc_expire_date');
-		$this->data['entry_cc_cvv2'] = $this->language->get('entry_cc_cvv2');
-		$this->data['entry_cc_issue'] = $this->language->get('entry_cc_issue');
+		$this->data['entry_cc_owner'] = __('entry_cc_owner');
+		$this->data['entry_cc_type'] = __('entry_cc_type');
+		$this->data['entry_cc_number'] = __('entry_cc_number');
+		$this->data['entry_cc_start_date'] = __('entry_cc_start_date');
+		$this->data['entry_cc_expire_date'] = __('entry_cc_expire_date');
+		$this->data['entry_cc_cvv2'] = __('entry_cc_cvv2');
+		$this->data['entry_cc_issue'] = __('entry_cc_issue');
 		
-		$this->data['button_confirm'] = $this->language->get('button_confirm');
+		$this->data['button_confirm'] = __('button_confirm');
 
 		$this->load->model('checkout/order');
 		
@@ -174,20 +174,20 @@ class ControllerPaymentPPProUK extends Controller {
 			switch ($response_info['RESULT']) {
 				case '1':
 				case '26':
-					$json['error'] = $this->language->get('error_config');
+					$json['error'] = __('error_config');
 					break;
 				case '7':
-					$json['error'] = $this->language->get('error_address');
+					$json['error'] = __('error_address');
 					break;
 				case '12':
-					$json['error'] = $this->language->get('error_declined');
+					$json['error'] = __('error_declined');
 					break;
 				case '23':
 				case '24':
-					$json['error'] = $this->language->get('error_invalid');
+					$json['error'] = __('error_invalid');
 					break;
 				default:
-					$json['error'] = $this->language->get('error_general');
+					$json['error'] = __('error_general');
 					break;
 			}		
 		}

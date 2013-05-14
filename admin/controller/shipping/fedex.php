@@ -5,68 +5,68 @@ class ControllerShippingFedex extends Controller {
 	public function index() {   
 		$this->language->load('shipping/fedex');
 
-		$this->document->setTitle($this->language->get('heading_title'));
+		$this->document->setTitle(__('heading_title'));
 		
 		$this->load->model('setting/setting');
 				
 		if (($this->request->server['REQUEST_METHOD'] == 'POST') && $this->validate()) {
 			$this->model_setting_setting->editSetting('fedex', $this->request->post);		
 					
-			$this->session->data['success'] = $this->language->get('text_success');
+			$this->session->data['success'] = __('text_success');
 						
 			$this->redirect($this->url->link('extension/shipping', 'token=' . $this->session->data['token'], 'SSL'));
 		}
 				
-		$this->data['heading_title'] = $this->language->get('heading_title');
+		$this->data['heading_title'] = __('heading_title');
 
-		$this->data['text_enabled'] = $this->language->get('text_enabled');
-		$this->data['text_disabled'] = $this->language->get('text_disabled');
-		$this->data['text_yes'] = $this->language->get('text_yes');
-		$this->data['text_no'] = $this->language->get('text_no');		
-		$this->data['text_select_all'] = $this->language->get('text_select_all');
-		$this->data['text_unselect_all'] = $this->language->get('text_unselect_all');
-		$this->data['text_all_zones'] = $this->language->get('text_all_zones');
-		$this->data['text_none'] = $this->language->get('text_none');
-		$this->data['text_regular_pickup'] = $this->language->get('text_regular_pickup');
-		$this->data['text_request_courier'] = $this->language->get('text_request_courier');
-		$this->data['text_drop_box'] = $this->language->get('text_drop_box');
-		$this->data['text_business_service_center'] = $this->language->get('text_business_service_center');
-		$this->data['text_station'] = $this->language->get('text_station');
+		$this->data['text_enabled'] = __('text_enabled');
+		$this->data['text_disabled'] = __('text_disabled');
+		$this->data['text_yes'] = __('text_yes');
+		$this->data['text_no'] = __('text_no');		
+		$this->data['text_select_all'] = __('text_select_all');
+		$this->data['text_unselect_all'] = __('text_unselect_all');
+		$this->data['text_all_zones'] = __('text_all_zones');
+		$this->data['text_none'] = __('text_none');
+		$this->data['text_regular_pickup'] = __('text_regular_pickup');
+		$this->data['text_request_courier'] = __('text_request_courier');
+		$this->data['text_drop_box'] = __('text_drop_box');
+		$this->data['text_business_service_center'] = __('text_business_service_center');
+		$this->data['text_station'] = __('text_station');
 		
-		$this->data['text_fedex_envelope'] = $this->language->get('text_fedex_envelope');
-		$this->data['text_fedex_pak'] = $this->language->get('text_fedex_pak');
-		$this->data['text_fedex_box'] = $this->language->get('text_fedex_box');
-		$this->data['text_fedex_tube'] = $this->language->get('text_fedex_tube');
-		$this->data['text_fedex_10kg_box'] = $this->language->get('text_fedex_10kg_box');
-		$this->data['text_fedex_25kg_box'] = $this->language->get('text_fedex_25kg_box');
-		$this->data['text_your_packaging'] = $this->language->get('text_your_packaging');
-		$this->data['text_list_rate'] = $this->language->get('text_list_rate');
-		$this->data['text_account_rate'] = $this->language->get('text_account_rate');
+		$this->data['text_fedex_envelope'] = __('text_fedex_envelope');
+		$this->data['text_fedex_pak'] = __('text_fedex_pak');
+		$this->data['text_fedex_box'] = __('text_fedex_box');
+		$this->data['text_fedex_tube'] = __('text_fedex_tube');
+		$this->data['text_fedex_10kg_box'] = __('text_fedex_10kg_box');
+		$this->data['text_fedex_25kg_box'] = __('text_fedex_25kg_box');
+		$this->data['text_your_packaging'] = __('text_your_packaging');
+		$this->data['text_list_rate'] = __('text_list_rate');
+		$this->data['text_account_rate'] = __('text_account_rate');
 						
-		$this->data['entry_key'] = $this->language->get('entry_key');
-		$this->data['entry_password'] = $this->language->get('entry_password');
-		$this->data['entry_account'] = $this->language->get('entry_account');
-		$this->data['entry_meter'] = $this->language->get('entry_meter');
-		$this->data['entry_postcode'] = $this->language->get('entry_postcode');
-		$this->data['entry_test'] = $this->language->get('entry_test');
-		$this->data['entry_service'] = $this->language->get('entry_service');
-		$this->data['entry_dropoff_type'] = $this->language->get('entry_dropoff_type');
-		$this->data['entry_packaging_type'] = $this->language->get('entry_packaging_type');
-		$this->data['entry_rate_type'] = $this->language->get('entry_rate_type');
-		$this->data['entry_display_time'] = $this->language->get('entry_display_time');
-		$this->data['entry_display_weight'] = $this->language->get('entry_display_weight');		
-		$this->data['entry_weight_class'] = $this->language->get('entry_weight_class');
-		$this->data['entry_tax_class'] = $this->language->get('entry_tax_class');
-		$this->data['entry_geo_zone'] = $this->language->get('entry_geo_zone');
-		$this->data['entry_status'] = $this->language->get('entry_status');
-		$this->data['entry_sort_order'] = $this->language->get('entry_sort_order');
+		$this->data['entry_key'] = __('entry_key');
+		$this->data['entry_password'] = __('entry_password');
+		$this->data['entry_account'] = __('entry_account');
+		$this->data['entry_meter'] = __('entry_meter');
+		$this->data['entry_postcode'] = __('entry_postcode');
+		$this->data['entry_test'] = __('entry_test');
+		$this->data['entry_service'] = __('entry_service');
+		$this->data['entry_dropoff_type'] = __('entry_dropoff_type');
+		$this->data['entry_packaging_type'] = __('entry_packaging_type');
+		$this->data['entry_rate_type'] = __('entry_rate_type');
+		$this->data['entry_display_time'] = __('entry_display_time');
+		$this->data['entry_display_weight'] = __('entry_display_weight');		
+		$this->data['entry_weight_class'] = __('entry_weight_class');
+		$this->data['entry_tax_class'] = __('entry_tax_class');
+		$this->data['entry_geo_zone'] = __('entry_geo_zone');
+		$this->data['entry_status'] = __('entry_status');
+		$this->data['entry_sort_order'] = __('entry_sort_order');
 		
-		$this->data['help_display_time'] = $this->language->get('help_display_time');
-		$this->data['help_display_weight'] = $this->language->get('help_display_weight');
-		$this->data['help_weight_class'] = $this->language->get('help_weight_class');
+		$this->data['help_display_time'] = __('help_display_time');
+		$this->data['help_display_weight'] = __('help_display_weight');
+		$this->data['help_weight_class'] = __('help_weight_class');
 		
-		$this->data['button_save'] = $this->language->get('button_save');
-		$this->data['button_cancel'] = $this->language->get('button_cancel');
+		$this->data['button_save'] = __('button_save');
+		$this->data['button_cancel'] = __('button_cancel');
 
  		if (isset($this->error['warning'])) {
 			$this->data['error_warning'] = $this->error['warning'];
@@ -107,17 +107,17 @@ class ControllerShippingFedex extends Controller {
   		$this->data['breadcrumbs'] = array();
 
    		$this->data['breadcrumbs'][] = array(
-       		'text' => $this->language->get('text_home'),
+       		'text' => __('text_home'),
 			'href' => $this->url->link('common/home', 'token=' . $this->session->data['token'], 'SSL')
    		);
 
    		$this->data['breadcrumbs'][] = array(
-       		'text' => $this->language->get('text_shipping'),
+       		'text' => __('text_shipping'),
 			'href' => $this->url->link('extension/shipping', 'token=' . $this->session->data['token'], 'SSL')
    		);
 		
    		$this->data['breadcrumbs'][] = array(
-       		'text' => $this->language->get('heading_title'),
+       		'text' => __('heading_title'),
 			'href' => $this->url->link('shipping/fedex', 'token=' . $this->session->data['token'], 'SSL')
    		);
 		
@@ -172,107 +172,107 @@ class ControllerShippingFedex extends Controller {
 		$this->data['services'] = array();
 		
 		$this->data['services'][] = array(
-			'text'  => $this->language->get('text_europe_first_international_priority'),
+			'text'  => __('text_europe_first_international_priority'),
 			'value' => 'EUROPE_FIRST_INTERNATIONAL_PRIORITY'
 		);
 			
 		$this->data['services'][] = array(
-			'text'  => $this->language->get('text_fedex_1_day_freight'),
+			'text'  => __('text_fedex_1_day_freight'),
 			'value' => 'FEDEX_1_DAY_FREIGHT'
 		);
 		
 		$this->data['services'][] = array(
-			'text'  => $this->language->get('text_fedex_2_day'),
+			'text'  => __('text_fedex_2_day'),
 			'value' => 'FEDEX_2_DAY'
 		);
 		
 		$this->data['services'][] = array(
-			'text'  => $this->language->get('text_fedex_2_day_am'),
+			'text'  => __('text_fedex_2_day_am'),
 			'value' => 'FEDEX_2_DAY_AM'
 		);
 				
 		$this->data['services'][] = array(
-			'text'  => $this->language->get('text_fedex_2_day_freight'),
+			'text'  => __('text_fedex_2_day_freight'),
 			'value' => 'FEDEX_2_DAY_FREIGHT'
 		);
 						
 		$this->data['services'][] = array(
-			'text'  => $this->language->get('text_fedex_3_day_freight'),
+			'text'  => __('text_fedex_3_day_freight'),
 			'value' => 'FEDEX_3_DAY_FREIGHT'
 		);		
 				
 		$this->data['services'][] = array(
-			'text'  => $this->language->get('text_fedex_express_saver'),
+			'text'  => __('text_fedex_express_saver'),
 			'value' => 'FEDEX_EXPRESS_SAVER'
 		);
 		   
 		$this->data['services'][] = array(
-			'text'  => $this->language->get('text_fedex_first_freight'),
+			'text'  => __('text_fedex_first_freight'),
 			'value' => 'FEDEX_FIRST_FREIGHT'
 		);	
 
 		$this->data['services'][] = array(
-			'text'  => $this->language->get('text_fedex_freight_economy'),
+			'text'  => __('text_fedex_freight_economy'),
 			'value' => 'FEDEX_FREIGHT_ECONOMY'
 		);	
 
 		$this->data['services'][] = array(
-			'text'  => $this->language->get('text_fedex_freight_priority'),
+			'text'  => __('text_fedex_freight_priority'),
 			'value' => 'FEDEX_FREIGHT_PRIORITY'
 		);	
 
 		$this->data['services'][] = array(
-			'text'  => $this->language->get('text_fedex_ground'),
+			'text'  => __('text_fedex_ground'),
 			'value' => 'FEDEX_GROUND'
 		);	
 
 		$this->data['services'][] = array(
-			'text'  => $this->language->get('text_first_overnight'),
+			'text'  => __('text_first_overnight'),
 			'value' => 'FIRST_OVERNIGHT'
 		);
 		
 		$this->data['services'][] = array(
-			'text'  => $this->language->get('text_ground_home_delivery'),
+			'text'  => __('text_ground_home_delivery'),
 			'value' => 'GROUND_HOME_DELIVERY'
 		);	
 
 		$this->data['services'][] = array(
-			'text'  => $this->language->get('text_international_economy'),
+			'text'  => __('text_international_economy'),
 			'value' => 'INTERNATIONAL_ECONOMY'
 		);
 		
 		$this->data['services'][] = array(
-			'text'  => $this->language->get('text_international_economy_freight'),
+			'text'  => __('text_international_economy_freight'),
 			'value' => 'INTERNATIONAL_ECONOMY_FREIGHT'
 		);			
 	
 		$this->data['services'][] = array(
-			'text'  => $this->language->get('text_international_first'),
+			'text'  => __('text_international_first'),
 			'value' => 'INTERNATIONAL_FIRST'
 		);		
 
 		$this->data['services'][] = array(
-			'text'  => $this->language->get('text_international_priority'),
+			'text'  => __('text_international_priority'),
 			'value' => 'INTERNATIONAL_PRIORITY'
 		);
 
 		$this->data['services'][] = array(
-			'text'  => $this->language->get('text_international_priority_freight'),
+			'text'  => __('text_international_priority_freight'),
 			'value' => 'INTERNATIONAL_PRIORITY_FREIGHT'
 		);	
 
 		$this->data['services'][] = array(
-			'text'  => $this->language->get('text_priority_overnight'),
+			'text'  => __('text_priority_overnight'),
 			'value' => 'PRIORITY_OVERNIGHT'
 		);
 
 		$this->data['services'][] = array(
-			'text'  => $this->language->get('text_smart_post'),
+			'text'  => __('text_smart_post'),
 			'value' => 'SMART_POST'
 		);
 
 		$this->data['services'][] = array(
-			'text'  => $this->language->get('text_standard_overnight'),
+			'text'  => __('text_standard_overnight'),
 			'value' => 'STANDARD_OVERNIGHT'
 		);	
 		
@@ -365,27 +365,27 @@ class ControllerShippingFedex extends Controller {
 	
 	protected function validate() {
 		if (!$this->user->hasPermission('modify', 'shipping/fedex')) {
-			$this->error['warning'] = $this->language->get('error_permission');
+			$this->error['warning'] = __('error_permission');
 		}
 
 		if (!$this->request->post['fedex_key']) {
-			$this->error['key'] = $this->language->get('error_key');
+			$this->error['key'] = __('error_key');
 		}
 		
 		if (!$this->request->post['fedex_password']) {
-			$this->error['password'] = $this->language->get('error_password');
+			$this->error['password'] = __('error_password');
 		}
 						
 		if (!$this->request->post['fedex_account']) {
-			$this->error['account'] = $this->language->get('error_account');
+			$this->error['account'] = __('error_account');
 		}
 		
 		if (!$this->request->post['fedex_meter']) {
-			$this->error['meter'] = $this->language->get('error_meter');
+			$this->error['meter'] = __('error_meter');
 		}
 		
 		if (!$this->request->post['fedex_postcode']) {
-			$this->error['postcode'] = $this->language->get('error_postcode');
+			$this->error['postcode'] = __('error_postcode');
 		}
 				
 		if (!$this->error) {

@@ -1,7 +1,7 @@
 <?php
 class ControllerPaymentPPExpress extends Controller {
 	protected function index() {
-    	$this->data['button_confirm'] = $this->language->get('button_confirm');
+    	$this->data['button_confirm'] = __('button_confirm');
 
 		if (!$this->config->get('pp_express_test')) {
     		$this->data['action'] = 'https://www.pp_express.com/cgi-bin/webscr';

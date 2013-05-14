@@ -20,7 +20,7 @@ class ModelPaymentAuthorizeNetSim extends Model {
 		if ($status) {  
       		$method_data = array( 
         		'code'       => 'authorizenet_sim',
-        		'title'      => $this->language->get('text_title'),
+        		'title'      => __('text_title'),
 				'sort_order' => $this->config->get('authorizenet_sim_sort_order')
       		);
     	}

@@ -8,7 +8,7 @@ class ControllerProductProduct extends Controller {
 		$this->data['breadcrumbs'] = array();
 
 		$this->data['breadcrumbs'][] = array(
-			'text' => $this->language->get('text_home'),
+			'text' => __('text_home'),
 			'href' => $this->url->link('common/home')
 		);
 		
@@ -71,7 +71,7 @@ class ControllerProductProduct extends Controller {
 		
 		if (isset($this->request->get['manufacturer_id'])) {
 			$this->data['breadcrumbs'][] = array( 
-				'text' => $this->language->get('text_brand'),
+				'text' => __('text_brand'),
 				'href' => $this->url->link('product/manufacturer')
 			);	
 	
@@ -143,7 +143,7 @@ class ControllerProductProduct extends Controller {
 			}
 												
 			$this->data['breadcrumbs'][] = array(
-				'text' => $this->language->get('text_search'),
+				'text' => __('text_search'),
 				'href' => $this->url->link('product/search', $url)
 			); 	
 		}
@@ -226,46 +226,46 @@ class ControllerProductProduct extends Controller {
 			
 			$this->data['heading_title'] = $product_info['name'];
 			
-			$this->data['text_select'] = $this->language->get('text_select');
-			$this->data['text_manufacturer'] = $this->language->get('text_manufacturer');
-			$this->data['text_model'] = $this->language->get('text_model');
-			$this->data['text_reward'] = $this->language->get('text_reward');
-			$this->data['text_points'] = $this->language->get('text_points');	
-			$this->data['text_discount'] = $this->language->get('text_discount');
-			$this->data['text_stock'] = $this->language->get('text_stock');
-			$this->data['text_price'] = $this->language->get('text_price');
-			$this->data['text_tax'] = $this->language->get('text_tax');
-			$this->data['text_discount'] = $this->language->get('text_discount');
-			$this->data['text_option'] = $this->language->get('text_option');
-			$this->data['text_qty'] = $this->language->get('text_qty');
-			$this->data['text_minimum'] = sprintf($this->language->get('text_minimum'), $product_info['minimum']);
-			$this->data['text_or'] = $this->language->get('text_or');
-			$this->data['text_write'] = $this->language->get('text_write');
-			$this->data['text_login_write'] = sprintf($this->language->get('text_login_write'), $this->url->link('account/login', '', 'SSL'), $this->url->link('account/register', '', 'SSL'));
-			$this->data['text_note'] = $this->language->get('text_note');
-			$this->data['text_share'] = $this->language->get('text_share');
-			$this->data['text_wait'] = $this->language->get('text_wait');
-			$this->data['text_tags'] = $this->language->get('text_tags');
+			$this->data['text_select'] = __('text_select');
+			$this->data['text_manufacturer'] = __('text_manufacturer');
+			$this->data['text_model'] = __('text_model');
+			$this->data['text_reward'] = __('text_reward');
+			$this->data['text_points'] = __('text_points');	
+			$this->data['text_discount'] = __('text_discount');
+			$this->data['text_stock'] = __('text_stock');
+			$this->data['text_price'] = __('text_price');
+			$this->data['text_tax'] = __('text_tax');
+			$this->data['text_discount'] = __('text_discount');
+			$this->data['text_option'] = __('text_option');
+			$this->data['text_qty'] = __('text_qty');
+			$this->data['text_minimum'] = sprintf(__('text_minimum'), $product_info['minimum']);
+			$this->data['text_or'] = __('text_or');
+			$this->data['text_write'] = __('text_write');
+			$this->data['text_login_write'] = sprintf(__('text_login_write'), $this->url->link('account/login', '', 'SSL'), $this->url->link('account/register', '', 'SSL'));
+			$this->data['text_note'] = __('text_note');
+			$this->data['text_share'] = __('text_share');
+			$this->data['text_wait'] = __('text_wait');
+			$this->data['text_tags'] = __('text_tags');
 			
-			$this->data['entry_name'] = $this->language->get('entry_name');
-			$this->data['entry_review'] = $this->language->get('entry_review');
-			$this->data['entry_rating'] = $this->language->get('entry_rating');
-			$this->data['entry_good'] = $this->language->get('entry_good');
-			$this->data['entry_bad'] = $this->language->get('entry_bad');
-			$this->data['entry_captcha'] = $this->language->get('entry_captcha');
+			$this->data['entry_name'] = __('entry_name');
+			$this->data['entry_review'] = __('entry_review');
+			$this->data['entry_rating'] = __('entry_rating');
+			$this->data['entry_good'] = __('entry_good');
+			$this->data['entry_bad'] = __('entry_bad');
+			$this->data['entry_captcha'] = __('entry_captcha');
 			
-			$this->data['button_cart'] = $this->language->get('button_cart');
-			$this->data['button_wishlist'] = $this->language->get('button_wishlist');
-			$this->data['button_compare'] = $this->language->get('button_compare');			
-			$this->data['button_upload'] = $this->language->get('button_upload');
-			$this->data['button_continue'] = $this->language->get('button_continue');
+			$this->data['button_cart'] = __('button_cart');
+			$this->data['button_wishlist'] = __('button_wishlist');
+			$this->data['button_compare'] = __('button_compare');			
+			$this->data['button_upload'] = __('button_upload');
+			$this->data['button_continue'] = __('button_continue');
 			
 			$this->load->model('catalog/review');
 
-			$this->data['tab_description'] = $this->language->get('tab_description');
-			$this->data['tab_attribute'] = $this->language->get('tab_attribute');
-			$this->data['tab_review'] = sprintf($this->language->get('tab_review'), $product_info['reviews']);
-			$this->data['tab_related'] = $this->language->get('tab_related');
+			$this->data['tab_description'] = __('tab_description');
+			$this->data['tab_attribute'] = __('tab_attribute');
+			$this->data['tab_review'] = sprintf(__('tab_review'), $product_info['reviews']);
+			$this->data['tab_related'] = __('tab_related');
 			
 			$this->data['product_id'] = (int)$this->request->get['product_id'];
 			$this->data['manufacturer'] = $product_info['manufacturer'];
@@ -279,7 +279,7 @@ class ControllerProductProduct extends Controller {
 			} elseif ($this->config->get('config_stock_display')) {
 				$this->data['stock'] = $product_info['quantity'];
 			} else {
-				$this->data['stock'] = $this->language->get('text_instock');
+				$this->data['stock'] = __('text_instock');
 			}
 			
 			$this->load->model('tool/image');
@@ -390,7 +390,7 @@ class ControllerProductProduct extends Controller {
 				$this->data['customer_name'] = '';
 			}
 
-			$this->data['reviews'] = sprintf($this->language->get('text_reviews'), (int)$product_info['reviews']);
+			$this->data['reviews'] = sprintf(__('text_reviews'), (int)$product_info['reviews']);
 			$this->data['rating'] = (int)$product_info['rating'];
 			$this->data['description'] = html_entity_decode($product_info['description'], ENT_QUOTES, 'UTF-8');
 			$this->data['attribute_groups'] = $this->model_catalog_product->getProductAttributes($this->request->get['product_id']);
@@ -431,7 +431,7 @@ class ControllerProductProduct extends Controller {
 					'price'   	 => $price,
 					'special' 	 => $special,
 					'rating'     => $rating,
-					'reviews'    => sprintf($this->language->get('text_reviews'), (int)$result['reviews']),
+					'reviews'    => sprintf(__('text_reviews'), (int)$result['reviews']),
 					'href'    	 => $this->url->link('product/product', 'product_id=' . $result['product_id'])
 				);
 			}	
@@ -519,17 +519,17 @@ class ControllerProductProduct extends Controller {
 			}
 														
       		$this->data['breadcrumbs'][] = array(
-        		'text' => $this->language->get('text_error'),
+        		'text' => __('text_error'),
 				'href' => $this->url->link('product/product', $url . '&product_id=' . $product_id)
       		);			
 		
-      		$this->document->setTitle($this->language->get('text_error'));
+      		$this->document->setTitle(__('text_error'));
 
-      		$this->data['heading_title'] = $this->language->get('text_error');
+      		$this->data['heading_title'] = __('text_error');
 
-      		$this->data['text_error'] = $this->language->get('text_error');
+      		$this->data['text_error'] = __('text_error');
 
-      		$this->data['button_continue'] = $this->language->get('button_continue');
+      		$this->data['button_continue'] = __('button_continue');
 
       		$this->data['continue'] = $this->url->link('common/home');
 
@@ -557,8 +557,8 @@ class ControllerProductProduct extends Controller {
 		
 		$this->load->model('catalog/review');
 
-		$this->data['text_on'] = $this->language->get('text_on');
-		$this->data['text_no_reviews'] = $this->language->get('text_no_reviews');
+		$this->data['text_on'] = __('text_on');
+		$this->data['text_no_reviews'] = __('text_no_reviews');
 
 		if (isset($this->request->get['page'])) {
 			$page = $this->request->get['page'];
@@ -577,8 +577,8 @@ class ControllerProductProduct extends Controller {
         		'author'     => $result['author'],
 				'text'       => $result['text'],
 				'rating'     => (int)$result['rating'],
-        		'reviews'    => sprintf($this->language->get('text_reviews'), (int)$review_total),
-        		'date_added' => date($this->language->get('date_format_short'), strtotime($result['date_added']))
+        		'reviews'    => sprintf(__('text_reviews'), (int)$review_total),
+        		'date_added' => date(__('date_format_short'), strtotime($result['date_added']))
         	);
       	}			
 			
@@ -590,7 +590,7 @@ class ControllerProductProduct extends Controller {
 			
 		$this->data['pagination'] = $pagination->render();
 		
-		$this->data['results'] = sprintf($this->language->get('text_pagination'), ($review_total) ? (($page - 1) * 5) + 1 : 0, ((($page - 1) * 5) > ($review_total - 5)) ? $review_total : ((($page - 1) * 5) + 5), $review_total, ceil($review_total / 5));
+		$this->data['results'] = sprintf(__('text_pagination'), ($review_total) ? (($page - 1) * 5) + 1 : 0, ((($page - 1) * 5) > ($review_total - 5)) ? $review_total : ((($page - 1) * 5) + 5), $review_total, ceil($review_total / 5));
 		
 		if (file_exists(DIR_TEMPLATE . $this->config->get('config_template') . '/template/product/review.tpl')) {
 			$this->template = $this->config->get('config_template') . '/template/product/review.tpl';
@@ -610,25 +610,25 @@ class ControllerProductProduct extends Controller {
 		
 		if ($this->request->server['REQUEST_METHOD'] == 'POST') {
 			if ((utf8_strlen($this->request->post['name']) < 3) || (utf8_strlen($this->request->post['name']) > 25)) {
-				$json['error'] = $this->language->get('error_name');
+				$json['error'] = __('error_name');
 			}
 			
 			if ((utf8_strlen($this->request->post['text']) < 25) || (utf8_strlen($this->request->post['text']) > 1000)) {
-				$json['error'] = $this->language->get('error_text');
+				$json['error'] = __('error_text');
 			}
 	
 			if (empty($this->request->post['rating'])) {
-				$json['error'] = $this->language->get('error_rating');
+				$json['error'] = __('error_rating');
 			}
 	
 			if (empty($this->session->data['captcha']) || ($this->session->data['captcha'] != $this->request->post['captcha'])) {
-				$json['error'] = $this->language->get('error_captcha');
+				$json['error'] = __('error_captcha');
 			}
 				
 			if (!isset($json['error'])) {
 				$this->model_catalog_review->addReview($this->request->get['product_id'], $this->request->post);
 				
-				$json['success'] = $this->language->get('text_success');
+				$json['success'] = __('text_success');
 			}
 		}
 		
@@ -678,7 +678,7 @@ class ControllerProductProduct extends Controller {
 			$filename = basename(preg_replace('/[^a-zA-Z0-9\.\-\s+]/', '', html_entity_decode($this->request->files['file']['name'], ENT_QUOTES, 'UTF-8')));
 			
 			if ((utf8_strlen($filename) < 3) || (utf8_strlen($filename) > 64)) {
-        		$json['error'] = $this->language->get('error_filename');
+        		$json['error'] = __('error_filename');
 	  		}	  	
 
 			// Allowed file extension types
@@ -691,7 +691,7 @@ class ControllerProductProduct extends Controller {
 			}
 			
 			if (!in_array(substr(strrchr($filename, '.'), 1), $allowed)) {
-				$json['error'] = $this->language->get('error_filetype');
+				$json['error'] = __('error_filetype');
        		}	
 			
 			// Allowed file mime types		
@@ -704,14 +704,14 @@ class ControllerProductProduct extends Controller {
 			}
 							
 			if (!in_array($this->request->files['file']['type'], $allowed)) {
-				$json['error'] = $this->language->get('error_filetype');
+				$json['error'] = __('error_filetype');
 			}
 						
 			if ($this->request->files['file']['error'] != UPLOAD_ERR_OK) {
 				$json['error'] = $this->language->get('error_upload_' . $this->request->files['file']['error']);
 			}
 		} else {
-			$json['error'] = $this->language->get('error_upload');
+			$json['error'] = __('error_upload');
 		}
 		
 		if (!$json && is_uploaded_file($this->request->files['file']['tmp_name']) && file_exists($this->request->files['file']['tmp_name'])) {
@@ -722,7 +722,7 @@ class ControllerProductProduct extends Controller {
 			
 			move_uploaded_file($this->request->files['file']['tmp_name'], DIR_DOWNLOAD . $file);
 						
-			$json['success'] = $this->language->get('text_upload');
+			$json['success'] = __('text_upload');
 		}	
 		
 		$this->response->setOutput(json_encode($json));		

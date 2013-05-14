@@ -20,7 +20,7 @@ class ModelShippingPickup extends Model {
 			
       		$quote_data['pickup'] = array(
         		'code'         => 'pickup.pickup',
-        		'title'        => $this->language->get('text_description'),
+        		'title'        => __('text_description'),
         		'cost'         => 0.00,
         		'tax_class_id' => 0,
 				'text'         => $this->currency->format(0.00)
@@ -28,7 +28,7 @@ class ModelShippingPickup extends Model {
 
       		$method_data = array(
         		'code'       => 'pickup',
-        		'title'      => $this->language->get('text_title'),
+        		'title'      => __('text_title'),
         		'quote'      => $quote_data,
 				'sort_order' => $this->config->get('pickup_sort_order'),
         		'error'      => false

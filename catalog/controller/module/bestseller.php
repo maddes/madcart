@@ -3,9 +3,9 @@ class ControllerModuleBestSeller extends Controller {
 	protected function index($setting) {
 		$this->language->load('module/bestseller');
  
-      	$this->data['heading_title'] = $this->language->get('heading_title');
+      	$this->data['heading_title'] = __('heading_title');
 				
-		$this->data['button_cart'] = $this->language->get('button_cart');
+		$this->data['button_cart'] = __('button_cart');
 		
 		$this->load->model('catalog/product');
 		
@@ -47,7 +47,7 @@ class ControllerModuleBestSeller extends Controller {
 				'price'   	 => $price,
 				'special' 	 => $special,
 				'rating'     => $rating,
-				'reviews'    => sprintf($this->language->get('text_reviews'), (int)$result['reviews']),
+				'reviews'    => sprintf(__('text_reviews'), (int)$result['reviews']),
 				'href'    	 => $this->url->link('product/product', 'product_id=' . $result['product_id']),
 			);
 		}

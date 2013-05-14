@@ -20,7 +20,7 @@ class ModelPaymentWorldPay extends Model {
 		if ($status) {  
       		$method_data = array( 
         		'code'       => 'worldpay',
-        		'title'      => $this->language->get('text_title'),
+        		'title'      => __('text_title'),
 				'sort_order' => $this->config->get('worldpay_sort_order')
       		);
     	}

@@ -5,46 +5,46 @@ class ControllerSaleContact extends Controller {
 	public function index() {
 		$this->language->load('sale/contact');
  
-		$this->document->setTitle($this->language->get('heading_title'));
+		$this->document->setTitle(__('heading_title'));
 		
-		$this->data['heading_title'] = $this->language->get('heading_title');
+		$this->data['heading_title'] = __('heading_title');
 		
-		$this->data['text_default'] = $this->language->get('text_default');
-		$this->data['text_newsletter'] = $this->language->get('text_newsletter');
-		$this->data['text_customer_all'] = $this->language->get('text_customer_all');	
-		$this->data['text_customer'] = $this->language->get('text_customer');	
-		$this->data['text_customer_group'] = $this->language->get('text_customer_group');
-		$this->data['text_affiliate_all'] = $this->language->get('text_affiliate_all');	
-		$this->data['text_affiliate'] = $this->language->get('text_affiliate');	
-		$this->data['text_product'] = $this->language->get('text_product');	
+		$this->data['text_default'] = __('text_default');
+		$this->data['text_newsletter'] = __('text_newsletter');
+		$this->data['text_customer_all'] = __('text_customer_all');	
+		$this->data['text_customer'] = __('text_customer');	
+		$this->data['text_customer_group'] = __('text_customer_group');
+		$this->data['text_affiliate_all'] = __('text_affiliate_all');	
+		$this->data['text_affiliate'] = __('text_affiliate');	
+		$this->data['text_product'] = __('text_product');	
 		
-		$this->data['entry_store'] = $this->language->get('entry_store');
-		$this->data['entry_to'] = $this->language->get('entry_to');
-		$this->data['entry_customer_group'] = $this->language->get('entry_customer_group');
-		$this->data['entry_customer'] = $this->language->get('entry_customer');
-		$this->data['entry_affiliate'] = $this->language->get('entry_affiliate');
-		$this->data['entry_product'] = $this->language->get('entry_product');
-		$this->data['entry_subject'] = $this->language->get('entry_subject');
-		$this->data['entry_message'] = $this->language->get('entry_message');
+		$this->data['entry_store'] = __('entry_store');
+		$this->data['entry_to'] = __('entry_to');
+		$this->data['entry_customer_group'] = __('entry_customer_group');
+		$this->data['entry_customer'] = __('entry_customer');
+		$this->data['entry_affiliate'] = __('entry_affiliate');
+		$this->data['entry_product'] = __('entry_product');
+		$this->data['entry_subject'] = __('entry_subject');
+		$this->data['entry_message'] = __('entry_message');
 		
-		$this->data['help_customer'] = $this->language->get('help_customer');
-		$this->data['help_affiliate'] = $this->language->get('help_affiliate');
-		$this->data['help_product'] = $this->language->get('help_product');
+		$this->data['help_customer'] = __('help_customer');
+		$this->data['help_affiliate'] = __('help_affiliate');
+		$this->data['help_product'] = __('help_product');
 		
-		$this->data['button_send'] = $this->language->get('button_send');
-		$this->data['button_cancel'] = $this->language->get('button_cancel');
+		$this->data['button_send'] = __('button_send');
+		$this->data['button_cancel'] = __('button_cancel');
 		
 		$this->data['token'] = $this->session->data['token'];
 
   		$this->data['breadcrumbs'] = array();
 
    		$this->data['breadcrumbs'][] = array(
-       		'text' => $this->language->get('text_home'),
+       		'text' => __('text_home'),
 			'href' => $this->url->link('common/home', 'token=' . $this->session->data['token'], 'SSL')
    		);
 
    		$this->data['breadcrumbs'][] = array(
-       		'text' => $this->language->get('heading_title'),
+       		'text' => __('heading_title'),
 			'href' => $this->url->link('sale/contact', 'token=' . $this->session->data['token'], 'SSL')
    		);
 				
@@ -74,15 +74,15 @@ class ControllerSaleContact extends Controller {
 		
 		if ($this->request->server['REQUEST_METHOD'] == 'POST') {
 			if (!$this->user->hasPermission('modify', 'sale/contact')) {
-				$json['error']['warning'] = $this->language->get('error_permission');
+				$json['error']['warning'] = __('error_permission');
 			}
 					
 			if (!$this->request->post['subject']) {
-				$json['error']['subject'] = $this->language->get('error_subject');
+				$json['error']['subject'] = __('error_subject');
 			}
 	
 			if (!$this->request->post['message']) {
-				$json['error']['message'] = $this->language->get('error_message');
+				$json['error']['message'] = __('error_message');
 			}
 			
 			if (!$json) {
@@ -213,9 +213,9 @@ class ControllerSaleContact extends Controller {
 					$end = $start + 10;
 					
 					if ($end < $email_total) {
-						$json['success'] = sprintf($this->language->get('text_sent'), $start, $email_total);
+						$json['success'] = sprintf(__('text_sent'), $start, $email_total);
 					} else { 
-						$json['success'] = $this->language->get('text_success');
+						$json['success'] = __('text_success');
 					}				
 						
 					if ($end < $email_total) {

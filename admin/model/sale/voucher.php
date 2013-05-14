@@ -137,13 +137,13 @@ class ModelSaleVoucher extends Model {
 				
 				$template = new Template();		
 				
-				$template->data['title'] = sprintf($this->language->get('text_subject'), $voucher_info['from_name']);
+				$template->data['title'] = sprintf(__('text_subject'), $voucher_info['from_name']);
 				
-				$template->data['text_greeting'] = sprintf($this->language->get('text_greeting'), $this->currency->format($voucher_info['amount'], $order_info['currency_code'], $order_info['currency_value']));
-				$template->data['text_from'] = sprintf($this->language->get('text_from'), $voucher_info['from_name']);
-				$template->data['text_message'] = $this->language->get('text_message');
-				$template->data['text_redeem'] = sprintf($this->language->get('text_redeem'), $voucher_info['code']);
-				$template->data['text_footer'] = $this->language->get('text_footer');					
+				$template->data['text_greeting'] = sprintf(__('text_greeting'), $this->currency->format($voucher_info['amount'], $order_info['currency_code'], $order_info['currency_value']));
+				$template->data['text_from'] = sprintf(__('text_from'), $voucher_info['from_name']);
+				$template->data['text_message'] = __('text_message');
+				$template->data['text_redeem'] = sprintf(__('text_redeem'), $voucher_info['code']);
+				$template->data['text_footer'] = __('text_footer');					
 			
 				$this->load->model('sale/voucher_theme');
 					
@@ -170,7 +170,7 @@ class ModelSaleVoucher extends Model {
 				$mail->setTo($voucher_info['to_email']);
 				$mail->setFrom($this->config->get('config_email'));
 				$mail->setSender($this->config->get('config_name'));
-				$mail->setSubject(html_entity_decode(sprintf($this->language->get('text_subject'), $voucher_info['from_name']), ENT_QUOTES, 'UTF-8'));
+				$mail->setSubject(html_entity_decode(sprintf(__('text_subject'), $voucher_info['from_name']), ENT_QUOTES, 'UTF-8'));
 				$mail->setHtml($template->fetch('mail/voucher.tpl'));
 				$mail->send();				
 			}

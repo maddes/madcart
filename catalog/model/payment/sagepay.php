@@ -20,7 +20,7 @@ class ModelPaymentSagePay extends Model {
 		if ($status) {  
       		$method_data = array( 
         		'code'       => 'sagepay',
-        		'title'      => $this->language->get('text_title'),
+        		'title'      => __('text_title'),
 				'sort_order' => $this->config->get('sagepay_sort_order')
       		);
     	}

@@ -42,7 +42,7 @@ class ControllerCheckoutManual extends Controller {
 					$this->customer->login($customer_info['email'], '', true);
 					$this->cart->clear();
 				} else {
-					$json['error']['customer'] = $this->language->get('error_customer');
+					$json['error']['customer'] = __('error_customer');
 				}
 			} else {
 				// Customer Group
@@ -96,7 +96,7 @@ class ControllerCheckoutManual extends Controller {
 					
 					foreach ($product_options as $product_option) {
 						if ($product_option['required'] && empty($option[$product_option['product_option_id']])) {
-							$json['error']['product']['option'][$product_option['product_option_id']] = sprintf($this->language->get('error_required'), $product_option['name']);
+							$json['error']['product']['option'][$product_option['product_option_id']] = sprintf(__('error_required'), $product_option['name']);
 						}
 					}
 					
@@ -104,13 +104,13 @@ class ControllerCheckoutManual extends Controller {
 						$this->cart->add($this->request->post['product_id'], $quantity, $option);
 					}
 				} else {
-					$json['error']['product']['store'] = $this->language->get('error_store');
+					$json['error']['product']['store'] = __('error_store');
 				}
 			}
 			
 			// Stock
 			if (!$this->cart->hasStock() && (!$this->config->get('config_stock_checkout') || $this->config->get('config_stock_warning'))) {
-				$json['error']['product']['stock'] = $this->language->get('error_stock');
+				$json['error']['product']['stock'] = __('error_stock');
 			}		
 			
 			// Tax
@@ -138,7 +138,7 @@ class ControllerCheckoutManual extends Controller {
 				}	
 								
 				if ($product['minimum'] > $product_total) {
-					$json['error']['product']['minimum'][] = sprintf($this->language->get('error_minimum'), $product['name'], $product['minimum']);
+					$json['error']['product']['minimum'][] = sprintf(__('error_minimum'), $product['name'], $product['minimum']);
 				}	
 								
 				$option_data = array();
@@ -202,23 +202,23 @@ class ControllerCheckoutManual extends Controller {
 			// Add a new voucher if set
 			if (isset($this->request->post['from_name']) && isset($this->request->post['from_email']) && isset($this->request->post['to_name']) && isset($this->request->post['to_email']) && isset($this->request->post['amount'])) {
 				if ((utf8_strlen($this->request->post['from_name']) < 1) || (utf8_strlen($this->request->post['from_name']) > 64)) {
-					$json['error']['vouchers']['from_name'] = $this->language->get('error_from_name');
+					$json['error']['vouchers']['from_name'] = __('error_from_name');
 				}  
 			
 				if ((utf8_strlen($this->request->post['from_email']) > 96) || !preg_match('/^[^\@]+@.*\.[a-z]{2,6}$/i', $this->request->post['from_email'])) {
-					$json['error']['vouchers']['from_email'] = $this->language->get('error_email');
+					$json['error']['vouchers']['from_email'] = __('error_email');
 				}
 			
 				if ((utf8_strlen($this->request->post['to_name']) < 1) || (utf8_strlen($this->request->post['to_name']) > 64)) {
-					$json['error']['vouchers']['to_name'] = $this->language->get('error_to_name');
+					$json['error']['vouchers']['to_name'] = __('error_to_name');
 				}       
 			
 				if ((utf8_strlen($this->request->post['to_email']) > 96) || !preg_match('/^[^\@]+@.*\.[a-z]{2,6}$/i', $this->request->post['to_email'])) {
-					$json['error']['vouchers']['to_email'] = $this->language->get('error_email');
+					$json['error']['vouchers']['to_email'] = __('error_email');
 				}
 			
 				if (($this->request->post['amount'] < 1) || ($this->request->post['amount'] > 1000)) {
-					$json['error']['vouchers']['amount'] = sprintf($this->language->get('error_amount'), $this->currency->format(1, false, 1), $this->currency->format(1000, false, 1) . ' ' . $this->config->get('config_currency'));
+					$json['error']['vouchers']['amount'] = sprintf(__('error_amount'), $this->currency->format(1, false, 1), $this->currency->format(1000, false, 1) . ' ' . $this->config->get('config_currency'));
 				}
 			
 				if (!isset($json['error']['vouchers'])) { 
@@ -241,7 +241,7 @@ class ControllerCheckoutManual extends Controller {
 									
 					$this->session->data['vouchers'][] = array(
 						'voucher_id'       => $voucher_id,
-						'description'      => sprintf($this->language->get('text_for'), $this->currency->format($this->request->post['amount'], $this->config->get('config_currency')), $this->request->post['to_name']),
+						'description'      => sprintf(__('text_for'), $this->currency->format($this->request->post['amount'], $this->config->get('config_currency')), $this->request->post['to_name']),
 						'code'             => substr(md5(mt_rand()), 0, 10),
 						'from_name'        => $this->request->post['from_name'],
 						'from_email'       => $this->request->post['from_email'],
@@ -286,15 +286,15 @@ class ControllerCheckoutManual extends Controller {
 				$country_info = $this->model_localisation_country->getCountry($this->request->post['shipping_country_id']);
 				
 				if ($country_info && $country_info['postcode_required'] && (utf8_strlen($this->request->post['shipping_postcode']) < 2) || (utf8_strlen($this->request->post['shipping_postcode']) > 10)) {
-					$json['error']['shipping']['postcode'] = $this->language->get('error_postcode');
+					$json['error']['shipping']['postcode'] = __('error_postcode');
 				}
 		
 				if ($this->request->post['shipping_country_id'] == '') {
-					$json['error']['shipping']['country'] = $this->language->get('error_country');
+					$json['error']['shipping']['country'] = __('error_country');
 				}
 				
 				if (!isset($this->request->post['shipping_zone_id']) || $this->request->post['shipping_zone_id'] == '') {
-					$json['error']['shipping']['zone'] = $this->language->get('error_zone');
+					$json['error']['shipping']['zone'] = __('error_zone');
 				}
 							
 				$this->load->model('localisation/country');
@@ -302,7 +302,7 @@ class ControllerCheckoutManual extends Controller {
 				$country_info = $this->model_localisation_country->getCountry($this->request->post['shipping_country_id']);
 				
 				if ($country_info && $country_info['postcode_required'] && (utf8_strlen($this->request->post['shipping_postcode']) < 2) || (utf8_strlen($this->request->post['shipping_postcode']) > 10)) {
-					$json['error']['shipping']['postcode'] = $this->language->get('error_postcode');
+					$json['error']['shipping']['postcode'] = __('error_postcode');
 				}
 
 				if (!isset($json['error']['shipping'])) {
@@ -374,12 +374,12 @@ class ControllerCheckoutManual extends Controller {
 					array_multisort($sort_order, SORT_ASC, $json['shipping_method']);
 
 					if (!$json['shipping_method']) {
-						$json['error']['shipping_method'] = $this->language->get('error_no_shipping');
+						$json['error']['shipping_method'] = __('error_no_shipping');
 					} elseif ($this->request->post['shipping_code']) {
 						$shipping = explode('.', $this->request->post['shipping_code']);
 						
 						if (!isset($shipping[0]) || !isset($shipping[1]) || !isset($json['shipping_method'][$shipping[0]]['quote'][$shipping[1]])) {		
-							$json['error']['shipping_method'] = $this->language->get('error_shipping');
+							$json['error']['shipping_method'] = __('error_shipping');
 						} else {
 							$this->session->data['shipping_method'] = $json['shipping_method'][$shipping[0]]['quote'][$shipping[1]];
 						}				
@@ -396,7 +396,7 @@ class ControllerCheckoutManual extends Controller {
 				if ($coupon_info) {					
 					$this->session->data['coupon'] = $this->request->post['coupon'];
 				} else {
-					$json['error']['coupon'] = $this->language->get('error_coupon');
+					$json['error']['coupon'] = __('error_coupon');
 				}
 			}
 			
@@ -409,7 +409,7 @@ class ControllerCheckoutManual extends Controller {
 				if ($voucher_info) {					
 					$this->session->data['voucher'] = $this->request->post['voucher'];
 				} else {
-					$json['error']['voucher'] = $this->language->get('error_voucher');
+					$json['error']['voucher'] = __('error_voucher');
 				}
 			}
 						
@@ -418,7 +418,7 @@ class ControllerCheckoutManual extends Controller {
 				$points = $this->customer->getRewardPoints();
 				
 				if ($this->request->post['reward'] > $points) {
-					$json['error']['reward'] = sprintf($this->language->get('error_points'), $this->request->post['reward']);
+					$json['error']['reward'] = sprintf(__('error_points'), $this->request->post['reward']);
 				}
 				
 				if (!isset($json['error']['reward'])) {
@@ -431,7 +431,7 @@ class ControllerCheckoutManual extends Controller {
 					}				
 					
 					if ($this->request->post['reward'] > $points_total) {
-						$json['error']['reward'] = sprintf($this->language->get('error_maximum'), $points_total);
+						$json['error']['reward'] = sprintf(__('error_maximum'), $points_total);
 					}
 					
 					if (!isset($json['error']['reward'])) {		
@@ -473,11 +473,11 @@ class ControllerCheckoutManual extends Controller {
 		
 			// Payment
 			if ($this->request->post['payment_country_id'] == '') {
-				$json['error']['payment']['country'] = $this->language->get('error_country');
+				$json['error']['payment']['country'] = __('error_country');
 			}
 			
 			if (!isset($this->request->post['payment_zone_id']) || $this->request->post['payment_zone_id'] == '') {
-				$json['error']['payment']['zone'] = $this->language->get('error_zone');
+				$json['error']['payment']['zone'] = __('error_zone');
 			}		
 			
 			if (!isset($json['error']['payment'])) {
@@ -550,18 +550,18 @@ class ControllerCheckoutManual extends Controller {
 				array_multisort($sort_order, SORT_ASC, $json['payment_method']);	
 				
 				if (!$json['payment_method']) {
-					$json['error']['payment_method'] = $this->language->get('error_no_payment');
+					$json['error']['payment_method'] = __('error_no_payment');
 				} elseif ($this->request->post['payment_code']) {			
 					if (!isset($json['payment_method'][$this->request->post['payment_code']])) {
-						$json['error']['payment_method'] = $this->language->get('error_payment');
+						$json['error']['payment_method'] = __('error_payment');
 					}
 				}
 			}
 			
 			if (!isset($json['error'])) { 
-				$json['success'] = $this->language->get('text_success');
+				$json['success'] = __('text_success');
 			} else {
-				$json['error']['warning'] = $this->language->get('error_warning');
+				$json['error']['warning'] = __('error_warning');
 			}
 			
 			// Reset everything
@@ -577,7 +577,7 @@ class ControllerCheckoutManual extends Controller {
 			unset($this->session->data['voucher']);
 			unset($this->session->data['vouchers']);
 		} else {
-      		$json['error']['warning'] = $this->language->get('error_permission');
+      		$json['error']['warning'] = __('error_permission');
 		}
 	
 		$this->response->setOutput(json_encode($json));	

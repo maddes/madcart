@@ -20,7 +20,7 @@ class ModelPaymentTwoCheckout extends Model {
 		if ($status) {  
       		$method_data = array( 
         		'code'       => 'twocheckout',
-        		'title'      => $this->language->get('text_title'),
+        		'title'      => __('text_title'),
 				'sort_order' => $this->config->get('twocheckout_sort_order')
       		);
     	}

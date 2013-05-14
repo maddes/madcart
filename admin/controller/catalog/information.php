@@ -5,7 +5,7 @@ class ControllerCatalogInformation extends Controller {
 	public function index() {
 		$this->language->load('catalog/information');
 
-		$this->document->setTitle($this->language->get('heading_title'));
+		$this->document->setTitle(__('heading_title'));
 		 
 		$this->load->model('catalog/information');
 
@@ -15,14 +15,14 @@ class ControllerCatalogInformation extends Controller {
 	public function insert() {
 		$this->language->load('catalog/information');
 
-		$this->document->setTitle($this->language->get('heading_title'));
+		$this->document->setTitle(__('heading_title'));
 		
 		$this->load->model('catalog/information');
 				
 		if (($this->request->server['REQUEST_METHOD'] == 'POST') && $this->validateForm()) {
 			$this->model_catalog_information->addInformation($this->request->post);
 			
-			$this->session->data['success'] = $this->language->get('text_success');
+			$this->session->data['success'] = __('text_success');
 
 			$url = '';
 			
@@ -47,14 +47,14 @@ class ControllerCatalogInformation extends Controller {
 	public function update() {
 		$this->language->load('catalog/information');
 
-		$this->document->setTitle($this->language->get('heading_title'));
+		$this->document->setTitle(__('heading_title'));
 		
 		$this->load->model('catalog/information');
 		
 		if (($this->request->server['REQUEST_METHOD'] == 'POST') && $this->validateForm()) {
 			$this->model_catalog_information->editInformation($this->request->get['information_id'], $this->request->post);
 			
-			$this->session->data['success'] = $this->language->get('text_success');
+			$this->session->data['success'] = __('text_success');
 
 			$url = '';
 			
@@ -79,7 +79,7 @@ class ControllerCatalogInformation extends Controller {
 	public function delete() {
 		$this->language->load('catalog/information');
 
-		$this->document->setTitle($this->language->get('heading_title'));
+		$this->document->setTitle(__('heading_title'));
 		
 		$this->load->model('catalog/information');
 		
@@ -88,7 +88,7 @@ class ControllerCatalogInformation extends Controller {
 				$this->model_catalog_information->deleteInformation($information_id);
 			}
 			
-			$this->session->data['success'] = $this->language->get('text_success');
+			$this->session->data['success'] = __('text_success');
 
 			$url = '';
 			
@@ -146,12 +146,12 @@ class ControllerCatalogInformation extends Controller {
   		$this->data['breadcrumbs'] = array();
 
    		$this->data['breadcrumbs'][] = array(
-       		'text' => $this->language->get('text_home'),
+       		'text' => __('text_home'),
 			'href' => $this->url->link('common/home', 'token=' . $this->session->data['token'], 'SSL')
    		);
 
    		$this->data['breadcrumbs'][] = array(
-       		'text' => $this->language->get('heading_title'),
+       		'text' => __('heading_title'),
 			'href' => $this->url->link('catalog/information', 'token=' . $this->session->data['token'] . $url, 'SSL')
    		);
 							
@@ -175,7 +175,7 @@ class ControllerCatalogInformation extends Controller {
 			$action = array();
 						
 			$action[] = array(
-				'text' => $this->language->get('text_edit'),
+				'text' => __('text_edit'),
 				'href' => $this->url->link('catalog/information/update', 'token=' . $this->session->data['token'] . '&information_id=' . $result['information_id'] . $url, 'SSL')
 			);
 						
@@ -188,16 +188,16 @@ class ControllerCatalogInformation extends Controller {
 			);
 		}	
 	
-		$this->data['heading_title'] = $this->language->get('heading_title');
+		$this->data['heading_title'] = __('heading_title');
 
-		$this->data['text_no_results'] = $this->language->get('text_no_results');
+		$this->data['text_no_results'] = __('text_no_results');
 
-		$this->data['column_title'] = $this->language->get('column_title');
-		$this->data['column_sort_order'] = $this->language->get('column_sort_order');
-		$this->data['column_action'] = $this->language->get('column_action');		
+		$this->data['column_title'] = __('column_title');
+		$this->data['column_sort_order'] = __('column_sort_order');
+		$this->data['column_action'] = __('column_action');		
 		
-		$this->data['button_insert'] = $this->language->get('button_insert');
-		$this->data['button_delete'] = $this->language->get('button_delete');
+		$this->data['button_insert'] = __('button_insert');
+		$this->data['button_delete'] = __('button_delete');
  
  		if (isset($this->error['warning'])) {
 			$this->data['error_warning'] = $this->error['warning'];
@@ -246,7 +246,7 @@ class ControllerCatalogInformation extends Controller {
 			
 		$this->data['pagination'] = $pagination->render();
 		
-		$this->data['results'] = sprintf($this->language->get('text_pagination'), ($information_total) ? (($page - 1) * $this->config->get('config_admin_limit')) + 1 : 0, ((($page - 1) * $this->config->get('config_admin_limit')) > ($information_total - $this->config->get('config_admin_limit'))) ? $information_total : ((($page - 1) * $this->config->get('config_admin_limit')) + $this->config->get('config_admin_limit')), $information_total, ceil($information_total / $this->config->get('config_admin_limit')));
+		$this->data['results'] = sprintf(__('text_pagination'), ($information_total) ? (($page - 1) * $this->config->get('config_admin_limit')) + 1 : 0, ((($page - 1) * $this->config->get('config_admin_limit')) > ($information_total - $this->config->get('config_admin_limit'))) ? $information_total : ((($page - 1) * $this->config->get('config_admin_limit')) + $this->config->get('config_admin_limit')), $information_total, ceil($information_total / $this->config->get('config_admin_limit')));
 
 		$this->data['sort'] = $sort;
 		$this->data['order'] = $order;
@@ -261,30 +261,30 @@ class ControllerCatalogInformation extends Controller {
 	}
 
 	protected function getForm() {
-		$this->data['heading_title'] = $this->language->get('heading_title');
+		$this->data['heading_title'] = __('heading_title');
 
-		$this->data['text_default'] = $this->language->get('text_default');
-		$this->data['text_enabled'] = $this->language->get('text_enabled');
-    	$this->data['text_disabled'] = $this->language->get('text_disabled');
+		$this->data['text_default'] = __('text_default');
+		$this->data['text_enabled'] = __('text_enabled');
+    	$this->data['text_disabled'] = __('text_disabled');
 		
-		$this->data['entry_title'] = $this->language->get('entry_title');
-		$this->data['entry_description'] = $this->language->get('entry_description');
-		$this->data['entry_store'] = $this->language->get('entry_store');
-		$this->data['entry_keyword'] = $this->language->get('entry_keyword');
-		$this->data['entry_bottom'] = $this->language->get('entry_bottom');
-		$this->data['entry_sort_order'] = $this->language->get('entry_sort_order');
-		$this->data['entry_status'] = $this->language->get('entry_status');
-		$this->data['entry_layout'] = $this->language->get('entry_layout');
+		$this->data['entry_title'] = __('entry_title');
+		$this->data['entry_description'] = __('entry_description');
+		$this->data['entry_store'] = __('entry_store');
+		$this->data['entry_keyword'] = __('entry_keyword');
+		$this->data['entry_bottom'] = __('entry_bottom');
+		$this->data['entry_sort_order'] = __('entry_sort_order');
+		$this->data['entry_status'] = __('entry_status');
+		$this->data['entry_layout'] = __('entry_layout');
 		
-		$this->data['help_keyword'] = $this->language->get('help_keyword');
-		$this->data['help_bottom'] = $this->language->get('help_bottom');
+		$this->data['help_keyword'] = __('help_keyword');
+		$this->data['help_bottom'] = __('help_bottom');
 		
-		$this->data['button_save'] = $this->language->get('button_save');
-		$this->data['button_cancel'] = $this->language->get('button_cancel');
+		$this->data['button_save'] = __('button_save');
+		$this->data['button_cancel'] = __('button_cancel');
     	
-		$this->data['tab_general'] = $this->language->get('tab_general');
-    	$this->data['tab_data'] = $this->language->get('tab_data');
-		$this->data['tab_design'] = $this->language->get('tab_design');
+		$this->data['tab_general'] = __('tab_general');
+    	$this->data['tab_data'] = __('tab_data');
+		$this->data['tab_design'] = __('tab_design');
 
  		if (isset($this->error['warning'])) {
 			$this->data['error_warning'] = $this->error['warning'];
@@ -321,12 +321,12 @@ class ControllerCatalogInformation extends Controller {
   		$this->data['breadcrumbs'] = array();
 
    		$this->data['breadcrumbs'][] = array(
-       		'text' => $this->language->get('text_home'),
+       		'text' => __('text_home'),
 			'href' => $this->url->link('common/home', 'token=' . $this->session->data['token'], 'SSL')
    		);
 
    		$this->data['breadcrumbs'][] = array(
-       		'text' => $this->language->get('heading_title'),
+       		'text' => __('heading_title'),
 			'href' => $this->url->link('catalog/information', 'token=' . $this->session->data['token'] . $url, 'SSL')
    		);
 							
@@ -423,21 +423,21 @@ class ControllerCatalogInformation extends Controller {
 
 	protected function validateForm() {
 		if (!$this->user->hasPermission('modify', 'catalog/information')) {
-			$this->error['warning'] = $this->language->get('error_permission');
+			$this->error['warning'] = __('error_permission');
 		}
 
 		foreach ($this->request->post['information_description'] as $language_id => $value) {
 			if ((utf8_strlen($value['title']) < 3) || (utf8_strlen($value['title']) > 64)) {
-				$this->error['title'][$language_id] = $this->language->get('error_title');
+				$this->error['title'][$language_id] = __('error_title');
 			}
 		
 			if (utf8_strlen($value['description']) < 3) {
-				$this->error['description'][$language_id] = $this->language->get('error_description');
+				$this->error['description'][$language_id] = __('error_description');
 			}
 		}
 		
 		if ($this->error && !isset($this->error['warning'])) {
-			$this->error['warning'] = $this->language->get('error_warning');
+			$this->error['warning'] = __('error_warning');
 		}
 			
 		if (!$this->error) {
@@ -449,28 +449,28 @@ class ControllerCatalogInformation extends Controller {
 
 	protected function validateDelete() {
 		if (!$this->user->hasPermission('modify', 'catalog/information')) {
-			$this->error['warning'] = $this->language->get('error_permission');
+			$this->error['warning'] = __('error_permission');
 		}
 
 		$this->load->model('setting/store');
 		
 		foreach ($this->request->post['selected'] as $information_id) {
 			if ($this->config->get('config_account_id') == $information_id) {
-				$this->error['warning'] = $this->language->get('error_account');
+				$this->error['warning'] = __('error_account');
 			}
 			
 			if ($this->config->get('config_checkout_id') == $information_id) {
-				$this->error['warning'] = $this->language->get('error_checkout');
+				$this->error['warning'] = __('error_checkout');
 			}
 			
 			if ($this->config->get('config_affiliate_id') == $information_id) {
-				$this->error['warning'] = $this->language->get('error_affiliate');
+				$this->error['warning'] = __('error_affiliate');
 			}
 						
 			$store_total = $this->model_setting_store->getTotalStoresByInformationId($information_id);
 
 			if ($store_total) {
-				$this->error['warning'] = sprintf($this->language->get('error_store'), $store_total);
+				$this->error['warning'] = sprintf(__('error_store'), $store_total);
 			}
 		}
 

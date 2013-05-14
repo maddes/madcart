@@ -5,7 +5,7 @@ class ControllerInformationContact extends Controller {
   	public function index() {
 		$this->language->load('information/contact');
 
-    	$this->document->setTitle($this->language->get('heading_title'));  
+    	$this->document->setTitle(__('heading_title'));  
 	 
     	if (($this->request->server['REQUEST_METHOD'] == 'POST') && $this->validate()) {
 			$mail = new Mail();
@@ -19,7 +19,7 @@ class ControllerInformationContact extends Controller {
 			$mail->setTo($this->config->get('config_email'));
 	  		$mail->setFrom($this->request->post['email']);
 	  		$mail->setSender($this->request->post['name']);
-	  		$mail->setSubject(html_entity_decode(sprintf($this->language->get('email_subject'), $this->request->post['name']), ENT_QUOTES, 'UTF-8'));
+	  		$mail->setSubject(html_entity_decode(sprintf(__('email_subject'), $this->request->post['name']), ENT_QUOTES, 'UTF-8'));
 	  		$mail->setText(strip_tags(html_entity_decode($this->request->post['enquiry'], ENT_QUOTES, 'UTF-8')));
       		$mail->send();
 
@@ -29,28 +29,28 @@ class ControllerInformationContact extends Controller {
       	$this->data['breadcrumbs'] = array();
 
       	$this->data['breadcrumbs'][] = array(
-        	'text' => $this->language->get('text_home'),
+        	'text' => __('text_home'),
 			'href' => $this->url->link('common/home')
       	);
 
       	$this->data['breadcrumbs'][] = array(
-        	'text' => $this->language->get('heading_title'),
+        	'text' => __('heading_title'),
 			'href' => $this->url->link('information/contact')
       	);	
 			
-    	$this->data['heading_title'] = $this->language->get('heading_title');
+    	$this->data['heading_title'] = __('heading_title');
 
-    	$this->data['text_location'] = $this->language->get('text_location');
-		$this->data['text_contact'] = $this->language->get('text_contact');
-		$this->data['text_address'] = $this->language->get('text_address');
-    	$this->data['text_telephone'] = $this->language->get('text_telephone');
-    	$this->data['text_fax'] = $this->language->get('text_fax');
-        $this->data['text_open']= $this->language->get('text_open');
+    	$this->data['text_location'] = __('text_location');
+		$this->data['text_contact'] = __('text_contact');
+		$this->data['text_address'] = __('text_address');
+    	$this->data['text_telephone'] = __('text_telephone');
+    	$this->data['text_fax'] = __('text_fax');
+        $this->data['text_open']= __('text_open');
 
-    	$this->data['entry_name'] = $this->language->get('entry_name');
-    	$this->data['entry_email'] = $this->language->get('entry_email');
-    	$this->data['entry_enquiry'] = $this->language->get('entry_enquiry');
-		$this->data['entry_captcha'] = $this->language->get('entry_captcha');
+    	$this->data['entry_name'] = __('entry_name');
+    	$this->data['entry_email'] = __('entry_email');
+    	$this->data['entry_enquiry'] = __('entry_enquiry');
+		$this->data['entry_captcha'] = __('entry_captcha');
 
 		if (isset($this->error['name'])) {
     		$this->data['error_name'] = $this->error['name'];
@@ -76,7 +76,7 @@ class ControllerInformationContact extends Controller {
 			$this->data['error_captcha'] = '';
 		}	
 
-    	$this->data['button_continue'] = $this->language->get('button_continue');
+    	$this->data['button_continue'] = __('button_continue');
     
 		$this->data['action'] = $this->url->link('information/contact');
 		
@@ -150,25 +150,25 @@ class ControllerInformationContact extends Controller {
   	public function success() {
 		$this->language->load('information/contact');
 
-		$this->document->setTitle($this->language->get('heading_title')); 
+		$this->document->setTitle(__('heading_title')); 
 
       	$this->data['breadcrumbs'] = array();
 
       	$this->data['breadcrumbs'][] = array(
-        	'text' => $this->language->get('text_home'),
+        	'text' => __('text_home'),
 			'href' => $this->url->link('common/home')
       	);
 
       	$this->data['breadcrumbs'][] = array(
-        	'text' => $this->language->get('heading_title'),
+        	'text' => __('heading_title'),
 			'href' => $this->url->link('information/contact')
       	);	
 		
-    	$this->data['heading_title'] = $this->language->get('heading_title');
+    	$this->data['heading_title'] = __('heading_title');
 
-    	$this->data['text_message'] = $this->language->get('text_message');
+    	$this->data['text_message'] = __('text_message');
 
-    	$this->data['button_continue'] = $this->language->get('button_continue');
+    	$this->data['button_continue'] = __('button_continue');
 
     	$this->data['continue'] = $this->url->link('common/home');
 
@@ -192,19 +192,19 @@ class ControllerInformationContact extends Controller {
 	
   	protected function validate() {
     	if ((utf8_strlen($this->request->post['name']) < 3) || (utf8_strlen($this->request->post['name']) > 32)) {
-      		$this->error['name'] = $this->language->get('error_name');
+      		$this->error['name'] = __('error_name');
     	}
 
     	if (!preg_match('/^[^\@]+@.*\.[a-z]{2,6}$/i', $this->request->post['email'])) {
-      		$this->error['email'] = $this->language->get('error_email');
+      		$this->error['email'] = __('error_email');
     	}
 
     	if ((utf8_strlen($this->request->post['enquiry']) < 10) || (utf8_strlen($this->request->post['enquiry']) > 3000)) {
-      		$this->error['enquiry'] = $this->language->get('error_enquiry');
+      		$this->error['enquiry'] = __('error_enquiry');
     	}
 
     	if (empty($this->session->data['captcha']) || ($this->session->data['captcha'] != $this->request->post['captcha'])) {
-      		$this->error['captcha'] = $this->language->get('error_captcha');
+      		$this->error['captcha'] = __('error_captcha');
     	}
 		
 		if (!$this->error) {

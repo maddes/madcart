@@ -5,7 +5,7 @@ class ControllerCommonFileManager extends Controller {
 	public function index() {
 		$this->language->load('common/filemanager');
 		
-		$this->data['title'] = $this->language->get('heading_title');
+		$this->data['title'] = __('heading_title');
 		
 		if (isset($this->request->server['HTTPS']) && (($this->request->server['HTTPS'] == 'on') || ($this->request->server['HTTPS'] == '1'))) {
 			$this->data['base'] = HTTPS_SERVER;
@@ -13,22 +13,22 @@ class ControllerCommonFileManager extends Controller {
 			$this->data['base'] = HTTP_SERVER;
 		}
 		
-		$this->data['entry_folder'] = $this->language->get('entry_folder');
-		$this->data['entry_move'] = $this->language->get('entry_move');
-		$this->data['entry_copy'] = $this->language->get('entry_copy');
-		$this->data['entry_rename'] = $this->language->get('entry_rename');
+		$this->data['entry_folder'] = __('entry_folder');
+		$this->data['entry_move'] = __('entry_move');
+		$this->data['entry_copy'] = __('entry_copy');
+		$this->data['entry_rename'] = __('entry_rename');
 		
-		$this->data['button_folder'] = $this->language->get('button_folder');
-		$this->data['button_delete'] = $this->language->get('button_delete');
-		$this->data['button_move'] = $this->language->get('button_move');
-		$this->data['button_copy'] = $this->language->get('button_copy');
-		$this->data['button_rename'] = $this->language->get('button_rename');
-		$this->data['button_upload'] = $this->language->get('button_upload');
-		$this->data['button_refresh'] = $this->language->get('button_refresh');
-		$this->data['button_submit'] = $this->language->get('button_submit'); 
+		$this->data['button_folder'] = __('button_folder');
+		$this->data['button_delete'] = __('button_delete');
+		$this->data['button_move'] = __('button_move');
+		$this->data['button_copy'] = __('button_copy');
+		$this->data['button_rename'] = __('button_rename');
+		$this->data['button_upload'] = __('button_upload');
+		$this->data['button_refresh'] = __('button_refresh');
+		$this->data['button_submit'] = __('button_submit'); 
 		
-		$this->data['error_select'] = $this->language->get('error_select');
-		$this->data['error_directory'] = $this->language->get('error_directory');
+		$this->data['error_select'] = __('error_select');
+		$this->data['error_directory'] = __('error_directory');
 		
 		$this->data['token'] = $this->session->data['token'];
 		
@@ -160,27 +160,27 @@ class ControllerCommonFileManager extends Controller {
 				$directory = rtrim(DIR_IMAGE . 'data/' . str_replace(array('../', '..\\', '..'), '', $this->request->post['directory']), '/');							   
 				
 				if (!is_dir($directory)) {
-					$json['error'] = $this->language->get('error_directory');
+					$json['error'] = __('error_directory');
 				}
 				
 				if (file_exists($directory . '/' . str_replace(array('../', '..\\', '..'), '', $this->request->post['name']))) {
-					$json['error'] = $this->language->get('error_exists');
+					$json['error'] = __('error_exists');
 				}
 			} else {
-				$json['error'] = $this->language->get('error_name');
+				$json['error'] = __('error_name');
 			}
 		} else {
-			$json['error'] = $this->language->get('error_directory');
+			$json['error'] = __('error_directory');
 		}
 		
 		if (!$this->user->hasPermission('modify', 'common/filemanager')) {
-      		$json['error'] = $this->language->get('error_permission');  
+      		$json['error'] = __('error_permission');  
     	}
 		
 		if (!isset($json['error'])) {	
 			mkdir($directory . '/' . str_replace(array('../', '..\\', '..'), '', $this->request->post['name']), 0777);
 			
-			$json['success'] = $this->language->get('text_create');
+			$json['success'] = __('text_create');
 		}	
 		
 		$this->response->setOutput(json_encode($json));
@@ -195,18 +195,18 @@ class ControllerCommonFileManager extends Controller {
 			$path = rtrim(DIR_IMAGE . 'data/' . str_replace(array('../', '..\\', '..'), '', html_entity_decode($this->request->post['path'], ENT_QUOTES, 'UTF-8')), '/');
 			 
 			if (!file_exists($path)) {
-				$json['error'] = $this->language->get('error_select');
+				$json['error'] = __('error_select');
 			}
 			
 			if ($path == rtrim(DIR_IMAGE . 'data/', '/')) {
-				$json['error'] = $this->language->get('error_delete');
+				$json['error'] = __('error_delete');
 			}
 		} else {
-			$json['error'] = $this->language->get('error_select');
+			$json['error'] = __('error_select');
 		}
 		
 		if (!$this->user->hasPermission('modify', 'common/filemanager')) {
-      		$json['error'] = $this->language->get('error_permission');  
+      		$json['error'] = __('error_permission');  
     	}
 		
 		if (!isset($json['error'])) {
@@ -240,7 +240,7 @@ class ControllerCommonFileManager extends Controller {
 				}				
 			}
 			
-			$json['success'] = $this->language->get('text_delete');
+			$json['success'] = __('text_delete');
 		}				
 		
 		$this->response->setOutput(json_encode($json));
@@ -255,34 +255,34 @@ class ControllerCommonFileManager extends Controller {
 			$from = rtrim(DIR_IMAGE . 'data/' . str_replace(array('../', '..\\', '..'), '', html_entity_decode($this->request->post['from'], ENT_QUOTES, 'UTF-8')), '/');
 			
 			if (!file_exists($from)) {
-				$json['error'] = $this->language->get('error_missing');
+				$json['error'] = __('error_missing');
 			}
 			
 			if ($from == DIR_IMAGE . 'data') {
-				$json['error'] = $this->language->get('error_default');
+				$json['error'] = __('error_default');
 			}
 			
 			$to = rtrim(DIR_IMAGE . 'data/' . str_replace(array('../', '..\\', '..'), '', html_entity_decode($this->request->post['to'], ENT_QUOTES, 'UTF-8')), '/');
 
 			if (!file_exists($to)) {
-				$json['error'] = $this->language->get('error_move');
+				$json['error'] = __('error_move');
 			}	
 			
 			if (file_exists($to . '/' . basename($from))) {
-				$json['error'] = $this->language->get('error_exists');
+				$json['error'] = __('error_exists');
 			}
 		} else {
-			$json['error'] = $this->language->get('error_directory');
+			$json['error'] = __('error_directory');
 		}
 		
 		if (!$this->user->hasPermission('modify', 'common/filemanager')) {
-      		$json['error'] = $this->language->get('error_permission');  
+      		$json['error'] = __('error_permission');  
     	}
 		
 		if (!isset($json['error'])) {
 			rename($from, $to . '/' . basename($from));
 			
-			$json['success'] = $this->language->get('text_move');
+			$json['success'] = __('text_move');
 		}
 		
 		$this->response->setOutput(json_encode($json));
@@ -295,13 +295,13 @@ class ControllerCommonFileManager extends Controller {
 		
 		if (isset($this->request->post['path']) && isset($this->request->post['name'])) {
 			if ((utf8_strlen($this->request->post['name']) < 3) || (utf8_strlen($this->request->post['name']) > 255)) {
-				$json['error'] = $this->language->get('error_filename');
+				$json['error'] = __('error_filename');
 			}
 				
 			$old_name = rtrim(DIR_IMAGE . 'data/' . str_replace(array('../', '..\\', '..'), '', html_entity_decode($this->request->post['path'], ENT_QUOTES, 'UTF-8')), '/');
 			
 			if (!file_exists($old_name) || $old_name == DIR_IMAGE . 'data') {
-				$json['error'] = $this->language->get('error_copy');
+				$json['error'] = __('error_copy');
 			}
 			
 			if (is_file($old_name)) {
@@ -313,14 +313,14 @@ class ControllerCommonFileManager extends Controller {
 			$new_name = dirname($old_name) . '/' . str_replace(array('../', '..\\', '..'), '', html_entity_decode($this->request->post['name'], ENT_QUOTES, 'UTF-8') . $ext);
 																			   
 			if (file_exists($new_name)) {
-				$json['error'] = $this->language->get('error_exists');
+				$json['error'] = __('error_exists');
 			}			
 		} else {
-			$json['error'] = $this->language->get('error_select');
+			$json['error'] = __('error_select');
 		}
 		
 		if (!$this->user->hasPermission('modify', 'common/filemanager')) {
-      		$json['error'] = $this->language->get('error_permission');  
+      		$json['error'] = __('error_permission');  
     	}	
 		
 		if (!isset($json['error'])) {
@@ -330,7 +330,7 @@ class ControllerCommonFileManager extends Controller {
 				$this->recursiveCopy($old_name, $new_name);
 			}
 			
-			$json['success'] = $this->language->get('text_copy');
+			$json['success'] = __('text_copy');
 		}
 		
 		$this->response->setOutput(json_encode($json));	
@@ -379,13 +379,13 @@ class ControllerCommonFileManager extends Controller {
 		
 		if (isset($this->request->post['path']) && isset($this->request->post['name'])) {
 			if ((utf8_strlen($this->request->post['name']) < 3) || (utf8_strlen($this->request->post['name']) > 255)) {
-				$json['error'] = $this->language->get('error_filename');
+				$json['error'] = __('error_filename');
 			}
 				
 			$old_name = rtrim(DIR_IMAGE . 'data/' . str_replace(array('../', '..\\', '..'), '', html_entity_decode($this->request->post['path'], ENT_QUOTES, 'UTF-8')), '/');
 			
 			if (!file_exists($old_name) || $old_name == DIR_IMAGE . 'data') {
-				$json['error'] = $this->language->get('error_rename');
+				$json['error'] = __('error_rename');
 			}
 			
 			if (is_file($old_name)) {
@@ -397,18 +397,18 @@ class ControllerCommonFileManager extends Controller {
 			$new_name = dirname($old_name) . '/' . str_replace(array('../', '..\\', '..'), '', html_entity_decode($this->request->post['name'], ENT_QUOTES, 'UTF-8') . $ext);
 																			   
 			if (file_exists($new_name)) {
-				$json['error'] = $this->language->get('error_exists');
+				$json['error'] = __('error_exists');
 			}			
 		}
 		
 		if (!$this->user->hasPermission('modify', 'common/filemanager')) {
-      		$json['error'] = $this->language->get('error_permission');  
+      		$json['error'] = __('error_permission');  
     	}
 		
 		if (!isset($json['error'])) {
 			rename($old_name, $new_name);
 			
-			$json['success'] = $this->language->get('text_rename');
+			$json['success'] = __('text_rename');
 		}
 		
 		$this->response->setOutput(json_encode($json));
@@ -424,17 +424,17 @@ class ControllerCommonFileManager extends Controller {
 				$filename = basename(html_entity_decode($this->request->files['image']['name'], ENT_QUOTES, 'UTF-8'));
 				
 				if ((strlen($filename) < 3) || (strlen($filename) > 255)) {
-					$json['error'] = $this->language->get('error_filename');
+					$json['error'] = __('error_filename');
 				}
 					
 				$directory = rtrim(DIR_IMAGE . 'data/' . str_replace(array('../', '..\\', '..'), '', $this->request->post['directory']), '/');
 				
 				if (!is_dir($directory)) {
-					$json['error'] = $this->language->get('error_directory');
+					$json['error'] = __('error_directory');
 				}
 				
 				if ($this->request->files['image']['size'] > $this->config->get('config_image_file_size')) {
-					$json['error'] = $this->language->get('error_file_size');
+					$json['error'] = __('error_file_size');
 				}
 				
 				$allowed = array(
@@ -447,7 +447,7 @@ class ControllerCommonFileManager extends Controller {
 				);
 						
 				if (!in_array($this->request->files['image']['type'], $allowed)) {
-					$json['error'] = $this->language->get('error_file_type');
+					$json['error'] = __('error_file_type');
 				}
 				
 				$allowed = array(
@@ -459,28 +459,28 @@ class ControllerCommonFileManager extends Controller {
 				);
 						
 				if (!in_array(strtolower(strrchr($filename, '.')), $allowed)) {
-					$json['error'] = $this->language->get('error_file_type');
+					$json['error'] = __('error_file_type');
 				}
 
 				if ($this->request->files['image']['error'] != UPLOAD_ERR_OK) {
 					$json['error'] = 'error_upload_' . $this->request->files['image']['error'];
 				}			
 			} else {
-				$json['error'] = $this->language->get('error_file');
+				$json['error'] = __('error_file');
 			}
 		} else {
-			$json['error'] = $this->language->get('error_directory');
+			$json['error'] = __('error_directory');
 		}
 		
 		if (!$this->user->hasPermission('modify', 'common/filemanager')) {
-      		$json['error'] = $this->language->get('error_permission');  
+      		$json['error'] = __('error_permission');  
     	}
 		
 		if (!isset($json['error'])) {	
 			if (@move_uploaded_file($this->request->files['image']['tmp_name'], $directory . '/' . $filename)) {		
-				$json['success'] = $this->language->get('text_uploaded');
+				$json['success'] = __('text_uploaded');
 			} else {
-				$json['error'] = $this->language->get('error_uploaded');
+				$json['error'] = __('error_uploaded');
 			}
 		}
 		

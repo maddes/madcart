@@ -23,19 +23,19 @@ class ModelAccountCustomer extends Model {
 		
 		$this->language->load('mail/customer');
 		
-		$subject = sprintf($this->language->get('text_subject'), $this->config->get('config_name'));
+		$subject = sprintf(__('text_subject'), $this->config->get('config_name'));
 		
-		$message = sprintf($this->language->get('text_welcome'), $this->config->get('config_name')) . "\n\n";
+		$message = sprintf(__('text_welcome'), $this->config->get('config_name')) . "\n\n";
 		
 		if (!$customer_group_info['approval']) {
-			$message .= $this->language->get('text_login') . "\n";
+			$message .= __('text_login') . "\n";
 		} else {
-			$message .= $this->language->get('text_approval') . "\n";
+			$message .= __('text_approval') . "\n";
 		}
 		
 		$message .= $this->url->link('account/login', '', 'SSL') . "\n\n";
-		$message .= $this->language->get('text_services') . "\n\n";
-		$message .= $this->language->get('text_thanks') . "\n";
+		$message .= __('text_services') . "\n\n";
+		$message .= __('text_thanks') . "\n";
 		$message .= $this->config->get('config_name');
 		
 		$mail = new Mail();
@@ -55,21 +55,21 @@ class ModelAccountCustomer extends Model {
 		
 		// Send to main admin email if new account email is enabled
 		if ($this->config->get('config_account_mail')) {
-			$message  = $this->language->get('text_signup') . "\n\n";
-			$message .= $this->language->get('text_website') . ' ' . $this->config->get('config_name') . "\n";
-			$message .= $this->language->get('text_firstname') . ' ' . $data['firstname'] . "\n";
-			$message .= $this->language->get('text_lastname') . ' ' . $data['lastname'] . "\n";
-			$message .= $this->language->get('text_customer_group') . ' ' . $customer_group_info['name'] . "\n";
+			$message  = __('text_signup') . "\n\n";
+			$message .= __('text_website') . ' ' . $this->config->get('config_name') . "\n";
+			$message .= __('text_firstname') . ' ' . $data['firstname'] . "\n";
+			$message .= __('text_lastname') . ' ' . $data['lastname'] . "\n";
+			$message .= __('text_customer_group') . ' ' . $customer_group_info['name'] . "\n";
 			
 			if ($data['company']) {
-				$message .= $this->language->get('text_company') . ' '  . $data['company'] . "\n";
+				$message .= __('text_company') . ' '  . $data['company'] . "\n";
 			}
 			
-			$message .= $this->language->get('text_email') . ' '  .  $data['email'] . "\n";
-			$message .= $this->language->get('text_telephone') . ' ' . $data['telephone'] . "\n";
+			$message .= __('text_email') . ' '  .  $data['email'] . "\n";
+			$message .= __('text_telephone') . ' ' . $data['telephone'] . "\n";
 			
 			$mail->setTo($this->config->get('config_email'));
-			$mail->setSubject(html_entity_decode($this->language->get('text_new_customer'), ENT_QUOTES, 'UTF-8'));
+			$mail->setSubject(html_entity_decode(__('text_new_customer'), ENT_QUOTES, 'UTF-8'));
 			$mail->setText(html_entity_decode($message, ENT_QUOTES, 'UTF-8'));
 			$mail->send();
 			

@@ -5,7 +5,7 @@ class ControllerModuleLatest extends Controller {
 	public function index() {   
 		$this->language->load('module/latest');
 
-		$this->document->setTitle($this->language->get('heading_title'));
+		$this->document->setTitle(__('heading_title'));
 		
 		$this->load->model('setting/setting');
 				
@@ -14,33 +14,33 @@ class ControllerModuleLatest extends Controller {
 			
 			$this->cache->delete('product');
 			
-			$this->session->data['success'] = $this->language->get('text_success');
+			$this->session->data['success'] = __('text_success');
 						
 			$this->redirect($this->url->link('extension/module', 'token=' . $this->session->data['token'], 'SSL'));
 		}
 				
-		$this->data['heading_title'] = $this->language->get('heading_title');
+		$this->data['heading_title'] = __('heading_title');
 
-		$this->data['text_enabled'] = $this->language->get('text_enabled');
-		$this->data['text_disabled'] = $this->language->get('text_disabled');
-		$this->data['text_content_top'] = $this->language->get('text_content_top');
-		$this->data['text_content_bottom'] = $this->language->get('text_content_bottom');		
-		$this->data['text_column_left'] = $this->language->get('text_column_left');
-		$this->data['text_column_right'] = $this->language->get('text_column_right');
+		$this->data['text_enabled'] = __('text_enabled');
+		$this->data['text_disabled'] = __('text_disabled');
+		$this->data['text_content_top'] = __('text_content_top');
+		$this->data['text_content_bottom'] = __('text_content_bottom');		
+		$this->data['text_column_left'] = __('text_column_left');
+		$this->data['text_column_right'] = __('text_column_right');
 
-		$this->data['entry_limit'] = $this->language->get('entry_limit');
-		$this->data['entry_image'] = $this->language->get('entry_image');
-		$this->data['entry_width'] = $this->language->get('entry_width');
-		$this->data['entry_height'] = $this->language->get('entry_height');			
-		$this->data['entry_layout'] = $this->language->get('entry_layout');
-		$this->data['entry_position'] = $this->language->get('entry_position');
-		$this->data['entry_status'] = $this->language->get('entry_status');
-		$this->data['entry_sort_order'] = $this->language->get('entry_sort_order');
+		$this->data['entry_limit'] = __('entry_limit');
+		$this->data['entry_image'] = __('entry_image');
+		$this->data['entry_width'] = __('entry_width');
+		$this->data['entry_height'] = __('entry_height');			
+		$this->data['entry_layout'] = __('entry_layout');
+		$this->data['entry_position'] = __('entry_position');
+		$this->data['entry_status'] = __('entry_status');
+		$this->data['entry_sort_order'] = __('entry_sort_order');
 		
-		$this->data['button_save'] = $this->language->get('button_save');
-		$this->data['button_cancel'] = $this->language->get('button_cancel');
-		$this->data['button_add_module'] = $this->language->get('button_add_module');
-		$this->data['button_remove'] = $this->language->get('button_remove');
+		$this->data['button_save'] = __('button_save');
+		$this->data['button_cancel'] = __('button_cancel');
+		$this->data['button_add_module'] = __('button_add_module');
+		$this->data['button_remove'] = __('button_remove');
 		
  		if (isset($this->error['warning'])) {
 			$this->data['error_warning'] = $this->error['warning'];
@@ -57,17 +57,17 @@ class ControllerModuleLatest extends Controller {
   		$this->data['breadcrumbs'] = array();
 
    		$this->data['breadcrumbs'][] = array(
-       		'text' => $this->language->get('text_home'),
+       		'text' => __('text_home'),
 			'href' => $this->url->link('common/home', 'token=' . $this->session->data['token'], 'SSL')
    		);
 
    		$this->data['breadcrumbs'][] = array(
-       		'text' => $this->language->get('text_module'),
+       		'text' => __('text_module'),
 			'href' => $this->url->link('extension/module', 'token=' . $this->session->data['token'], 'SSL')
    		);
 		
    		$this->data['breadcrumbs'][] = array(
-       		'text' => $this->language->get('heading_title'),
+       		'text' => __('heading_title'),
 			'href' => $this->url->link('module/latest', 'token=' . $this->session->data['token'], 'SSL')
    		);
 		
@@ -98,13 +98,13 @@ class ControllerModuleLatest extends Controller {
 	
 	protected function validate() {
 		if (!$this->user->hasPermission('modify', 'module/latest')) {
-			$this->error['warning'] = $this->language->get('error_permission');
+			$this->error['warning'] = __('error_permission');
 		}
 		
 		if (isset($this->request->post['latest_module'])) {
 			foreach ($this->request->post['latest_module'] as $key => $value) {
 				if (!$value['image_width'] || !$value['image_height']) {
-					$this->error['image'][$key] = $this->language->get('error_image');
+					$this->error['image'][$key] = __('error_image');
 				}
 			}
 		}		

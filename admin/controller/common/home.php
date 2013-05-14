@@ -3,23 +3,23 @@ class ControllerCommonHome extends Controller {
 	public function index() {
     	$this->language->load('common/home');
 	 
-		$this->document->setTitle($this->language->get('heading_title'));
+		$this->document->setTitle(__('heading_title'));
 		
-    	$this->data['heading_title'] = $this->language->get('heading_title');
+    	$this->data['heading_title'] = __('heading_title');
 		
-		$this->data['text_total_sale'] = $this->language->get('text_total_sale');
-		$this->data['text_total_order'] = $this->language->get('text_total_order');
-		$this->data['text_total_customer'] = $this->language->get('text_total_customer');
-		$this->data['text_total_online'] = $this->language->get('text_total_online');
+		$this->data['text_total_sale'] = __('text_total_sale');
+		$this->data['text_total_order'] = __('text_total_order');
+		$this->data['text_total_customer'] = __('text_total_customer');
+		$this->data['text_total_online'] = __('text_total_online');
 		
-		$this->data['text_day'] = $this->language->get('text_day');
-		$this->data['text_week'] = $this->language->get('text_week');
-		$this->data['text_month'] = $this->language->get('text_month');
-		$this->data['text_year'] = $this->language->get('text_year');
+		$this->data['text_day'] = __('text_day');
+		$this->data['text_week'] = __('text_week');
+		$this->data['text_month'] = __('text_month');
+		$this->data['text_year'] = __('text_year');
 		
 		// Check install directory exists
  		if (is_dir(dirname(DIR_APPLICATION) . '/install')) {
-			$this->data['error_install'] = $this->language->get('error_install');
+			$this->data['error_install'] = __('error_install');
 		} else {
 			$this->data['error_install'] = '';
 		}
@@ -27,7 +27,7 @@ class ControllerCommonHome extends Controller {
 		$this->data['breadcrumbs'] = array();
 
    		$this->data['breadcrumbs'][] = array(
-       		'text' => $this->language->get('text_home'),
+       		'text' => __('text_home'),
 			'href' => $this->url->link('common/home', 'token=' . $this->session->data['token'], 'SSL')
    		);
 
@@ -125,8 +125,8 @@ where a.Date between '2010-01-20' and '2010-01-24'");
 		$json['customer'] = array();
 		$json['xaxis'] = array();
 		
-		$json['order']['label'] = $this->language->get('text_order');
-		$json['customer']['label'] = $this->language->get('text_customer');
+		$json['order']['label'] = __('text_order');
+		$json['customer']['label'] = __('text_customer');
 		
 		if (isset($this->request->get['range'])) {
 			$range = $this->request->get['range'];

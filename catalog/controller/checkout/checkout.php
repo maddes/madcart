@@ -25,7 +25,7 @@ class ControllerCheckoutCheckout extends Controller {
 				
 		$this->language->load('checkout/checkout');
 		
-		$this->document->setTitle($this->language->get('heading_title')); 
+		$this->document->setTitle(__('heading_title')); 
 		
 		$this->document->addScript('catalog/view/javascript/jquery/colorbox/jquery.colorbox-min.js');
 		$this->document->addStyle('catalog/view/javascript/jquery/colorbox/colorbox.css');
@@ -33,29 +33,29 @@ class ControllerCheckoutCheckout extends Controller {
 		$this->data['breadcrumbs'] = array();
 
       	$this->data['breadcrumbs'][] = array(
-        	'text' => $this->language->get('text_home'),
+        	'text' => __('text_home'),
 			'href' => $this->url->link('common/home')
       	); 
 
       	$this->data['breadcrumbs'][] = array(
-        	'text' => $this->language->get('text_cart'),
+        	'text' => __('text_cart'),
 			'href' => $this->url->link('checkout/cart')
       	);
 		
       	$this->data['breadcrumbs'][] = array(
-        	'text' => $this->language->get('heading_title'),
+        	'text' => __('heading_title'),
 			'href' => $this->url->link('checkout/checkout', '', 'SSL')
       	);
 					
-	    $this->data['heading_title'] = $this->language->get('heading_title');
+	    $this->data['heading_title'] = __('heading_title');
 		
-		$this->data['text_checkout_option'] = $this->language->get('text_checkout_option');
-		$this->data['text_checkout_account'] = $this->language->get('text_checkout_account');
-		$this->data['text_checkout_payment_address'] = $this->language->get('text_checkout_payment_address');
-		$this->data['text_checkout_shipping_address'] = $this->language->get('text_checkout_shipping_address');
-		$this->data['text_checkout_shipping_method'] = $this->language->get('text_checkout_shipping_method');
-		$this->data['text_checkout_payment_method'] = $this->language->get('text_checkout_payment_method');		
-		$this->data['text_checkout_confirm'] = $this->language->get('text_checkout_confirm');
+		$this->data['text_checkout_option'] = __('text_checkout_option');
+		$this->data['text_checkout_account'] = __('text_checkout_account');
+		$this->data['text_checkout_payment_address'] = __('text_checkout_payment_address');
+		$this->data['text_checkout_shipping_address'] = __('text_checkout_shipping_address');
+		$this->data['text_checkout_shipping_method'] = __('text_checkout_shipping_method');
+		$this->data['text_checkout_payment_method'] = __('text_checkout_payment_method');		
+		$this->data['text_checkout_confirm'] = __('text_checkout_confirm');
 		
 		$this->data['logged'] = $this->customer->isLogged();
 		$this->data['shipping_required'] = $this->cart->hasShipping();	

@@ -53,14 +53,14 @@ class ModelShippingRoyalMail extends Model {
 				}
 				
 				if ((float)$cost) {
-					$title = $this->language->get('text_1st_class_standard');
+					$title = __('text_1st_class_standard');
 					
 					if ($this->config->get('royal_mail_display_weight')) {
-						$title .= ' (' . $this->language->get('text_weight') . ' ' . $this->weight->format($weight, $this->config->get('config_weight_class_id')) . ')';
+						$title .= ' (' . __('text_weight') . ' ' . $this->weight->format($weight, $this->config->get('config_weight_class_id')) . ')';
 					}
 				
 					if ($this->config->get('royal_mail_display_insurance') && (float)$insurance) {
-						$title .= ' (' . $this->language->get('text_insurance') . ' ' . $this->currency->format($insurance) . ')';
+						$title .= ' (' . __('text_insurance') . ' ' . $this->currency->format($insurance) . ')';
 					}		
 					
 					$quote_data['1st_class_standard'] = array(
@@ -107,14 +107,14 @@ class ModelShippingRoyalMail extends Model {
 				}
 				
 				if ((float)$cost) {
-					$title = $this->language->get('text_1st_class_recorded');
+					$title = __('text_1st_class_recorded');
 					
 					if ($this->config->get('royal_mail_display_weight')) {
-						$title .= ' (' . $this->language->get('text_weight') . ' ' . $this->weight->format($weight, $this->config->get('config_weight_class_id')) . ')';
+						$title .= ' (' . __('text_weight') . ' ' . $this->weight->format($weight, $this->config->get('config_weight_class_id')) . ')';
 					}
 				
 					if ($this->config->get('royal_mail_display_insurance') && (float)$insurance) {
-						$title .= ' (' . $this->language->get('text_insurance') . ' ' . $this->currency->format($insurance) . ')';
+						$title .= ' (' . __('text_insurance') . ' ' . $this->currency->format($insurance) . ')';
 					}		
 		
 					$quote_data['1st_class_recorded'] = array(
@@ -146,10 +146,10 @@ class ModelShippingRoyalMail extends Model {
 				}
 				
 				if ((float)$cost) {
-					$title = $this->language->get('text_2nd_class_standard');
+					$title = __('text_2nd_class_standard');
 					
 					if ($this->config->get('royal_mail_display_weight')) {
-						$title .= ' (' . $this->language->get('text_weight') . ' ' . $this->weight->format($weight, $this->config->get('config_weight_class_id')) . ')';
+						$title .= ' (' . __('text_weight') . ' ' . $this->weight->format($weight, $this->config->get('config_weight_class_id')) . ')';
 					}
 					
 					$quote_data['2nd_class_standard'] = array(
@@ -196,14 +196,14 @@ class ModelShippingRoyalMail extends Model {
 				}
 				
 				if ((float)$cost) {
-					$title = $this->language->get('text_2nd_class_recorded');
+					$title = __('text_2nd_class_recorded');
 					
 					if ($this->config->get('royal_mail_display_weight')) {
-						$title .= ' (' . $this->language->get('text_weight') . ' ' . $this->weight->format($weight, $this->config->get('config_weight_class_id')) . ')';
+						$title .= ' (' . __('text_weight') . ' ' . $this->weight->format($weight, $this->config->get('config_weight_class_id')) . ')';
 					}
 				
 					if ($this->config->get('royal_mail_display_insurance') && (float)$insurance) {
-						$title .= ' (' . $this->language->get('text_insurance') . ' ' . $this->currency->format($insurance) . ')';
+						$title .= ' (' . __('text_insurance') . ' ' . $this->currency->format($insurance) . ')';
 					}		
 					
 					$quote_data['2nd_class_recorded'] = array(
@@ -250,14 +250,14 @@ class ModelShippingRoyalMail extends Model {
 				}
 				
 				if ((float)$cost) {
-					$title = $this->language->get('text_special_delivery_500');
+					$title = __('text_special_delivery_500');
 					
 					if ($this->config->get('royal_mail_display_weight')) {
-						$title .= ' (' . $this->language->get('text_weight') . ' ' . $this->weight->format($weight, $this->config->get('config_weight_class_id')) . ')';
+						$title .= ' (' . __('text_weight') . ' ' . $this->weight->format($weight, $this->config->get('config_weight_class_id')) . ')';
 					}
 				
 					if ($this->config->get('royal_mail_display_insurance') && (float)$insurance) {
-						$title .= ' (' . $this->language->get('text_insurance') . ' ' . $this->currency->format($insurance) . ')';
+						$title .= ' (' . __('text_insurance') . ' ' . $this->currency->format($insurance) . ')';
 					}		
 					
 					$quote_data['special_delivery_500'] = array(
@@ -304,14 +304,14 @@ class ModelShippingRoyalMail extends Model {
 				}
 				
 				if ((float)$cost) {
-					$title = $this->language->get('text_special_delivery_1000');
+					$title = __('text_special_delivery_1000');
 					
 					if ($this->config->get('royal_mail_display_weight')) {
-						$title .= ' (' . $this->language->get('text_weight') . ' ' . $this->weight->format($weight, $this->config->get('config_weight_class_id')) . ')';
+						$title .= ' (' . __('text_weight') . ' ' . $this->weight->format($weight, $this->config->get('config_weight_class_id')) . ')';
 					}
 				
 					if ($this->config->get('royal_mail_display_insurance') && (float)$insurance) {
-						$title .= ' (' . $this->language->get('text_insurance') . ' ' . $this->currency->format($insurance) . ')';
+						$title .= ' (' . __('text_insurance') . ' ' . $this->currency->format($insurance) . ')';
 					}		
 					
 					$quote_data['special_delivery_1000'] = array(
@@ -358,14 +358,14 @@ class ModelShippingRoyalMail extends Model {
 				}
 				
 				if ((float)$cost) {
-					$title = $this->language->get('text_special_delivery_2500');
+					$title = __('text_special_delivery_2500');
 					
 					if ($this->config->get('royal_mail_display_weight')) {
-						$title .= ' (' . $this->language->get('text_weight') . ' ' . $this->weight->format($weight, $this->config->get('config_weight_class_id')) . ')';
+						$title .= ' (' . __('text_weight') . ' ' . $this->weight->format($weight, $this->config->get('config_weight_class_id')) . ')';
 					}
 				
 					if ($this->config->get('royal_mail_display_insurance') && (float)$insurance) {
-						$title .= ' (' . $this->language->get('text_insurance') . ' ' . $this->currency->format($insurance) . ')';
+						$title .= ' (' . __('text_insurance') . ' ' . $this->currency->format($insurance) . ')';
 					}		
 					
 					$quote_data['special_delivery_2500'] = array(
@@ -412,14 +412,14 @@ class ModelShippingRoyalMail extends Model {
 				}				
 				
 				if ((float)$cost) {
-					$title = $this->language->get('text_standard_parcels');
+					$title = __('text_standard_parcels');
 					
 					if ($this->config->get('royal_mail_display_weight')) {
-						$title .= ' (' . $this->language->get('text_weight') . ' ' . $this->weight->format($weight, $this->config->get('config_weight_class_id')) . ')';
+						$title .= ' (' . __('text_weight') . ' ' . $this->weight->format($weight, $this->config->get('config_weight_class_id')) . ')';
 					}
 				
 					if ($this->config->get('royal_mail_display_insurance') && (float)$insurance) {
-						$title .= ' (' . $this->language->get('text_insurance') . ' ' . $this->currency->format($insurance) . ')';
+						$title .= ' (' . __('text_insurance') . ' ' . $this->currency->format($insurance) . ')';
 					}		
 									
 					$quote_data['standard_parcels'] = array(
@@ -457,10 +457,10 @@ class ModelShippingRoyalMail extends Model {
 				}	
 				
 				if ((float)$cost) {
-					$title = $this->language->get('text_airmail');
+					$title = __('text_airmail');
 					
 					if ($this->config->get('royal_mail_display_weight')) {
-						$title .= ' (' . $this->language->get('text_weight') . ' ' . $this->weight->format($weight, $this->config->get('config_weight_class_id')) . ')';
+						$title .= ' (' . __('text_weight') . ' ' . $this->weight->format($weight, $this->config->get('config_weight_class_id')) . ')';
 					}
 					
 					$quote_data['airmail'] = array(
@@ -517,14 +517,14 @@ class ModelShippingRoyalMail extends Model {
 				}				
 				
 				if ((float)$cost) {
-					$title = $this->language->get('text_international_signed');
+					$title = __('text_international_signed');
 					
 					if ($this->config->get('royal_mail_display_weight')) {
-						$title .= ' (' . $this->language->get('text_weight') . ' ' . $this->weight->format($weight, $this->config->get('config_weight_class_id')) . ')';
+						$title .= ' (' . __('text_weight') . ' ' . $this->weight->format($weight, $this->config->get('config_weight_class_id')) . ')';
 					}
 				
 					if ($this->config->get('royal_mail_display_insurance') && (float)$insurance) {
-						$title .= ' (' . $this->language->get('text_insurance') . ' ' . $this->currency->format($insurance) . ')';
+						$title .= ' (' . __('text_insurance') . ' ' . $this->currency->format($insurance) . ')';
 					}		
 					
 					$quote_data['international_signed'] = array(
@@ -595,14 +595,14 @@ class ModelShippingRoyalMail extends Model {
 				}					
 				
 				if ((float)$cost) {
-					$title = $this->language->get('text_airsure');
+					$title = __('text_airsure');
 					
 					if ($this->config->get('royal_mail_display_weight')) {
-						$title .= ' (' . $this->language->get('text_weight') . ' ' . $this->weight->format($weight, $this->config->get('config_weight_class_id')) . ')';
+						$title .= ' (' . __('text_weight') . ' ' . $this->weight->format($weight, $this->config->get('config_weight_class_id')) . ')';
 					}
 				
 					if ($this->config->get('royal_mail_display_insurance') && (float)$insurance) {
-						$title .= ' (' . $this->language->get('text_insurance') . ' ' . $this->currency->format($insurance) . ')';
+						$title .= ' (' . __('text_insurance') . ' ' . $this->currency->format($insurance) . ')';
 					}		
 		
 					$quote_data['airsure'] = array(
@@ -635,14 +635,14 @@ class ModelShippingRoyalMail extends Model {
 				}
 				
 				if ((float)$cost) {
-					$title = $this->language->get('text_surface');
+					$title = __('text_surface');
 					
 					if ($this->config->get('royal_mail_display_weight')) {
-						$title .= ' (' . $this->language->get('text_weight') . ' ' . $this->weight->format($weight, $this->config->get('config_weight_class_id')) . ')';
+						$title .= ' (' . __('text_weight') . ' ' . $this->weight->format($weight, $this->config->get('config_weight_class_id')) . ')';
 					}
 				
 					if ($this->config->get('royal_mail_display_insurance') && (float)$insurance) {
-						$title .= ' (' . $this->language->get('text_insurance') . ' ' . $this->currency->format($insurance) . ')';
+						$title .= ' (' . __('text_insurance') . ' ' . $this->currency->format($insurance) . ')';
 					}		
 		
 					$quote_data['surface'] = array(
@@ -661,7 +661,7 @@ class ModelShippingRoyalMail extends Model {
 		if ($quote_data) {
 			$method_data = array(
 				'code'       => 'royal_mail',
-				'title'      => $this->language->get('text_title'),
+				'title'      => __('text_title'),
 				'quote'      => $quote_data,
 				'sort_order' => $this->config->get('royal_mail_sort_order'),
 				'error'      => false

@@ -9,22 +9,22 @@ class ControllerAccountDownload extends Controller {
          		
 		$this->language->load('account/download');
 
-		$this->document->setTitle($this->language->get('heading_title'));
+		$this->document->setTitle(__('heading_title'));
 
       	$this->data['breadcrumbs'] = array();
 
       	$this->data['breadcrumbs'][] = array(
-        	'text' => $this->language->get('text_home'),
+        	'text' => __('text_home'),
 			'href' => $this->url->link('common/home')
       	); 
 
       	$this->data['breadcrumbs'][] = array(
-        	'text' => $this->language->get('text_account'),
+        	'text' => __('text_account'),
 			'href' => $this->url->link('account/account', '', 'SSL')
       	);
 		
       	$this->data['breadcrumbs'][] = array(
-        	'text' => $this->language->get('text_downloads'),
+        	'text' => __('text_downloads'),
 			'href' => $this->url->link('account/download', '', 'SSL')
       	);
 				
@@ -33,16 +33,16 @@ class ControllerAccountDownload extends Controller {
 		$download_total = $this->model_account_download->getTotalDownloads();
 		
 		if ($download_total) {
-			$this->data['heading_title'] = $this->language->get('heading_title');
+			$this->data['heading_title'] = __('heading_title');
 
-			$this->data['text_order'] = $this->language->get('text_order');
-			$this->data['text_date_added'] = $this->language->get('text_date_added');
-			$this->data['text_name'] = $this->language->get('text_name');
-			$this->data['text_remaining'] = $this->language->get('text_remaining');
-			$this->data['text_size'] = $this->language->get('text_size');
+			$this->data['text_order'] = __('text_order');
+			$this->data['text_date_added'] = __('text_date_added');
+			$this->data['text_name'] = __('text_name');
+			$this->data['text_remaining'] = __('text_remaining');
+			$this->data['text_size'] = __('text_size');
 			
-			$this->data['button_download'] = $this->language->get('button_download');
-			$this->data['button_continue'] = $this->language->get('button_continue');
+			$this->data['button_download'] = __('button_download');
+			$this->data['button_continue'] = __('button_continue');
 
 			if (isset($this->request->get['page'])) {
 				$page = $this->request->get['page'];
@@ -79,7 +79,7 @@ class ControllerAccountDownload extends Controller {
 
 					$this->data['downloads'][] = array(
 						'order_id'   => $result['order_id'],
-						'date_added' => date($this->language->get('date_format_short'), strtotime($result['date_added'])),
+						'date_added' => date(__('date_format_short'), strtotime($result['date_added'])),
 						'name'       => $result['name'],
 						'remaining'  => $result['remaining'],
 						'size'       => round(substr($size, 0, strpos($size, '.') + 4), 2) . $suffix[$i],
@@ -96,7 +96,7 @@ class ControllerAccountDownload extends Controller {
 			
 			$this->data['pagination'] = $pagination->render();
 			
-			$this->data['results'] = sprintf($this->language->get('text_pagination'), ($download_total) ? (($page - 1) * $this->config->get('config_catalog_limit')) + 1 : 0, ((($page - 1) * $this->config->get('config_catalog_limit')) > ($download_total - $this->config->get('config_catalog_limit'))) ? $download_total : ((($page - 1) * $this->config->get('config_catalog_limit')) + $this->config->get('config_catalog_limit')), $download_total, ceil($download_total / $this->config->get('config_catalog_limit')));
+			$this->data['results'] = sprintf(__('text_pagination'), ($download_total) ? (($page - 1) * $this->config->get('config_catalog_limit')) + 1 : 0, ((($page - 1) * $this->config->get('config_catalog_limit')) > ($download_total - $this->config->get('config_catalog_limit'))) ? $download_total : ((($page - 1) * $this->config->get('config_catalog_limit')) + $this->config->get('config_catalog_limit')), $download_total, ceil($download_total / $this->config->get('config_catalog_limit')));
 			
 			$this->data['continue'] = $this->url->link('account/account', '', 'SSL');
 
@@ -117,11 +117,11 @@ class ControllerAccountDownload extends Controller {
 							
 			$this->response->setOutput($this->render());				
 		} else {
-			$this->data['heading_title'] = $this->language->get('heading_title');
+			$this->data['heading_title'] = __('heading_title');
 
-			$this->data['text_error'] = $this->language->get('text_empty');
+			$this->data['text_error'] = __('text_empty');
 
-			$this->data['button_continue'] = $this->language->get('button_continue');
+			$this->data['button_continue'] = __('button_continue');
 
 			$this->data['continue'] = $this->url->link('account/account', '', 'SSL');
 

@@ -3,7 +3,7 @@ class ControllerPaymentGoogleCheckout extends Controller {
 	public function index() {
 		$this->language->load('payment/google_checkout');
 		
-		$this->data['button_confirm'] = $this->language->get('button_confirm');
+		$this->data['button_confirm'] = __('button_confirm');
 				
 		if (!$this->config->get('google_checkout_test')) {
 			$this->data['action'] = 'https://checkout.google.com/api/checkout/v2/checkout/Merchant/' . $this->config->get('google_checkout_merchant_id');	
@@ -28,7 +28,7 @@ class ControllerPaymentGoogleCheckout extends Controller {
 		$json = array();
 		
 		if ($this->cart->hasShipping() && !isset($this->session->data['shipping_method'])) {
-			$json['error'] = $this->language->get('error_shipping');	
+			$json['error'] = __('error_shipping');	
 		}
 		
 		if (!$json) {

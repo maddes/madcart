@@ -1,7 +1,7 @@
 <?php
 class ControllerPaymentPaypoint extends Controller {
 	protected function index() {
-    	$this->data['button_confirm'] = $this->language->get('button_confirm');
+    	$this->data['button_confirm'] = __('button_confirm');
 
 		$this->load->model('checkout/order');
 
@@ -97,7 +97,7 @@ class ControllerPaymentPaypoint extends Controller {
 		if ($order_info) {
 			$this->language->load('payment/paypoint');
 	
-			$this->data['title'] = sprintf($this->language->get('heading_title'), $this->config->get('config_name'));
+			$this->data['title'] = sprintf(__('heading_title'), $this->config->get('config_name'));
 	
 			if (!isset($this->request->server['HTTPS']) || ($this->request->server['HTTPS'] != 'on')) {
 				$this->data['base'] = HTTP_SERVER;
@@ -105,16 +105,16 @@ class ControllerPaymentPaypoint extends Controller {
 				$this->data['base'] = HTTPS_SERVER;
 			}
 	
-			$this->data['language'] = $this->language->get('code');
-			$this->data['direction'] = $this->language->get('direction');
+			$this->data['language'] = __('code');
+			$this->data['direction'] = __('direction');
 	
-			$this->data['heading_title'] = sprintf($this->language->get('heading_title'), $this->config->get('config_name'));
+			$this->data['heading_title'] = sprintf(__('heading_title'), $this->config->get('config_name'));
 	
-			$this->data['text_response'] = $this->language->get('text_response');
-			$this->data['text_success'] = $this->language->get('text_success');
-			$this->data['text_success_wait'] = sprintf($this->language->get('text_success_wait'), $this->url->link('checkout/success'));
-			$this->data['text_failure'] = $this->language->get('text_failure');
-			$this->data['text_failure_wait'] = sprintf($this->language->get('text_failure_wait'), $this->url->link('checkout/cart'));
+			$this->data['text_response'] = __('text_response');
+			$this->data['text_success'] = __('text_success');
+			$this->data['text_success_wait'] = sprintf(__('text_success_wait'), $this->url->link('checkout/success'));
+			$this->data['text_failure'] = __('text_failure');
+			$this->data['text_failure_wait'] = sprintf(__('text_failure_wait'), $this->url->link('checkout/cart'));
 	
 			if (isset($this->request->get['code']) && $this->request->get['code'] == 'A' && $status) {
 				$this->load->model('checkout/order');

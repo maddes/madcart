@@ -3,11 +3,11 @@ class ControllerPaymentBankTransfer extends Controller {
 	protected function index() {
 		$this->language->load('payment/bank_transfer');
 		
-		$this->data['text_instruction'] = $this->language->get('text_instruction');
-		$this->data['text_description'] = $this->language->get('text_description');
-		$this->data['text_payment'] = $this->language->get('text_payment');
+		$this->data['text_instruction'] = __('text_instruction');
+		$this->data['text_description'] = __('text_description');
+		$this->data['text_payment'] = __('text_payment');
 		
-		$this->data['button_confirm'] = $this->language->get('button_confirm');
+		$this->data['button_confirm'] = __('button_confirm');
 		
 		$this->data['bank'] = nl2br($this->config->get('bank_transfer_bank_' . $this->config->get('config_language_id')));
 
@@ -27,9 +27,9 @@ class ControllerPaymentBankTransfer extends Controller {
 		
 		$this->load->model('checkout/order');
 		
-		$comment  = $this->language->get('text_instruction') . "\n\n";
+		$comment  = __('text_instruction') . "\n\n";
 		$comment .= $this->config->get('bank_transfer_bank_' . $this->config->get('config_language_id')) . "\n\n";
-		$comment .= $this->language->get('text_payment');
+		$comment .= __('text_payment');
 		
 		$this->model_checkout_order->confirm($this->session->data['order_id'], $this->config->get('bank_transfer_order_status_id'), $comment, true);
 	}

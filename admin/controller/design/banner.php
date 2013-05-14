@@ -5,7 +5,7 @@ class ControllerDesignBanner extends Controller {
 	public function index() {
 		$this->language->load('design/banner');
 
-		$this->document->setTitle($this->language->get('heading_title'));
+		$this->document->setTitle(__('heading_title'));
 		
 		$this->load->model('design/banner');
 		
@@ -15,14 +15,14 @@ class ControllerDesignBanner extends Controller {
 	public function insert() {
 		$this->language->load('design/banner');
 
-		$this->document->setTitle($this->language->get('heading_title'));
+		$this->document->setTitle(__('heading_title'));
 		
 		$this->load->model('design/banner');
 		
 		if (($this->request->server['REQUEST_METHOD'] == 'POST') && $this->validateForm()) {
 			$this->model_design_banner->addBanner($this->request->post);
 			
-			$this->session->data['success'] = $this->language->get('text_success');
+			$this->session->data['success'] = __('text_success');
 
 			$url = '';
 			
@@ -47,14 +47,14 @@ class ControllerDesignBanner extends Controller {
 	public function update() {
 		$this->language->load('design/banner');
 
-		$this->document->setTitle($this->language->get('heading_title'));
+		$this->document->setTitle(__('heading_title'));
 		
 		$this->load->model('design/banner');
 		
 		if (($this->request->server['REQUEST_METHOD'] == 'POST') && $this->validateForm()) {
 			$this->model_design_banner->editBanner($this->request->get['banner_id'], $this->request->post);
 
-			$this->session->data['success'] = $this->language->get('text_success');
+			$this->session->data['success'] = __('text_success');
 
 			$url = '';
 			
@@ -79,7 +79,7 @@ class ControllerDesignBanner extends Controller {
 	public function delete() {
 		$this->language->load('design/banner');
  
-		$this->document->setTitle($this->language->get('heading_title'));
+		$this->document->setTitle(__('heading_title'));
 		
 		$this->load->model('design/banner');
 		
@@ -88,7 +88,7 @@ class ControllerDesignBanner extends Controller {
 				$this->model_design_banner->deleteBanner($banner_id);
 			}
 			
-			$this->session->data['success'] = $this->language->get('text_success');
+			$this->session->data['success'] = __('text_success');
 
 			$url = '';
 			
@@ -146,12 +146,12 @@ class ControllerDesignBanner extends Controller {
   		$this->data['breadcrumbs'] = array();
 
    		$this->data['breadcrumbs'][] = array(
-       		'text' => $this->language->get('text_home'),
+       		'text' => __('text_home'),
 			'href' => $this->url->link('common/home', 'token=' . $this->session->data['token'], 'SSL')
    		);
 
    		$this->data['breadcrumbs'][] = array(
-       		'text' => $this->language->get('heading_title'),
+       		'text' => __('heading_title'),
 			'href' => $this->url->link('design/banner', 'token=' . $this->session->data['token'] . $url, 'SSL')
    		);
 		
@@ -175,29 +175,29 @@ class ControllerDesignBanner extends Controller {
 			$action = array();
 			
 			$action[] = array(
-				'text' => $this->language->get('text_edit'),
+				'text' => __('text_edit'),
 				'href' => $this->url->link('design/banner/update', 'token=' . $this->session->data['token'] . '&banner_id=' . $result['banner_id'] . $url, 'SSL')
 			);
 
 			$this->data['banners'][] = array(
 				'banner_id' => $result['banner_id'],
 				'name'      => $result['name'],	
-				'status'    => ($result['status'] ? $this->language->get('text_enabled') : $this->language->get('text_disabled')),				
+				'status'    => ($result['status'] ? __('text_enabled') : __('text_disabled')),				
 				'selected'  => isset($this->request->post['selected']) && in_array($result['banner_id'], $this->request->post['selected']),				
 				'action'    => $action
 			);
 		}
 
-		$this->data['heading_title'] = $this->language->get('heading_title');
+		$this->data['heading_title'] = __('heading_title');
 		
-		$this->data['text_no_results'] = $this->language->get('text_no_results');
+		$this->data['text_no_results'] = __('text_no_results');
 		
-		$this->data['column_name'] = $this->language->get('column_name');
-		$this->data['column_status'] = $this->language->get('column_status');
-		$this->data['column_action'] = $this->language->get('column_action');	
+		$this->data['column_name'] = __('column_name');
+		$this->data['column_status'] = __('column_status');
+		$this->data['column_action'] = __('column_action');	
 
-		$this->data['button_insert'] = $this->language->get('button_insert');
-		$this->data['button_delete'] = $this->language->get('button_delete');
+		$this->data['button_insert'] = __('button_insert');
+		$this->data['button_delete'] = __('button_delete');
  
  		if (isset($this->error['warning'])) {
 			$this->data['error_warning'] = $this->error['warning'];
@@ -246,7 +246,7 @@ class ControllerDesignBanner extends Controller {
 
 		$this->data['pagination'] = $pagination->render();
 		
-		$this->data['results'] = sprintf($this->language->get('text_pagination'), ($banner_total) ? (($page - 1) * $this->config->get('config_admin_limit')) + 1 : 0, ((($page - 1) * $this->config->get('config_admin_limit')) > ($banner_total - $this->config->get('config_admin_limit'))) ? $banner_total : ((($page - 1) * $this->config->get('config_admin_limit')) + $this->config->get('config_admin_limit')), $banner_total, ceil($banner_total / $this->config->get('config_admin_limit')));
+		$this->data['results'] = sprintf(__('text_pagination'), ($banner_total) ? (($page - 1) * $this->config->get('config_admin_limit')) + 1 : 0, ((($page - 1) * $this->config->get('config_admin_limit')) > ($banner_total - $this->config->get('config_admin_limit'))) ? $banner_total : ((($page - 1) * $this->config->get('config_admin_limit')) + $this->config->get('config_admin_limit')), $banner_total, ceil($banner_total / $this->config->get('config_admin_limit')));
 		
 		$this->data['sort'] = $sort;
 		$this->data['order'] = $order;
@@ -261,26 +261,26 @@ class ControllerDesignBanner extends Controller {
 	}
 
 	protected function getForm() {
-		$this->data['heading_title'] = $this->language->get('heading_title');
+		$this->data['heading_title'] = __('heading_title');
 		
-		$this->data['text_enabled'] = $this->language->get('text_enabled');
-		$this->data['text_disabled'] = $this->language->get('text_disabled');
-		$this->data['text_default'] = $this->language->get('text_default');
-		$this->data['text_image_manager'] = $this->language->get('text_image_manager');
- 		$this->data['text_browse'] = $this->language->get('text_browse');
-		$this->data['text_clear'] = $this->language->get('text_clear');			
+		$this->data['text_enabled'] = __('text_enabled');
+		$this->data['text_disabled'] = __('text_disabled');
+		$this->data['text_default'] = __('text_default');
+		$this->data['text_image_manager'] = __('text_image_manager');
+ 		$this->data['text_browse'] = __('text_browse');
+		$this->data['text_clear'] = __('text_clear');			
 				
-		$this->data['entry_name'] = $this->language->get('entry_name');
-		$this->data['entry_title'] = $this->language->get('entry_title');
-		$this->data['entry_link'] = $this->language->get('entry_link');
-		$this->data['entry_image'] = $this->language->get('entry_image');		
-		$this->data['entry_status'] = $this->language->get('entry_status');
-		$this->data['entry_sort_order'] = $this->language->get('entry_sort_order');
+		$this->data['entry_name'] = __('entry_name');
+		$this->data['entry_title'] = __('entry_title');
+		$this->data['entry_link'] = __('entry_link');
+		$this->data['entry_image'] = __('entry_image');		
+		$this->data['entry_status'] = __('entry_status');
+		$this->data['entry_sort_order'] = __('entry_sort_order');
 		
-		$this->data['button_save'] = $this->language->get('button_save');
-		$this->data['button_cancel'] = $this->language->get('button_cancel');
-		$this->data['button_add_banner'] = $this->language->get('button_add_banner');
-		$this->data['button_remove'] = $this->language->get('button_remove');
+		$this->data['button_save'] = __('button_save');
+		$this->data['button_cancel'] = __('button_cancel');
+		$this->data['button_add_banner'] = __('button_add_banner');
+		$this->data['button_remove'] = __('button_remove');
 
  		if (isset($this->error['warning'])) {
 			$this->data['error_warning'] = $this->error['warning'];
@@ -317,12 +317,12 @@ class ControllerDesignBanner extends Controller {
   		$this->data['breadcrumbs'] = array();
 
    		$this->data['breadcrumbs'][] = array(
-       		'text' => $this->language->get('text_home'),
+       		'text' => __('text_home'),
 			'href' => $this->url->link('common/home', 'token=' . $this->session->data['token'], 'SSL')
    		);
 
    		$this->data['breadcrumbs'][] = array(
-       		'text' => $this->language->get('heading_title'),
+       		'text' => __('heading_title'),
 			'href' => $this->url->link('design/banner', 'token=' . $this->session->data['token'] . $url, 'SSL')
    		);
 							
@@ -401,18 +401,18 @@ class ControllerDesignBanner extends Controller {
 
 	protected function validateForm() {
 		if (!$this->user->hasPermission('modify', 'design/banner')) {
-			$this->error['warning'] = $this->language->get('error_permission');
+			$this->error['warning'] = __('error_permission');
 		}
 
 		if ((utf8_strlen($this->request->post['name']) < 3) || (utf8_strlen($this->request->post['name']) > 64)) {
-			$this->error['name'] = $this->language->get('error_name');
+			$this->error['name'] = __('error_name');
 		}
 		
 		if (isset($this->request->post['banner_image'])) {
 			foreach ($this->request->post['banner_image'] as $banner_image_id => $banner_image) {
 				foreach ($banner_image['banner_image_description'] as $language_id => $banner_image_description) {
 					if ((utf8_strlen($banner_image_description['title']) < 2) || (utf8_strlen($banner_image_description['title']) > 64)) {
-						$this->error['banner_image'][$banner_image_id][$language_id] = $this->language->get('error_title'); 
+						$this->error['banner_image'][$banner_image_id][$language_id] = __('error_title'); 
 					}					
 				}
 			}	
@@ -427,7 +427,7 @@ class ControllerDesignBanner extends Controller {
 
 	protected function validateDelete() {
 		if (!$this->user->hasPermission('modify', 'design/banner')) {
-			$this->error['warning'] = $this->language->get('error_permission');
+			$this->error['warning'] = __('error_permission');
 		}
 	
 		if (!$this->error) {

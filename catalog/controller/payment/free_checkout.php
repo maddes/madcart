@@ -1,7 +1,7 @@
 <?php
 class ControllerPaymentFreeCheckout extends Controller {
 	protected function index() {
-    	$this->data['button_confirm'] = $this->language->get('button_confirm');
+    	$this->data['button_confirm'] = __('button_confirm');
 
 		$this->data['continue'] = $this->url->link('checkout/success');
 

@@ -14,7 +14,7 @@ class ModelPaymentFreeCheckout extends Model {
 		if ($status) {  
 			$method_data = array( 
 				'code'       => 'free_checkout',
-				'title'      => $this->language->get('text_title'),
+				'title'      => __('text_title'),
 				'sort_order' => $this->config->get('free_checkout_sort_order')
 			);
 		}

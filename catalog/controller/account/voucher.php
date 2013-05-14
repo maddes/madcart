@@ -5,7 +5,7 @@ class ControllerAccountVoucher extends Controller {
 	public function index() {
 		$this->language->load('account/voucher');
 		
-		$this->document->setTitle($this->language->get('heading_title'));
+		$this->document->setTitle(__('heading_title'));
 		
 		if (!isset($this->session->data['vouchers'])) {
 			$this->session->data['vouchers'] = array();
@@ -13,7 +13,7 @@ class ControllerAccountVoucher extends Controller {
 	
     	if (($this->request->server['REQUEST_METHOD'] == 'POST') && $this->validate()) {
 			$this->session->data['vouchers'][mt_rand()] = array(
-				'description'      => sprintf($this->language->get('text_for'), $this->currency->format($this->currency->convert($this->request->post['amount'], $this->currency->getCode(), $this->config->get('config_currency'))), $this->request->post['to_name']),
+				'description'      => sprintf(__('text_for'), $this->currency->format($this->currency->convert($this->request->post['amount'], $this->currency->getCode(), $this->config->get('config_currency'))), $this->request->post['to_name']),
 				'to_name'          => $this->request->post['to_name'],
 				'to_email'         => $this->request->post['to_email'],
 				'from_name'        => $this->request->post['from_name'],
@@ -29,34 +29,34 @@ class ControllerAccountVoucher extends Controller {
       	$this->data['breadcrumbs'] = array();
 
       	$this->data['breadcrumbs'][] = array(
-        	'text' => $this->language->get('text_home'),
+        	'text' => __('text_home'),
 			'href' => $this->url->link('common/home')
       	); 
 		
       	$this->data['breadcrumbs'][] = array(       	
-        	'text' => $this->language->get('text_account'),
+        	'text' => __('text_account'),
 			'href' => $this->url->link('account/account', '', 'SSL')
       	);
 		
       	$this->data['breadcrumbs'][] = array(       	
-        	'text' => $this->language->get('text_voucher'),
+        	'text' => __('text_voucher'),
 			'href' => $this->url->link('account/voucher', '', 'SSL')
       	);
 
-    	$this->data['heading_title'] = $this->language->get('heading_title');
+    	$this->data['heading_title'] = __('heading_title');
 		
-		$this->data['text_description'] = $this->language->get('text_description');
-		$this->data['text_agree'] = $this->language->get('text_agree');
+		$this->data['text_description'] = __('text_description');
+		$this->data['text_agree'] = __('text_agree');
 		
-		$this->data['entry_to_name'] = $this->language->get('entry_to_name');
-		$this->data['entry_to_email'] = $this->language->get('entry_to_email');
-		$this->data['entry_from_name'] = $this->language->get('entry_from_name');
-		$this->data['entry_from_email'] = $this->language->get('entry_from_email');
-		$this->data['entry_theme'] = $this->language->get('entry_theme');
-		$this->data['entry_message'] = $this->language->get('entry_message');
-		$this->data['entry_amount'] = sprintf($this->language->get('entry_amount'), $this->currency->format($this->config->get('config_voucher_min')), $this->currency->format($this->config->get('config_voucher_max')));
+		$this->data['entry_to_name'] = __('entry_to_name');
+		$this->data['entry_to_email'] = __('entry_to_email');
+		$this->data['entry_from_name'] = __('entry_from_name');
+		$this->data['entry_from_email'] = __('entry_from_email');
+		$this->data['entry_theme'] = __('entry_theme');
+		$this->data['entry_message'] = __('entry_message');
+		$this->data['entry_amount'] = sprintf(__('entry_amount'), $this->currency->format($this->config->get('config_voucher_min')), $this->currency->format($this->config->get('config_voucher_max')));
 		
-		$this->data['button_continue'] = $this->language->get('button_continue');
+		$this->data['button_continue'] = __('button_continue');
 		
 		if (isset($this->error['warning'])) {
 			$this->data['error_warning'] = $this->error['warning'];
@@ -179,25 +179,25 @@ class ControllerAccountVoucher extends Controller {
   	public function success() {
 		$this->language->load('account/voucher');
 
-		$this->document->setTitle($this->language->get('heading_title')); 
+		$this->document->setTitle(__('heading_title')); 
 
       	$this->data['breadcrumbs'] = array();
 
       	$this->data['breadcrumbs'][] = array(
-        	'text' => $this->language->get('text_home'),
+        	'text' => __('text_home'),
 			'href' => $this->url->link('common/home')
       	);
 
       	$this->data['breadcrumbs'][] = array(
-        	'text' => $this->language->get('heading_title'),
+        	'text' => __('heading_title'),
 			'href' => $this->url->link('account/voucher')
       	);	
 		
-    	$this->data['heading_title'] = $this->language->get('heading_title');
+    	$this->data['heading_title'] = __('heading_title');
 
-    	$this->data['text_message'] = $this->language->get('text_message');
+    	$this->data['text_message'] = __('text_message');
 
-    	$this->data['button_continue'] = $this->language->get('button_continue');
+    	$this->data['button_continue'] = __('button_continue');
 
     	$this->data['continue'] = $this->url->link('checkout/cart');
 
@@ -221,31 +221,31 @@ class ControllerAccountVoucher extends Controller {
 	
 	protected function validate() {
     	if ((utf8_strlen($this->request->post['to_name']) < 1) || (utf8_strlen($this->request->post['to_name']) > 64)) {
-      		$this->error['to_name'] = $this->language->get('error_to_name');
+      		$this->error['to_name'] = __('error_to_name');
     	}    	
 		
 		if ((utf8_strlen($this->request->post['to_email']) > 96) || !preg_match('/^[^\@]+@.*\.[a-z]{2,6}$/i', $this->request->post['to_email'])) {
-      		$this->error['to_email'] = $this->language->get('error_email');
+      		$this->error['to_email'] = __('error_email');
     	}
 		
     	if ((utf8_strlen($this->request->post['from_name']) < 1) || (utf8_strlen($this->request->post['from_name']) > 64)) {
-      		$this->error['from_name'] = $this->language->get('error_from_name');
+      		$this->error['from_name'] = __('error_from_name');
     	}  
 		
 		if ((utf8_strlen($this->request->post['from_email']) > 96) || !preg_match('/^[^\@]+@.*\.[a-z]{2,6}$/i', $this->request->post['from_email'])) {
-      		$this->error['from_email'] = $this->language->get('error_email');
+      		$this->error['from_email'] = __('error_email');
     	}
 		
 		if (!isset($this->request->post['voucher_theme_id'])) {
-      		$this->error['theme'] = $this->language->get('error_theme');
+      		$this->error['theme'] = __('error_theme');
     	}
 				
 		if (($this->currency->convert($this->request->post['amount'], $this->currency->getCode(), $this->config->get('config_currency')) < $this->config->get('config_voucher_min')) || ($this->currency->convert($this->request->post['amount'], $this->currency->getCode(), $this->config->get('config_currency')) > $this->config->get('config_voucher_max'))) {
-      		$this->error['amount'] = sprintf($this->language->get('error_amount'), $this->currency->format($this->config->get('config_voucher_min')), $this->currency->format($this->config->get('config_voucher_max')) . ' ' . $this->currency->getCode());
+      		$this->error['amount'] = sprintf(__('error_amount'), $this->currency->format($this->config->get('config_voucher_min')), $this->currency->format($this->config->get('config_voucher_max')) . ' ' . $this->currency->getCode());
     	}
 				
 		if (!isset($this->request->post['agree'])) {
-      		$this->error['warning'] = $this->language->get('error_agree');
+      		$this->error['warning'] = __('error_agree');
 		}
 									
     	if (!$this->error) {

@@ -18,43 +18,43 @@ class ControllerProductCompare extends Controller {
 				unset($this->session->data['compare'][$key]);
 			}
 		
-			$this->session->data['success'] = $this->language->get('text_remove');
+			$this->session->data['success'] = __('text_remove');
 		
 			$this->redirect($this->url->link('product/compare'));
 		}
 		
-		$this->document->setTitle($this->language->get('heading_title'));
+		$this->document->setTitle(__('heading_title'));
 		
 		$this->data['breadcrumbs'] = array();
 
 		$this->data['breadcrumbs'][] = array(
-			'text' => $this->language->get('text_home'),
+			'text' => __('text_home'),
 			'href' => $this->url->link('common/home')
 		);
 				
 		$this->data['breadcrumbs'][] = array(
-			'text' => $this->language->get('heading_title'),
+			'text' => __('heading_title'),
 			'href' => $this->url->link('product/compare')
 		);	
 				
-		$this->data['heading_title'] = $this->language->get('heading_title');
+		$this->data['heading_title'] = __('heading_title');
 
-		$this->data['text_product'] = $this->language->get('text_product');
-		$this->data['text_name'] = $this->language->get('text_name');
-		$this->data['text_image'] = $this->language->get('text_image');
-		$this->data['text_price'] = $this->language->get('text_price');
-		$this->data['text_model'] = $this->language->get('text_model');
-		$this->data['text_manufacturer'] = $this->language->get('text_manufacturer');
-		$this->data['text_availability'] = $this->language->get('text_availability');
-		$this->data['text_rating'] = $this->language->get('text_rating');
-		$this->data['text_summary'] = $this->language->get('text_summary');
-		$this->data['text_weight'] = $this->language->get('text_weight');
-		$this->data['text_dimension'] = $this->language->get('text_dimension');
-		$this->data['text_empty'] = $this->language->get('text_empty');
+		$this->data['text_product'] = __('text_product');
+		$this->data['text_name'] = __('text_name');
+		$this->data['text_image'] = __('text_image');
+		$this->data['text_price'] = __('text_price');
+		$this->data['text_model'] = __('text_model');
+		$this->data['text_manufacturer'] = __('text_manufacturer');
+		$this->data['text_availability'] = __('text_availability');
+		$this->data['text_rating'] = __('text_rating');
+		$this->data['text_summary'] = __('text_summary');
+		$this->data['text_weight'] = __('text_weight');
+		$this->data['text_dimension'] = __('text_dimension');
+		$this->data['text_empty'] = __('text_empty');
 		
-		$this->data['button_continue'] = $this->language->get('button_continue');
-		$this->data['button_cart'] = $this->language->get('button_cart');
-		$this->data['button_remove'] = $this->language->get('button_remove');
+		$this->data['button_continue'] = __('button_continue');
+		$this->data['button_cart'] = __('button_cart');
+		$this->data['button_remove'] = __('button_remove');
 		
 		if (isset($this->session->data['success'])) {
 			$this->data['success'] = $this->session->data['success'];
@@ -97,7 +97,7 @@ class ControllerProductCompare extends Controller {
 				} elseif ($this->config->get('config_stock_display')) {
 					$availability = $product_info['quantity'];
 				} else {
-					$availability = $this->language->get('text_instock');
+					$availability = __('text_instock');
 				}				
 				
 				$attribute_data = array();
@@ -121,7 +121,7 @@ class ControllerProductCompare extends Controller {
 					'manufacturer' => $product_info['manufacturer'],
 					'availability' => $availability,
 					'rating'       => (int)$product_info['rating'],
-					'reviews'      => sprintf($this->language->get('text_reviews'), (int)$product_info['reviews']),
+					'reviews'      => sprintf(__('text_reviews'), (int)$product_info['reviews']),
 					'weight'       => $this->weight->format($product_info['weight'], $product_info['weight_class_id']),
 					'length'       => $this->length->format($product_info['length'], $product_info['length_class_id']),
 					'width'        => $this->length->format($product_info['width'], $product_info['length_class_id']),
@@ -191,9 +191,9 @@ class ControllerProductCompare extends Controller {
 				$this->session->data['compare'][] = $this->request->post['product_id'];
 			}
 			 
-			$json['success'] = sprintf($this->language->get('text_success'), $this->url->link('product/product', 'product_id=' . $this->request->post['product_id']), $product_info['name'], $this->url->link('product/compare'));				
+			$json['success'] = sprintf(__('text_success'), $this->url->link('product/product', 'product_id=' . $this->request->post['product_id']), $product_info['name'], $this->url->link('product/compare'));				
 		
-			$json['total'] = sprintf($this->language->get('text_compare'), (isset($this->session->data['compare']) ? count($this->session->data['compare']) : 0));
+			$json['total'] = sprintf(__('text_compare'), (isset($this->session->data['compare']) ? count($this->session->data['compare']) : 0));
 		}	
 
 		$this->response->setOutput(json_encode($json));

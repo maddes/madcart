@@ -41,7 +41,7 @@ class ModelTotalReward extends Model {
 			
 				$total_data[] = array(
 					'code'       => 'reward',
-        			'title'      => sprintf($this->language->get('text_reward'), $this->session->data['reward']),
+        			'title'      => sprintf(__('text_reward'), $this->session->data['reward']),
 	    			'text'       => $this->currency->format(-$discount_total),
         			'value'      => -$discount_total,
 					'sort_order' => $this->config->get('reward_sort_order')
@@ -65,7 +65,7 @@ class ModelTotalReward extends Model {
 		}	
 		
 		if ($points) {
-			$this->db->query("INSERT INTO " . DB_PREFIX . "customer_reward SET customer_id = '" . (int)$order_info['customer_id'] . "', description = '" . $this->db->escape(sprintf($this->language->get('text_order_id'), (int)$order_info['order_id'])) . "', points = '" . (float)-$points . "', date_added = NOW()");				
+			$this->db->query("INSERT INTO " . DB_PREFIX . "customer_reward SET customer_id = '" . (int)$order_info['customer_id'] . "', description = '" . $this->db->escape(sprintf(__('text_order_id'), (int)$order_info['order_id'])) . "', points = '" . (float)-$points . "', date_added = NOW()");				
 		}
 	}		
 }

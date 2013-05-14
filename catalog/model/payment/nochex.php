@@ -20,7 +20,7 @@ class ModelPaymentNOCHEX extends Model {
 		if ($status) {  
       		$method_data = array( 
         		'code'       => 'nochex',
-        		'title'      => $this->language->get('text_title'),
+        		'title'      => __('text_title'),
 				'sort_order' => $this->config->get('nochex_sort_order')
       		);
     	}

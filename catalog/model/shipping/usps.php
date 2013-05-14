@@ -405,7 +405,7 @@ class ModelShippingUsps extends Model {
 
 								$method_data = array(
 									'code'       => 'usps',
-									'title'      => $this->language->get('text_title'),
+									'title'      => __('text_title'),
 									'quote'      => $quote_data,
 									'sort_order' => $this->config->get('usps_sort_order'),
 									'error'      => $error->getElementsByTagName('Description')->item(0)->nodeValue
@@ -425,7 +425,7 @@ class ModelShippingUsps extends Model {
 									$title = $service->getElementsByTagName('SvcDescription')->item(0)->nodeValue;
 
 									if ($this->config->get('usps_display_time')) {
-										$title .= ' (' . $this->language->get('text_eta') . ' ' . $service->getElementsByTagName('SvcCommitments')->item(0)->nodeValue . ')';
+										$title .= ' (' . __('text_eta') . ' ' . $service->getElementsByTagName('SvcCommitments')->item(0)->nodeValue . ')';
 									}
 
 									$cost = $service->getElementsByTagName('Postage')->item(0)->nodeValue;
@@ -443,7 +443,7 @@ class ModelShippingUsps extends Model {
 					} elseif ($error) {
 						$method_data = array(
 							'code'       => 'usps',
-							'title'      => $this->language->get('text_title'),
+							'title'      => __('text_title'),
 							'quote'      => $quote_data,
 							'sort_order' => $this->config->get('usps_sort_order'),
 							'error'      => $error->getElementsByTagName('Description')->item(0)->nodeValue
@@ -453,10 +453,10 @@ class ModelShippingUsps extends Model {
 			}
 
 	  		if ($quote_data) {
-				$title = $this->language->get('text_title');
+				$title = __('text_title');
 
 				if ($this->config->get('usps_display_weight')) {
-					$title .= ' (' . $this->language->get('text_weight') . ' ' . $this->weight->format($weight, $this->config->get('usps_weight_class_id')) . ')';
+					$title .= ' (' . __('text_weight') . ' ' . $this->weight->format($weight, $this->config->get('usps_weight_class_id')) . ')';
 				}
 								
       			$method_data = array(

@@ -3,21 +3,21 @@ class ControllerErrorPermission extends Controller {
 	public function index() { 
     	$this->language->load('error/permission');
   
-    	$this->document->setTitle($this->language->get('heading_title'));
+    	$this->document->setTitle(__('heading_title'));
 		
-    	$this->data['heading_title'] = $this->language->get('heading_title');
+    	$this->data['heading_title'] = __('heading_title');
 
-		$this->data['text_permission'] = $this->language->get('text_permission');
+		$this->data['text_permission'] = __('text_permission');
 													
   		$this->data['breadcrumbs'] = array();
 
    		$this->data['breadcrumbs'][] = array(
-       		'text' => $this->language->get('text_home'),
+       		'text' => __('text_home'),
 			'href' => $this->url->link('common/home', 'token=' . $this->session->data['token'], 'SSL')
    		);
 
    		$this->data['breadcrumbs'][] = array(
-       		'text' => $this->language->get('heading_title'),
+       		'text' => __('heading_title'),
 			'href' => $this->url->link('error/permission', 'token=' . $this->session->data['token'], 'SSL')
    		);
 

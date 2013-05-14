@@ -20,7 +20,7 @@ class ModelPaymentPayPoint extends Model {
 		if ($status) {  
       		$method_data = array( 
         		'code'       => 'paypoint',
-        		'title'      => $this->language->get('text_title'),
+        		'title'      => __('text_title'),
 				'sort_order' => $this->config->get('paypoint_sort_order')
       		);
     	}

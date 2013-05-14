@@ -3,30 +3,30 @@ class ControllerAffiliateSuccess extends Controller {
 	public function index() {
     	$this->language->load('affiliate/success');
   
-    	$this->document->setTitle($this->language->get('heading_title'));
+    	$this->document->setTitle(__('heading_title'));
 
 		$this->data['breadcrumbs'] = array();
 
       	$this->data['breadcrumbs'][] = array(
-        	'text' => $this->language->get('text_home'),
+        	'text' => __('text_home'),
 			'href' => $this->url->link('common/home')
       	); 
 
       	$this->data['breadcrumbs'][] = array(
-        	'text' => $this->language->get('text_account'),
+        	'text' => __('text_account'),
 			'href' => $this->url->link('affiliate/account', '', 'SSL')
       	);
 
       	$this->data['breadcrumbs'][] = array(
-        	'text' => $this->language->get('text_success'),
+        	'text' => __('text_success'),
 			'href' => $this->url->link('affiliate/success')
       	);
 
-    	$this->data['heading_title'] = $this->language->get('heading_title');
+    	$this->data['heading_title'] = __('heading_title');
 
-		$this->data['text_message'] = sprintf($this->language->get('text_approval'), $this->config->get('config_name'), $this->url->link('information/contact'));
+		$this->data['text_message'] = sprintf(__('text_approval'), $this->config->get('config_name'), $this->url->link('information/contact'));
 		
-    	$this->data['button_continue'] = $this->language->get('button_continue');
+    	$this->data['button_continue'] = __('button_continue');
 		
 		$this->data['continue'] = $this->url->link('affiliate/account', '', 'SSL');
 

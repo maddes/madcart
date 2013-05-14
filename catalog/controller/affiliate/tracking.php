@@ -9,33 +9,33 @@ class ControllerAffiliateTracking extends Controller {
 	
 		$this->language->load('affiliate/tracking');
 
-		$this->document->setTitle($this->language->get('heading_title'));
+		$this->document->setTitle(__('heading_title'));
 
       	$this->data['breadcrumbs'] = array();
 
       	$this->data['breadcrumbs'][] = array(
-        	'text' => $this->language->get('text_home'),
+        	'text' => __('text_home'),
 			'href' => $this->url->link('common/home')
       	); 
 
       	$this->data['breadcrumbs'][] = array(       	
-        	'text' => $this->language->get('text_account'),
+        	'text' => __('text_account'),
 			'href' => $this->url->link('affiliate/account', '', 'SSL')
       	);
 
       	$this->data['breadcrumbs'][] = array(       	
-        	'text' => $this->language->get('heading_title'),
+        	'text' => __('heading_title'),
 			'href' => $this->url->link('affiliate/tracking', '', 'SSL')
       	);
 		
-    	$this->data['heading_title'] = $this->language->get('heading_title');
+    	$this->data['heading_title'] = __('heading_title');
 		
-		$this->data['text_description'] = sprintf($this->language->get('text_description'), $this->config->get('config_name'));
-		$this->data['text_code'] = $this->language->get('text_code');
-		$this->data['text_generator'] = $this->language->get('text_generator');
-		$this->data['text_link'] = $this->language->get('text_link');
+		$this->data['text_description'] = sprintf(__('text_description'), $this->config->get('config_name'));
+		$this->data['text_code'] = __('text_code');
+		$this->data['text_generator'] = __('text_generator');
+		$this->data['text_link'] = __('text_link');
 		
-		$this->data['button_continue'] = $this->language->get('button_continue');
+		$this->data['button_continue'] = __('button_continue');
 
     	$this->data['code'] = $this->affiliate->getCode();
 		

@@ -30,7 +30,7 @@ class ControllerCheckoutCart extends Controller {
 			
 			unset($this->session->data['vouchers'][$this->request->get['remove']]);
 			
-			$this->session->data['success'] = $this->language->get('text_remove');
+			$this->session->data['success'] = __('text_remove');
 		
 			unset($this->session->data['shipping_method']);
 			unset($this->session->data['shipping_methods']);
@@ -45,7 +45,7 @@ class ControllerCheckoutCart extends Controller {
 		if (isset($this->request->post['coupon']) && $this->validateCoupon()) { 
 			$this->session->data['coupon'] = $this->request->post['coupon'];
 				
-			$this->session->data['success'] = $this->language->get('text_coupon');
+			$this->session->data['success'] = __('text_coupon');
 			
 			$this->redirect($this->url->link('checkout/cart'));
 		}
@@ -54,7 +54,7 @@ class ControllerCheckoutCart extends Controller {
 		if (isset($this->request->post['voucher']) && $this->validateVoucher()) { 
 			$this->session->data['voucher'] = $this->request->post['voucher'];
 				
-			$this->session->data['success'] = $this->language->get('text_voucher');
+			$this->session->data['success'] = __('text_voucher');
 				
 			$this->redirect($this->url->link('checkout/cart'));
 		}
@@ -63,7 +63,7 @@ class ControllerCheckoutCart extends Controller {
 		if (isset($this->request->post['reward']) && $this->validateReward()) { 
 			$this->session->data['reward'] = abs($this->request->post['reward']);
 				
-			$this->session->data['success'] = $this->language->get('text_reward');
+			$this->session->data['success'] = __('text_reward');
 				
 			$this->redirect($this->url->link('checkout/cart'));
 		}
@@ -74,12 +74,12 @@ class ControllerCheckoutCart extends Controller {
 			
 			$this->session->data['shipping_method'] = $this->session->data['shipping_methods'][$shipping[0]]['quote'][$shipping[1]];
 			
-			$this->session->data['success'] = $this->language->get('text_shipping');
+			$this->session->data['success'] = __('text_shipping');
 			
 			$this->redirect($this->url->link('checkout/cart'));
 		}
 		
-		$this->document->setTitle($this->language->get('heading_title'));
+		$this->document->setTitle(__('heading_title'));
 		$this->document->addScript('catalog/view/javascript/jquery/colorbox/jquery.colorbox-min.js');
 		$this->document->addStyle('catalog/view/javascript/jquery/colorbox/colorbox.css');
 			
@@ -87,12 +87,12 @@ class ControllerCheckoutCart extends Controller {
 
       	$this->data['breadcrumbs'][] = array(
         	'href' => $this->url->link('common/home'),
-        	'text' => $this->language->get('text_home')
+        	'text' => __('text_home')
       	); 
 
       	$this->data['breadcrumbs'][] = array(
         	'href' => $this->url->link('checkout/cart'),
-        	'text' => $this->language->get('heading_title')
+        	'text' => __('heading_title')
       	);
 			
     	if ($this->cart->hasProducts() || !empty($this->session->data['vouchers'])) {
@@ -106,53 +106,53 @@ class ControllerCheckoutCart extends Controller {
 				}
 			}		
 				
-      		$this->data['heading_title'] = $this->language->get('heading_title');
+      		$this->data['heading_title'] = __('heading_title');
 			
-			$this->data['text_next'] = $this->language->get('text_next');
-			$this->data['text_next_choice'] = $this->language->get('text_next_choice');
-     		$this->data['text_use_coupon'] = $this->language->get('text_use_coupon');
-			$this->data['text_use_voucher'] = $this->language->get('text_use_voucher');
-			$this->data['text_use_reward'] = sprintf($this->language->get('text_use_reward'), $points);
-			$this->data['text_shipping_estimate'] = $this->language->get('text_shipping_estimate');
-			$this->data['text_shipping_detail'] = $this->language->get('text_shipping_detail');
-			$this->data['text_shipping_method'] = $this->language->get('text_shipping_method');
-			$this->data['text_select'] = $this->language->get('text_select');
-			$this->data['text_none'] = $this->language->get('text_none');
+			$this->data['text_next'] = __('text_next');
+			$this->data['text_next_choice'] = __('text_next_choice');
+     		$this->data['text_use_coupon'] = __('text_use_coupon');
+			$this->data['text_use_voucher'] = __('text_use_voucher');
+			$this->data['text_use_reward'] = sprintf(__('text_use_reward'), $points);
+			$this->data['text_shipping_estimate'] = __('text_shipping_estimate');
+			$this->data['text_shipping_detail'] = __('text_shipping_detail');
+			$this->data['text_shipping_method'] = __('text_shipping_method');
+			$this->data['text_select'] = __('text_select');
+			$this->data['text_none'] = __('text_none');
 						
-			$this->data['column_image'] = $this->language->get('column_image');
-      		$this->data['column_name'] = $this->language->get('column_name');
-      		$this->data['column_model'] = $this->language->get('column_model');
-      		$this->data['column_quantity'] = $this->language->get('column_quantity');
-			$this->data['column_price'] = $this->language->get('column_price');
-      		$this->data['column_total'] = $this->language->get('column_total');
+			$this->data['column_image'] = __('column_image');
+      		$this->data['column_name'] = __('column_name');
+      		$this->data['column_model'] = __('column_model');
+      		$this->data['column_quantity'] = __('column_quantity');
+			$this->data['column_price'] = __('column_price');
+      		$this->data['column_total'] = __('column_total');
 			
-			$this->data['entry_coupon'] = $this->language->get('entry_coupon');
-			$this->data['entry_voucher'] = $this->language->get('entry_voucher');
-			$this->data['entry_reward'] = sprintf($this->language->get('entry_reward'), $points_total);
-			$this->data['entry_country'] = $this->language->get('entry_country');
-			$this->data['entry_zone'] = $this->language->get('entry_zone');
-			$this->data['entry_postcode'] = $this->language->get('entry_postcode');
+			$this->data['entry_coupon'] = __('entry_coupon');
+			$this->data['entry_voucher'] = __('entry_voucher');
+			$this->data['entry_reward'] = sprintf(__('entry_reward'), $points_total);
+			$this->data['entry_country'] = __('entry_country');
+			$this->data['entry_zone'] = __('entry_zone');
+			$this->data['entry_postcode'] = __('entry_postcode');
 						
-			$this->data['button_update'] = $this->language->get('button_update');
-			$this->data['button_remove'] = $this->language->get('button_remove');
-			$this->data['button_coupon'] = $this->language->get('button_coupon');
-			$this->data['button_voucher'] = $this->language->get('button_voucher');
-			$this->data['button_reward'] = $this->language->get('button_reward');
-			$this->data['button_quote'] = $this->language->get('button_quote');
-			$this->data['button_shipping'] = $this->language->get('button_shipping');			
-      		$this->data['button_shopping'] = $this->language->get('button_shopping');
-      		$this->data['button_checkout'] = $this->language->get('button_checkout');
+			$this->data['button_update'] = __('button_update');
+			$this->data['button_remove'] = __('button_remove');
+			$this->data['button_coupon'] = __('button_coupon');
+			$this->data['button_voucher'] = __('button_voucher');
+			$this->data['button_reward'] = __('button_reward');
+			$this->data['button_quote'] = __('button_quote');
+			$this->data['button_shipping'] = __('button_shipping');			
+      		$this->data['button_shopping'] = __('button_shopping');
+      		$this->data['button_checkout'] = __('button_checkout');
 			
 			if (isset($this->error['warning'])) {
 				$this->data['error_warning'] = $this->error['warning'];
 			} elseif (!$this->cart->hasStock() && (!$this->config->get('config_stock_checkout') || $this->config->get('config_stock_warning'))) {
-      			$this->data['error_warning'] = $this->language->get('error_stock');		
+      			$this->data['error_warning'] = __('error_stock');		
 			} else {
 				$this->data['error_warning'] = '';
 			}
 			
 			if ($this->config->get('config_customer_price') && !$this->customer->isLogged()) {
-				$this->data['attention'] = sprintf($this->language->get('text_login'), $this->url->link('account/login'), $this->url->link('account/register'));
+				$this->data['attention'] = sprintf(__('text_login'), $this->url->link('account/login'), $this->url->link('account/register'));
 			} else {
 				$this->data['attention'] = '';
 			}
@@ -168,7 +168,7 @@ class ControllerCheckoutCart extends Controller {
 			$this->data['action'] = $this->url->link('checkout/cart');   
 						
 			if ($this->config->get('config_cart_weight')) {
-				$this->data['weight'] = $this->weight->format($this->cart->getWeight(), $this->config->get('config_weight_class_id'), $this->language->get('decimal_point'), $this->language->get('thousand_point'));
+				$this->data['weight'] = $this->weight->format($this->cart->getWeight(), $this->config->get('config_weight_class_id'), __('decimal_point'), __('thousand_point'));
 			} else {
 				$this->data['weight'] = '';
 			}
@@ -189,7 +189,7 @@ class ControllerCheckoutCart extends Controller {
 				}			
 				
 				if ($product['minimum'] > $product_total) {
-					$this->data['error_warning'] = sprintf($this->language->get('error_minimum'), $product['name'], $product['minimum']);
+					$this->data['error_warning'] = sprintf(__('error_minimum'), $product['name'], $product['minimum']);
 				}				
 					
 				if ($product['image']) {
@@ -237,7 +237,7 @@ class ControllerCheckoutCart extends Controller {
           			'option'   => $option_data,
           			'quantity' => $product['quantity'],
           			'stock'    => $product['stock'] ? true : !(!$this->config->get('config_stock_checkout') || $this->config->get('config_stock_warning')),
-					'reward'   => ($product['reward'] ? sprintf($this->language->get('text_points'), $product['reward']) : ''),
+					'reward'   => ($product['reward'] ? sprintf(__('text_points'), $product['reward']) : ''),
 					'price'    => $price,
 					'total'    => $total,
 					'href'     => $this->url->link('product/product', 'product_id=' . $product['product_id']),
@@ -392,11 +392,11 @@ class ControllerCheckoutCart extends Controller {
 						
 			$this->response->setOutput($this->render());					
     	} else {
-      		$this->data['heading_title'] = $this->language->get('heading_title');
+      		$this->data['heading_title'] = __('heading_title');
 
-      		$this->data['text_error'] = $this->language->get('text_empty');
+      		$this->data['text_error'] = __('text_empty');
 
-      		$this->data['button_continue'] = $this->language->get('button_continue');
+      		$this->data['button_continue'] = __('button_continue');
 			
       		$this->data['continue'] = $this->url->link('common/home');
 
@@ -427,7 +427,7 @@ class ControllerCheckoutCart extends Controller {
 		$coupon_info = $this->model_checkout_coupon->getCoupon($this->request->post['coupon']);			
 		
 		if (!$coupon_info) {			
-			$this->error['warning'] = $this->language->get('error_coupon');
+			$this->error['warning'] = __('error_coupon');
 		}
 		
 		if (!$this->error) {
@@ -443,7 +443,7 @@ class ControllerCheckoutCart extends Controller {
 		$voucher_info = $this->model_checkout_voucher->getVoucher($this->request->post['voucher']);			
 		
 		if (!$voucher_info) {			
-			$this->error['warning'] = $this->language->get('error_voucher');
+			$this->error['warning'] = __('error_voucher');
 		}
 		
 		if (!$this->error) {
@@ -465,15 +465,15 @@ class ControllerCheckoutCart extends Controller {
 		}	
 				
 		if (empty($this->request->post['reward'])) {
-			$this->error['warning'] = $this->language->get('error_reward');
+			$this->error['warning'] = __('error_reward');
 		}
 	
 		if ($this->request->post['reward'] > $points) {
-			$this->error['warning'] = sprintf($this->language->get('error_points'), $this->request->post['reward']);
+			$this->error['warning'] = sprintf(__('error_points'), $this->request->post['reward']);
 		}
 		
 		if ($this->request->post['reward'] > $points_total) {
-			$this->error['warning'] = sprintf($this->language->get('error_maximum'), $points_total);
+			$this->error['warning'] = sprintf(__('error_maximum'), $points_total);
 		}
 		
 		if (!$this->error) {
@@ -488,10 +488,10 @@ class ControllerCheckoutCart extends Controller {
 			$shipping = explode('.', $this->request->post['shipping_method']);
 					
 			if (!isset($shipping[0]) || !isset($shipping[1]) || !isset($this->session->data['shipping_methods'][$shipping[0]]['quote'][$shipping[1]])) {			
-				$this->error['warning'] = $this->language->get('error_shipping');
+				$this->error['warning'] = __('error_shipping');
 			}
 		} else {
-			$this->error['warning'] = $this->language->get('error_shipping');
+			$this->error['warning'] = __('error_shipping');
 		}
 		
 		if (!$this->error) {
@@ -533,14 +533,14 @@ class ControllerCheckoutCart extends Controller {
 			
 			foreach ($product_options as $product_option) {
 				if ($product_option['required'] && empty($option[$product_option['product_option_id']])) {
-					$json['error']['option'][$product_option['product_option_id']] = sprintf($this->language->get('error_required'), $product_option['name']);
+					$json['error']['option'][$product_option['product_option_id']] = sprintf(__('error_required'), $product_option['name']);
 				}
 			}
 			
 			if (!$json) {
 				$this->cart->add($this->request->post['product_id'], $quantity, $option);
 
-				$json['success'] = sprintf($this->language->get('text_success'), $this->url->link('product/product', 'product_id=' . $this->request->post['product_id']), $product_info['name'], $this->url->link('checkout/cart'));
+				$json['success'] = sprintf(__('text_success'), $this->url->link('product/product', 'product_id=' . $this->request->post['product_id']), $product_info['name'], $this->url->link('checkout/cart'));
 				
 				unset($this->session->data['shipping_method']);
 				unset($this->session->data['shipping_methods']);
@@ -583,7 +583,7 @@ class ControllerCheckoutCart extends Controller {
 					array_multisort($sort_order, SORT_ASC, $total_data);								
 				}
 				
-				$json['total'] = sprintf($this->language->get('text_items'), $this->cart->countProducts() + (isset($this->session->data['vouchers']) ? count($this->session->data['vouchers']) : 0), $this->currency->format($total));
+				$json['total'] = sprintf(__('text_items'), $this->cart->countProducts() + (isset($this->session->data['vouchers']) ? count($this->session->data['vouchers']) : 0), $this->currency->format($total));
 			} else {
 				$json['redirect'] = str_replace('&amp;', '&', $this->url->link('product/product', 'product_id=' . $this->request->post['product_id']));
 			}
@@ -598,19 +598,19 @@ class ControllerCheckoutCart extends Controller {
 		$json = array();	
 		
 		if (!$this->cart->hasProducts()) {
-			$json['error']['warning'] = $this->language->get('error_product');				
+			$json['error']['warning'] = __('error_product');				
 		}				
 
 		if (!$this->cart->hasShipping()) {
-			$json['error']['warning'] = sprintf($this->language->get('error_no_shipping'), $this->url->link('information/contact'));				
+			$json['error']['warning'] = sprintf(__('error_no_shipping'), $this->url->link('information/contact'));				
 		}				
 		
 		if ($this->request->post['country_id'] == '') {
-			$json['error']['country'] = $this->language->get('error_country');
+			$json['error']['country'] = __('error_country');
 		}
 		
 		if (!isset($this->request->post['zone_id']) || $this->request->post['zone_id'] == '') {
-			$json['error']['zone'] = $this->language->get('error_zone');
+			$json['error']['zone'] = __('error_zone');
 		}
 			
 		$this->load->model('localisation/country');
@@ -618,7 +618,7 @@ class ControllerCheckoutCart extends Controller {
 		$country_info = $this->model_localisation_country->getCountry($this->request->post['country_id']);
 		
 		if ($country_info && $country_info['postcode_required'] && (utf8_strlen($this->request->post['postcode']) < 2) || (utf8_strlen($this->request->post['postcode']) > 10)) {
-			$json['error']['postcode'] = $this->language->get('error_postcode');
+			$json['error']['postcode'] = __('error_postcode');
 		}
 						
 		if (!$json) {		
@@ -702,7 +702,7 @@ class ControllerCheckoutCart extends Controller {
 			if ($this->session->data['shipping_methods']) {
 				$json['shipping_method'] = $this->session->data['shipping_methods']; 
 			} else {
-				$json['error']['warning'] = sprintf($this->language->get('error_no_shipping'), $this->url->link('information/contact'));
+				$json['error']['warning'] = sprintf(__('error_no_shipping'), $this->url->link('information/contact'));
 			}				
 		}	
 		

@@ -9,37 +9,37 @@ class ControllerAccountReward extends Controller {
 		
 		$this->language->load('account/reward');
 
-		$this->document->setTitle($this->language->get('heading_title'));
+		$this->document->setTitle(__('heading_title'));
 
       	$this->data['breadcrumbs'] = array();
 
       	$this->data['breadcrumbs'][] = array(
-        	'text' => $this->language->get('text_home'),
+        	'text' => __('text_home'),
 			'href' => $this->url->link('common/home')
       	); 
 
       	$this->data['breadcrumbs'][] = array(       	
-        	'text' => $this->language->get('text_account'),
+        	'text' => __('text_account'),
 			'href' => $this->url->link('account/account', '', 'SSL')
       	);
 		
       	$this->data['breadcrumbs'][] = array(       	
-        	'text' => $this->language->get('text_reward'),
+        	'text' => __('text_reward'),
 			'href' => $this->url->link('account/reward', '', 'SSL')
       	);
 		
 		$this->load->model('account/reward');
 
-    	$this->data['heading_title'] = $this->language->get('heading_title');
+    	$this->data['heading_title'] = __('heading_title');
 		
-		$this->data['column_date_added'] = $this->language->get('column_date_added');
-		$this->data['column_description'] = $this->language->get('column_description');
-		$this->data['column_points'] = $this->language->get('column_points');
+		$this->data['column_date_added'] = __('column_date_added');
+		$this->data['column_description'] = __('column_description');
+		$this->data['column_points'] = __('column_points');
 		
-		$this->data['text_total'] = $this->language->get('text_total');
-		$this->data['text_empty'] = $this->language->get('text_empty');
+		$this->data['text_total'] = __('text_total');
+		$this->data['text_empty'] = __('text_empty');
 		
-		$this->data['button_continue'] = $this->language->get('button_continue');
+		$this->data['button_continue'] = __('button_continue');
 				
 		if (isset($this->request->get['page'])) {
 			$page = $this->request->get['page'];
@@ -65,7 +65,7 @@ class ControllerAccountReward extends Controller {
 				'order_id'    => $result['order_id'],
 				'points'      => $result['points'],
 				'description' => $result['description'],
-				'date_added'  => date($this->language->get('date_format_short'), strtotime($result['date_added'])),
+				'date_added'  => date(__('date_format_short'), strtotime($result['date_added'])),
 				'href'        => $this->url->link('account/order/info', 'order_id=' . $result['order_id'], 'SSL')
 			);
 		}	
@@ -78,7 +78,7 @@ class ControllerAccountReward extends Controller {
 			
 		$this->data['pagination'] = $pagination->render();
 		
-		$this->data['results'] = sprintf($this->language->get('text_pagination'), ($reward_total) ? (($page - 1) * 10) + 1 : 0, ((($page - 1) * 10) > ($reward_total - 10)) ? $reward_total : ((($page - 1) * 10) + 10), $reward_total, ceil($reward_total / 10));
+		$this->data['results'] = sprintf(__('text_pagination'), ($reward_total) ? (($page - 1) * 10) + 1 : 0, ((($page - 1) * 10) > ($reward_total - 10)) ? $reward_total : ((($page - 1) * 10) + 10), $reward_total, ceil($reward_total / 10));
 		
 		$this->data['total'] = (int)$this->customer->getRewardPoints();
 		

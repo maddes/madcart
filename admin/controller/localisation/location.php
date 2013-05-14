@@ -5,7 +5,7 @@ class ControllerLocalisationLocation extends Controller {
 	public function index() {
 		$this->language->load('localisation/location');
 		
-		$this->document->setTitle($this->language->get('heading_title'));
+		$this->document->setTitle(__('heading_title'));
 		
 		$this->load->model('localisation/location');
 		
@@ -15,14 +15,14 @@ class ControllerLocalisationLocation extends Controller {
 	public function insert() {
 		$this->language->load('localisation/location');
 		
-		$this->document->setTitle($this->language->get('heading_title'));
+		$this->document->setTitle(__('heading_title'));
 		
 		$this->load->model('localisation/location');
 		
 		if (($this->request->server['REQUEST_METHOD'] == 'POST') && $this->validateForm()) {   
 			$this->model_localisation_location->addLocation($this->request->post);
 			
-			$this->session->data['success'] = $this->language->get('text_success');
+			$this->session->data['success'] = __('text_success');
 			
 			$url = '';
 			
@@ -47,14 +47,14 @@ class ControllerLocalisationLocation extends Controller {
 	public function update() {
 		$this->language->load('localisation/location');
 		
-		$this->document->setTitle($this->language->get('heading_title'));
+		$this->document->setTitle(__('heading_title'));
 		
 		$this->load->model('localisation/location');
 		
 		if (($this->request->server['REQUEST_METHOD'] == 'POST') && $this->validateForm()) {
 			$this->model_localisation_location->editLocation($this->request->get['location_id'], $this->request->post);
 		
-			$this->session->data['success'] = $this->language->get('text_success');
+			$this->session->data['success'] = __('text_success');
 		
 			$url = '';
 
@@ -79,7 +79,7 @@ class ControllerLocalisationLocation extends Controller {
 	public function delete() {
 		$this->language->load('localisation/location');
 		
-		$this->document->setTitle($this->language->get('heading_title'));
+		$this->document->setTitle(__('heading_title'));
 		
 		$this->load->model('localisation/location');
 		
@@ -88,7 +88,7 @@ class ControllerLocalisationLocation extends Controller {
 				$this->model_localisation_location->deleteLocation($location_id);
 			}
 			
-			$this->session->data['success'] = $this->language->get('text_success');
+			$this->session->data['success'] = __('text_success');
 			
 			$url = '';
 			
@@ -147,12 +147,12 @@ class ControllerLocalisationLocation extends Controller {
 		$this->data['breadcrumbs'] =   array();
 		
 		$this->data['breadcrumbs'][] =   array(
-			'text'      =>  $this->language->get('text_home'),
+			'text'      =>  __('text_home'),
 			'href' => $this->url->link('common/home', 'token=' . $this->session->data['token'], 'SSL')
 		);
 		
 		$this->data['breadcrumbs'][] =   array(
-			'text'      =>  $this->language->get('heading_title'),
+			'text'      =>  __('heading_title'),
 			'href'      =>  $this->url->link('localisation/location', 'token=' . $this->session->data['token'] . $url, 'SSL')
 		);
 		
@@ -176,7 +176,7 @@ class ControllerLocalisationLocation extends Controller {
 			$action = array();
 			
 			$action[] = array(
-				'text' => $this->language->get('text_edit'),
+				'text' => __('text_edit'),
 				'href' => $this->url->link('localisation/location/update', 'token=' . $this->session->data['token'] . '&location_id=' . $result['location_id'] . $url, 'SSL')
 			);			
 		
@@ -191,18 +191,18 @@ class ControllerLocalisationLocation extends Controller {
 			);
 		}
 		
-		$this->data['heading_title'] = $this->language->get('heading_title');
+		$this->data['heading_title'] = __('heading_title');
 		
-		$this->data['text_no_results'] = $this->language->get('text_no_results');
+		$this->data['text_no_results'] = __('text_no_results');
 		
-		$this->data['column_name'] = $this->language->get('column_name');
-		$this->data['column_address_1'] = $this->language->get('column_address_1');
-		$this->data['column_zone'] = $this->language->get('column_zone');
-		$this->data['column_country'] = $this->language->get('column_country');
-		$this->data['column_action'] = $this->language->get('column_action');
+		$this->data['column_name'] = __('column_name');
+		$this->data['column_address_1'] = __('column_address_1');
+		$this->data['column_zone'] = __('column_zone');
+		$this->data['column_country'] = __('column_country');
+		$this->data['column_action'] = __('column_action');
 		
-		$this->data['button_insert'] = $this->language->get('button_insert');
-		$this->data['button_delete'] = $this->language->get('button_delete');
+		$this->data['button_insert'] = __('button_insert');
+		$this->data['button_delete'] = __('button_delete');
 		
  		if (isset($this->error['warning'])) {
 			$this->data['error_warning'] = $this->error['warning'];
@@ -253,7 +253,7 @@ class ControllerLocalisationLocation extends Controller {
 		
 		$this->data['pagination'] = $pagination->render();
 		
-		$this->data['results'] = sprintf($this->language->get('text_pagination'), ($location_total) ? (($page - 1) * $this->config->get('config_admin_limit')) + 1 : 0, ((($page - 1) * $this->config->get('config_admin_limit')) > ($location_total - $this->config->get('config_admin_limit'))) ? $location_total : ((($page - 1) * $this->config->get('config_admin_limit')) + $this->config->get('config_admin_limit')), $location_total, ceil($location_total / $this->config->get('config_admin_limit')));
+		$this->data['results'] = sprintf(__('text_pagination'), ($location_total) ? (($page - 1) * $this->config->get('config_admin_limit')) + 1 : 0, ((($page - 1) * $this->config->get('config_admin_limit')) > ($location_total - $this->config->get('config_admin_limit'))) ? $location_total : ((($page - 1) * $this->config->get('config_admin_limit')) + $this->config->get('config_admin_limit')), $location_total, ceil($location_total / $this->config->get('config_admin_limit')));
 		
 		$this->data['sort'] = $sort;
 		$this->data['order'] = $order;
@@ -268,34 +268,34 @@ class ControllerLocalisationLocation extends Controller {
 	}
 	
 	protected function getForm() {
-		$this->data['heading_title'] = $this->language->get('heading_title');
+		$this->data['heading_title'] = __('heading_title');
 		
-		$this->data['text_select'] = $this->language->get('text_select');
-		$this->data['text_none'] = $this->language->get('text_none');
-		$this->data['text_geocode'] = $this->language->get('text_geocode'); 
-		$this->data['text_image_manager'] = $this->language->get('text_image_manager');
-		$this->data['text_browse'] = $this->language->get('text_browse');
-		$this->data['text_clear'] = $this->language->get('text_clear'); 
+		$this->data['text_select'] = __('text_select');
+		$this->data['text_none'] = __('text_none');
+		$this->data['text_geocode'] = __('text_geocode'); 
+		$this->data['text_image_manager'] = __('text_image_manager');
+		$this->data['text_browse'] = __('text_browse');
+		$this->data['text_clear'] = __('text_clear'); 
 				
-		$this->data['entry_name'] = $this->language->get('entry_name');
-		$this->data['entry_address_1'] = $this->language->get('entry_address_1');
-		$this->data['entry_address_2'] = $this->language->get('entry_address_2');
-		$this->data['entry_city'] = $this->language->get('entry_city');
-		$this->data['entry_postcode'] = $this->language->get('entry_postcode');
-		$this->data['entry_country'] = $this->language->get('entry_country');
-		$this->data['entry_zone'] = $this->language->get('entry_zone');
-		$this->data['entry_image'] = $this->language->get('entry_image');
-		$this->data['entry_geocode'] = $this->language->get('entry_geocode');
-		$this->data['entry_open'] = $this->language->get('entry_open');        
-		$this->data['entry_comment'] = $this->language->get('entry_comment');
+		$this->data['entry_name'] = __('entry_name');
+		$this->data['entry_address_1'] = __('entry_address_1');
+		$this->data['entry_address_2'] = __('entry_address_2');
+		$this->data['entry_city'] = __('entry_city');
+		$this->data['entry_postcode'] = __('entry_postcode');
+		$this->data['entry_country'] = __('entry_country');
+		$this->data['entry_zone'] = __('entry_zone');
+		$this->data['entry_image'] = __('entry_image');
+		$this->data['entry_geocode'] = __('entry_geocode');
+		$this->data['entry_open'] = __('entry_open');        
+		$this->data['entry_comment'] = __('entry_comment');
 	
-		$this->data['help_geocode'] = $this->language->get('help_geocode');
-		$this->data['help_open'] = $this->language->get('help_open');
-		$this->data['help_comment'] = $this->language->get('help_comment');
+		$this->data['help_geocode'] = __('help_geocode');
+		$this->data['help_open'] = __('help_open');
+		$this->data['help_comment'] = __('help_comment');
 		
-		$this->data['button_save'] = $this->language->get('button_save');
-		$this->data['button_cancel'] = $this->language->get('button_cancel');        
-		$this->data['button_geocode'] = $this->language->get('button_geocode');
+		$this->data['button_save'] = __('button_save');
+		$this->data['button_cancel'] = __('button_cancel');        
+		$this->data['button_geocode'] = __('button_geocode');
 		
  		if (isset($this->error['warning'])) {
 			$this->data['error_warning'] = $this->error['warning'];
@@ -362,12 +362,12 @@ class ControllerLocalisationLocation extends Controller {
 		$this->data['breadcrumbs'] = array();
 		
 		$this->data['breadcrumbs'][] = array(
-			'text' => $this->language->get('text_home'),
+			'text' => __('text_home'),
 			'href' => $this->url->link('common/home', 'token=' . $this->session->data['token'], 'SSL')
 		);
 		
 		$this->data['breadcrumbs'][] = array(
-			'text' => $this->language->get('heading_title'),
+			'text' => __('heading_title'),
 			'href' => $this->url->link('localisation/location', 'token=' . $this->session->data['token'] . $url, 'SSL')
 		);
 		
@@ -500,19 +500,19 @@ class ControllerLocalisationLocation extends Controller {
 	
 	protected function validateForm() {
 		if (!$this->user->hasPermission('modify', 'localisation/location')) {
-			$this->error['warning'] = $this->language->get('error_permission');
+			$this->error['warning'] = __('error_permission');
 		}
 		
 		if ((utf8_strlen($this->request->post['name']) < 3) || (utf8_strlen($this->request->post['name']) > 32)) {
-			$this->error['name'] = $this->language->get('error_name');
+			$this->error['name'] = __('error_name');
 		}
 		
 		if ((utf8_strlen($this->request->post['address_1']) < 3) || (utf8_strlen($this->request->post['address_1']) > 128)) {
-			$this->error['address_1'] = $this->language->get('error_address_1');
+			$this->error['address_1'] = __('error_address_1');
 		}
 		
     	if ((utf8_strlen($this->request->post['city']) < 2) || (utf8_strlen($this->request->post['city']) > 128)) {
-			$this->error['city'] = $this->language->get('city'); 
+			$this->error['city'] = __('city'); 
 		}
 		
 		$this->load->model('localisation/country');
@@ -520,19 +520,19 @@ class ControllerLocalisationLocation extends Controller {
 		$country_info = $this->model_localisation_country->getCountry($this->request->post['country_id']);
 		
 		if ($country_info && $country_info['postcode_required'] && (utf8_strlen($this->request->post['postcode']) < 2) || (utf8_strlen($this->request->post['postcode']) > 10)) {
-			$this->error['postcode'] = $this->language->get('error_postcode');
+			$this->error['postcode'] = __('error_postcode');
 		}
 		
     	if ($this->request->post['country_id'] == '') {
-      		$this->error['country'] = $this->language->get('error_country');
+      		$this->error['country'] = __('error_country');
     	}
 		
     	if (!isset($this->request->post['zone_id']) || $this->request->post['zone_id'] == '') {
-      		$this->error['zone'] = $this->language->get('error_zone');
+      		$this->error['zone'] = __('error_zone');
     	}
 				
 		if (!$this->request->post['geocode']) {
-			$this->error['geocode'] = $this->language->get('error_geocode');
+			$this->error['geocode'] = __('error_geocode');
 		}
 		
 		if (!$this->error) {
@@ -544,7 +544,7 @@ class ControllerLocalisationLocation extends Controller {
 	
   	protected function validateDelete() {
     	if (!$this->user->hasPermission('modify', 'localisation/location')) {
-      		$this->error['warning'] = $this->language->get('error_permission');
+      		$this->error['warning'] = __('error_permission');
     	}	
 	  	 
 		if (!$this->error) {

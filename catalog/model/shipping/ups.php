@@ -36,72 +36,72 @@ class ModelShippingUps extends Model {
 			$service_code = array(
 				// US Origin
 				'US' => array(
-					'01' => $this->language->get('text_us_origin_01'),
-					'02' => $this->language->get('text_us_origin_02'),
-					'03' => $this->language->get('text_us_origin_03'),
-					'07' => $this->language->get('text_us_origin_07'),
-					'08' => $this->language->get('text_us_origin_08'),
-					'11' => $this->language->get('text_us_origin_11'),
-					'12' => $this->language->get('text_us_origin_12'),
-					'13' => $this->language->get('text_us_origin_13'),
-					'14' => $this->language->get('text_us_origin_14'),
-					'54' => $this->language->get('text_us_origin_54'),
-					'59' => $this->language->get('text_us_origin_59'),
-					'65' => $this->language->get('text_us_origin_65')
+					'01' => __('text_us_origin_01'),
+					'02' => __('text_us_origin_02'),
+					'03' => __('text_us_origin_03'),
+					'07' => __('text_us_origin_07'),
+					'08' => __('text_us_origin_08'),
+					'11' => __('text_us_origin_11'),
+					'12' => __('text_us_origin_12'),
+					'13' => __('text_us_origin_13'),
+					'14' => __('text_us_origin_14'),
+					'54' => __('text_us_origin_54'),
+					'59' => __('text_us_origin_59'),
+					'65' => __('text_us_origin_65')
 				),
 				// Canada Origin
 				'CA' => array(
-					'01' => $this->language->get('text_ca_origin_01'),
-					'02' => $this->language->get('text_ca_origin_02'),
-					'07' => $this->language->get('text_ca_origin_07'),
-					'08' => $this->language->get('text_ca_origin_08'),
-					'11' => $this->language->get('text_ca_origin_11'),
-					'12' => $this->language->get('text_ca_origin_12'),
-					'13' => $this->language->get('text_ca_origin_13'),
-					'14' => $this->language->get('text_ca_origin_14'),
-					'54' => $this->language->get('text_ca_origin_54'),
-					'65' => $this->language->get('text_ca_origin_65')
+					'01' => __('text_ca_origin_01'),
+					'02' => __('text_ca_origin_02'),
+					'07' => __('text_ca_origin_07'),
+					'08' => __('text_ca_origin_08'),
+					'11' => __('text_ca_origin_11'),
+					'12' => __('text_ca_origin_12'),
+					'13' => __('text_ca_origin_13'),
+					'14' => __('text_ca_origin_14'),
+					'54' => __('text_ca_origin_54'),
+					'65' => __('text_ca_origin_65')
 				),
 				// European Union Origin
 				'EU' => array(
-					'07' => $this->language->get('text_eu_origin_07'),
-					'08' => $this->language->get('text_eu_origin_08'),
-					'11' => $this->language->get('text_eu_origin_11'),
-					'54' => $this->language->get('text_eu_origin_54'),
-					'65' => $this->language->get('text_eu_origin_65'),
+					'07' => __('text_eu_origin_07'),
+					'08' => __('text_eu_origin_08'),
+					'11' => __('text_eu_origin_11'),
+					'54' => __('text_eu_origin_54'),
+					'65' => __('text_eu_origin_65'),
 					// next five services Poland domestic only
-					'82' => $this->language->get('text_eu_origin_82'),
-					'83' => $this->language->get('text_eu_origin_83'),
-					'84' => $this->language->get('text_eu_origin_84'),
-					'85' => $this->language->get('text_eu_origin_85'),
-					'86' => $this->language->get('text_eu_origin_86')
+					'82' => __('text_eu_origin_82'),
+					'83' => __('text_eu_origin_83'),
+					'84' => __('text_eu_origin_84'),
+					'85' => __('text_eu_origin_85'),
+					'86' => __('text_eu_origin_86')
 				),
 				// Puerto Rico Origin
 				'PR' => array(
-					'01' => $this->language->get('text_pr_origin_01'),
-					'02' => $this->language->get('text_pr_origin_02'),
-					'03' => $this->language->get('text_pr_origin_03'),
-					'07' => $this->language->get('text_pr_origin_07'),
-					'08' => $this->language->get('text_pr_origin_08'),
-					'14' => $this->language->get('text_pr_origin_14'),
-					'54' => $this->language->get('text_pr_origin_54'),
-					'65' => $this->language->get('text_pr_origin_65')
+					'01' => __('text_pr_origin_01'),
+					'02' => __('text_pr_origin_02'),
+					'03' => __('text_pr_origin_03'),
+					'07' => __('text_pr_origin_07'),
+					'08' => __('text_pr_origin_08'),
+					'14' => __('text_pr_origin_14'),
+					'54' => __('text_pr_origin_54'),
+					'65' => __('text_pr_origin_65')
 				),
 				// Mexico Origin
 				'MX' => array(
-					'07' => $this->language->get('text_mx_origin_07'),
-					'08' => $this->language->get('text_mx_origin_08'),
-					'54' => $this->language->get('text_mx_origin_54'),
-					'65' => $this->language->get('text_mx_origin_65')
+					'07' => __('text_mx_origin_07'),
+					'08' => __('text_mx_origin_08'),
+					'54' => __('text_mx_origin_54'),
+					'65' => __('text_mx_origin_65')
 				),
 				// All other origins
 				'other' => array(
 					// service code 7 seems to be gone after January 2, 2007
-					'07' => $this->language->get('text_other_origin_07'),
-					'08' => $this->language->get('text_other_origin_08'),
-					'11' => $this->language->get('text_other_origin_11'),
-					'54' => $this->language->get('text_other_origin_54'),
-					'65' => $this->language->get('text_other_origin_65')
+					'07' => __('text_other_origin_07'),
+					'08' => __('text_other_origin_08'),
+					'11' => __('text_other_origin_11'),
+					'54' => __('text_other_origin_54'),
+					'65' => __('text_other_origin_65')
 				)
 			);
 			
@@ -269,10 +269,10 @@ class ModelShippingUps extends Model {
 				}
 			}
 			
-			$title = $this->language->get('text_title');
+			$title = __('text_title');
 			
 			if ($this->config->get('ups_display_weight')) {	  
-				$title .= ' (' . $this->language->get('text_weight') . ' ' . $this->weight->format($weight, $this->config->get('ups_weight_class_id')) . ')';
+				$title .= ' (' . __('text_weight') . ' ' . $this->weight->format($weight, $this->config->get('ups_weight_class_id')) . ')';
 			}
 		
 			$method_data = array(

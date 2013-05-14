@@ -9,14 +9,14 @@ class ControllerAccountNewsletter extends Controller {
 		
 		$this->language->load('account/newsletter');
     	
-		$this->document->setTitle($this->language->get('heading_title'));
+		$this->document->setTitle(__('heading_title'));
 				
 		if ($this->request->server['REQUEST_METHOD'] == 'POST') {
 			$this->load->model('account/customer');
 			
 			$this->model_account_customer->editNewsletter($this->request->post['newsletter']);
 			
-			$this->session->data['success'] = $this->language->get('text_success');
+			$this->session->data['success'] = __('text_success');
 			
 			$this->redirect($this->url->link('account/account', '', 'SSL'));
 		}
@@ -24,29 +24,29 @@ class ControllerAccountNewsletter extends Controller {
       	$this->data['breadcrumbs'] = array();
 
       	$this->data['breadcrumbs'][] = array(
-        	'text' => $this->language->get('text_home'),
+        	'text' => __('text_home'),
 			'href' => $this->url->link('common/home')
       	); 
 
       	$this->data['breadcrumbs'][] = array(
-        	'text' => $this->language->get('text_account'),
+        	'text' => __('text_account'),
 			'href' => $this->url->link('account/account', '', 'SSL')
       	);
 		
       	$this->data['breadcrumbs'][] = array(
-        	'text' => $this->language->get('text_newsletter'),
+        	'text' => __('text_newsletter'),
 			'href' => $this->url->link('account/newsletter', '', 'SSL')
       	);
 		
-    	$this->data['heading_title'] = $this->language->get('heading_title');
+    	$this->data['heading_title'] = __('heading_title');
 
-    	$this->data['text_yes'] = $this->language->get('text_yes');
-		$this->data['text_no'] = $this->language->get('text_no');
+    	$this->data['text_yes'] = __('text_yes');
+		$this->data['text_no'] = __('text_no');
 		
-		$this->data['entry_newsletter'] = $this->language->get('entry_newsletter');
+		$this->data['entry_newsletter'] = __('entry_newsletter');
 		
-		$this->data['button_continue'] = $this->language->get('button_continue');
-		$this->data['button_back'] = $this->language->get('button_back');
+		$this->data['button_continue'] = __('button_continue');
+		$this->data['button_back'] = __('button_back');
 
     	$this->data['action'] = $this->url->link('account/newsletter', '', 'SSL');
 		

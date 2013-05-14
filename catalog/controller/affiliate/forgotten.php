@@ -9,7 +9,7 @@ class ControllerAffiliateForgotten extends Controller {
 
 		$this->language->load('affiliate/forgotten');
 
-		$this->document->setTitle($this->language->get('heading_title'));
+		$this->document->setTitle(__('heading_title'));
 		
 		$this->load->model('affiliate/affiliate');
 		
@@ -20,10 +20,10 @@ class ControllerAffiliateForgotten extends Controller {
 			
 			$this->model_affiliate_affiliate->editPassword($this->request->post['email'], $password);
 			
-			$subject = sprintf($this->language->get('text_subject'), $this->config->get('config_name'));
+			$subject = sprintf(__('text_subject'), $this->config->get('config_name'));
 			
-			$message  = sprintf($this->language->get('text_greeting'), $this->config->get('config_name')) . "\n\n";
-			$message .= $this->language->get('text_password') . "\n\n";
+			$message  = sprintf(__('text_greeting'), $this->config->get('config_name')) . "\n\n";
+			$message .= __('text_password') . "\n\n";
 			$message .= $password;
 
 			$mail = new Mail();
@@ -41,7 +41,7 @@ class ControllerAffiliateForgotten extends Controller {
 			$mail->setText(html_entity_decode($message, ENT_QUOTES, 'UTF-8'));
 			$mail->send();
 			
-			$this->session->data['success'] = $this->language->get('text_success');
+			$this->session->data['success'] = __('text_success');
 
 			$this->redirect($this->url->link('affiliate/login', '', 'SSL'));
 		}
@@ -49,29 +49,29 @@ class ControllerAffiliateForgotten extends Controller {
       	$this->data['breadcrumbs'] = array();
 
       	$this->data['breadcrumbs'][] = array(
-        	'text' => $this->language->get('text_home'),
+        	'text' => __('text_home'),
 			'href' => $this->url->link('common/home')
       	); 
 
       	$this->data['breadcrumbs'][] = array(
-        	'text' => $this->language->get('text_account'),
+        	'text' => __('text_account'),
 			'href' => $this->url->link('affiliate/account', '', 'SSL')
       	);
 		
       	$this->data['breadcrumbs'][] = array(
-        	'text' => $this->language->get('text_forgotten'),
+        	'text' => __('text_forgotten'),
 			'href' => $this->url->link('affiliate/forgotten', '', 'SSL')
       	);
 		
-		$this->data['heading_title'] = $this->language->get('heading_title');
+		$this->data['heading_title'] = __('heading_title');
 
-		$this->data['text_your_email'] = $this->language->get('text_your_email');
-		$this->data['text_email'] = $this->language->get('text_email');
+		$this->data['text_your_email'] = __('text_your_email');
+		$this->data['text_email'] = __('text_email');
 
-		$this->data['entry_email'] = $this->language->get('entry_email');
+		$this->data['entry_email'] = __('entry_email');
 
-		$this->data['button_continue'] = $this->language->get('button_continue');
-		$this->data['button_back'] = $this->language->get('button_back');
+		$this->data['button_continue'] = __('button_continue');
+		$this->data['button_back'] = __('button_back');
 
 		if (isset($this->error['warning'])) {
 			$this->data['error_warning'] = $this->error['warning'];
@@ -103,9 +103,9 @@ class ControllerAffiliateForgotten extends Controller {
 
 	protected function validate() {
 		if (!isset($this->request->post['email'])) {
-			$this->error['warning'] = $this->language->get('error_email');
+			$this->error['warning'] = __('error_email');
 		} elseif (!$this->model_affiliate_affiliate->getTotalAffiliatesByEmail($this->request->post['email'])) {
-			$this->error['warning'] = $this->language->get('error_email');
+			$this->error['warning'] = __('error_email');
 		}
 
 		if (!$this->error) {

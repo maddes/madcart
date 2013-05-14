@@ -20,7 +20,7 @@ class ModelPaymentPPProUK extends Model {
 		if ($status) {  
       		$method_data = array( 
         		'code'       => 'pp_pro_uk',
-        		'title'      => $this->language->get('text_title'),
+        		'title'      => __('text_title'),
 				'sort_order' => $this->config->get('pp_pro_uk_sort_order')
       		);
     	}

@@ -8,7 +8,7 @@ class ControllerInformationInformation extends Controller {
 		$this->data['breadcrumbs'] = array();
 		
       	$this->data['breadcrumbs'][] = array(
-        	'text' => $this->language->get('text_home'),
+        	'text' => __('text_home'),
 			'href' => $this->url->link('common/home')
       	);
 		
@@ -30,7 +30,7 @@ class ControllerInformationInformation extends Controller {
 						
       		$this->data['heading_title'] = $information_info['title'];
       		
-      		$this->data['button_continue'] = $this->language->get('button_continue');
+      		$this->data['button_continue'] = __('button_continue');
 			
 			$this->data['description'] = html_entity_decode($information_info['description'], ENT_QUOTES, 'UTF-8');
       		
@@ -54,17 +54,17 @@ class ControllerInformationInformation extends Controller {
 	  		$this->response->setOutput($this->render());
     	} else {
       		$this->data['breadcrumbs'][] = array(
-        		'text' => $this->language->get('text_error'),
+        		'text' => __('text_error'),
 				'href' => $this->url->link('information/information', 'information_id=' . $information_id)
       		);
 				
-	  		$this->document->setTitle($this->language->get('text_error'));
+	  		$this->document->setTitle(__('text_error'));
 			
-      		$this->data['heading_title'] = $this->language->get('text_error');
+      		$this->data['heading_title'] = __('text_error');
 
-      		$this->data['text_error'] = $this->language->get('text_error');
+      		$this->data['text_error'] = __('text_error');
 
-      		$this->data['button_continue'] = $this->language->get('button_continue');
+      		$this->data['button_continue'] = __('button_continue');
 
       		$this->data['continue'] = $this->url->link('common/home');
 

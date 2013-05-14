@@ -11,14 +11,14 @@ class ControllerAffiliatePayment extends Controller {
 
 		$this->language->load('affiliate/payment');
 
-		$this->document->setTitle($this->language->get('heading_title'));
+		$this->document->setTitle(__('heading_title'));
 		
 		$this->load->model('affiliate/affiliate');
 		
 		if ($this->request->server['REQUEST_METHOD'] == 'POST') {
 			$this->model_affiliate_affiliate->editPayment($this->request->post);
 			
-			$this->session->data['success'] = $this->language->get('text_success');
+			$this->session->data['success'] = __('text_success');
 
 			$this->redirect($this->url->link('affiliate/account', '', 'SSL'));
 		}
@@ -26,39 +26,39 @@ class ControllerAffiliatePayment extends Controller {
       	$this->data['breadcrumbs'] = array();
 
       	$this->data['breadcrumbs'][] = array(
-        	'text' => $this->language->get('text_home'),
+        	'text' => __('text_home'),
 			'href' => $this->url->link('common/home')
       	); 
 
       	$this->data['breadcrumbs'][] = array(
-        	'text' => $this->language->get('text_account'),
+        	'text' => __('text_account'),
 			'href' => $this->url->link('affiliate/account', '', 'SSL')
       	);
 
       	$this->data['breadcrumbs'][] = array(
-        	'text' => $this->language->get('text_payment'),
+        	'text' => __('text_payment'),
 			'href' => $this->url->link('affiliate/payment', '', 'SSL')
       	);
 		
-		$this->data['heading_title'] = $this->language->get('heading_title');
+		$this->data['heading_title'] = __('heading_title');
 		
-		$this->data['text_your_payment'] = $this->language->get('text_your_payment');
-		$this->data['text_cheque'] = $this->language->get('text_cheque');
-		$this->data['text_paypal'] = $this->language->get('text_paypal');
-		$this->data['text_bank'] = $this->language->get('text_bank');
+		$this->data['text_your_payment'] = __('text_your_payment');
+		$this->data['text_cheque'] = __('text_cheque');
+		$this->data['text_paypal'] = __('text_paypal');
+		$this->data['text_bank'] = __('text_bank');
 		
-		$this->data['entry_tax'] = $this->language->get('entry_tax');
-		$this->data['entry_payment'] = $this->language->get('entry_payment');
-		$this->data['entry_cheque'] = $this->language->get('entry_cheque');
-		$this->data['entry_paypal'] = $this->language->get('entry_paypal');
-		$this->data['entry_bank_name'] = $this->language->get('entry_bank_name');
-		$this->data['entry_bank_branch_number'] = $this->language->get('entry_bank_branch_number');
-		$this->data['entry_bank_swift_code'] = $this->language->get('entry_bank_swift_code');
-		$this->data['entry_bank_account_name'] = $this->language->get('entry_bank_account_name');
-		$this->data['entry_bank_account_number'] = $this->language->get('entry_bank_account_number');
+		$this->data['entry_tax'] = __('entry_tax');
+		$this->data['entry_payment'] = __('entry_payment');
+		$this->data['entry_cheque'] = __('entry_cheque');
+		$this->data['entry_paypal'] = __('entry_paypal');
+		$this->data['entry_bank_name'] = __('entry_bank_name');
+		$this->data['entry_bank_branch_number'] = __('entry_bank_branch_number');
+		$this->data['entry_bank_swift_code'] = __('entry_bank_swift_code');
+		$this->data['entry_bank_account_name'] = __('entry_bank_account_name');
+		$this->data['entry_bank_account_number'] = __('entry_bank_account_number');
 
-		$this->data['button_continue'] = $this->language->get('button_continue');
-		$this->data['button_back'] = $this->language->get('button_back');
+		$this->data['button_continue'] = __('button_continue');
+		$this->data['button_back'] = __('button_back');
 		
 		$this->data['action'] = $this->url->link('affiliate/payment', '', 'SSL');
 

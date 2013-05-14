@@ -5,7 +5,7 @@ class ControllerLocalisationReturnAction extends Controller {
   	public function index() {
 		$this->language->load('localisation/return_action');
 	
-    	$this->document->setTitle($this->language->get('heading_title'));
+    	$this->document->setTitle(__('heading_title'));
 		
 		$this->load->model('localisation/return_action');
 		
@@ -15,14 +15,14 @@ class ControllerLocalisationReturnAction extends Controller {
   	public function insert() {
 		$this->language->load('localisation/return_action');
 	
-    	$this->document->setTitle($this->language->get('heading_title'));
+    	$this->document->setTitle(__('heading_title'));
 		
 		$this->load->model('localisation/return_action');
 			
 		if (($this->request->server['REQUEST_METHOD'] == 'POST') && $this->validateForm()) {
       		$this->model_localisation_return_action->addReturnAction($this->request->post);
 		  	
-			$this->session->data['success'] = $this->language->get('text_success');
+			$this->session->data['success'] = __('text_success');
 
 			$url = '';
 			
@@ -47,14 +47,14 @@ class ControllerLocalisationReturnAction extends Controller {
   	public function update() {
 		$this->language->load('localisation/return_action');
 	
-    	$this->document->setTitle($this->language->get('heading_title'));
+    	$this->document->setTitle(__('heading_title'));
 		
 		$this->load->model('localisation/return_action');
 		
     	if (($this->request->server['REQUEST_METHOD'] == 'POST') && $this->validateForm()) {
 	  		$this->model_localisation_return_action->editReturnAction($this->request->get['return_action_id'], $this->request->post);
 			
-			$this->session->data['success'] = $this->language->get('text_success');
+			$this->session->data['success'] = __('text_success');
 
 			$url = '';
 			
@@ -79,7 +79,7 @@ class ControllerLocalisationReturnAction extends Controller {
   	public function delete() {
 		$this->language->load('localisation/return_action');
 	
-    	$this->document->setTitle($this->language->get('heading_title'));
+    	$this->document->setTitle(__('heading_title'));
 		
 		$this->load->model('localisation/return_action');
 		
@@ -88,7 +88,7 @@ class ControllerLocalisationReturnAction extends Controller {
 				$this->model_localisation_return_action->deleteReturnAction($return_action_id);
 			}
 			      		
-			$this->session->data['success'] = $this->language->get('text_success');
+			$this->session->data['success'] = __('text_success');
 
 			$url = '';
 			
@@ -146,12 +146,12 @@ class ControllerLocalisationReturnAction extends Controller {
   		$this->data['breadcrumbs'] = array();
 
    		$this->data['breadcrumbs'][] = array(
-       		'text' => $this->language->get('text_home'),
+       		'text' => __('text_home'),
 			'href' => $this->url->link('common/home', 'token=' . $this->session->data['token'], 'SSL')
    		);
 
    		$this->data['breadcrumbs'][] = array(
-       		'text' => $this->language->get('heading_title'),
+       		'text' => __('heading_title'),
 			'href' => $this->url->link('localisation/return_action', 'token=' . $this->session->data['token'] . $url, 'SSL')
    		);
 							
@@ -175,7 +175,7 @@ class ControllerLocalisationReturnAction extends Controller {
 			$action = array();
 			
 			$action[] = array(
-				'text' => $this->language->get('text_edit'),
+				'text' => __('text_edit'),
 				'href' => $this->url->link('localisation/return_action/update', 'token=' . $this->session->data['token'] . '&return_action_id=' . $result['return_action_id'] . $url, 'SSL')
 			);
 						
@@ -187,15 +187,15 @@ class ControllerLocalisationReturnAction extends Controller {
 			);
 		}	
 	
-		$this->data['heading_title'] = $this->language->get('heading_title');
+		$this->data['heading_title'] = __('heading_title');
 
-		$this->data['text_no_results'] = $this->language->get('text_no_results');
+		$this->data['text_no_results'] = __('text_no_results');
 
-		$this->data['column_name'] = $this->language->get('column_name');
-		$this->data['column_action'] = $this->language->get('column_action');		
+		$this->data['column_name'] = __('column_name');
+		$this->data['column_action'] = __('column_action');		
 		
-		$this->data['button_insert'] = $this->language->get('button_insert');
-		$this->data['button_delete'] = $this->language->get('button_delete');
+		$this->data['button_insert'] = __('button_insert');
+		$this->data['button_delete'] = __('button_delete');
  
  		if (isset($this->error['warning'])) {
 			$this->data['error_warning'] = $this->error['warning'];
@@ -243,7 +243,7 @@ class ControllerLocalisationReturnAction extends Controller {
 			
 		$this->data['pagination'] = $pagination->render();
 	
-		$this->data['results'] = sprintf($this->language->get('text_pagination'), ($return_action_total) ? (($page - 1) * $this->config->get('config_admin_limit')) + 1 : 0, ((($page - 1) * $this->config->get('config_admin_limit')) > ($return_action_total - $this->config->get('config_admin_limit'))) ? $return_action_total : ((($page - 1) * $this->config->get('config_admin_limit')) + $this->config->get('config_admin_limit')), $return_action_total, ceil($return_action_total / $this->config->get('config_admin_limit')));
+		$this->data['results'] = sprintf(__('text_pagination'), ($return_action_total) ? (($page - 1) * $this->config->get('config_admin_limit')) + 1 : 0, ((($page - 1) * $this->config->get('config_admin_limit')) > ($return_action_total - $this->config->get('config_admin_limit'))) ? $return_action_total : ((($page - 1) * $this->config->get('config_admin_limit')) + $this->config->get('config_admin_limit')), $return_action_total, ceil($return_action_total / $this->config->get('config_admin_limit')));
 
 		$this->data['sort'] = $sort;
 		$this->data['order'] = $order;
@@ -258,12 +258,12 @@ class ControllerLocalisationReturnAction extends Controller {
   	}
   
   	protected function getForm() {
-     	$this->data['heading_title'] = $this->language->get('heading_title');
+     	$this->data['heading_title'] = __('heading_title');
 
-    	$this->data['entry_name'] = $this->language->get('entry_name');
+    	$this->data['entry_name'] = __('entry_name');
 
-    	$this->data['button_save'] = $this->language->get('button_save');
-    	$this->data['button_cancel'] = $this->language->get('button_cancel');
+    	$this->data['button_save'] = __('button_save');
+    	$this->data['button_cancel'] = __('button_cancel');
     
  		if (isset($this->error['warning'])) {
 			$this->data['error_warning'] = $this->error['warning'];
@@ -294,12 +294,12 @@ class ControllerLocalisationReturnAction extends Controller {
   		$this->data['breadcrumbs'] = array();
 
    		$this->data['breadcrumbs'][] = array(
-       		'text' => $this->language->get('text_home'),
+       		'text' => __('text_home'),
 			'href' => $this->url->link('common/home', 'token=' . $this->session->data['token'], 'SSL')
    		);
 
    		$this->data['breadcrumbs'][] = array(
-       		'text' => $this->language->get('heading_title'),
+       		'text' => __('heading_title'),
 			'href' => $this->url->link('localisation/return_action', 'token=' . $this->session->data['token'] . $url, 'SSL')
    		);
 		
@@ -334,12 +334,12 @@ class ControllerLocalisationReturnAction extends Controller {
   	
 	protected function validateForm() {
     	if (!$this->user->hasPermission('modify', 'localisation/return_action')) {
-      		$this->error['warning'] = $this->language->get('error_permission');
+      		$this->error['warning'] = __('error_permission');
     	}
 	
     	foreach ($this->request->post['return_action'] as $language_id => $value) {
       		if ((utf8_strlen($value['name']) < 3) || (utf8_strlen($value['name']) > 32)) {
-        		$this->error['name'][$language_id] = $this->language->get('error_name');
+        		$this->error['name'][$language_id] = __('error_name');
       		}
     	}
 		
@@ -352,7 +352,7 @@ class ControllerLocalisationReturnAction extends Controller {
 
   	protected function validateDelete() {
 		if (!$this->user->hasPermission('modify', 'localisation/return_action')) {
-      		$this->error['warning'] = $this->language->get('error_permission');
+      		$this->error['warning'] = __('error_permission');
     	}
 		
 		$this->load->model('sale/return');
@@ -361,7 +361,7 @@ class ControllerLocalisationReturnAction extends Controller {
 			$return_total = $this->model_sale_return->getTotalReturnsByReturnActionId($return_action_id);
 		
 			if ($return_total) {
-	  			$this->error['warning'] = sprintf($this->language->get('error_return'), $return_total);	
+	  			$this->error['warning'] = sprintf(__('error_return'), $return_total);	
 			}  
 	  	}
 		

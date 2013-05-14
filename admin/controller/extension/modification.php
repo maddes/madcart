@@ -5,7 +5,7 @@ class ControllerExtensionModification extends Controller {
   	public function index() {
 		$this->language->load('extension/modification');
 	
-    	$this->document->setTitle($this->language->get('heading_title'));
+    	$this->document->setTitle(__('heading_title'));
 		
 		$this->load->model('setting/modification');
 		
@@ -15,14 +15,14 @@ class ControllerExtensionModification extends Controller {
   	public function insert() {
 		$this->language->load('extension/modification');
 	
-    	$this->document->setTitle($this->language->get('heading_title'));
+    	$this->document->setTitle(__('heading_title'));
 		
 		$this->load->model('setting/modification');
 			
 		if (($this->request->server['REQUEST_METHOD'] == 'POST') && $this->validateForm()) {
       		$this->model_setting_modification->addModification($this->request->post);
 		  	
-			$this->session->data['success'] = $this->language->get('text_success');
+			$this->session->data['success'] = __('text_success');
 
 			$url = '';
 			
@@ -47,14 +47,14 @@ class ControllerExtensionModification extends Controller {
   	public function update() {
 		$this->language->load('extension/modification');
 	
-    	$this->document->setTitle($this->language->get('heading_title'));
+    	$this->document->setTitle(__('heading_title'));
 		
 		$this->load->model('setting/modification');
 		
     	if (($this->request->server['REQUEST_METHOD'] == 'POST') && $this->validateForm()) {
 	  		$this->model_setting_modification->editModification($this->request->get['modification_id'], $this->request->post);
 			
-			$this->session->data['success'] = $this->language->get('text_success');
+			$this->session->data['success'] = __('text_success');
 
 			$url = '';
 			
@@ -79,7 +79,7 @@ class ControllerExtensionModification extends Controller {
   	public function delete() {
 		$this->language->load('extension/modification');
 	
-    	$this->document->setTitle($this->language->get('heading_title'));
+    	$this->document->setTitle(__('heading_title'));
 		
 		$this->load->model('setting/modification');
 		
@@ -88,7 +88,7 @@ class ControllerExtensionModification extends Controller {
 				$this->model_setting_modification->deleteModification($modification_id);
 			}
 			      		
-			$this->session->data['success'] = $this->language->get('text_success');
+			$this->session->data['success'] = __('text_success');
 
 			$url = '';
 			
@@ -113,7 +113,7 @@ class ControllerExtensionModification extends Controller {
   	public function refresh() {
 		$this->language->load('extension/modification');
 	
-    	$this->document->setTitle($this->language->get('heading_title'));
+    	$this->document->setTitle(__('heading_title'));
 		
 		$this->load->model('setting/modification');
 		
@@ -130,7 +130,7 @@ class ControllerExtensionModification extends Controller {
 			
 			$this->modification->write();
 			
-			$this->session->data['success'] = $this->language->get('text_success');
+			$this->session->data['success'] = __('text_success');
 
 			$url = '';
 			
@@ -155,14 +155,14 @@ class ControllerExtensionModification extends Controller {
   	public function clear() {
 		$this->language->load('extension/modification');
 	
-    	$this->document->setTitle($this->language->get('heading_title'));
+    	$this->document->setTitle(__('heading_title'));
 		
 		$this->load->model('setting/modification');
 		
     	if ($this->validateDelete()) {
 			$this->modification->clear();
 
-			$this->session->data['success'] = $this->language->get('text_success');
+			$this->session->data['success'] = __('text_success');
 
 			$url = '';
 			
@@ -220,12 +220,12 @@ class ControllerExtensionModification extends Controller {
   		$this->data['breadcrumbs'] = array();
 
    		$this->data['breadcrumbs'][] = array(
-       		'text' => $this->language->get('text_home'),
+       		'text' => __('text_home'),
 			'href' => $this->url->link('common/home', 'token=' . $this->session->data['token'], 'SSL')
    		);
 
    		$this->data['breadcrumbs'][] = array(
-       		'text' => $this->language->get('heading_title'),
+       		'text' => __('heading_title'),
 			'href' => $this->url->link('extension/modification', 'token=' . $this->session->data['token'] . $url, 'SSL')
    		);
 		
@@ -251,7 +251,7 @@ class ControllerExtensionModification extends Controller {
 			$action = array();
 			
 			$action[] = array(
-				'text' => $this->language->get('text_edit'),
+				'text' => __('text_edit'),
 				'href' => $this->url->link('extension/modification/update', 'token=' . $this->session->data['token'] . '&modification_id=' . $result['modification_id'] . $url, 'SSL')
 			);
 						
@@ -259,28 +259,28 @@ class ControllerExtensionModification extends Controller {
 				'modification_id' => $result['modification_id'],
 				'name'            => $result['name'],
 				'author'          => $result['author'],
-				'date_added'      => date($this->language->get('date_format_short'), strtotime($result['date_added'])),
-				'date_modified'   => date($this->language->get('date_format_short'), strtotime($result['date_modified'])),
+				'date_added'      => date(__('date_format_short'), strtotime($result['date_added'])),
+				'date_modified'   => date(__('date_format_short'), strtotime($result['date_modified'])),
 				'selected'        => isset($this->request->post['selected']) && in_array($result['modification_id'], $this->request->post['selected']),
 				'action'          => $action
 			);
 		}			
 		
-		$this->data['heading_title'] = $this->language->get('heading_title');
+		$this->data['heading_title'] = __('heading_title');
 		
-		$this->data['text_no_results'] = $this->language->get('text_no_results');
-		$this->data['text_confirm'] = $this->language->get('text_confirm');
+		$this->data['text_no_results'] = __('text_no_results');
+		$this->data['text_confirm'] = __('text_confirm');
 
-		$this->data['column_name'] = $this->language->get('column_name');
-		$this->data['column_author'] = $this->language->get('column_author');
-		$this->data['column_date_added'] = $this->language->get('column_date_added');
-		$this->data['column_date_modified'] = $this->language->get('column_date_modified');
-		$this->data['column_action'] = $this->language->get('column_action');
+		$this->data['column_name'] = __('column_name');
+		$this->data['column_author'] = __('column_author');
+		$this->data['column_date_added'] = __('column_date_added');
+		$this->data['column_date_modified'] = __('column_date_modified');
+		$this->data['column_action'] = __('column_action');
 		
-		$this->data['button_refresh'] = $this->language->get('button_refresh');
-		$this->data['button_clear'] = $this->language->get('button_clear');
-		$this->data['button_insert'] = $this->language->get('button_insert');
-		$this->data['button_delete'] = $this->language->get('button_delete');
+		$this->data['button_refresh'] = __('button_refresh');
+		$this->data['button_clear'] = __('button_clear');
+		$this->data['button_insert'] = __('button_insert');
+		$this->data['button_delete'] = __('button_delete');
 		
  		if (isset($this->error['warning'])) {
 			$this->data['error_warning'] = $this->error['warning'];
@@ -331,7 +331,7 @@ class ControllerExtensionModification extends Controller {
 			
 		$this->data['pagination'] = $pagination->render();
 		
-		$this->data['results'] = sprintf($this->language->get('text_pagination'), ($modification_total) ? (($page - 1) * $this->config->get('config_admin_limit')) + 1 : 0, ((($page - 1) * $this->config->get('config_admin_limit')) > ($modification_total - $this->config->get('config_admin_limit'))) ? $modification_total : ((($page - 1) * $this->config->get('config_admin_limit')) + $this->config->get('config_admin_limit')), $modification_total, ceil($modification_total / $this->config->get('config_admin_limit')));
+		$this->data['results'] = sprintf(__('text_pagination'), ($modification_total) ? (($page - 1) * $this->config->get('config_admin_limit')) + 1 : 0, ((($page - 1) * $this->config->get('config_admin_limit')) > ($modification_total - $this->config->get('config_admin_limit'))) ? $modification_total : ((($page - 1) * $this->config->get('config_admin_limit')) + $this->config->get('config_admin_limit')), $modification_total, ceil($modification_total / $this->config->get('config_admin_limit')));
 
 		$this->data['sort'] = $sort;
 		$this->data['order'] = $order;
@@ -346,16 +346,16 @@ class ControllerExtensionModification extends Controller {
 	}
 	
   	protected function getForm() {
-     	$this->data['heading_title'] = $this->language->get('heading_title');
+     	$this->data['heading_title'] = __('heading_title');
 
-		$this->data['text_enabled'] = $this->language->get('text_enabled');
-		$this->data['text_disabled'] = $this->language->get('text_disabled');
+		$this->data['text_enabled'] = __('text_enabled');
+		$this->data['text_disabled'] = __('text_disabled');
 
-    	$this->data['entry_code'] = $this->language->get('entry_code');
-		$this->data['entry_status'] = $this->language->get('entry_status');
+    	$this->data['entry_code'] = __('entry_code');
+		$this->data['entry_status'] = __('entry_status');
 
-    	$this->data['button_save'] = $this->language->get('button_save');
-    	$this->data['button_cancel'] = $this->language->get('button_cancel');
+    	$this->data['button_save'] = __('button_save');
+    	$this->data['button_cancel'] = __('button_cancel');
 	
  		if (isset($this->error['warning'])) {
 			$this->data['error_warning'] = $this->error['warning'];
@@ -386,12 +386,12 @@ class ControllerExtensionModification extends Controller {
   		$this->data['breadcrumbs'] = array();
 
    		$this->data['breadcrumbs'][] = array(
-       		'text' => $this->language->get('text_home'),
+       		'text' => __('text_home'),
 			'href' => $this->url->link('common/home', 'token=' . $this->session->data['token'], 'SSL')
    		);
 
    		$this->data['breadcrumbs'][] = array(
-       		'text' => $this->language->get('heading_title'),
+       		'text' => __('heading_title'),
 			'href' => $this->url->link('extension/modification', 'token=' . $this->session->data['token'] . $url, 'SSL')
    		);
 		
@@ -436,7 +436,7 @@ class ControllerExtensionModification extends Controller {
 	
 	protected function validateForm() {
     	if (!$this->user->hasPermission('modify', 'extension/modification')) {
-      		$this->error['warning'] = $this->language->get('error_permission');
+      		$this->error['warning'] = __('error_permission');
     	}
 		
 		if (!$this->error) {
@@ -448,7 +448,7 @@ class ControllerExtensionModification extends Controller {
 
   	protected function validateDelete() {
 		if (!$this->user->hasPermission('modify', 'extension/modification')) {
-      		$this->error['warning'] = $this->language->get('error_permission');
+      		$this->error['warning'] = __('error_permission');
     	}
 		
 		if (!$this->error) { 

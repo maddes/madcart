@@ -296,11 +296,11 @@ class ControllerCheckoutConfirm extends Controller {
 			
 			$this->session->data['order_id'] = $this->model_checkout_order->addOrder($data);
 			
-			$this->data['column_name'] = $this->language->get('column_name');
-			$this->data['column_model'] = $this->language->get('column_model');
-			$this->data['column_quantity'] = $this->language->get('column_quantity');
-			$this->data['column_price'] = $this->language->get('column_price');
-			$this->data['column_total'] = $this->language->get('column_total');
+			$this->data['column_name'] = __('column_name');
+			$this->data['column_model'] = __('column_model');
+			$this->data['column_quantity'] = __('column_quantity');
+			$this->data['column_price'] = __('column_price');
+			$this->data['column_total'] = __('column_total');
 	
 			$this->data['products'] = array();
 	

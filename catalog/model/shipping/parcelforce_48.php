@@ -51,18 +51,18 @@ class ModelShippingParcelforce48 extends Model {
 			$quote_data = array();
 			
 			if ((float)$cost) {
-				$text = $this->language->get('text_description');
+				$text = __('text_description');
 			
 				if ($this->config->get('parcelforce_48_display_weight')) {
-					$text .= ' (' . $this->language->get('text_weight') . ' ' . $this->weight->format($weight, $this->config->get('config_weight_class_id')) . ')';
+					$text .= ' (' . __('text_weight') . ' ' . $this->weight->format($weight, $this->config->get('config_weight_class_id')) . ')';
 				}
 			
 				if ($this->config->get('parcelforce_48_display_insurance') && (float)$insurance) {
-					$text .= ' (' . $this->language->get('text_insurance') . ' ' . $this->currency->format($insurance) . ')';
+					$text .= ' (' . __('text_insurance') . ' ' . $this->currency->format($insurance) . ')';
 				}		
 
 				if ($this->config->get('parcelforce_48_display_time')) {
-					$text .= ' (' . $this->language->get('text_time') . ')';
+					$text .= ' (' . __('text_time') . ')';
 				}	
 				
       			$quote_data['parcelforce_48'] = array(
@@ -75,7 +75,7 @@ class ModelShippingParcelforce48 extends Model {
 
       			$method_data = array(
         			'code'       => 'parcelforce_48',
-        			'title'      => $this->language->get('text_title'),
+        			'title'      => __('text_title'),
         			'quote'      => $quote_data,
 					'sort_order' => $this->config->get('parcelforce_48_sort_order'),
         			'error'      => false

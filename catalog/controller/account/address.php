@@ -11,7 +11,7 @@ class ControllerAccountAddress extends Controller {
 	
     	$this->language->load('account/address');
 
-		$this->document->setTitle($this->language->get('heading_title'));
+		$this->document->setTitle(__('heading_title'));
 		
 		$this->load->model('account/address');
 		
@@ -27,14 +27,14 @@ class ControllerAccountAddress extends Controller {
 
     	$this->language->load('account/address');
 
-		$this->document->setTitle($this->language->get('heading_title'));
+		$this->document->setTitle(__('heading_title'));
 		
 		$this->load->model('account/address');
 			
     	if (($this->request->server['REQUEST_METHOD'] == 'POST') && $this->validateForm()) {
 			$this->model_account_address->addAddress($this->request->post);
 			
-      		$this->session->data['success'] = $this->language->get('text_insert');
+      		$this->session->data['success'] = __('text_insert');
 
 	  		$this->redirect($this->url->link('account/address', '', 'SSL'));
     	} 
@@ -51,7 +51,7 @@ class ControllerAccountAddress extends Controller {
 		
     	$this->language->load('account/address');
 
-		$this->document->setTitle($this->language->get('heading_title'));
+		$this->document->setTitle(__('heading_title'));
 		
 		$this->load->model('account/address');
 		
@@ -74,7 +74,7 @@ class ControllerAccountAddress extends Controller {
 				unset($this->session->data['payment_methods']);
 			}
 			
-			$this->session->data['success'] = $this->language->get('text_update');
+			$this->session->data['success'] = __('text_update');
 	  
 	  		$this->redirect($this->url->link('account/address', '', 'SSL'));
     	} 
@@ -91,7 +91,7 @@ class ControllerAccountAddress extends Controller {
 			
     	$this->language->load('account/address');
 
-		$this->document->setTitle($this->language->get('heading_title'));
+		$this->document->setTitle(__('heading_title'));
 		
 		$this->load->model('account/address');
 		
@@ -112,7 +112,7 @@ class ControllerAccountAddress extends Controller {
 				unset($this->session->data['payment_methods']);
 			}
 			
-			$this->session->data['success'] = $this->language->get('text_delete');
+			$this->session->data['success'] = __('text_delete');
 	  
 	  		$this->redirect($this->url->link('account/address', '', 'SSL'));
     	}
@@ -122,29 +122,29 @@ class ControllerAccountAddress extends Controller {
 
   	protected function getList() {
       	$this->data['breadcrumbs'][] = array(
-        	'text' => $this->language->get('text_home'),
+        	'text' => __('text_home'),
 			'href' => $this->url->link('common/home')
       	); 
 
       	$this->data['breadcrumbs'][] = array(
-        	'text' => $this->language->get('text_account'),
+        	'text' => __('text_account'),
 			'href' => $this->url->link('account/account', '', 'SSL')
       	);
 
       	$this->data['breadcrumbs'][] = array(
-        	'text' => $this->language->get('heading_title'),
+        	'text' => __('heading_title'),
 			'href' => $this->url->link('account/address', '', 'SSL')
       	);
 			
-    	$this->data['heading_title'] = $this->language->get('heading_title');
+    	$this->data['heading_title'] = __('heading_title');
 		
-    	$this->data['text_address_book'] = $this->language->get('text_address_book');
-   		$this->data['text_empty'] = $this->language->get('text_empty');
+    	$this->data['text_address_book'] = __('text_address_book');
+   		$this->data['text_empty'] = __('text_empty');
    
-    	$this->data['button_new_address'] = $this->language->get('button_new_address');
-    	$this->data['button_edit'] = $this->language->get('button_edit');
-    	$this->data['button_delete'] = $this->language->get('button_delete');
-		$this->data['button_back'] = $this->language->get('button_back');
+    	$this->data['button_new_address'] = __('button_new_address');
+    	$this->data['button_edit'] = __('button_edit');
+    	$this->data['button_delete'] = __('button_delete');
+		$this->data['button_back'] = __('button_back');
 
 		if (isset($this->error['warning'])) {
     		$this->data['error_warning'] = $this->error['warning'];
@@ -230,53 +230,53 @@ class ControllerAccountAddress extends Controller {
       	$this->data['breadcrumbs'] = array();
 
       	$this->data['breadcrumbs'][] = array(
-        	'text' => $this->language->get('text_home'),
+        	'text' => __('text_home'),
 			'href' => $this->url->link('common/home')
       	); 
 
       	$this->data['breadcrumbs'][] = array(
-        	'text' => $this->language->get('text_account'),
+        	'text' => __('text_account'),
 			'href' => $this->url->link('account/account', '', 'SSL')
       	);
 
       	$this->data['breadcrumbs'][] = array(
-        	'text' => $this->language->get('heading_title'),
+        	'text' => __('heading_title'),
 			'href' => $this->url->link('account/address', '', 'SSL')
       	);
 		
 		if (!isset($this->request->get['address_id'])) {
       		$this->data['breadcrumbs'][] = array(
-        		'text' => $this->language->get('text_edit_address'),
+        		'text' => __('text_edit_address'),
 				'href' => $this->url->link('account/address/insert', '', 'SSL')
       		);
 		} else {
       		$this->data['breadcrumbs'][] = array(
-        		'text' => $this->language->get('text_edit_address'),
+        		'text' => __('text_edit_address'),
 				'href' => $this->url->link('account/address/update', 'address_id=' . $this->request->get['address_id'], 'SSL')
       		);
 		}
 						
-    	$this->data['heading_title'] = $this->language->get('heading_title');
+    	$this->data['heading_title'] = __('heading_title');
     	
-		$this->data['text_edit_address'] = $this->language->get('text_edit_address');
-    	$this->data['text_yes'] = $this->language->get('text_yes');
-    	$this->data['text_no'] = $this->language->get('text_no');
-		$this->data['text_select'] = $this->language->get('text_select');
-		$this->data['text_none'] = $this->language->get('text_none');
+		$this->data['text_edit_address'] = __('text_edit_address');
+    	$this->data['text_yes'] = __('text_yes');
+    	$this->data['text_no'] = __('text_no');
+		$this->data['text_select'] = __('text_select');
+		$this->data['text_none'] = __('text_none');
 		
-    	$this->data['entry_firstname'] = $this->language->get('entry_firstname');
-    	$this->data['entry_lastname'] = $this->language->get('entry_lastname');
-    	$this->data['entry_company'] = $this->language->get('entry_company');
-    	$this->data['entry_address_1'] = $this->language->get('entry_address_1');
-    	$this->data['entry_address_2'] = $this->language->get('entry_address_2');
-    	$this->data['entry_postcode'] = $this->language->get('entry_postcode');
-    	$this->data['entry_city'] = $this->language->get('entry_city');
-    	$this->data['entry_country'] = $this->language->get('entry_country');
-    	$this->data['entry_zone'] = $this->language->get('entry_zone');
-    	$this->data['entry_default'] = $this->language->get('entry_default');
+    	$this->data['entry_firstname'] = __('entry_firstname');
+    	$this->data['entry_lastname'] = __('entry_lastname');
+    	$this->data['entry_company'] = __('entry_company');
+    	$this->data['entry_address_1'] = __('entry_address_1');
+    	$this->data['entry_address_2'] = __('entry_address_2');
+    	$this->data['entry_postcode'] = __('entry_postcode');
+    	$this->data['entry_city'] = __('entry_city');
+    	$this->data['entry_country'] = __('entry_country');
+    	$this->data['entry_zone'] = __('entry_zone');
+    	$this->data['entry_default'] = __('entry_default');
 
-    	$this->data['button_continue'] = $this->language->get('button_continue');
-    	$this->data['button_back'] = $this->language->get('button_back');
+    	$this->data['button_continue'] = __('button_continue');
+    	$this->data['button_back'] = __('button_back');
 
 		if (isset($this->error['firstname'])) {
     		$this->data['error_firstname'] = $this->error['firstname'];
@@ -436,19 +436,19 @@ class ControllerAccountAddress extends Controller {
 	
   	protected function validateForm() {
     	if ((utf8_strlen($this->request->post['firstname']) < 1) || (utf8_strlen($this->request->post['firstname']) > 32)) {
-      		$this->error['firstname'] = $this->language->get('error_firstname');
+      		$this->error['firstname'] = __('error_firstname');
     	}
 
     	if ((utf8_strlen($this->request->post['lastname']) < 1) || (utf8_strlen($this->request->post['lastname']) > 32)) {
-      		$this->error['lastname'] = $this->language->get('error_lastname');
+      		$this->error['lastname'] = __('error_lastname');
     	}
 
     	if ((utf8_strlen($this->request->post['address_1']) < 3) || (utf8_strlen($this->request->post['address_1']) > 128)) {
-      		$this->error['address_1'] = $this->language->get('error_address_1');
+      		$this->error['address_1'] = __('error_address_1');
     	}
 
     	if ((utf8_strlen($this->request->post['city']) < 2) || (utf8_strlen($this->request->post['city']) > 128)) {
-      		$this->error['city'] = $this->language->get('error_city');
+      		$this->error['city'] = __('error_city');
     	}
 		
 		$this->load->model('localisation/country');
@@ -456,15 +456,15 @@ class ControllerAccountAddress extends Controller {
 		$country_info = $this->model_localisation_country->getCountry($this->request->post['country_id']);
 		
 		if ($country_info && $country_info['postcode_required'] && (utf8_strlen($this->request->post['postcode']) < 2) || (utf8_strlen($this->request->post['postcode']) > 10)) {
-			$this->error['postcode'] = $this->language->get('error_postcode');
+			$this->error['postcode'] = __('error_postcode');
 		}
 		
     	if ($this->request->post['country_id'] == '') {
-      		$this->error['country'] = $this->language->get('error_country');
+      		$this->error['country'] = __('error_country');
     	}
 		
     	if (!isset($this->request->post['zone_id']) || $this->request->post['zone_id'] == '') {
-      		$this->error['zone'] = $this->language->get('error_zone');
+      		$this->error['zone'] = __('error_zone');
     	}
 		
     	if (!$this->error) {
@@ -476,11 +476,11 @@ class ControllerAccountAddress extends Controller {
 
   	protected function validateDelete() {
     	if ($this->model_account_address->getTotalAddresses() == 1) {
-      		$this->error['warning'] = $this->language->get('error_delete');
+      		$this->error['warning'] = __('error_delete');
     	}
 
     	if ($this->customer->getAddressId() == $this->request->get['address_id']) {
-      		$this->error['warning'] = $this->language->get('error_default');
+      		$this->error['warning'] = __('error_default');
     	}
 
     	if (!$this->error) {

@@ -60,14 +60,14 @@ class ControllerCheckoutPaymentMethod extends Controller {
 			
 		}			
 		
-		$this->data['text_payment_method'] = $this->language->get('text_payment_method');
-		$this->data['text_comments'] = $this->language->get('text_comments');
-		$this->data['text_modify'] = $this->language->get('text_modify');
+		$this->data['text_payment_method'] = __('text_payment_method');
+		$this->data['text_comments'] = __('text_comments');
+		$this->data['text_modify'] = __('text_modify');
 
-		$this->data['button_continue'] = $this->language->get('button_continue');
+		$this->data['button_continue'] = __('button_continue');
    
 		if (empty($this->session->data['payment_methods'])) {
-			$this->data['error_warning'] = sprintf($this->language->get('error_no_payment'), $this->url->link('information/contact'));
+			$this->data['error_warning'] = sprintf(__('error_no_payment'), $this->url->link('information/contact'));
 		} else {
 			$this->data['error_warning'] = '';
 		}	
@@ -96,7 +96,7 @@ class ControllerCheckoutPaymentMethod extends Controller {
 			$information_info = $this->model_catalog_information->getInformation($this->config->get('config_checkout_id'));
 			
 			if ($information_info) {
-				$this->data['text_agree'] = sprintf($this->language->get('text_agree'), $this->url->link('information/information/info', 'information_id=' . $this->config->get('config_checkout_id'), 'SSL'), $information_info['title'], $information_info['title']);
+				$this->data['text_agree'] = sprintf(__('text_agree'), $this->url->link('information/information/info', 'information_id=' . $this->config->get('config_checkout_id'), 'SSL'), $information_info['title'], $information_info['title']);
 			} else {
 				$this->data['text_agree'] = '';
 			}
@@ -155,9 +155,9 @@ class ControllerCheckoutPaymentMethod extends Controller {
 											
 		if (!$json) {
 			if (!isset($this->request->post['payment_method'])) {
-				$json['error']['warning'] = $this->language->get('error_payment');
+				$json['error']['warning'] = __('error_payment');
 			} elseif (!isset($this->session->data['payment_methods'][$this->request->post['payment_method']])) {
-				$json['error']['warning'] = $this->language->get('error_payment');
+				$json['error']['warning'] = __('error_payment');
 			}	
 							
 			if ($this->config->get('config_checkout_id')) {
@@ -166,7 +166,7 @@ class ControllerCheckoutPaymentMethod extends Controller {
 				$information_info = $this->model_catalog_information->getInformation($this->config->get('config_checkout_id'));
 				
 				if ($information_info && !isset($this->request->post['agree'])) {
-					$json['error']['warning'] = sprintf($this->language->get('error_agree'), $information_info['title']);
+					$json['error']['warning'] = sprintf(__('error_agree'), $information_info['title']);
 				}
 			}
 			

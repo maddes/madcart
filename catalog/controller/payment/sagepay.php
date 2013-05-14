@@ -3,7 +3,7 @@ class ControllerPaymentSagepay extends Controller {
 	protected function index() {
 		$this->language->load('payment/sagepay');
 		
-		$this->data['button_confirm'] = $this->language->get('button_confirm');
+		$this->data['button_confirm'] = __('button_confirm');
 		
 		if ($this->config->get('sagepay_test') == 'live') {
     		$this->data['action'] = 'https://live.sagepay.com/gateway/service/vspform-register.vsp';
@@ -26,7 +26,7 @@ class ControllerPaymentSagepay extends Controller {
 		$data['ReferrerID'] = 'E511AF91-E4A0-42DE-80B0-09C981A3FB61';
 		$data['Amount'] = $this->currency->format($order_info['total'], $order_info['currency_code'], $order_info['currency_value'], false);
 		$data['Currency'] = $order_info['currency_code'];
-		$data['Description'] = sprintf($this->language->get('text_description'), date($this->language->get('date_format_short')), $this->session->data['order_id']);
+		$data['Description'] = sprintf(__('text_description'), date(__('date_format_short')), $this->session->data['order_id']);
 		$data['SuccessURL'] = str_replace('&amp;', '&', $this->url->link('payment/sagepay/success', 'order_id=' . $this->session->data['order_id']));
 		$data['FailureURL'] = str_replace('&amp;', '&', $this->url->link('checkout/checkout', '', 'SSL'));
 		

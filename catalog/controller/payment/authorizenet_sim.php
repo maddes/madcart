@@ -1,7 +1,7 @@
 <?php
 class ControllerPaymentAuthorizeNetSim extends Controller {
 	protected function index() {
-    	$this->data['button_confirm'] = $this->language->get('button_confirm');
+    	$this->data['button_confirm'] = __('button_confirm');
 		
 		$this->data['action'] = $this->config->get('authorizenet_sim_url');
 		
@@ -56,7 +56,7 @@ class ControllerPaymentAuthorizeNetSim extends Controller {
 		 * HMAC-MD5  hash from the merchant's transaction key and 
 		 * concatenation of the values for "x_login", "x_fp_sequence", 
 		 * "x_fp_timestamp", "x_amount", and (if given) "x_currency_code" 
-		 * – all separated by the  "^" character. Note that if 
+		 * ï¿½ all separated by the  "^" character. Note that if 
 		 * "x_currency_code" is not present, then a "^" character is still 
 		 * added. The transaction key is generated within the payment page 
 		 * configuration section of the Administration console tab, 
@@ -192,7 +192,7 @@ class ControllerPaymentAuthorizeNetSim extends Controller {
 		$data['hash_match'] = ($calc_hash == $posted_hash);
 		$data['order_id'] = $details['x_invoice_num'];
 		
-		$data['button_confirm'] = $this->language->get('button_continue');
+		$data['button_confirm'] = __('button_continue');
 		$data['confirm'] = $this->url->https('checkout/success');
 		
 		if ($data['hash_match'] ) {
@@ -213,13 +213,13 @@ class ControllerPaymentAuthorizeNetSim extends Controller {
 
       	$this->document->breadcrumbs[] = array(
         	'href'      => $this->url->http('common/home'),
-        	'text' => $this->language->get('text_home')
+        	'text' => __('text_home')
       	); 
 
 		
       	$this->document->breadcrumbs[] = array(
         	'href'      => $this->url->http('checkout/cart'),
-        	'text' => $this->language->get('text_basket')
+        	'text' => __('text_basket')
       	);	
       	
 		if (file_exists(DIR_TEMPLATE . $this->config->get('config_template') . '/template/payment/authorizenet_sim_callback.tpl')) {

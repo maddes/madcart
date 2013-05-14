@@ -5,11 +5,11 @@ class ControllerToolErrorLog extends Controller {
 	public function index() {		
 		$this->language->load('tool/error_log');
 
-		$this->document->setTitle($this->language->get('heading_title'));
+		$this->document->setTitle(__('heading_title'));
 		
-		$this->data['heading_title'] = $this->language->get('heading_title');
+		$this->data['heading_title'] = __('heading_title');
 		 
-		$this->data['button_clear'] = $this->language->get('button_clear');
+		$this->data['button_clear'] = __('button_clear');
 
 		if (isset($this->session->data['success'])) {
 			$this->data['success'] = $this->session->data['success'];
@@ -22,12 +22,12 @@ class ControllerToolErrorLog extends Controller {
   		$this->data['breadcrumbs'] = array();
 
    		$this->data['breadcrumbs'][] = array(
-       		'text' => $this->language->get('text_home'),
+       		'text' => __('text_home'),
 			'href' => $this->url->link('common/home', 'token=' . $this->session->data['token'], 'SSL')
    		);
 
    		$this->data['breadcrumbs'][] = array(
-       		'text' => $this->language->get('heading_title'),
+       		'text' => __('heading_title'),
 			'href' => $this->url->link('tool/error_log', 'token=' . $this->session->data['token'], 'SSL')
    		);
 		
@@ -59,7 +59,7 @@ class ControllerToolErrorLog extends Controller {
 				
 		fclose($handle); 			
 		
-		$this->session->data['success'] = $this->language->get('text_success');
+		$this->session->data['success'] = __('text_success');
 		
 		$this->redirect($this->url->link('tool/error_log', 'token=' . $this->session->data['token'], 'SSL'));		
 	}

@@ -9,7 +9,7 @@ class ControllerAffiliateLogin extends Controller {
 	
     	$this->language->load('affiliate/login');
 
-    	$this->document->setTitle($this->language->get('heading_title')); 
+    	$this->document->setTitle(__('heading_title')); 
 		
 		$this->load->model('affiliate/affiliate');
 						
@@ -25,34 +25,34 @@ class ControllerAffiliateLogin extends Controller {
       	$this->data['breadcrumbs'] = array();
 
       	$this->data['breadcrumbs'][] = array(
-        	'text' => $this->language->get('text_home'),
+        	'text' => __('text_home'),
 			'href' => $this->url->link('common/home')
       	);
  
       	$this->data['breadcrumbs'][] = array(
-        	'text' => $this->language->get('text_account'),
+        	'text' => __('text_account'),
 			'href' => $this->url->link('affiliate/account', '', 'SSL')
       	);
 		
       	$this->data['breadcrumbs'][] = array(
-        	'text' => $this->language->get('text_login'),
+        	'text' => __('text_login'),
 			'href' => $this->url->link('affiliate/login', '', 'SSL')
       	);
 				
-    	$this->data['heading_title'] = $this->language->get('heading_title');
+    	$this->data['heading_title'] = __('heading_title');
 		
-		$this->data['text_description'] = sprintf($this->language->get('text_description'), $this->config->get('config_name'), $this->config->get('config_name'), $this->config->get('config_commission') . '%');
-		$this->data['text_new_affiliate'] = $this->language->get('text_new_affiliate');
-    	$this->data['text_register_account'] = $this->language->get('text_register_account'); 	
-		$this->data['text_returning_affiliate'] = $this->language->get('text_returning_affiliate');
-		$this->data['text_i_am_returning_affiliate'] = $this->language->get('text_i_am_returning_affiliate');
-    	$this->data['text_forgotten'] = $this->language->get('text_forgotten');
+		$this->data['text_description'] = sprintf(__('text_description'), $this->config->get('config_name'), $this->config->get('config_name'), $this->config->get('config_commission') . '%');
+		$this->data['text_new_affiliate'] = __('text_new_affiliate');
+    	$this->data['text_register_account'] = __('text_register_account'); 	
+		$this->data['text_returning_affiliate'] = __('text_returning_affiliate');
+		$this->data['text_i_am_returning_affiliate'] = __('text_i_am_returning_affiliate');
+    	$this->data['text_forgotten'] = __('text_forgotten');
 
-    	$this->data['entry_email'] = $this->language->get('entry_email');
-    	$this->data['entry_password'] = $this->language->get('entry_password');
+    	$this->data['entry_email'] = __('entry_email');
+    	$this->data['entry_password'] = __('entry_password');
 
-    	$this->data['button_continue'] = $this->language->get('button_continue');
-		$this->data['button_login'] = $this->language->get('button_login');
+    	$this->data['button_continue'] = __('button_continue');
+		$this->data['button_login'] = __('button_login');
 
 		if (isset($this->error['warning'])) {
 			$this->data['error_warning'] = $this->error['warning'];
@@ -114,13 +114,13 @@ class ControllerAffiliateLogin extends Controller {
   
   	protected function validate() {
     	if (!$this->affiliate->login($this->request->post['email'], $this->request->post['password'])) {
-      		$this->error['warning'] = $this->language->get('error_login');
+      		$this->error['warning'] = __('error_login');
     	}
 
 		$affiliate_info = $this->model_affiliate_affiliate->getAffiliateByEmail($this->request->post['email']);
 		
     	if ($affiliate_info && !$affiliate_info['approved']) {
-      		$this->error['warning'] = $this->language->get('error_approved');
+      		$this->error['warning'] = __('error_approved');
     	}	
 			
     	if (!$this->error) {

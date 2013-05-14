@@ -20,7 +20,7 @@ class ModelPaymentLiqPay extends Model {
 		if ($status) {
 			$method_data = array(
 				'code'       => 'liqpay',
-				'title'      => $this->language->get('text_title'),
+				'title'      => __('text_title'),
 				'sort_order' => $this->config->get('liqpay_sort_order')
 			);
 		}

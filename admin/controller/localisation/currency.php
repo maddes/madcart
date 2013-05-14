@@ -5,7 +5,7 @@ class ControllerLocalisationCurrency extends Controller {
 	public function index() {
 		$this->language->load('localisation/currency');
 
-		$this->document->setTitle($this->language->get('heading_title'));
+		$this->document->setTitle(__('heading_title'));
 		
 		$this->load->model('localisation/currency');
 		
@@ -15,14 +15,14 @@ class ControllerLocalisationCurrency extends Controller {
 	public function insert() {
 		$this->language->load('localisation/currency');
 
-		$this->document->setTitle($this->language->get('heading_title'));
+		$this->document->setTitle(__('heading_title'));
 		
 		$this->load->model('localisation/currency');
 		
 		if (($this->request->server['REQUEST_METHOD'] == 'POST') && $this->validateForm()) {
 			$this->model_localisation_currency->addCurrency($this->request->post);
 			
-			$this->session->data['success'] = $this->language->get('text_success');
+			$this->session->data['success'] = __('text_success');
 			
 			$url = '';
 			
@@ -47,14 +47,14 @@ class ControllerLocalisationCurrency extends Controller {
 	public function update() {
 		$this->language->load('localisation/currency');
 
-		$this->document->setTitle($this->language->get('heading_title'));
+		$this->document->setTitle(__('heading_title'));
 		
 		$this->load->model('localisation/currency');
 		
 		if (($this->request->server['REQUEST_METHOD'] == 'POST') && $this->validateForm()) {
 			$this->model_localisation_currency->editCurrency($this->request->get['currency_id'], $this->request->post);
 			
-			$this->session->data['success'] = $this->language->get('text_success');
+			$this->session->data['success'] = __('text_success');
 
 			$url = '';
 			
@@ -79,7 +79,7 @@ class ControllerLocalisationCurrency extends Controller {
 	public function delete() {
 		$this->language->load('localisation/currency');
 
-		$this->document->setTitle($this->language->get('heading_title'));
+		$this->document->setTitle(__('heading_title'));
 		
 		$this->load->model('localisation/currency');
 		
@@ -88,7 +88,7 @@ class ControllerLocalisationCurrency extends Controller {
 				$this->model_localisation_currency->deleteCurrency($currency_id);
 			}
 			
-			$this->session->data['success'] = $this->language->get('text_success');
+			$this->session->data['success'] = __('text_success');
 
 			$url = '';
 			
@@ -146,12 +146,12 @@ class ControllerLocalisationCurrency extends Controller {
   		$this->data['breadcrumbs'] = array();
 
    		$this->data['breadcrumbs'][] = array(
-       		'text' => $this->language->get('text_home'),
+       		'text' => __('text_home'),
 			'href' => $this->url->link('common/home', 'token=' . $this->session->data['token'], 'SSL')
    		);
 
    		$this->data['breadcrumbs'][] = array(
-       		'text' => $this->language->get('heading_title'),
+       		'text' => __('heading_title'),
 			'href' => $this->url->link('localisation/currency', 'token=' . $this->session->data['token'] . $url, 'SSL')
    		);
 		
@@ -175,33 +175,33 @@ class ControllerLocalisationCurrency extends Controller {
 			$action = array();
 			
 			$action[] = array(
-				'text' => $this->language->get('text_edit'),
+				'text' => __('text_edit'),
 				'href' => $this->url->link('localisation/currency/update', 'token=' . $this->session->data['token'] . '&currency_id=' . $result['currency_id'] . $url, 'SSL')
 			);
 						
 			$this->data['currencies'][] = array(
 				'currency_id'   => $result['currency_id'],
-				'title'         => $result['title'] . (($result['code'] == $this->config->get('config_currency')) ? $this->language->get('text_default') : null),
+				'title'         => $result['title'] . (($result['code'] == $this->config->get('config_currency')) ? __('text_default') : null),
 				'code'          => $result['code'],
 				'value'         => $result['value'],
-				'date_modified' => date($this->language->get('date_format_short'), strtotime($result['date_modified'])),
+				'date_modified' => date(__('date_format_short'), strtotime($result['date_modified'])),
 				'selected'      => isset($this->request->post['selected']) && in_array($result['currency_id'], $this->request->post['selected']),
 				'action'        => $action
 			);
 		}	
 	
-		$this->data['heading_title'] = $this->language->get('heading_title');
+		$this->data['heading_title'] = __('heading_title');
 
-		$this->data['text_no_results'] = $this->language->get('text_no_results');
+		$this->data['text_no_results'] = __('text_no_results');
 
-		$this->data['column_title'] = $this->language->get('column_title');
-    	$this->data['column_code'] = $this->language->get('column_code');
-		$this->data['column_value'] = $this->language->get('column_value');
-		$this->data['column_date_modified'] = $this->language->get('column_date_modified');
-		$this->data['column_action'] = $this->language->get('column_action');
+		$this->data['column_title'] = __('column_title');
+    	$this->data['column_code'] = __('column_code');
+		$this->data['column_value'] = __('column_value');
+		$this->data['column_date_modified'] = __('column_date_modified');
+		$this->data['column_action'] = __('column_action');
 
-		$this->data['button_insert'] = $this->language->get('button_insert');
-		$this->data['button_delete'] = $this->language->get('button_delete');
+		$this->data['button_insert'] = __('button_insert');
+		$this->data['button_delete'] = __('button_delete');
 
  		if (isset($this->error['warning'])) {
 			$this->data['error_warning'] = $this->error['warning'];
@@ -252,7 +252,7 @@ class ControllerLocalisationCurrency extends Controller {
 			
 		$this->data['pagination'] = $pagination->render();
 		
-		$this->data['results'] = sprintf($this->language->get('text_pagination'), ($currency_total) ? (($page - 1) * $this->config->get('config_admin_limit')) + 1 : 0, ((($page - 1) * $this->config->get('config_admin_limit')) > ($currency_total - $this->config->get('config_admin_limit'))) ? $currency_total : ((($page - 1) * $this->config->get('config_admin_limit')) + $this->config->get('config_admin_limit')), $currency_total, ceil($currency_total / $this->config->get('config_admin_limit')));
+		$this->data['results'] = sprintf(__('text_pagination'), ($currency_total) ? (($page - 1) * $this->config->get('config_admin_limit')) + 1 : 0, ((($page - 1) * $this->config->get('config_admin_limit')) > ($currency_total - $this->config->get('config_admin_limit'))) ? $currency_total : ((($page - 1) * $this->config->get('config_admin_limit')) + $this->config->get('config_admin_limit')), $currency_total, ceil($currency_total / $this->config->get('config_admin_limit')));
 		
 		$this->data['sort'] = $sort;
 		$this->data['order'] = $order;
@@ -267,26 +267,26 @@ class ControllerLocalisationCurrency extends Controller {
 	}
 
 	protected function getForm() {
-		$this->data['heading_title'] = $this->language->get('heading_title');
+		$this->data['heading_title'] = __('heading_title');
     	
-		$this->data['text_enabled'] = $this->language->get('text_enabled');
-    	$this->data['text_disabled'] = $this->language->get('text_disabled');
+		$this->data['text_enabled'] = __('text_enabled');
+    	$this->data['text_disabled'] = __('text_disabled');
 		
-		$this->data['entry_title'] = $this->language->get('entry_title');
-		$this->data['entry_code'] = $this->language->get('entry_code');
-		$this->data['entry_value'] = $this->language->get('entry_value');
-		$this->data['entry_symbol_left'] = $this->language->get('entry_symbol_left');
-		$this->data['entry_symbol_right'] = $this->language->get('entry_symbol_right');
-		$this->data['entry_decimal_place'] = $this->language->get('entry_decimal_place');
-		$this->data['entry_status'] = $this->language->get('entry_status');
+		$this->data['entry_title'] = __('entry_title');
+		$this->data['entry_code'] = __('entry_code');
+		$this->data['entry_value'] = __('entry_value');
+		$this->data['entry_symbol_left'] = __('entry_symbol_left');
+		$this->data['entry_symbol_right'] = __('entry_symbol_right');
+		$this->data['entry_decimal_place'] = __('entry_decimal_place');
+		$this->data['entry_status'] = __('entry_status');
 
-		$this->data['help_code'] = $this->language->get('help_code');
-		$this->data['help_value'] = $this->language->get('help_value');
+		$this->data['help_code'] = __('help_code');
+		$this->data['help_value'] = __('help_value');
 
-		$this->data['button_save'] = $this->language->get('button_save');
-		$this->data['button_cancel'] = $this->language->get('button_cancel');
+		$this->data['button_save'] = __('button_save');
+		$this->data['button_cancel'] = __('button_cancel');
 
-		$this->data['tab_general'] = $this->language->get('tab_general');
+		$this->data['tab_general'] = __('tab_general');
 
  		if (isset($this->error['warning'])) {
 			$this->data['error_warning'] = $this->error['warning'];
@@ -323,12 +323,12 @@ class ControllerLocalisationCurrency extends Controller {
   		$this->data['breadcrumbs'] = array();
 
    		$this->data['breadcrumbs'][] = array(
-       		'text' => $this->language->get('text_home'),
+       		'text' => __('text_home'),
 			'href' => $this->url->link('common/home', 'token=' . $this->session->data['token'], 'SSL')
    		);
 
    		$this->data['breadcrumbs'][] = array(
-       		'text' => $this->language->get('heading_title'),
+       		'text' => __('heading_title'),
 			'href' => $this->url->link('localisation/currency', 'token=' . $this->session->data['token'] . $url, 'SSL')
    		);
 		
@@ -411,15 +411,15 @@ class ControllerLocalisationCurrency extends Controller {
 	
 	protected function validateForm() { 
 		if (!$this->user->hasPermission('modify', 'localisation/currency')) { 
-			$this->error['warning'] = $this->language->get('error_permission');
+			$this->error['warning'] = __('error_permission');
 		} 
 
 		if ((utf8_strlen($this->request->post['title']) < 3) || (utf8_strlen($this->request->post['title']) > 32)) {
-			$this->error['title'] = $this->language->get('error_title');
+			$this->error['title'] = __('error_title');
 		}
 
 		if (utf8_strlen($this->request->post['code']) != 3) {
-			$this->error['code'] = $this->language->get('error_code');
+			$this->error['code'] = __('error_code');
 		}
 
 		if (!$this->error) { 
@@ -431,7 +431,7 @@ class ControllerLocalisationCurrency extends Controller {
 
 	protected function validateDelete() {
 		if (!$this->user->hasPermission('modify', 'localisation/currency')) {
-			$this->error['warning'] = $this->language->get('error_permission');
+			$this->error['warning'] = __('error_permission');
 		}
 
 		$this->load->model('setting/store');
@@ -442,20 +442,20 @@ class ControllerLocalisationCurrency extends Controller {
 
 			if ($currency_info) {
 				if ($this->config->get('config_currency') == $currency_info['code']) {
-					$this->error['warning'] = $this->language->get('error_default');
+					$this->error['warning'] = __('error_default');
 				}
 				
 				$store_total = $this->model_setting_store->getTotalStoresByCurrency($currency_info['code']);
 	
 				if ($store_total) {
-					$this->error['warning'] = sprintf($this->language->get('error_store'), $store_total);
+					$this->error['warning'] = sprintf(__('error_store'), $store_total);
 				}					
 			}
 			
 			$order_total = $this->model_sale_order->getTotalOrdersByCurrencyId($currency_id);
 
 			if ($order_total) {
-				$this->error['warning'] = sprintf($this->language->get('error_order'), $order_total);
+				$this->error['warning'] = sprintf(__('error_order'), $order_total);
 			}					
 		}
 		

@@ -5,7 +5,7 @@ class ControllerPaymentMoneybookers extends Controller {
 		
 		$this->language->load('payment/moneybookers');
 		
-    	$this->data['button_confirm'] = $this->language->get('button_confirm');
+    	$this->data['button_confirm'] = __('button_confirm');
         
 		$this->data['action'] = 'https://www.moneybookers.com/app/payment.pl?p=OpenCart';
 

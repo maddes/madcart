@@ -5,33 +5,33 @@ class ControllerExtensionInstaller extends Controller {
   	public function index() {
 		$this->language->load('extension/installer');
 	
-    	$this->document->setTitle($this->language->get('heading_title'));
+    	$this->document->setTitle(__('heading_title'));
 		
-     	$this->data['heading_title'] = $this->language->get('heading_title');
+     	$this->data['heading_title'] = __('heading_title');
 
-		$this->data['entry_upload'] = $this->language->get('entry_upload');
-		$this->data['entry_progress'] = $this->language->get('entry_progress');
+		$this->data['entry_upload'] = __('entry_upload');
+		$this->data['entry_progress'] = __('entry_progress');
 
-		$this->data['help_upload'] = $this->language->get('help_upload');
+		$this->data['help_upload'] = __('help_upload');
 
-		$this->data['button_upload'] = $this->language->get('button_upload');
+		$this->data['button_upload'] = __('button_upload');
 		
   		$this->data['breadcrumbs'] = array();
 
    		$this->data['breadcrumbs'][] = array(
-			'text' => $this->language->get('text_home'),
+			'text' => __('text_home'),
 			'href' => $this->url->link('common/home', 'token=' . $this->session->data['token'], 'SSL')
    		);
 
    		$this->data['breadcrumbs'][] = array(
-       		'text' => $this->language->get('heading_title'),
+       		'text' => __('heading_title'),
 			'href' => $this->url->link('catalog/attribute', 'token=' . $this->session->data['token'], 'SSL')
    		);
 		
 		$this->data['token'] = $this->session->data['token'];
 		
 		if (is_dir(DIR_DOWNLOAD . 'temp/')) {
-			$this->data['error_warning'] = $this->language->get('error_directory');
+			$this->data['error_warning'] = __('error_directory');
 		} else {
 			$this->data['error_warning'] = '';
 		}
@@ -51,19 +51,19 @@ class ControllerExtensionInstaller extends Controller {
 		$json = array();
 		
 		if (!$this->user->hasPermission('modify', 'extension/modification')) {
-      		$json['error'] = $this->language->get('error_permission') . "\n";
+      		$json['error'] = __('error_permission') . "\n";
     	}
 		
 		if (!empty($this->request->files['file']['name'])) {
 			if (strrchr($this->request->files['file']['name'], '.') != '.zip' && strrchr($this->request->files['file']['name'], '.') != '.xml') {
-				$json['error'] = $this->language->get('error_filetype');
+				$json['error'] = __('error_filetype');
        		}
 					
 			if ($this->request->files['file']['error'] != UPLOAD_ERR_OK) {
 				$json['error'] = $this->language->get('error_upload_' . $this->request->files['file']['error']);
 			}
 		} else {
-			$json['error'] = $this->language->get('error_upload');
+			$json['error'] = __('error_upload');
 		}
 	
 		if (!isset($json['error']) && is_uploaded_file($this->request->files['file']['tmp_name'])) {
@@ -145,16 +145,16 @@ class ControllerExtensionInstaller extends Controller {
 							
 						zip_close($zip);
 					} else {
-						$json['error'] = $this->language->get('error_zip');
+						$json['error'] = __('error_zip');
 					}			
 				} else {
-					$json['error'] = $this->language->get('error_upload');
+					$json['error'] = __('error_upload');
 				}				
 			}	
 			
 			//unset($this->request->files['file']['tmp_name']);
 			
-			//$json['success'] = $this->language->get('text_upload');
+			//$json['success'] = __('text_upload');
 		}
 					
 		$this->response->setOutput(json_encode($json));
@@ -166,7 +166,7 @@ class ControllerExtensionInstaller extends Controller {
 		$json = array();
 		
 		if (!$this->user->hasPermission('modify', 'extension/modification')) {
-      		$json['error'] = $this->language->get('error_permission');
+      		$json['error'] = __('error_permission');
     	}
 
 		//if () {
@@ -174,11 +174,11 @@ class ControllerExtensionInstaller extends Controller {
 		//}
 
 		if (!is_file()) {
-			$json['error'] = $this->language->get('error_zip_mime');
+			$json['error'] = __('error_zip_mime');
 		}
 				
 		if (!mime_content_type()) {
-			$json['error'] = $this->language->get('error_zip_mime');
+			$json['error'] = __('error_zip_mime');
 		}
 		
 		// Unzip the files
@@ -188,7 +188,7 @@ class ControllerExtensionInstaller extends Controller {
 			$zip->extractTo($directory);
 			$zip->close();				
 		} else {
-			$json['error'] = $this->language->get('error_zip_open');			
+			$json['error'] = __('error_zip_open');			
 		}
 		
 		// Remove Zip
@@ -203,7 +203,7 @@ class ControllerExtensionInstaller extends Controller {
 		$json = array();
 		
 		if (!$this->user->hasPermission('modify', 'extension/modification')) {
-      		$json['error'] = $this->language->get('error_permission');
+      		$json['error'] = __('error_permission');
     	}
 		
 		
@@ -232,7 +232,7 @@ class ControllerExtensionInstaller extends Controller {
 			$connection = ftp_connect($this->config->get('config_ftp_host'), $this->config->get('config_ftp_port'));
 	
 			if (!$connection) {
-				$json['error'] = $this->language->get('error_ftp_connection') . $this->config->get('config_ftp_host') . ':' . $this->config->get('config_ftp_port');
+				$json['error'] = __('error_ftp_connection') . $this->config->get('config_ftp_host') . ':' . $this->config->get('config_ftp_port');
 			}
 			
 			$login = ftp_login($connection, $this->config->get('config_ftp_username'), $this->config->get('config_ftp_password'));
@@ -293,7 +293,7 @@ class ControllerExtensionInstaller extends Controller {
 		$json = array();
 		
 		if (!$this->user->hasPermission('modify', 'extension/modification')) {
-      		$json['error'] = $this->language->get('error_permission');
+      		$json['error'] = __('error_permission');
     	}
 		
 		if (!$json) {		
@@ -338,7 +338,7 @@ class ControllerExtensionInstaller extends Controller {
 		$json = array();
 		
 		if (!$this->user->hasPermission('modify', 'extension/modification')) {
-      		$json['error'] = $this->language->get('error_permission');
+      		$json['error'] = __('error_permission');
     	}
 		
 		if (isset($this->request->post['file']) && is_file($this->request->post['file'])) {
@@ -389,7 +389,7 @@ class ControllerExtensionInstaller extends Controller {
 		$this->language->load('extension/modification');
 		
 		if (!$this->user->hasPermission('modify', 'extension/modification')) {
-      		$json['error'] = $this->language->get('error_permission');
+      		$json['error'] = __('error_permission');
     	}
 		
 		if (!is_dir($json['error'])) {
