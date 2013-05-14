@@ -14,13 +14,13 @@ class Currency {
 
 		foreach ($query->rows as $result) {
 			$this->currencies[$result['code']] = array(
-				'currency_id'   => $result['currency_id'],
-				'title'         => $result['title'],
-				'symbol_left'   => $result['symbol_left'],
-				'symbol_right'  => $result['symbol_right'],
-				'decimal_place' => $result['decimal_place'],
-				'value'         => $result['value']
-			); 
+					'currency_id'   => $result['currency_id'],
+					'title'         => $result['title'],
+					'symbol_left'   => $result['symbol_left'],
+					'symbol_right'  => $result['symbol_right'],
+					'decimal_place' => $result['decimal_place'],
+					'value'         => $result['value']
+			);
 		}
 
 		if (isset($this->request->get['currency']) && (array_key_exists($this->request->get['currency'], $this->currencies))) {

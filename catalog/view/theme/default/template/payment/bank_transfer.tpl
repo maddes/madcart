@@ -1,13 +1,22 @@
-<h2><?php echo $text_instruction; ?></h2>
+<h2>
+	<?php echo $text_instruction; ?>
+</h2>
 <div class="content">
-  <p><?php echo $text_description; ?></p>
-  <p><?php echo $bank; ?></p>
-  <p><?php echo $text_payment; ?></p>
+	<p>
+		<?php echo $text_description; ?>
+	</p>
+	<p>
+		<?php echo $bank; ?>
+	</p>
+	<p>
+		<?php echo $text_payment; ?>
+	</p>
 </div>
 <div class="buttons">
-  <div class="right">
-    <input type="button" value="<?php echo $button_confirm; ?>" id="button-confirm" class="btn" />
-  </div>
+	<div class="right">
+		<input type="button" value="<?php echo $button_confirm; ?>"
+			id="button-confirm" class="btn" />
+	</div>
 </div>
 <script type="text/javascript"><!--
 $('#button-confirm').on('click', function() {
@@ -19,4 +28,4 @@ $('#button-confirm').on('click', function() {
 		}		
 	});
 });
-//--></script> 
+//--></script>

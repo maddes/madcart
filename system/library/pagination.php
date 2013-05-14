@@ -30,7 +30,7 @@ class Pagination {
 
 		$output = '<ul>';
 
-		if ($page > 1) {			
+		if ($page > 1) {
 			$output .= '<li><a href="' . str_replace('{page}', 1, $this->url) . '">' . $this->text_first . '</a></li>';
 			$output .= '<li><a href="' . str_replace('{page}', $page - 1, $this->url) . '">' . $this->text_prev . '</a></li>';
 		}
@@ -59,7 +59,7 @@ class Pagination {
 					$output .= '<li class="active"><span>' . $i . '</span></li>';
 				} else {
 					$output .= '<li><a href="' . str_replace('{page}', $i, $this->url) . '">' . $i . '</a></li>';
-				}	
+				}
 			}
 		}
 
@@ -67,9 +67,9 @@ class Pagination {
 			$output .= '<li><a href="' . str_replace('{page}', $page + 1, $this->url) . '">' . $this->text_next . '</a>';
 			$output .= '<li><a href="' . str_replace('{page}', $num_pages, $this->url) . '">' . $this->text_last . '</a>';
 		}
-		
+
 		$output .= '</ul>';
-		
+
 		return $output;
 	}
 }

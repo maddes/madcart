@@ -1,56 +1,56 @@
 <?php
-// Heading  
-$_['heading_title']          = 'Shopping Cart';
+// Heading
+$_['Shopping Cart']          = 'Shopping Cart';
 
 // Text
-$_['text_success']           = 'Success: You have added <a href="%s">%s</a> to your <a href="%s">shopping cart</a>!';
-$_['text_remove']            = 'Success: You have modified your shopping cart!';
-$_['text_coupon']            = 'Success: Your coupon discount has been applied!';
-$_['text_voucher']           = 'Success: Your gift voucher discount has been applied!';
-$_['text_reward']            = 'Success: Your reward points discount has been applied!';
-$_['text_shipping']          = 'Success: Your shipping estimate has been applied!';
-$_['text_login']             = 'Attention: You must <a href="%s">login</a> or <a href="%s">create an account</a> to view prices!';
-$_['text_points']            = 'Reward Points: %s';
-$_['text_items']             = '%s item(s) - %s';
-$_['text_next']              = 'What would you like to do next?';
-$_['text_next_choice']       = 'Choose if you have a discount code or reward points you want to use or would like to estimate your delivery cost.';
-$_['text_use_coupon']        = 'Use Coupon Code';
-$_['text_use_voucher']       = 'Use Gift Voucher';
-$_['text_use_reward']        = 'Use Reward Points (Available %s)';
-$_['text_shipping_estimate'] = 'Estimate Shipping &amp; Taxes';
-$_['text_shipping_detail']   = 'Enter your destination to get a shipping estimate.';
-$_['text_shipping_method']   = 'Please select the preferred shipping method to use on this order.';
-$_['text_empty']             = 'Your shopping cart is empty!';
+$_['Success: You have added <a href="%s">%s</a> to your <a href="%s">shopping cart</a>!']           = 'Success: You have added <a href="%s">%s</a> to your <a href="%s">shopping cart</a>!';
+$_['Success: You have modified your shopping cart!']            = 'Success: You have modified your shopping cart!';
+$_['Success: Your coupon discount has been applied!']            = 'Success: Your coupon discount has been applied!';
+$_['Success: Your gift voucher discount has been applied!']           = 'Success: Your gift voucher discount has been applied!';
+$_['Success: Your reward points discount has been applied!']            = 'Success: Your reward points discount has been applied!';
+$_['Success: Your shipping estimate has been applied!']          = 'Success: Your shipping estimate has been applied!';
+$_['Attention: You must <a href="%s">login</a> or <a href="%s">create an account</a> to view prices!']             = 'Attention: You must <a href="%s">login</a> or <a href="%s">create an account</a> to view prices!';
+$_['Reward Points: %s']            = 'Reward Points: %s';
+$_['%s item(s) - %s']             = '%s item(s) - %s';
+$_['What would you like to do next?']              = 'What would you like to do next?';
+$_['Choose if you have a discount code or reward points you want to use or would like to estimate your delivery cost.']       = 'Choose if you have a discount code or reward points you want to use or would like to estimate your delivery cost.';
+$_['Use Coupon Code']        = 'Use Coupon Code';
+$_['Use Gift Voucher']       = 'Use Gift Voucher';
+$_['Use Reward Points (Available %s)']        = 'Use Reward Points (Available %s)';
+$_['Estimate Shipping &amp; Taxes'] = 'Estimate Shipping &amp; Taxes';
+$_['Enter your destination to get a shipping estimate.']   = 'Enter your destination to get a shipping estimate.';
+$_['Please select the preferred shipping method to use on this order.']   = 'Please select the preferred shipping method to use on this order.';
+$_['Your shopping cart is empty!']             = 'Your shopping cart is empty!';
 
 // Column
-$_['column_image']           = 'Image';
-$_['column_name']            = 'Product Name';
-$_['column_model']           = 'Model';
-$_['column_quantity']        = 'Quantity';
-$_['column_price']           = 'Unit Price';
-$_['column_total']           = 'Total';
+$_['Image']           = 'Image';
+$_['Product Name']            = 'Product Name';
+$_['Model']           = 'Model';
+$_['Quantity']        = 'Quantity';
+$_['Unit Price']           = 'Unit Price';
+$_['Total']           = 'Total';
 
 // Entry
-$_['entry_coupon']           = 'Enter your coupon here:';
-$_['entry_voucher']          = 'Enter your gift voucher code here:';
-$_['entry_reward']           = 'Points to use (Max %s):';
-$_['entry_country']          = 'Country:';
-$_['entry_zone']             = 'Region / State:';
-$_['entry_postcode']         = 'Post Code:';
+$_['Enter your coupon here:']           = 'Enter your coupon here:';
+$_['Enter your gift voucher code here:']          = 'Enter your gift voucher code here:';
+$_['Points to use (Max %s):']           = 'Points to use (Max %s):';
+$_['Country:']          = 'Country:';
+$_['Region / State:']             = 'Region / State:';
+$_['Post Code:']         = 'Post Code:';
 
 // Error
-$_['error_stock']            = 'Products marked with *** are not available in the desired quantity or not in stock!';
-$_['error_minimum']          = 'Minimum order amount for %s is %s!';	
-$_['error_required']         = '%s required!';	
-$_['error_product']          = 'Warning: There are no products in your cart!';	
-$_['error_coupon']           = 'Warning: Coupon is either invalid, expired or reached it\'s usage limit!';
-$_['error_voucher']          = 'Warning: Gift Voucher is either invalid or the balance has been used up!';
-$_['error_reward']           = 'Warning: Please enter the amount of reward points to use!';	
-$_['error_points']           = 'Warning: You don\'t have %s reward points!';
-$_['error_maximum']          = 'Warning: The maximum number of points that can be applied is %s!';
-$_['error_postcode']         = 'Postcode must be between 2 and 10 characters!';
-$_['error_country']          = 'Please select a country!';
-$_['error_zone']             = 'Please select a region / state!';
-$_['error_shipping']         = 'Warning: Shipping method required!';
-$_['error_no_shipping']      = 'Warning: No Shipping options are available. Please <a href="%s">contact us</a> for assistance!';
+$_['Products marked with *** are not available in the desired quantity or not in stock!']            = 'Products marked with *** are not available in the desired quantity or not in stock!';
+$_['Minimum order amount for %s is %s!']          = 'Minimum order amount for %s is %s!';
+$_['%s required!']         = '%s required!';
+$_['Warning: There are no products in your cart!']          = 'Warning: There are no products in your cart!';
+$_['Warning: Coupon is either invalid, expired or reached it\'s usage limit!']           = 'Warning: Coupon is either invalid, expired or reached it\'s usage limit!';
+$_['Warning: Gift Voucher is either invalid or the balance has been used up!']          = 'Warning: Gift Voucher is either invalid or the balance has been used up!';
+$_['Warning: Please enter the amount of reward points to use!']           = 'Warning: Please enter the amount of reward points to use!';
+$_['Warning: You don\'t have %s reward points!']           = 'Warning: You don\'t have %s reward points!';
+$_['Warning: The maximum number of points that can be applied is %s!']          = 'Warning: The maximum number of points that can be applied is %s!';
+$_['Postcode must be between 2 and 10 characters!']         = 'Postcode must be between 2 and 10 characters!';
+$_['Please select a country!']          = 'Please select a country!';
+$_['Please select a region / state!']             = 'Please select a region / state!';
+$_['Warning: Shipping method required!']         = 'Warning: Shipping method required!';
+$_['Warning: No Shipping options are available. Please <a href="%s">contact us</a> for assistance!']      = 'Warning: No Shipping options are available. Please <a href="%s">contact us</a> for assistance!';
 ?>

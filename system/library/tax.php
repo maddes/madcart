@@ -7,7 +7,7 @@ final class Tax {
 	public function __construct($registry) {
 		$this->config = $registry->get('config');
 		$this->customer = $registry->get('customer');
-		$this->db = $registry->get('db');	
+		$this->db = $registry->get('db');
 		$this->session = $registry->get('session');
 
 		if (isset($this->session->data['shipping_address'])) {
@@ -27,22 +27,22 @@ final class Tax {
 
 	public function setShippingAddress($country_id, $zone_id) {
 		$this->shipping_address = array(
-			'country_id' => $country_id,
-			'zone_id'    => $zone_id
+				'country_id' => $country_id,
+				'zone_id'    => $zone_id
 		);
 	}
 
 	public function setPaymentAddress($country_id, $zone_id) {
 		$this->payment_address = array(
-			'country_id' => $country_id,
-			'zone_id'    => $zone_id
+				'country_id' => $country_id,
+				'zone_id'    => $zone_id
 		);
 	}
 
 	public function setStoreAddress($country_id, $zone_id) {
 		$this->store_address = array(
-			'country_id' => $country_id,
-			'zone_id'    => $zone_id
+				'country_id' => $country_id,
+				'zone_id'    => $zone_id
 		);
 	}
 
@@ -51,12 +51,12 @@ final class Tax {
 			$amount = 0;
 
 			$tax_rates = $this->getRates($value, $tax_class_id);
-	
+
 			foreach ($tax_rates as $tax_rate) {
 				if ($calculate != 'P' && $calculate != 'F') {
 					$amount += $tax_rate['amount'];
 				} elseif ($tax_rate['type'] == $calculate) {
-					$amount += $tax_rate['amount'];	
+					$amount += $tax_rate['amount'];
 				}
 			}
 
@@ -65,7 +65,7 @@ final class Tax {
 			return $value;
 		}
 	}
-	
+
 	public function getTax($value, $tax_class_id) {
 		$amount = 0;
 
@@ -74,7 +74,7 @@ final class Tax {
 		foreach ($tax_rates as $tax_rate) {
 			$amount += $tax_rate['amount'];
 		}
-	
+
 		return $amount;
 	}
 
@@ -102,11 +102,11 @@ final class Tax {
 
 			foreach ($tax_query->rows as $result) {
 				$tax_rates[$result['tax_rate_id']] = array(
-					'tax_rate_id' => $result['tax_rate_id'],
-					'name'        => $result['name'],
-					'rate'        => $result['rate'],
-					'type'        => $result['type'],
-					'priority'    => $result['priority']
+						'tax_rate_id' => $result['tax_rate_id'],
+						'name'        => $result['name'],
+						'rate'        => $result['rate'],
+						'type'        => $result['type'],
+						'priority'    => $result['priority']
 				);
 			}
 		}
@@ -116,11 +116,11 @@ final class Tax {
 
 			foreach ($tax_query->rows as $result) {
 				$tax_rates[$result['tax_rate_id']] = array(
-					'tax_rate_id' => $result['tax_rate_id'],
-					'name'        => $result['name'],
-					'rate'        => $result['rate'],
-					'type'        => $result['type'],
-					'priority'    => $result['priority']
+						'tax_rate_id' => $result['tax_rate_id'],
+						'name'        => $result['name'],
+						'rate'        => $result['rate'],
+						'type'        => $result['type'],
+						'priority'    => $result['priority']
 				);
 			}
 		}
@@ -130,11 +130,11 @@ final class Tax {
 
 			foreach ($tax_query->rows as $result) {
 				$tax_rates[$result['tax_rate_id']] = array(
-					'tax_rate_id' => $result['tax_rate_id'],
-					'name'        => $result['name'],
-					'rate'        => $result['rate'],
-					'type'        => $result['type'],
-					'priority'    => $result['priority']
+						'tax_rate_id' => $result['tax_rate_id'],
+						'name'        => $result['name'],
+						'rate'        => $result['rate'],
+						'type'        => $result['type'],
+						'priority'    => $result['priority']
 				);
 			}
 		}
@@ -155,11 +155,11 @@ final class Tax {
 			}
 
 			$tax_rate_data[$tax_rate['tax_rate_id']] = array(
-				'tax_rate_id' => $tax_rate['tax_rate_id'],
-				'name'        => $tax_rate['name'],
-				'rate'        => $tax_rate['rate'],
-				'type'        => $tax_rate['type'],
-				'amount'      => $amount
+					'tax_rate_id' => $tax_rate['tax_rate_id'],
+					'name'        => $tax_rate['name'],
+					'rate'        => $tax_rate['rate'],
+					'type'        => $tax_rate['type'],
+					'amount'      => $amount
 			);
 		}
 

@@ -1,18 +1,18 @@
 <?php
 // Heading
-$_['heading_title']    = 'Site Map';
- 
+$_['Site Map']    = 'Site Map';
+
 // Text
-$_['text_special']     = 'Special Offers';
-$_['text_account']     = 'My Account';
-$_['text_edit']        = 'Account Information';
-$_['text_password']    = 'Password';
-$_['text_address']     = 'Address Book';
-$_['text_history']     = 'Order History';
-$_['text_download']    = 'Downloads';
-$_['text_cart']        = 'Shopping Cart';
-$_['text_checkout']    = 'Checkout';
-$_['text_search']      = 'Search';
-$_['text_information'] = 'Information';
-$_['text_contact']     = 'Contact Us';
+$_['Special Offers']     = 'Special Offers';
+$_['My Account']     = 'My Account';
+$_['Account Information']        = 'Account Information';
+$_['Password']    = 'Password';
+$_['Address Book']     = 'Address Book';
+$_['Order History']     = 'Order History';
+$_['Downloads']    = 'Downloads';
+$_['Shopping Cart']        = 'Shopping Cart';
+$_['Checkout']    = 'Checkout';
+$_['Search']      = 'Search';
+$_['Information'] = 'Information';
+$_['Contact Us']     = 'Contact Us';
 ?>

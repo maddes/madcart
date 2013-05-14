@@ -31,7 +31,7 @@ class ControllerPaymentPPStandard extends Controller {
 		$this->data['entry_test'] = __('entry_test');
 		$this->data['entry_transaction'] = __('entry_transaction');
 		$this->data['entry_debug'] = __('entry_debug');
-		$this->data['entry_total'] = __('entry_total');	
+		$this->data['entry_total'] = __('entry_total');
 		$this->data['entry_canceled_reversal_status'] = __('entry_canceled_reversal_status');
 		$this->data['entry_completed_status'] = __('entry_completed_status');
 		$this->data['entry_denied_status'] = __('entry_denied_status');
@@ -52,13 +52,13 @@ class ControllerPaymentPPStandard extends Controller {
 		$this->data['button_save'] = __('button_save');
 		$this->data['button_cancel'] = __('button_cancel');
 
- 		if (isset($this->error['warning'])) {
+		if (isset($this->error['warning'])) {
 			$this->data['error_warning'] = $this->error['warning'];
 		} else {
 			$this->data['error_warning'] = '';
 		}
 
- 		if (isset($this->error['email'])) {
+		if (isset($this->error['email'])) {
 			$this->data['error_email'] = $this->error['email'];
 		} else {
 			$this->data['error_email'] = '';
@@ -66,20 +66,20 @@ class ControllerPaymentPPStandard extends Controller {
 
 		$this->data['breadcrumbs'] = array();
 
-   		$this->data['breadcrumbs'][] = array(
-       		'text' => __('text_home'),
-			'href' => $this->url->link('common/home', 'token=' . $this->session->data['token'], 'SSL')
-   		);
+		$this->data['breadcrumbs'][] = array(
+				'text' => __('text_home'),
+				'href' => $this->url->link('common/home', 'token=' . $this->session->data['token'], 'SSL')
+		);
 
-   		$this->data['breadcrumbs'][] = array(
-       		'text' => __('text_payment'),
-			'href' => $this->url->link('extension/payment', 'token=' . $this->session->data['token'], 'SSL')
-   		);
+		$this->data['breadcrumbs'][] = array(
+				'text' => __('text_payment'),
+				'href' => $this->url->link('extension/payment', 'token=' . $this->session->data['token'], 'SSL')
+		);
 
-   		$this->data['breadcrumbs'][] = array(
-       		'text' => __('heading_title'),
-			'href' => $this->url->link('payment/pp_standard', 'token=' . $this->session->data['token'], 'SSL')
-   		);
+		$this->data['breadcrumbs'][] = array(
+				'text' => __('heading_title'),
+				'href' => $this->url->link('payment/pp_standard', 'token=' . $this->session->data['token'], 'SSL')
+		);
 
 		$this->data['action'] = $this->url->link('payment/pp_standard', 'token=' . $this->session->data['token'], 'SSL');
 
@@ -108,49 +108,49 @@ class ControllerPaymentPPStandard extends Controller {
 		} else {
 			$this->data['pp_standard_debug'] = $this->config->get('pp_standard_debug');
 		}
-		
+
 		if (isset($this->request->post['pp_standard_total'])) {
 			$this->data['pp_standard_total'] = $this->request->post['pp_standard_total'];
 		} else {
-			$this->data['pp_standard_total'] = $this->config->get('pp_standard_total'); 
-		} 
+			$this->data['pp_standard_total'] = $this->config->get('pp_standard_total');
+		}
 
 		if (isset($this->request->post['pp_standard_canceled_reversal_status_id'])) {
 			$this->data['pp_standard_canceled_reversal_status_id'] = $this->request->post['pp_standard_canceled_reversal_status_id'];
 		} else {
 			$this->data['pp_standard_canceled_reversal_status_id'] = $this->config->get('pp_standard_canceled_reversal_status_id');
 		}
-		
+
 		if (isset($this->request->post['pp_standard_completed_status_id'])) {
 			$this->data['pp_standard_completed_status_id'] = $this->request->post['pp_standard_completed_status_id'];
 		} else {
 			$this->data['pp_standard_completed_status_id'] = $this->config->get('pp_standard_completed_status_id');
-		}	
-		
+		}
+
 		if (isset($this->request->post['pp_standard_denied_status_id'])) {
 			$this->data['pp_standard_denied_status_id'] = $this->request->post['pp_standard_denied_status_id'];
 		} else {
 			$this->data['pp_standard_denied_status_id'] = $this->config->get('pp_standard_denied_status_id');
 		}
-		
+
 		if (isset($this->request->post['pp_standard_expired_status_id'])) {
 			$this->data['pp_standard_expired_status_id'] = $this->request->post['pp_standard_expired_status_id'];
 		} else {
 			$this->data['pp_standard_expired_status_id'] = $this->config->get('pp_standard_expired_status_id');
 		}
-				
+
 		if (isset($this->request->post['pp_standard_failed_status_id'])) {
 			$this->data['pp_standard_failed_status_id'] = $this->request->post['pp_standard_failed_status_id'];
 		} else {
 			$this->data['pp_standard_failed_status_id'] = $this->config->get('pp_standard_failed_status_id');
-		}	
-								
+		}
+
 		if (isset($this->request->post['pp_standard_pending_status_id'])) {
 			$this->data['pp_standard_pending_status_id'] = $this->request->post['pp_standard_pending_status_id'];
 		} else {
 			$this->data['pp_standard_pending_status_id'] = $this->config->get('pp_standard_pending_status_id');
 		}
-									
+			
 		if (isset($this->request->post['pp_standard_processed_status_id'])) {
 			$this->data['pp_standard_processed_status_id'] = $this->request->post['pp_standard_processed_status_id'];
 		} else {
@@ -194,7 +194,7 @@ class ControllerPaymentPPStandard extends Controller {
 		} else {
 			$this->data['pp_standard_status'] = $this->config->get('pp_standard_status');
 		}
-		
+
 		if (isset($this->request->post['pp_standard_sort_order'])) {
 			$this->data['pp_standard_sort_order'] = $this->request->post['pp_standard_sort_order'];
 		} else {
@@ -203,8 +203,8 @@ class ControllerPaymentPPStandard extends Controller {
 
 		$this->template = 'payment/pp_standard.tpl';
 		$this->children = array(
-			'common/header',
-			'common/footer'
+				'common/header',
+				'common/footer'
 		);
 
 		$this->response->setOutput($this->render());

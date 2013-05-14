@@ -3,7 +3,7 @@ class Cart {
 	private $config;
 	private $db;
 	private $data = array();
-	
+
 	public function __construct($registry) {
 		$this->config = $registry->get('config');
 		$this->customer = $registry->get('customer');
@@ -29,7 +29,7 @@ class Cart {
 					$options = unserialize(base64_decode($product[1]));
 				} else {
 					$options = array();
-				} 
+				}
 
 				$product_query = $this->db->query("SELECT * FROM " . DB_PREFIX . "product p LEFT JOIN " . DB_PREFIX . "product_description pd ON (p.product_id = pd.product_id) WHERE p.product_id = '" . (int)$product_id . "' AND pd.language_id = '" . (int)$this->config->get('config_language_id') . "' AND p.date_available <= NOW() AND p.status = '1'");
 
@@ -71,21 +71,21 @@ class Cart {
 									}
 
 									$option_data[] = array(
-										'product_option_id'       => $product_option_id,
-										'product_option_value_id' => $value,
-										'option_id'               => $option_query->row['option_id'],
-										'option_value_id'         => $option_value_query->row['option_value_id'],
-										'name'                    => $option_query->row['name'],
-										'value'                   => $option_value_query->row['name'],
-										'type'                    => $option_query->row['type'],
-										'quantity'                => $option_value_query->row['quantity'],
-										'subtract'                => $option_value_query->row['subtract'],
-										'price'                   => $option_value_query->row['price'],
-										'price_prefix'            => $option_value_query->row['price_prefix'],
-										'points'                  => $option_value_query->row['points'],
-										'points_prefix'           => $option_value_query->row['points_prefix'],									
-										'weight'                  => $option_value_query->row['weight'],
-										'weight_prefix'           => $option_value_query->row['weight_prefix']
+											'product_option_id'       => $product_option_id,
+											'product_option_value_id' => $value,
+											'option_id'               => $option_query->row['option_id'],
+											'option_value_id'         => $option_value_query->row['option_value_id'],
+											'name'                    => $option_query->row['name'],
+											'value'                   => $option_value_query->row['name'],
+											'type'                    => $option_query->row['type'],
+											'quantity'                => $option_value_query->row['quantity'],
+											'subtract'                => $option_value_query->row['subtract'],
+											'price'                   => $option_value_query->row['price'],
+											'price_prefix'            => $option_value_query->row['price_prefix'],
+											'points'                  => $option_value_query->row['points'],
+											'points_prefix'           => $option_value_query->row['points_prefix'],
+											'weight'                  => $option_value_query->row['weight'],
+											'weight_prefix'           => $option_value_query->row['weight_prefix']
 									);
 								}
 							} elseif ($option_query->row['type'] == 'checkbox' && is_array($value)) {
@@ -116,45 +116,45 @@ class Cart {
 										}
 
 										$option_data[] = array(
-											'product_option_id'       => $product_option_id,
-											'product_option_value_id' => $product_option_value_id,
-											'option_id'               => $option_query->row['option_id'],
-											'option_value_id'         => $option_value_query->row['option_value_id'],
-											'name'                    => $option_query->row['name'],
-											'value'                   => $option_value_query->row['name'],
-											'type'                    => $option_query->row['type'],
-											'quantity'                => $option_value_query->row['quantity'],
-											'subtract'                => $option_value_query->row['subtract'],
-											'price'                   => $option_value_query->row['price'],
-											'price_prefix'            => $option_value_query->row['price_prefix'],
-											'points'                  => $option_value_query->row['points'],
-											'points_prefix'           => $option_value_query->row['points_prefix'],
-											'weight'                  => $option_value_query->row['weight'],
-											'weight_prefix'           => $option_value_query->row['weight_prefix']
+												'product_option_id'       => $product_option_id,
+												'product_option_value_id' => $product_option_value_id,
+												'option_id'               => $option_query->row['option_id'],
+												'option_value_id'         => $option_value_query->row['option_value_id'],
+												'name'                    => $option_query->row['name'],
+												'value'                   => $option_value_query->row['name'],
+												'type'                    => $option_query->row['type'],
+												'quantity'                => $option_value_query->row['quantity'],
+												'subtract'                => $option_value_query->row['subtract'],
+												'price'                   => $option_value_query->row['price'],
+												'price_prefix'            => $option_value_query->row['price_prefix'],
+												'points'                  => $option_value_query->row['points'],
+												'points_prefix'           => $option_value_query->row['points_prefix'],
+												'weight'                  => $option_value_query->row['weight'],
+												'weight_prefix'           => $option_value_query->row['weight_prefix']
 										);
 									}
 								}
 							} elseif ($option_query->row['type'] == 'text' || $option_query->row['type'] == 'textarea' || $option_query->row['type'] == 'file' || $option_query->row['type'] == 'date' || $option_query->row['type'] == 'datetime' || $option_query->row['type'] == 'time') {
 								$option_data[] = array(
-									'product_option_id'       => $product_option_id,
-									'product_option_value_id' => '',
-									'option_id'               => $option_query->row['option_id'],
-									'option_value_id'         => '',
-									'name'                    => $option_query->row['name'],
-									'value'                   => $value,
-									'type'                    => $option_query->row['type'],
-									'quantity'                => '',
-									'subtract'                => '',
-									'price'                   => '',
-									'price_prefix'            => '',
-									'points'                  => '',
-									'points_prefix'           => '',
-									'weight'                  => '',
-									'weight_prefix'           => ''
+										'product_option_id'       => $product_option_id,
+										'product_option_value_id' => '',
+										'option_id'               => $option_query->row['option_id'],
+										'option_value_id'         => '',
+										'name'                    => $option_query->row['name'],
+										'value'                   => $value,
+										'type'                    => $option_query->row['type'],
+										'quantity'                => '',
+										'subtract'                => '',
+										'price'                   => '',
+										'price_prefix'            => '',
+										'points'                  => '',
+										'points_prefix'           => '',
+										'weight'                  => '',
+										'weight_prefix'           => ''
 								);
 							}
 						}
-					} 
+					}
 
 					if ($this->customer->isLogged()) {
 						$customer_group_id = $this->customer->getCustomerGroupId();
@@ -191,24 +191,24 @@ class Cart {
 					// Reward Points
 					$product_reward_query = $this->db->query("SELECT points FROM " . DB_PREFIX . "product_reward WHERE product_id = '" . (int)$product_id . "' AND customer_group_id = '" . (int)$customer_group_id . "'");
 
-					if ($product_reward_query->num_rows) {	
+					if ($product_reward_query->num_rows) {
 						$reward = $product_reward_query->row['points'];
 					} else {
 						$reward = 0;
 					}
 
-					// Downloads		
+					// Downloads
 					$download_data = array();
 
 					$download_query = $this->db->query("SELECT * FROM " . DB_PREFIX . "product_to_download p2d LEFT JOIN " . DB_PREFIX . "download d ON (p2d.download_id = d.download_id) LEFT JOIN " . DB_PREFIX . "download_description dd ON (d.download_id = dd.download_id) WHERE p2d.product_id = '" . (int)$product_id . "' AND dd.language_id = '" . (int)$this->config->get('config_language_id') . "'");
 
 					foreach ($download_query->rows as $download) {
 						$download_data[] = array(
-							'download_id' => $download['download_id'],
-							'name'        => $download['name'],
-							'filename'    => $download['filename'],
-							'mask'        => $download['mask'],
-							'remaining'   => $download['remaining']
+								'download_id' => $download['download_id'],
+								'name'        => $download['name'],
+								'filename'    => $download['filename'],
+								'mask'        => $download['mask'],
+								'remaining'   => $download['remaining']
 						);
 					}
 
@@ -218,29 +218,29 @@ class Cart {
 					}
 
 					$this->data[$key] = array(
-						'key'             => $key,
-						'product_id'      => $product_query->row['product_id'],
-						'name'            => $product_query->row['name'],
-						'model'           => $product_query->row['model'],
-						'shipping'        => $product_query->row['shipping'],
-						'image'           => $product_query->row['image'],
-						'option'          => $option_data,
-						'download'        => $download_data,
-						'quantity'        => $quantity,
-						'minimum'         => $product_query->row['minimum'],
-						'subtract'        => $product_query->row['subtract'],
-						'stock'           => $stock,
-						'price'           => ($price + $option_price),
-						'total'           => ($price + $option_price) * $quantity,
-						'reward'          => $reward * $quantity,
-						'points'          => ($product_query->row['points'] ? ($product_query->row['points'] + $option_points) * $quantity : 0),
-						'tax_class_id'    => $product_query->row['tax_class_id'],
-						'weight'          => ($product_query->row['weight'] + $option_weight) * $quantity,
-						'weight_class_id' => $product_query->row['weight_class_id'],
-						'length'          => $product_query->row['length'],
-						'width'           => $product_query->row['width'],
-						'height'          => $product_query->row['height'],
-						'length_class_id' => $product_query->row['length_class_id']
+							'key'             => $key,
+							'product_id'      => $product_query->row['product_id'],
+							'name'            => $product_query->row['name'],
+							'model'           => $product_query->row['model'],
+							'shipping'        => $product_query->row['shipping'],
+							'image'           => $product_query->row['image'],
+							'option'          => $option_data,
+							'download'        => $download_data,
+							'quantity'        => $quantity,
+							'minimum'         => $product_query->row['minimum'],
+							'subtract'        => $product_query->row['subtract'],
+							'stock'           => $stock,
+							'price'           => ($price + $option_price),
+							'total'           => ($price + $option_price) * $quantity,
+							'reward'          => $reward * $quantity,
+							'points'          => ($product_query->row['points'] ? ($product_query->row['points'] + $option_points) * $quantity : 0),
+							'tax_class_id'    => $product_query->row['tax_class_id'],
+							'weight'          => ($product_query->row['weight'] + $option_weight) * $quantity,
+							'weight_class_id' => $product_query->row['weight_class_id'],
+							'length'          => $product_query->row['length'],
+							'width'           => $product_query->row['width'],
+							'height'          => $product_query->row['height'],
+							'length_class_id' => $product_query->row['length_class_id']
 					);
 				} else {
 					$this->remove($key);
@@ -362,33 +362,33 @@ class Cart {
 
 	public function hasStock() {
 		$stock = true;
-		
+
 		foreach ($this->getProducts() as $product) {
 			if (!$product['stock']) {
 				$stock = false;
 			}
 		}
-		
+
 		return $stock;
 	}
 
 	public function hasShipping() {
 		$shipping = false;
-		
+
 		foreach ($this->getProducts() as $product) {
 			if ($product['shipping']) {
 				$shipping = true;
-				
+
 				break;
 			}
 		}
-		
+
 		return $shipping;
 	}
 
 	public function hasDownload() {
 		$download = false;
-		
+
 		foreach ($this->getProducts() as $product) {
 			if ($product['download']) {
 				$download = true;

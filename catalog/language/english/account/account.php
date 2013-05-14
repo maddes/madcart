@@ -1,20 +1,20 @@
 <?php
-// Heading 
-$_['heading_title']      = 'My Account';
+// Heading
+$_['My Account']      = 'My Account';
 
 // Text
-$_['text_account']       = 'Account';
-$_['text_my_account']    = 'My Account';
-$_['text_my_orders']     = 'My Orders';
-$_['text_my_newsletter'] = 'Newsletter';
-$_['text_edit']          = 'Edit your account information';
-$_['text_password']      = 'Change your password';
-$_['text_address']       = 'Modify your address book entries';
-$_['text_wishlist']      = 'Modify your wish list';
-$_['text_order']         = 'View your order history';
-$_['text_download']      = 'Downloads';
-$_['text_reward']        = 'Your Reward Points'; 
-$_['text_return']        = 'View your return requests'; 
-$_['text_transaction']   = 'Your Transactions'; 
-$_['text_newsletter']    = 'Subscribe / unsubscribe to newsletter';
+$_['Account']       = 'Account';
+$_['My Account']    = 'My Account';
+$_['My Orders']     = 'My Orders';
+$_['Newsletter'] = 'Newsletter';
+$_['Edit your account information']          = 'Edit your account information';
+$_['Change your password']      = 'Change your password';
+$_['Modify your address book entries']       = 'Modify your address book entries';
+$_['Modify your wish list']      = 'Modify your wish list';
+$_['View your order history']         = 'View your order history';
+$_['Downloads']      = 'Downloads';
+$_['Your Reward Points']        = 'Your Reward Points';
+$_['View your return requests']        = 'View your return requests';
+$_['Your Transactions']   = 'Your Transactions';
+$_['Subscribe / unsubscribe to newsletter']    = 'Subscribe / unsubscribe to newsletter';
 ?>

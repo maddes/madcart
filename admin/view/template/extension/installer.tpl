@@ -1,46 +1,63 @@
 <?php echo $header; ?>
 <div id="content">
-  <ul class="breadcrumb">
-    <?php foreach ($breadcrumbs as $breadcrumb) { ?>
-    <li><a href="<?php echo $breadcrumb['href']; ?>"><?php echo $breadcrumb['text']; ?></a></li>
-    <?php } ?>
-  </ul>
-  <?php if ($error_warning) { ?>
-  <div class="alert alert-error"><i class="icon-exclamation-sign"></i> <?php echo $error_warning; ?> <button type="button" class="close" data-dismiss="alert">&times;</button></div>
-  <?php } ?>
-  <div class="box">
-    <div class="box-heading">
-      <h1><i class=""></i> <?php echo $heading_title; ?></h1>
-    </div>
-    <div class="box-content form-horizontal">
-      <form action="<?php echo $action; ?>" method="post" enctype="multipart/form-data" class="form-horizontal">
-        <div class="control-group">
-          <label class="control-label" for="button-upload"><?php echo $entry_upload; ?></label>
-          <div class="controls">
-            <button type="button" id="button-upload" class="btn" onclick="$('input[name=\'file\']').click();"><i class="icon-upload"></i> <?php echo $button_upload; ?></button>
+	<ul class="breadcrumb">
+		<?php foreach ($breadcrumbs as $breadcrumb) { ?>
+		<li><a href="<?php echo $breadcrumb['href']; ?>"><?php echo $breadcrumb['text']; ?>
+		</a></li>
+		<?php } ?>
+	</ul>
+	<?php if ($error_warning) { ?>
+	<div class="alert alert-error">
+		<i class="icon-exclamation-sign"></i>
+		<?php echo $error_warning; ?>
+		<button type="button" class="close" data-dismiss="alert">&times;</button>
+	</div>
+	<?php } ?>
+	<div class="box">
+		<div class="box-heading">
+			<h1>
+				<i class=""></i>
+				<?php echo $heading_title; ?>
+			</h1>
+		</div>
+		<div class="box-content form-horizontal">
+			<form action="<?php echo $action; ?>" method="post"
+				enctype="multipart/form-data" class="form-horizontal">
+				<div class="control-group">
+					<label class="control-label" for="button-upload"><?php echo $entry_upload; ?>
+					</label>
+					<div class="controls">
+						<button type="button" id="button-upload" class="btn"
+							onclick="$('input[name=\'file\']').click();">
+							<i class="icon-upload"></i>
+							<?php echo $button_upload; ?>
+						</button>
 
-            
-            <a data-toggle="tooltip" title="<?php echo $help_upload; ?>"><i class="icon-info-sign"></i></a>
-            
-            </div>
-        </div>
-        <div class="control-group">
-          <div class="control-label"><?php echo $entry_progress; ?></div>
-          <div class="controls">
-            <div class="progress">
-              <div class="bar" style="width: 60%;"></div>
-            </div>
-            <div id="output"></div>
-          </div>
-        </div>
-      </form>
-    </div>
-  </div>
+
+						<a data-toggle="tooltip" title="<?php echo $help_upload; ?>"><i
+							class="icon-info-sign"></i> </a>
+
+					</div>
+				</div>
+				<div class="control-group">
+					<div class="control-label">
+						<?php echo $entry_progress; ?>
+					</div>
+					<div class="controls">
+						<div class="progress">
+							<div class="bar" style="width: 60%;"></div>
+						</div>
+						<div id="output"></div>
+					</div>
+				</div>
+			</form>
+		</div>
+	</div>
 </div>
 <div style="display: none;">
-  <form enctype="multipart/form-data">
-    <input type="file" name="file" id="file" />
-  </form>
+	<form enctype="multipart/form-data">
+		<input type="file" name="file" id="file" />
+	</form>
 </div>
 <script type="text/javascript"><!--
 $('#file').on('change', function() {
@@ -147,5 +164,5 @@ function sql(file) {
 function xml(file) {
 	
 }
-//--></script> 
+//--></script>
 <?php echo $footer; ?>

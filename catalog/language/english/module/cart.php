@@ -1,10 +1,10 @@
 <?php
-// Heading 
-$_['heading_title'] = 'Shopping Cart';
+// Heading
+$_['Shopping Cart'] = 'Shopping Cart';
 
 // Text
-$_['text_items']    = '%s item(s) - %s';
-$_['text_empty']    = 'Your shopping cart is empty!';
-$_['text_cart']     = 'View Cart';
-$_['text_checkout'] = 'Checkout';
+$_['%s item(s) - %s']    = '%s item(s) - %s';
+$_['Your shopping cart is empty!']    = 'Your shopping cart is empty!';
+$_['View Cart']     = 'View Cart';
+$_['Checkout'] = 'Checkout';
 ?>

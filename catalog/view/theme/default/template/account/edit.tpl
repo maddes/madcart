@@ -1,43 +1,62 @@
 <?php echo $header; ?><?php echo $column_left; ?><?php echo $column_right; ?>
-<div id="content"><?php echo $content_top; ?>
-  <ul class="breadcrumb">
-    <?php foreach ($breadcrumbs as $breadcrumb) { ?>
-    <li><a href="<?php echo $breadcrumb['href']; ?>"><?php echo $breadcrumb['text']; ?></a></li>
-    <?php } ?>
-  </ul>
-  <h1><?php echo $heading_title; ?></h1>
-  <h2><?php echo $text_your_details; ?></h2>
-  <div class="content">
-    <table class="form">
-      <tr>
-        <td><span class="required">*</span> <?php echo $entry_firstname; ?></td>
-        <td><input type="text" name="firstname" value="<?php echo $firstname; ?>" /></td>
-      </tr>
-      <tr>
-        <td><span class="required">*</span> <?php echo $entry_lastname; ?></td>
-        <td><input type="text" name="lastname" value="<?php echo $lastname; ?>" /></td>
-      </tr>
-      <tr>
-        <td><span class="required">*</span> <?php echo $entry_email; ?></td>
-        <td><input type="text" name="email" value="<?php echo $email; ?>" /></td>
-      </tr>
-      <tr>
-        <td><span class="required">*</span> <?php echo $entry_telephone; ?></td>
-        <td><input type="text" name="telephone" value="<?php echo $telephone; ?>" /></td>
-      </tr>
-      <tr>
-        <td><?php echo $entry_fax; ?></td>
-        <td><input type="text" name="fax" value="<?php echo $fax; ?>" /></td>
-      </tr>
-    </table>
-  </div>
-  <div class="buttons">
-    <div class="left"><a href="<?php echo $back; ?>" class="btn"><?php echo $button_back; ?></a></div>
-    <div class="right">
-      <input type="button" value="<?php echo $button_continue; ?>" id="button-edit" class="btn" />
-    </div>
-  </div>
-  <?php echo $content_bottom; ?></div>
+<div id="content">
+	<?php echo $content_top; ?>
+	<ul class="breadcrumb">
+		<?php foreach ($breadcrumbs as $breadcrumb) { ?>
+		<li><a href="<?php echo $breadcrumb['href']; ?>"><?php echo $breadcrumb['text']; ?>
+		</a></li>
+		<?php } ?>
+	</ul>
+	<h1>
+		<?php echo __('My Account Information', 'account/edit'); ?>
+	</h1>
+	<h2>
+		<?php echo __('Your Personal Details', 'account/edit'); ?>
+	</h2>
+	<div class="content">
+		<table class="form">
+			<tr>
+				<td><span class="required">*</span> <?php echo __('First Name:', 'account/edit'); ?>
+				</td>
+				<td><input type="text" name="firstname"
+					value="<?php echo $firstname; ?>" /></td>
+			</tr>
+			<tr>
+				<td><span class="required">*</span> <?php echo __('Last Name:', 'account/edit'); ?>
+				</td>
+				<td><input type="text" name="lastname"
+					value="<?php echo $lastname; ?>" /></td>
+			</tr>
+			<tr>
+				<td><span class="required">*</span> <?php echo __('E-Mail:', 'account/edit'); ?>
+				</td>
+				<td><input type="text" name="email" value="<?php echo $email; ?>" />
+				</td>
+			</tr>
+			<tr>
+				<td><span class="required">*</span> <?php echo __('Telephone:', 'account/edit'); ?>
+				</td>
+				<td><input type="text" name="telephone"
+					value="<?php echo $telephone; ?>" /></td>
+			</tr>
+			<tr>
+				<td><?php echo __('Fax:', 'account/edit'); ?></td>
+				<td><input type="text" name="fax" value="<?php echo $fax; ?>" /></td>
+			</tr>
+		</table>
+	</div>
+	<div class="buttons">
+		<div class="left">
+			<a href="<?php echo $back; ?>" class="btn"><?php echo $button_back; ?>
+			</a>
+		</div>
+		<div class="right">
+			<input type="button" value="<?php echo $button_continue; ?>"
+				id="button-edit" class="btn" />
+		</div>
+	</div>
+	<?php echo $content_bottom; ?>
+</div>
 <script type="text/javascript"><!--
 $('#button-edit').on('click', function() {
 	$.ajax({
@@ -87,5 +106,5 @@ $('#button-edit').on('click', function() {
 		}
 	});	
 });
-//--></script> 
+//--></script>
 <?php echo $footer; ?>

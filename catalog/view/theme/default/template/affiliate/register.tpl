@@ -1,222 +1,267 @@
 <?php echo $header; ?>
 <?php if ($error_warning) { ?>
-<div class="alert alert-error"><i class="icon-exclamation-sign"></i> <?php echo $error_warning; ?> <button type="button" class="close" data-dismiss="alert">&times;</button></div>
+<div class="alert alert-error">
+	<i class="icon-exclamation-sign"></i>
+	<?php echo $error_warning; ?>
+	<button type="button" class="close" data-dismiss="alert">&times;</button>
+</div>
 <?php } ?>
 <?php echo $column_left; ?><?php echo $column_right; ?>
-<div id="content"><?php echo $content_top; ?>
-  <ul class="breadcrumb">
-    <?php foreach ($breadcrumbs as $breadcrumb) { ?>
-    <li><a href="<?php echo $breadcrumb['href']; ?>"><?php echo $breadcrumb['text']; ?></a></li>
-    <?php } ?>
-  </ul>
-  <h1><?php echo $heading_title; ?></h1>
-  <p><?php echo $text_account_already; ?></p>
-  <p><?php echo $text_signup; ?></p>
-  <form action="<?php echo $action; ?>" method="post" enctype="multipart/form-data">
-    <h2><?php echo $text_your_details; ?></h2>
-    <div class="content">
-      <table class="form">
-        <tr>
-          <td><span class="required">*</span> <?php echo $entry_firstname; ?></td>
-          <td><input type="text" name="firstname" value="<?php echo $firstname; ?>" />
-            <?php if ($error_firstname) { ?>
-            <span class="error"><?php echo $error_firstname; ?></span>
-            <?php } ?></td>
-        </tr>
-        <tr>
-          <td><span class="required">*</span> <?php echo $entry_lastname; ?></td>
-          <td><input type="text" name="lastname" value="<?php echo $lastname; ?>" />
-            <?php if ($error_lastname) { ?>
-            <span class="error"><?php echo $error_lastname; ?></span>
-            <?php } ?></td>
-        </tr>
-        <tr>
-          <td><span class="required">*</span> <?php echo $entry_email; ?></td>
-          <td><input type="text" name="email" value="<?php echo $email; ?>" />
-            <?php if ($error_email) { ?>
-            <span class="error"><?php echo $error_email; ?></span>
-            <?php } ?></td>
-        </tr>
-        <tr>
-          <td><span class="required">*</span> <?php echo $entry_telephone; ?></td>
-          <td><input type="text" name="telephone" value="<?php echo $telephone; ?>" />
-            <?php if ($error_telephone) { ?>
-            <span class="error"><?php echo $error_telephone; ?></span>
-            <?php } ?></td>
-        </tr>
-        <tr>
-          <td><?php echo $entry_fax; ?></td>
-          <td><input type="text" name="fax" value="<?php echo $fax; ?>" /></td>
-        </tr>
-      </table>
-    </div>
-    <h2><?php echo $text_your_address; ?></h2>
-    <div class="content">
-      <table class="form">
-        <tr>
-          <td><?php echo $entry_company; ?></td>
-          <td><input type="text" name="company" value="<?php echo $company; ?>" /></td>
-        </tr>
-        <tr>
-          <td><?php echo $entry_website; ?></td>
-          <td><input type="text" name="website" value="<?php echo $website; ?>" /></td>
-        </tr>
-        <tr>
-          <td><span class="required">*</span> <?php echo $entry_address_1; ?></td>
-          <td><input type="text" name="address_1" value="<?php echo $address_1; ?>" />
-            <?php if ($error_address_1) { ?>
-            <span class="error"><?php echo $error_address_1; ?></span>
-            <?php } ?></td>
-        </tr>
-        <tr>
-          <td><?php echo $entry_address_2; ?></td>
-          <td><input type="text" name="address_2" value="<?php echo $address_2; ?>" /></td>
-        </tr>
-        <tr>
-          <td><span class="required">*</span> <?php echo $entry_city; ?></td>
-          <td><input type="text" name="city" value="<?php echo $city; ?>" />
-            <?php if ($error_city) { ?>
-            <span class="error"><?php echo $error_city; ?></span>
-            <?php } ?></td>
-        </tr>
-        <tr>
-          <td><span id="postcode-required" class="required">*</span> <?php echo $entry_postcode; ?></td>
-          <td><input type="text" name="postcode" value="<?php echo $postcode; ?>" />
-            <?php if ($error_postcode) { ?>
-            <span class="error"><?php echo $error_postcode; ?></span>
-            <?php } ?></td>
-        </tr>
-        <tr>
-          <td><span class="required">*</span> <?php echo $entry_country; ?></td>
-          <td><select name="country_id">
-              <option value="false"><?php echo $text_select; ?></option>
-              <?php foreach ($countries as $country) { ?>
-              <?php if ($country['country_id'] == $country_id) { ?>
-              <option value="<?php echo $country['country_id']; ?>" selected="selected"><?php echo $country['name']; ?></option>
-              <?php } else { ?>
-              <option value="<?php echo $country['country_id']; ?>"><?php echo $country['name']; ?></option>
-              <?php } ?>
-              <?php } ?>
-            </select>
-            <?php if ($error_country) { ?>
-            <span class="error"><?php echo $error_country; ?></span>
-            <?php } ?></td>
-        </tr>
-        <tr>
-          <td><span class="required">*</span> <?php echo $entry_zone; ?></td>
-          <td><select name="zone_id">
-            </select>
-            <?php if ($error_zone) { ?>
-            <span class="error"><?php echo $error_zone; ?></span>
-            <?php } ?></td>
-        </tr>
-      </table>
-    </div>
-    <h2><?php echo $text_payment; ?></h2>
-    <div class="content">
-      <table class="form">
-        <tbody>
-          <tr>
-            <td><?php echo $entry_tax; ?></td>
-            <td><input type="text" name="tax" value="<?php echo $tax; ?>" /></td>
-          </tr>
-          <tr>
-            <td><?php echo $entry_payment; ?></td>
-            <td><?php if ($payment == 'cheque') { ?>
-              <input type="radio" name="payment" value="cheque" id="cheque" checked="checked" />
-              <?php } else { ?>
-              <input type="radio" name="payment" value="cheque" id="cheque" />
-              <?php } ?>
-              <label for="cheque"><?php echo $text_cheque; ?></label>
-              <?php if ($payment == 'paypal') { ?>
-              <input type="radio" name="payment" value="paypal" id="paypal" checked="checked" />
-              <?php } else { ?>
-              <input type="radio" name="payment" value="paypal" id="paypal" />
-              <?php } ?>
-              <label for="paypal"><?php echo $text_paypal; ?></label>
-              <?php if ($payment == 'bank') { ?>
-              <input type="radio" name="payment" value="bank" id="bank" checked="checked" />
-              <?php } else { ?>
-              <input type="radio" name="payment" value="bank" id="bank" />
-              <?php } ?>
-              <label for="bank"><?php echo $text_bank; ?></label></td>
-          </tr>
-        </tbody>
-        <tbody id="payment-cheque" class="payment">
-          <tr>
-            <td><?php echo $entry_cheque; ?></td>
-            <td><input type="text" name="cheque" value="<?php echo $cheque; ?>" /></td>
-          </tr>
-        </tbody>
-        <tbody class="payment" id="payment-paypal">
-          <tr>
-            <td><?php echo $entry_paypal; ?></td>
-            <td><input type="text" name="paypal" value="<?php echo $paypal; ?>" /></td>
-          </tr>
-        </tbody>
-        <tbody id="payment-bank" class="payment">
-          <tr>
-            <td><?php echo $entry_bank_name; ?></td>
-            <td><input type="text" name="bank_name" value="<?php echo $bank_name; ?>" /></td>
-          </tr>
-          <tr>
-            <td><?php echo $entry_bank_branch_number; ?></td>
-            <td><input type="text" name="bank_branch_number" value="<?php echo $bank_branch_number; ?>" /></td>
-          </tr>
-          <tr>
-            <td><?php echo $entry_bank_swift_code; ?></td>
-            <td><input type="text" name="bank_swift_code" value="<?php echo $bank_swift_code; ?>" /></td>
-          </tr>
-          <tr>
-            <td><?php echo $entry_bank_account_name; ?></td>
-            <td><input type="text" name="bank_account_name" value="<?php echo $bank_account_name; ?>" /></td>
-          </tr>
-          <tr>
-            <td><?php echo $entry_bank_account_number; ?></td>
-            <td><input type="text" name="bank_account_number" value="<?php echo $bank_account_number; ?>" /></td>
-          </tr>
-        </tbody>
-      </table>
-    </div>
-    <h2><?php echo $text_your_password; ?></h2>
-    <div class="content">
-      <table class="form">
-        <tr>
-          <td><span class="required">*</span> <?php echo $entry_password; ?></td>
-          <td><input type="password" name="password" value="<?php echo $password; ?>" />
-            <?php if ($error_password) { ?>
-            <span class="error"><?php echo $error_password; ?></span>
-            <?php } ?></td>
-        </tr>
-        <tr>
-          <td><span class="required">*</span> <?php echo $entry_confirm; ?></td>
-          <td><input type="password" name="confirm" value="<?php echo $confirm; ?>" />
-            <?php if ($error_confirm) { ?>
-            <span class="error"><?php echo $error_confirm; ?></span>
-            <?php } ?></td>
-        </tr>
-      </table>
-    </div>
-    <?php if ($text_agree) { ?>
-    <div class="buttons">
-      <div class="right"><?php echo $text_agree; ?>
-        <?php if ($agree) { ?>
-        <input type="checkbox" name="agree" value="1" checked="checked" />
-        <?php } else { ?>
-        <input type="checkbox" name="agree" value="1" />
-        <?php } ?>
-        <input type="submit" value="<?php echo $button_continue; ?>" class="btn" />
-      </div>
-    </div>
-    <?php } else { ?>
-    <div class="buttons">
-      <div class="right">
-        <input type="submit" value="<?php echo $button_continue; ?>" class="btn" />
-      </div>
-    </div>
-    <?php } ?>
-  </form>
-  <?php echo $content_bottom; ?></div>
+<div id="content">
+	<?php echo $content_top; ?>
+	<ul class="breadcrumb">
+		<?php foreach ($breadcrumbs as $breadcrumb) { ?>
+		<li><a href="<?php echo $breadcrumb['href']; ?>"><?php echo $breadcrumb['text']; ?>
+		</a></li>
+		<?php } ?>
+	</ul>
+	<h1>
+		<?php echo __('Affiliate Program', 'affiliate/register'); ?>
+	</h1>
+	<p>
+		<?php echo $text_account_already; ?>
+	</p>
+	<p>
+		<?php echo __('To create an affiliate account, fill in the form below ensuring you complete all the required fields:', 'affiliate/register'); ?>
+	</p>
+	<form action="<?php echo $action; ?>" method="post"
+		enctype="multipart/form-data">
+		<h2>
+			<?php echo __('Your Personal Details', 'affiliate/register'); ?>
+		</h2>
+		<div class="content">
+			<table class="form">
+				<tr>
+					<td><span class="required">*</span> <?php echo __('First Name:', 'affiliate/register'); ?>
+					</td>
+					<td><input type="text" name="firstname"
+						value="<?php echo $firstname; ?>" /> <?php if ($error_firstname) { ?>
+						<span class="error"><?php echo $error_firstname; ?> </span> <?php } ?>
+					</td>
+				</tr>
+				<tr>
+					<td><span class="required">*</span> <?php echo __('Last Name:', 'affiliate/register'); ?>
+					</td>
+					<td><input type="text" name="lastname"
+						value="<?php echo $lastname; ?>" /> <?php if ($error_lastname) { ?>
+						<span class="error"><?php echo $error_lastname; ?> </span> <?php } ?>
+					</td>
+				</tr>
+				<tr>
+					<td><span class="required">*</span> <?php echo __('E-Mail:', 'affiliate/register'); ?>
+					</td>
+					<td><input type="text" name="email" value="<?php echo $email; ?>" />
+						<?php if ($error_email) { ?> <span class="error"><?php echo $error_email; ?>
+					</span> <?php } ?></td>
+				</tr>
+				<tr>
+					<td><span class="required">*</span> <?php echo __('Telephone:', 'affiliate/register'); ?>
+					</td>
+					<td><input type="text" name="telephone"
+						value="<?php echo $telephone; ?>" /> <?php if ($error_telephone) { ?>
+						<span class="error"><?php echo $error_telephone; ?> </span> <?php } ?>
+					</td>
+				</tr>
+				<tr>
+					<td><?php echo __('Fax:', 'affiliate/register'); ?></td>
+					<td><input type="text" name="fax" value="<?php echo $fax; ?>" /></td>
+				</tr>
+			</table>
+		</div>
+		<h2>
+			<?php echo __('Your Address Details', 'affiliate/register'); ?>
+		</h2>
+		<div class="content">
+			<table class="form">
+				<tr>
+					<td><?php echo __('Company:', 'affiliate/register'); ?></td>
+					<td><input type="text" name="company"
+						value="<?php echo $company; ?>" /></td>
+				</tr>
+				<tr>
+					<td><?php echo __('Web Site:', 'affiliate/register'); ?></td>
+					<td><input type="text" name="website"
+						value="<?php echo $website; ?>" /></td>
+				</tr>
+				<tr>
+					<td><span class="required">*</span> <?php echo __('Address 1:', 'affiliate/register'); ?>
+					</td>
+					<td><input type="text" name="address_1"
+						value="<?php echo $address_1; ?>" /> <?php if ($error_address_1) { ?>
+						<span class="error"><?php echo $error_address_1; ?> </span> <?php } ?>
+					</td>
+				</tr>
+				<tr>
+					<td><?php echo __('Address 2:', 'affiliate/register'); ?></td>
+					<td><input type="text" name="address_2"
+						value="<?php echo $address_2; ?>" /></td>
+				</tr>
+				<tr>
+					<td><span class="required">*</span> <?php echo __('City:', 'affiliate/register'); ?>
+					</td>
+					<td><input type="text" name="city" value="<?php echo $city; ?>" />
+						<?php if ($error_city) { ?> <span class="error"><?php echo $error_city; ?>
+					</span> <?php } ?></td>
+				</tr>
+				<tr>
+					<td><span id="postcode-required" class="required">*</span> <?php echo __('Post Code:', 'affiliate/register'); ?>
+					</td>
+					<td><input type="text" name="postcode"
+						value="<?php echo $postcode; ?>" /> <?php if ($error_postcode) { ?>
+						<span class="error"><?php echo $error_postcode; ?> </span> <?php } ?>
+					</td>
+				</tr>
+				<tr>
+					<td><span class="required">*</span> <?php echo __('Country:', 'affiliate/register'); ?>
+					</td>
+					<td><select name="country_id">
+							<option value="false">
+								<?php echo $text_select; ?>
+							</option>
+							<?php foreach ($countries as $country) { ?>
+							<?php if ($country['country_id'] == $country_id) { ?>
+							<option value="<?php echo $country['country_id']; ?>"
+								selected="selected">
+								<?php echo $country['name']; ?>
+							</option>
+							<?php } else { ?>
+							<option value="<?php echo $country['country_id']; ?>">
+								<?php echo $country['name']; ?>
+							</option>
+							<?php } ?>
+							<?php } ?>
+					</select> <?php if ($error_country) { ?> <span class="error"><?php echo $error_country; ?>
+					</span> <?php } ?></td>
+				</tr>
+				<tr>
+					<td><span class="required">*</span> <?php echo __('Region / State:', 'affiliate/register'); ?>
+					</td>
+					<td><select name="zone_id">
+					</select> <?php if ($error_zone) { ?> <span class="error"><?php echo $error_zone; ?>
+					</span> <?php } ?></td>
+				</tr>
+			</table>
+		</div>
+		<h2>
+			<?php echo __('Payment Information', 'affiliate/register'); ?>
+		</h2>
+		<div class="content">
+			<table class="form">
+				<tbody>
+					<tr>
+						<td><?php echo __('Tax ID:', 'affiliate/register'); ?></td>
+						<td><input type="text" name="tax" value="<?php echo $tax; ?>" /></td>
+					</tr>
+					<tr>
+						<td><?php echo __('Payment Method:', 'affiliate/register'); ?></td>
+						<td><?php if ($payment == 'cheque') { ?> <input type="radio"
+							name="payment" value="cheque" id="cheque" checked="checked" /> <?php } else { ?>
+							<input type="radio" name="payment" value="cheque" id="cheque" />
+							<?php } ?> <label for="cheque"><?php echo __('Cheque', 'affiliate/register'); ?>
+						</label> <?php if ($payment == 'paypal') { ?> <input type="radio"
+							name="payment" value="paypal" id="paypal" checked="checked" /> <?php } else { ?>
+							<input type="radio" name="payment" value="paypal" id="paypal" />
+							<?php } ?> <label for="paypal"><?php echo __('PayPal', 'affiliate/register'); ?>
+						</label> <?php if ($payment == 'bank') { ?> <input type="radio"
+							name="payment" value="bank" id="bank" checked="checked" /> <?php } else { ?>
+							<input type="radio" name="payment" value="bank" id="bank" /> <?php } ?>
+							<label for="bank"><?php echo __('Bank Transfer', 'affiliate/register'); ?>
+						</label></td>
+					</tr>
+				</tbody>
+				<tbody id="payment-cheque" class="payment">
+					<tr>
+						<td><?php echo __('Cheque Payee Name:', 'affiliate/register'); ?>
+						</td>
+						<td><input type="text" name="cheque"
+							value="<?php echo $cheque; ?>" /></td>
+					</tr>
+				</tbody>
+				<tbody class="payment" id="payment-paypal">
+					<tr>
+						<td><?php echo __('PayPal Email Account:', 'affiliate/register'); ?>
+						</td>
+						<td><input type="text" name="paypal"
+							value="<?php echo $paypal; ?>" /></td>
+					</tr>
+				</tbody>
+				<tbody id="payment-bank" class="payment">
+					<tr>
+						<td><?php echo __('Bank Name:', 'affiliate/register'); ?></td>
+						<td><input type="text" name="bank_name"
+							value="<?php echo $bank_name; ?>" /></td>
+					</tr>
+					<tr>
+						<td><?php echo __('ABA/BSB number (Branch Number):', 'affiliate/register'); ?>
+						</td>
+						<td><input type="text" name="bank_branch_number"
+							value="<?php echo $bank_branch_number; ?>" /></td>
+					</tr>
+					<tr>
+						<td><?php echo __('SWIFT Code:', 'affiliate/register'); ?></td>
+						<td><input type="text" name="bank_swift_code"
+							value="<?php echo $bank_swift_code; ?>" /></td>
+					</tr>
+					<tr>
+						<td><?php echo __('Account Name:', 'affiliate/register'); ?></td>
+						<td><input type="text" name="bank_account_name"
+							value="<?php echo $bank_account_name; ?>" /></td>
+					</tr>
+					<tr>
+						<td><?php echo __('Account Number:', 'affiliate/register'); ?></td>
+						<td><input type="text" name="bank_account_number"
+							value="<?php echo $bank_account_number; ?>" /></td>
+					</tr>
+				</tbody>
+			</table>
+		</div>
+		<h2>
+			<?php echo __('Your Password', 'affiliate/register'); ?>
+		</h2>
+		<div class="content">
+			<table class="form">
+				<tr>
+					<td><span class="required">*</span> <?php echo __('Password:', 'affiliate/register'); ?>
+					</td>
+					<td><input type="password" name="password"
+						value="<?php echo $password; ?>" /> <?php if ($error_password) { ?>
+						<span class="error"><?php echo $error_password; ?> </span> <?php } ?>
+					</td>
+				</tr>
+				<tr>
+					<td><span class="required">*</span> <?php echo __('Password Confirm:', 'affiliate/register'); ?>
+					</td>
+					<td><input type="password" name="confirm"
+						value="<?php echo $confirm; ?>" /> <?php if ($error_confirm) { ?>
+						<span class="error"><?php echo $error_confirm; ?> </span> <?php } ?>
+					</td>
+				</tr>
+			</table>
+		</div>
+		<?php if ($text_agree) { ?>
+		<div class="buttons">
+			<div class="right">
+				<?php echo $text_agree; ?>
+				<?php if ($agree) { ?>
+				<input type="checkbox" name="agree" value="1" checked="checked" />
+				<?php } else { ?>
+				<input type="checkbox" name="agree" value="1" />
+				<?php } ?>
+				<input type="submit" value="<?php echo $button_continue; ?>"
+					class="btn" />
+			</div>
+		</div>
+		<?php } else { ?>
+		<div class="buttons">
+			<div class="right">
+				<input type="submit" value="<?php echo $button_continue; ?>"
+					class="btn" />
+			</div>
+		</div>
+		<?php } ?>
+	</form>
+	<?php echo $content_bottom; ?>
+</div>
 <script type="text/javascript"><!--
 $('select[name=\'country_id\']').on('change', function() {
 	$.ajax({
@@ -269,7 +314,7 @@ $('input[name=\'payment\']').on('change', function() {
 });
 
 $('input[name=\'payment\']:checked').trigger('change');
-//--></script> 
+//--></script>
 <script type="text/javascript"><!--
 $(document).ready(function() {
 	$('.colorbox').colorbox({
@@ -277,5 +322,5 @@ $(document).ready(function() {
 		height: 480
 	});
 });
-//--></script> 
+//--></script>
 <?php echo $footer; ?>

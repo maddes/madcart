@@ -10,10 +10,10 @@ class Length {
 
 		foreach ($length_class_query->rows as $result) {
 			$this->lengths[$result['length_class_id']] = array(
-				'length_class_id' => $result['length_class_id'],
-				'title'           => $result['title'],
-				'unit'            => $result['unit'],
-				'value'           => $result['value']
+					'length_class_id' => $result['length_class_id'],
+					'title'           => $result['title'],
+					'unit'            => $result['unit'],
+					'value'           => $result['value']
 			);
 		}
 	}

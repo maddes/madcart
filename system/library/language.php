@@ -25,7 +25,7 @@ class Language {
 
 	public function load($filename) {
 		if (in_array($filename,$this->loaded)) return $this->data;
-		
+
 		$file = DIR_LANGUAGE . $this->directory . '/' . $filename . '.php';
 
 		if (file_exists($file)) {
@@ -40,7 +40,7 @@ class Language {
 			trigger_error('Error: Could not load language ' . $filename . '!');
 		}
 	}
-	
+
 	public function setAsDefault() {
 		Language::$default = $this;
 	}

@@ -1,20 +1,20 @@
 <?php
-// Heading 
-$_['heading_title']    = 'Account';
+// Heading
+$_['Account']    = 'Account';
 
 // Text
-$_['text_register']    = 'Register';
-$_['text_login']       = 'Login';
-$_['text_logout']      = 'Logout';
-$_['text_forgotten']   = 'Forgotten Password';
-$_['text_account']     = 'My Account';
-$_['text_edit']        = 'Edit Account';
-$_['text_password']    = 'Password';
-$_['text_address']     = 'Address Books';
-$_['text_wishlist']    = 'Wish List';
-$_['text_order']       = 'Order History';
-$_['text_download']    = 'Downloads';
-$_['text_return']      = 'Returns';
-$_['text_transaction'] = 'Transactions';
-$_['text_newsletter']  = 'Newsletter';
+$_['Register']    = 'Register';
+$_['Login']       = 'Login';
+$_['Logout']      = 'Logout';
+$_['Forgotten Password']   = 'Forgotten Password';
+$_['My Account']     = 'My Account';
+$_['Edit Account']        = 'Edit Account';
+$_['Password']    = 'Password';
+$_['Address Books']     = 'Address Books';
+$_['Wish List']    = 'Wish List';
+$_['Order History']       = 'Order History';
+$_['Downloads']    = 'Downloads';
+$_['Returns']      = 'Returns';
+$_['Transactions'] = 'Transactions';
+$_['Newsletter']  = 'Newsletter';
 ?>

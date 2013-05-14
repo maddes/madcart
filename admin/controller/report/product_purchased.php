@@ -1,10 +1,10 @@
 <?php
-class ControllerReportProductPurchased extends Controller { 
-	public function index() {   
+class ControllerReportProductPurchased extends Controller {
+	public function index() {
 		$this->language->load('report/product_purchased');
 
 		$this->document->setTitle(__('heading_title'));
-		
+
 		if (isset($this->request->get['filter_date_start'])) {
 			$filter_date_start = $this->request->get['filter_date_start'];
 		} else {
@@ -16,13 +16,13 @@ class ControllerReportProductPurchased extends Controller {
 		} else {
 			$filter_date_end = '';
 		}
-		
+
 		if (isset($this->request->get['filter_order_status_id'])) {
 			$filter_order_status_id = $this->request->get['filter_order_status_id'];
 		} else {
 			$filter_order_status_id = 0;
-		}	
-						
+		}
+
 		if (isset($this->request->get['page'])) {
 			$page = $this->request->get['page'];
 		} else {
@@ -30,88 +30,88 @@ class ControllerReportProductPurchased extends Controller {
 		}
 
 		$url = '';
-						
+
 		if (isset($this->request->get['filter_date_start'])) {
 			$url .= '&filter_date_start=' . $this->request->get['filter_date_start'];
 		}
-		
+
 		if (isset($this->request->get['filter_date_end'])) {
 			$url .= '&filter_date_end=' . $this->request->get['filter_date_end'];
 		}
-		
+
 		if (isset($this->request->get['filter_order_status_id'])) {
 			$url .= '&filter_order_status_id=' . $this->request->get['filter_order_status_id'];
 		}
-								
+
 		if (isset($this->request->get['page'])) {
 			$url .= '&page=' . $this->request->get['page'];
 		}
 
-   		$this->data['breadcrumbs'] = array();
+		$this->data['breadcrumbs'] = array();
 
-   		$this->data['breadcrumbs'][] = array(
-       		'text' => __('text_home'),
-			'href' => $this->url->link('common/home', 'token=' . $this->session->data['token'], 'SSL')
-   		);
-
-   		$this->data['breadcrumbs'][] = array(
-       		'text' => __('heading_title'),
-			'href' => $this->url->link('report/product_purchased', 'token=' . $this->session->data['token'] . $url, 'SSL')
-   		);		
-		
-		$this->load->model('report/product');
-		
-		$this->data['products'] = array();
-		
-		$data = array(
-			'filter_date_start'	     => $filter_date_start, 
-			'filter_date_end'	     => $filter_date_end, 
-			'filter_order_status_id' => $filter_order_status_id,
-			'start'                  => ($page - 1) * $this->config->get('config_admin_limit'),
-			'limit'                  => $this->config->get('config_admin_limit')
+		$this->data['breadcrumbs'][] = array(
+				'text' => __('text_home'),
+				'href' => $this->url->link('common/home', 'token=' . $this->session->data['token'], 'SSL')
 		);
-				
+
+		$this->data['breadcrumbs'][] = array(
+				'text' => __('heading_title'),
+				'href' => $this->url->link('report/product_purchased', 'token=' . $this->session->data['token'] . $url, 'SSL')
+		);
+
+		$this->load->model('report/product');
+
+		$this->data['products'] = array();
+
+		$data = array(
+				'filter_date_start'	     => $filter_date_start,
+				'filter_date_end'	     => $filter_date_end,
+				'filter_order_status_id' => $filter_order_status_id,
+				'start'                  => ($page - 1) * $this->config->get('config_admin_limit'),
+				'limit'                  => $this->config->get('config_admin_limit')
+		);
+
 		$product_total = $this->model_report_product->getTotalPurchased($data);
 
 		$results = $this->model_report_product->getPurchased($data);
-		
+
 		foreach ($results as $result) {
 			$this->data['products'][] = array(
-				'name'       => $result['name'],
-				'model'      => $result['model'],
-				'quantity'   => $result['quantity'],
-				'total'      => $this->currency->format($result['total'], $this->config->get('config_currency'))
+					'name'       => $result['name'],
+					'model'      => $result['model'],
+					'quantity'   => $result['quantity'],
+					'total'      => $this->currency->format($result['total'], $this->config->get('config_currency'))
 			);
 		}
-				
+
 		$this->data['heading_title'] = __('heading_title');
-		
+
 		$this->data['text_no_results'] = __('text_no_results');
 		$this->data['text_all_status'] = __('text_all_status');
-		
+
 		$this->data['column_name'] = __('column_name');
 		$this->data['column_model'] = __('column_model');
 		$this->data['column_quantity'] = __('column_quantity');
 		$this->data['column_total'] = __('column_total');
-		
+
 		$this->data['entry_date_start'] = __('entry_date_start');
 		$this->data['entry_date_end'] = __('entry_date_end');
 		$this->data['entry_status'] = __('entry_status');
 
 		$this->data['button_filter'] = __('button_filter');
-		
+
 		$this->data['token'] = $this->session->data['token'];
-		
+
 		$this->load->model('localisation/order_status');
-		
+
 		$this->data['order_statuses'] = $this->model_localisation_order_status->getOrderStatuses();
-		
+
 		$url = '';
-						
+
 		if (isset($this->request->get['filter_date_start'])) {
 			$url .= '&filter_date_start=' . $this->request->get['filter_date_start'];
 		}
-		
+
 		if (isset($this->request->get['filter_date_end'])) {
 			$url .= '&filter_date_end=' . $this->request->get['filter_date_end'];
 		}
@@ -119,28 +119,28 @@ class ControllerReportProductPurchased extends Controller {
 		if (isset($this->request->get['filter_order_status_id'])) {
 			$url .= '&filter_order_status_id=' . $this->request->get['filter_order_status_id'];
 		}
-		
+
 		$pagination = new Pagination();
 		$pagination->total = $product_total;
 		$pagination->page = $page;
 		$pagination->limit = $this->config->get('config_admin_limit');
 		$pagination->url = $this->url->link('report/product_purchased', 'token=' . $this->session->data['token'] . $url . '&page={page}');
 			
-		$this->data['pagination'] = $pagination->render();		
-		
+		$this->data['pagination'] = $pagination->render();
+
 		$this->data['results'] = sprintf(__('text_pagination'), ($product_total) ? (($page - 1) * $this->config->get('config_admin_limit')) + 1 : 0, ((($page - 1) * $this->config->get('config_admin_limit')) > ($product_total - $this->config->get('config_admin_limit'))) ? $product_total : ((($page - 1) * $this->config->get('config_admin_limit')) + $this->config->get('config_admin_limit')), $product_total, ceil($product_total / $this->config->get('config_admin_limit')));
-		
+
 		$this->data['filter_date_start'] = $filter_date_start;
-		$this->data['filter_date_end'] = $filter_date_end;		
+		$this->data['filter_date_end'] = $filter_date_end;
 		$this->data['filter_order_status_id'] = $filter_order_status_id;
-		
+
 		$this->template = 'report/product_purchased.tpl';
 		$this->children = array(
-			'common/header',
-			'common/footer'
+				'common/header',
+				'common/footer'
 		);
-				
+
 		$this->response->setOutput($this->render());
-	}	
+	}
 }
 ?>

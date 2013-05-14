@@ -1,59 +1,59 @@
 <?php
-// Heading 
-$_['heading_title']             = 'Affiliate Program';
+// Heading
+$_['Affiliate Program']             = 'Affiliate Program';
 
 // Text
-$_['text_account']              = 'Account';
-$_['text_register']             = 'Affiliate Register';
-$_['text_account_already']      = 'If you already have an account with us, please login at the <a href="%s">login page</a>.';
-$_['text_signup']               = 'To create an affiliate account, fill in the form below ensuring you complete all the required fields:';
-$_['text_your_details']         = 'Your Personal Details';
-$_['text_your_address']         = 'Your Address Details';
-$_['text_payment']              = 'Payment Information';
-$_['text_your_password']        = 'Your Password';
-$_['text_cheque']               = 'Cheque';
-$_['text_paypal']               = 'PayPal';
-$_['text_bank']                 = 'Bank Transfer';
-$_['text_agree']                = 'I have read and agree to the <a class="colorbox" href="%s" alt="%s"><b>%s</b></a>';
+$_['Account']              = 'Account';
+$_['Affiliate Register']             = 'Affiliate Register';
+$_['If you already have an account with us, please login at the <a href="%s">login page</a>.']      = 'If you already have an account with us, please login at the <a href="%s">login page</a>.';
+$_['To create an affiliate account, fill in the form below ensuring you complete all the required fields:']               = 'To create an affiliate account, fill in the form below ensuring you complete all the required fields:';
+$_['Your Personal Details']         = 'Your Personal Details';
+$_['Your Address Details']         = 'Your Address Details';
+$_['Payment Information']              = 'Payment Information';
+$_['Your Password']        = 'Your Password';
+$_['Cheque']               = 'Cheque';
+$_['PayPal']               = 'PayPal';
+$_['Bank Transfer']                 = 'Bank Transfer';
+$_['I have read and agree to the <a class="colorbox" href="%s" alt="%s"><b>%s</b></a>']                = 'I have read and agree to the <a class="colorbox" href="%s" alt="%s"><b>%s</b></a>';
 
 // Entry
-$_['entry_firstname']           = 'First Name:';
-$_['entry_lastname']            = 'Last Name:';
-$_['entry_email']               = 'E-Mail:';
-$_['entry_telephone']           = 'Telephone:';
-$_['entry_fax']                 = 'Fax:';
-$_['entry_company']             = 'Company:';
-$_['entry_website']             = 'Web Site:';
-$_['entry_address_1']           = 'Address 1:';
-$_['entry_address_2']           = 'Address 2:';
-$_['entry_postcode']            = 'Post Code:';
-$_['entry_city']                = 'City:';
-$_['entry_country']             = 'Country:';
-$_['entry_zone']                = 'Region / State:';
-$_['entry_tax']                 = 'Tax ID:';
-$_['entry_payment']             = 'Payment Method:';
-$_['entry_cheque']              = 'Cheque Payee Name:';
-$_['entry_paypal']              = 'PayPal Email Account:';
-$_['entry_bank_name']           = 'Bank Name:';
-$_['entry_bank_branch_number']  = 'ABA/BSB number (Branch Number):';
-$_['entry_bank_swift_code']     = 'SWIFT Code:';
-$_['entry_bank_account_name']   = 'Account Name:';
-$_['entry_bank_account_number'] = 'Account Number:';
-$_['entry_password']            = 'Password:';
-$_['entry_confirm']             = 'Password Confirm:';
+$_['First Name:']           = 'First Name:';
+$_['Last Name:']            = 'Last Name:';
+$_['E-Mail:']               = 'E-Mail:';
+$_['Telephone:']           = 'Telephone:';
+$_['Fax:']                 = 'Fax:';
+$_['Company:']             = 'Company:';
+$_['Web Site:']             = 'Web Site:';
+$_['Address 1:']           = 'Address 1:';
+$_['Address 2:']           = 'Address 2:';
+$_['Post Code:']            = 'Post Code:';
+$_['City:']                = 'City:';
+$_['Country:']             = 'Country:';
+$_['Region / State:']                = 'Region / State:';
+$_['Tax ID:']                 = 'Tax ID:';
+$_['Payment Method:']             = 'Payment Method:';
+$_['Cheque Payee Name:']              = 'Cheque Payee Name:';
+$_['PayPal Email Account:']              = 'PayPal Email Account:';
+$_['Bank Name:']           = 'Bank Name:';
+$_['ABA/BSB number (Branch Number):']  = 'ABA/BSB number (Branch Number):';
+$_['SWIFT Code:']     = 'SWIFT Code:';
+$_['Account Name:']   = 'Account Name:';
+$_['Account Number:'] = 'Account Number:';
+$_['Password:']            = 'Password:';
+$_['Password Confirm:']             = 'Password Confirm:';
 
 // Error
-$_['error_exists']              = 'Warning: E-Mail Address is already registered!';
-$_['error_firstname']           = 'First Name must be between 1 and 32 characters!';
-$_['error_lastname']            = 'Last Name must be between 1 and 32 characters!';
-$_['error_email']               = 'E-Mail Address does not appear to be valid!';
-$_['error_telephone']           = 'Telephone must be between 3 and 32 characters!';
-$_['error_password']            = 'Password must be between 4 and 20 characters!';
-$_['error_confirm']             = 'Password confirmation does not match password!';
-$_['error_address_1']           = 'Address 1 must be between 3 and 128 characters!';
-$_['error_city']                = 'City must be between 2 and 128 characters!';
-$_['error_country']             = 'Please select a country!';
-$_['error_zone']                = 'Please select a region / state!';
-$_['error_postcode']            = 'Postcode must be between 2 and 10 characters!';
-$_['error_agree']               = 'Warning: You must agree to the %s!';
+$_['Warning: E-Mail Address is already registered!']              = 'Warning: E-Mail Address is already registered!';
+$_['First Name must be between 1 and 32 characters!']           = 'First Name must be between 1 and 32 characters!';
+$_['Last Name must be between 1 and 32 characters!']            = 'Last Name must be between 1 and 32 characters!';
+$_['E-Mail Address does not appear to be valid!']               = 'E-Mail Address does not appear to be valid!';
+$_['Telephone must be between 3 and 32 characters!']           = 'Telephone must be between 3 and 32 characters!';
+$_['Password must be between 4 and 20 characters!']            = 'Password must be between 4 and 20 characters!';
+$_['Password confirmation does not match password!']             = 'Password confirmation does not match password!';
+$_['Address 1 must be between 3 and 128 characters!']           = 'Address 1 must be between 3 and 128 characters!';
+$_['City must be between 2 and 128 characters!']                = 'City must be between 2 and 128 characters!';
+$_['Please select a country!']             = 'Please select a country!';
+$_['Please select a region / state!']                = 'Please select a region / state!';
+$_['Postcode must be between 2 and 10 characters!']            = 'Postcode must be between 2 and 10 characters!';
+$_['Warning: You must agree to the %s!']               = 'Warning: You must agree to the %s!';
 ?>

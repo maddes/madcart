@@ -1,17 +1,17 @@
 <?php 
 class ControllerPaymentWorldPay extends Controller {
-	private $error = array(); 
+	private $error = array();
 
 	public function index() {
 		$this->language->load('payment/worldpay');
 
 		$this->document->setTitle(__('heading_title'));
-		
+
 		$this->load->model('setting/setting');
 			
 		if (($this->request->server['REQUEST_METHOD'] == 'POST') && $this->validate()) {
-			$this->model_setting_setting->editSetting('worldpay', $this->request->post);				
-			
+			$this->model_setting_setting->editSetting('worldpay', $this->request->post);
+				
 			$this->session->data['success'] = __('text_success');
 
 			$this->redirect($this->url->link('extension/payment', 'token=' . $this->session->data['token'], 'SSL'));
@@ -27,17 +27,17 @@ class ControllerPaymentWorldPay extends Controller {
 		$this->data['text_successful'] = __('text_successful');
 		$this->data['text_declined'] = __('text_declined');
 		$this->data['text_off'] = __('text_off');
-		
+
 		$this->data['entry_merchant'] = __('entry_merchant');
 		$this->data['entry_password'] = __('entry_password');
 		$this->data['entry_callback'] = __('entry_callback');
 		$this->data['entry_test'] = __('entry_test');
-		$this->data['entry_total'] = __('entry_total');	
-		$this->data['entry_order_status'] = __('entry_order_status');		
+		$this->data['entry_total'] = __('entry_total');
+		$this->data['entry_order_status'] = __('entry_order_status');
 		$this->data['entry_geo_zone'] = __('entry_geo_zone');
 		$this->data['entry_status'] = __('entry_status');
 		$this->data['entry_sort_order'] = __('entry_sort_order');
-		
+
 		$this->data['help_password'] = __('help_password');
 		$this->data['help_callback'] = __('help_callback');
 		$this->data['help_total'] = __('help_total');
@@ -45,57 +45,57 @@ class ControllerPaymentWorldPay extends Controller {
 		$this->data['button_save'] = __('button_save');
 		$this->data['button_cancel'] = __('button_cancel');
 
- 		if (isset($this->error['warning'])) {
+		if (isset($this->error['warning'])) {
 			$this->data['error_warning'] = $this->error['warning'];
 		} else {
 			$this->data['error_warning'] = '';
 		}
 
- 		if (isset($this->error['merchant'])) {
+		if (isset($this->error['merchant'])) {
 			$this->data['error_merchant'] = $this->error['merchant'];
 		} else {
 			$this->data['error_merchant'] = '';
 		}
 
- 		if (isset($this->error['password'])) {
+		if (isset($this->error['password'])) {
 			$this->data['error_password'] = $this->error['password'];
 		} else {
 			$this->data['error_password'] = '';
 		}
 
-  		$this->data['breadcrumbs'] = array();
+		$this->data['breadcrumbs'] = array();
 
-   		$this->data['breadcrumbs'][] = array(
-       		'text' => __('text_home'),
-			'href' => $this->url->link('common/home', 'token=' . $this->session->data['token'], 'SSL')
-   		);
+		$this->data['breadcrumbs'][] = array(
+				'text' => __('text_home'),
+				'href' => $this->url->link('common/home', 'token=' . $this->session->data['token'], 'SSL')
+		);
 
-   		$this->data['breadcrumbs'][] = array(
-       		'text' => __('text_payment'),
-			'href' => $this->url->link('extension/payment', 'token=' . $this->session->data['token'], 'SSL')
-   		);
+		$this->data['breadcrumbs'][] = array(
+				'text' => __('text_payment'),
+				'href' => $this->url->link('extension/payment', 'token=' . $this->session->data['token'], 'SSL')
+		);
 
-   		$this->data['breadcrumbs'][] = array(
-       		'text' => __('heading_title'),
-			'href' => $this->url->link('payment/worldpay', 'token=' . $this->session->data['token'], 'SSL')
-   		);
-				
+		$this->data['breadcrumbs'][] = array(
+				'text' => __('heading_title'),
+				'href' => $this->url->link('payment/worldpay', 'token=' . $this->session->data['token'], 'SSL')
+		);
+
 		$this->data['action'] = $this->url->link('payment/worldpay', 'token=' . $this->session->data['token'], 'SSL');
-		
+
 		$this->data['cancel'] = $this->url->link('extension/payment', 'token=' . $this->session->data['token'], 'SSL');
-		
+
 		if (isset($this->request->post['worldpay_merchant'])) {
 			$this->data['worldpay_merchant'] = $this->request->post['worldpay_merchant'];
 		} else {
 			$this->data['worldpay_merchant'] = $this->config->get('worldpay_merchant');
 		}
-		
+
 		if (isset($this->request->post['worldpay_password'])) {
 			$this->data['worldpay_password'] = $this->request->post['worldpay_password'];
 		} else {
 			$this->data['worldpay_password'] = $this->config->get('worldpay_password');
 		}
-		
+
 		$this->data['callback'] = HTTP_CATALOG . 'index.php?route=payment/worldpay/callback';
 
 		if (isset($this->request->post['worldpay_test'])) {
@@ -103,39 +103,39 @@ class ControllerPaymentWorldPay extends Controller {
 		} else {
 			$this->data['worldpay_test'] = $this->config->get('worldpay_test');
 		}
-		
+
 		if (isset($this->request->post['worldpay_total'])) {
 			$this->data['worldpay_total'] = $this->request->post['worldpay_total'];
 		} else {
-			$this->data['worldpay_total'] = $this->config->get('worldpay_total'); 
-		} 
-				
+			$this->data['worldpay_total'] = $this->config->get('worldpay_total');
+		}
+
 		if (isset($this->request->post['worldpay_order_status_id'])) {
 			$this->data['worldpay_order_status_id'] = $this->request->post['worldpay_order_status_id'];
 		} else {
-			$this->data['worldpay_order_status_id'] = $this->config->get('worldpay_order_status_id'); 
-		} 
-		
+			$this->data['worldpay_order_status_id'] = $this->config->get('worldpay_order_status_id');
+		}
+
 		$this->load->model('localisation/order_status');
-		
+
 		$this->data['order_statuses'] = $this->model_localisation_order_status->getOrderStatuses();
-		
+
 		if (isset($this->request->post['worldpay_geo_zone_id'])) {
 			$this->data['worldpay_geo_zone_id'] = $this->request->post['worldpay_geo_zone_id'];
 		} else {
-			$this->data['worldpay_geo_zone_id'] = $this->config->get('worldpay_geo_zone_id'); 
-		} 
+			$this->data['worldpay_geo_zone_id'] = $this->config->get('worldpay_geo_zone_id');
+		}
 
 		$this->load->model('localisation/geo_zone');
-										
+
 		$this->data['geo_zones'] = $this->model_localisation_geo_zone->getGeoZones();
-		
+
 		if (isset($this->request->post['worldpay_status'])) {
 			$this->data['worldpay_status'] = $this->request->post['worldpay_status'];
 		} else {
 			$this->data['worldpay_status'] = $this->config->get('worldpay_status');
 		}
-		
+
 		if (isset($this->request->post['worldpay_sort_order'])) {
 			$this->data['worldpay_sort_order'] = $this->request->post['worldpay_sort_order'];
 		} else {
@@ -144,10 +144,10 @@ class ControllerPaymentWorldPay extends Controller {
 
 		$this->template = 'payment/worldpay.tpl';
 		$this->children = array(
-			'common/header',
-			'common/footer'
+				'common/header',
+				'common/footer'
 		);
-				
+
 		$this->response->setOutput($this->render());
 	}
 
@@ -155,20 +155,20 @@ class ControllerPaymentWorldPay extends Controller {
 		if (!$this->user->hasPermission('modify', 'payment/worldpay')) {
 			$this->error['warning'] = __('error_permission');
 		}
-		
+
 		if (!$this->request->post['worldpay_merchant']) {
 			$this->error['merchant'] = __('error_merchant');
 		}
-		
+
 		if (!$this->request->post['worldpay_password']) {
 			$this->error['password'] = __('error_password');
 		}
-		
+
 		if (!$this->error) {
 			return true;
 		} else {
 			return false;
-		}	
+		}
 	}
 }
 ?>

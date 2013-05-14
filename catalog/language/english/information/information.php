@@ -1,4 +1,4 @@
 <?php
 // Text
-$_['text_error'] = 'Information Page Not Found!';
+$_['Information Page Not Found!'] = 'Information Page Not Found!';
 ?>

@@ -2,22 +2,22 @@
 class ControllerModuleSpecial extends Controller {
 	protected function index($setting) {
 		$this->language->load('module/special');
- 
-      	$this->data['heading_title'] = __('heading_title');
+
+		$this->data['heading_title'] = __('Specials','module/special');
 
 		$this->data['button_cart'] = __('button_cart');
-		
+
 		$this->load->model('catalog/product');
-		
+
 		$this->load->model('tool/image');
 
 		$this->data['products'] = array();
-		
+
 		$data = array(
-			'sort'  => 'pd.name',
-			'order' => 'ASC',
-			'start' => 0,
-			'limit' => $setting['limit']
+				'sort'  => 'pd.name',
+				'order' => 'ASC',
+				'start' => 0,
+				'limit' => $setting['limit']
 		);
 
 		$results = $this->model_catalog_product->getProductSpecials($data);
@@ -34,28 +34,28 @@ class ControllerModuleSpecial extends Controller {
 			} else {
 				$price = false;
 			}
-					
-			if ((float)$result['special']) { 
+				
+			if ((float)$result['special']) {
 				$special = $this->currency->format($this->tax->calculate($result['special'], $result['tax_class_id'], $this->config->get('config_tax')));
 			} else {
 				$special = false;
 			}
-			
+				
 			if ($this->config->get('config_review_status')) {
 				$rating = $result['rating'];
 			} else {
 				$rating = false;
 			}
-			
+				
 			$this->data['products'][] = array(
-				'product_id' => $result['product_id'],
-				'thumb'   	 => $image,
-				'name'    	 => $result['name'],
-				'price'   	 => $price,
-				'special' 	 => $special,
-				'rating'     => $rating,
-				'reviews'    => sprintf(__('text_reviews'), (int)$result['reviews']),
-				'href'    	 => $this->url->link('product/product', 'product_id=' . $result['product_id'])
+					'product_id' => $result['product_id'],
+					'thumb'   	 => $image,
+					'name'    	 => $result['name'],
+					'price'   	 => $price,
+					'special' 	 => $special,
+					'rating'     => $rating,
+					'reviews'    => sprintf(__('Based on %s reviews.','module/special'), (int)$result['reviews']),
+					'href'    	 => $this->url->link('product/product', 'product_id=' . $result['product_id'])
 			);
 		}
 

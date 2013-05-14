@@ -2,27 +2,27 @@
 class ControllerModuleAccount extends Controller {
 	protected function index() {
 		$this->language->load('module/account');
-		
-    	$this->data['heading_title'] = __('heading_title');
-    	
-		$this->data['text_register'] = __('text_register');
-    	$this->data['text_login'] = __('text_login');
-		$this->data['text_logout'] = __('text_logout');
-		$this->data['text_forgotten'] = __('text_forgotten');
-		$this->data['text_account'] = __('text_account');
-		$this->data['text_edit'] = __('text_edit');
-		$this->data['text_password'] = __('text_password');
-		$this->data['text_address'] = __('text_address');
-		$this->data['text_wishlist'] = __('text_wishlist');
-		$this->data['text_order'] = __('text_order');
-		$this->data['text_download'] = __('text_download');
-		$this->data['text_return'] = __('text_return');
-		$this->data['text_transaction'] = __('text_transaction');
-		$this->data['text_newsletter'] = __('text_newsletter');
-		
+
+		$this->data['heading_title'] = __('Account','module/account');
+		 
+		$this->data['text_register'] = __('Register','module/account');
+		$this->data['text_login'] = __('Login','module/account');
+		$this->data['text_logout'] = __('Logout','module/account');
+		$this->data['text_forgotten'] = __('Forgotten Password','module/account');
+		$this->data['text_account'] = __('My Account','module/account');
+		$this->data['text_edit'] = __('Edit Account','module/account');
+		$this->data['text_password'] = __('Password','module/account');
+		$this->data['text_address'] = __('Address Books','module/account');
+		$this->data['text_wishlist'] = __('Wish List','module/account');
+		$this->data['text_order'] = __('Order History','module/account');
+		$this->data['text_download'] = __('Downloads','module/account');
+		$this->data['text_return'] = __('Returns','module/account');
+		$this->data['text_transaction'] = __('Transactions','module/account');
+		$this->data['text_newsletter'] = __('Newsletter','module/account');
+
 		$this->data['logged'] = $this->customer->isLogged();
 		$this->data['register'] = $this->url->link('account/register', '', 'SSL');
-    	$this->data['login'] = $this->url->link('account/login', '', 'SSL');
+		$this->data['login'] = $this->url->link('account/login', '', 'SSL');
 		$this->data['logout'] = $this->url->link('account/logout', '', 'SSL');
 		$this->data['forgotten'] = $this->url->link('account/forgotten', '', 'SSL');
 		$this->data['account'] = $this->url->link('account/account', '', 'SSL');
@@ -41,7 +41,7 @@ class ControllerModuleAccount extends Controller {
 		} else {
 			$this->template = 'default/template/module/account.tpl';
 		}
-		
+
 		$this->render();
 	}
 }

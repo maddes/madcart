@@ -24,14 +24,14 @@ class ControllerModuleCarousel extends Controller {
 		foreach ($results as $result) {
 			if (file_exists(DIR_IMAGE . $result['image'])) {
 				$this->data['banners'][] = array(
-					'title' => $result['title'],
-					'link'  => $result['link'],
-					'image' => $this->model_tool_image->resize($result['image'], $setting['width'], $setting['height'])
+						'title' => $result['title'],
+						'link'  => $result['link'],
+						'image' => $this->model_tool_image->resize($result['image'], $setting['width'], $setting['height'])
 				);
 			}
 		}
 
-		$this->data['module'] = $module++; 
+		$this->data['module'] = $module++;
 
 		if (file_exists(DIR_TEMPLATE . $this->config->get('config_template') . '/template/module/carousel.tpl')) {
 			$this->template = $this->config->get('config_template') . '/template/module/carousel.tpl';
@@ -39,7 +39,7 @@ class ControllerModuleCarousel extends Controller {
 			$this->template = 'default/template/module/carousel.tpl';
 		}
 
-		$this->render(); 
+		$this->render();
 	}
 }
 ?>

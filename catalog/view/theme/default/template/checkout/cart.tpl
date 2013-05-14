@@ -30,7 +30,7 @@
 		<?php } ?>
 	</ul>
 	<h1>
-		<?php echo $heading_title; ?>
+		<?php echo __('Shopping Cart', 'checkout/cart'); ?>
 		<?php if ($weight) { ?>
 		&nbsp;(
 		<?php echo $weight; ?>
@@ -43,12 +43,15 @@
 			<table>
 				<thead>
 					<tr>
-						<td class="image"><?php echo $column_image; ?></td>
-						<td class="name"><?php echo $column_name; ?></td>
-						<td class="model"><?php echo $column_model; ?></td>
-						<td class="quantity"><?php echo $column_quantity; ?></td>
-						<td class="price"><?php echo $column_price; ?></td>
-						<td class="total"><?php echo $column_total; ?></td>
+						<td class="image"><?php echo __('Image', 'checkout/cart'); ?></td>
+						<td class="name"><?php echo __('Product Name', 'checkout/cart'); ?>
+						</td>
+						<td class="model"><?php echo __('Model', 'checkout/cart'); ?></td>
+						<td class="quantity"><?php echo __('Quantity', 'checkout/cart'); ?>
+						</td>
+						<td class="price"><?php echo __('Unit Price', 'checkout/cart'); ?>
+						</td>
+						<td class="total"><?php echo __('Total', 'checkout/cart'); ?></td>
 					</tr>
 				</thead>
 				<tbody>
@@ -106,11 +109,11 @@
 	</form>
 	<?php if ($coupon_status || $voucher_status || $reward_status || $shipping_status) { ?>
 	<h2>
-		<?php echo $text_next; ?>
+		<?php echo __('What would you like to do next?', 'checkout/cart'); ?>
 	</h2>
 	<div class="content">
 		<p>
-			<?php echo $text_next_choice; ?>
+			<?php echo __('What would you like to do next?', 'checkout/cart'); ?>
 		</p>
 		<table class="radio">
 			<?php if ($coupon_status) { ?>
@@ -119,8 +122,8 @@
 					name="next" value="coupon" id="use_coupon" checked="checked" /> <?php } else { ?>
 					<input type="radio" name="next" value="coupon" id="use_coupon" /> <?php } ?>
 				</td>
-				<td><label for="use_coupon"><?php echo $text_use_coupon; ?> </label>
-				</td>
+				<td><label for="use_coupon"><?php echo __('Use Coupon Code', 'checkout/cart'); ?>
+				</label></td>
 			</tr>
 			<?php } ?>
 			<?php if ($voucher_status) { ?>
@@ -129,8 +132,8 @@
 					name="next" value="voucher" id="use_voucher" checked="checked" /> <?php } else { ?>
 					<input type="radio" name="next" value="voucher" id="use_voucher" />
 					<?php } ?></td>
-				<td><label for="use_voucher"><?php echo $text_use_voucher; ?> </label>
-				</td>
+				<td><label for="use_voucher"><?php echo __('Use Gift Voucher', 'checkout/cart'); ?>
+				</label></td>
 			</tr>
 			<?php } ?>
 			<?php if ($reward_status) { ?>
@@ -149,7 +152,7 @@
 					name="next" value="shipping" id="shipping_estimate"
 					checked="checked" /> <?php } else { ?> <input type="radio"
 					name="next" value="shipping" id="shipping_estimate" /> <?php } ?></td>
-				<td><label for="shipping_estimate"><?php echo $text_shipping_estimate; ?>
+				<td><label for="shipping_estimate"><?php echo __('Estimate Shipping &amp; Taxes', 'checkout/cart'); ?>
 				</label></td>
 			</tr>
 			<?php } ?>
@@ -159,7 +162,7 @@
 		<div id="coupon" class="content" style="display: <?php echo ($next == 'coupon' ? 'block' : 'none'); ?>;">
 			<form action="<?php echo $action; ?>" method="post"
 				enctype="multipart/form-data">
-				<?php echo $entry_coupon; ?>
+				<?php echo __('Enter your coupon here:', 'checkout/cart'); ?>
 				&nbsp; <input type="text" name="coupon"
 					value="<?php echo $coupon; ?>" /> <input type="hidden" name="next"
 					value="coupon" /> &nbsp; <input type="submit"
@@ -169,7 +172,7 @@
 		<div id="voucher" class="content" style="display: <?php echo ($next == 'voucher' ? 'block' : 'none'); ?>;">
 			<form action="<?php echo $action; ?>" method="post"
 				enctype="multipart/form-data">
-				<?php echo $entry_voucher; ?>
+				<?php echo __('Enter your gift voucher code here:', 'checkout/cart'); ?>
 				&nbsp; <input type="text" name="voucher"
 					value="<?php echo $voucher; ?>" /> <input type="hidden" name="next"
 					value="voucher" /> &nbsp; <input type="submit"
@@ -188,11 +191,12 @@
 		</div>
 		<div id="shipping" class="content" style="display: <?php echo ($next == 'shipping' ? 'block' : 'none'); ?>;">
 			<p>
-				<?php echo $text_shipping_detail; ?>
+				<?php echo __('Enter your destination to get a shipping estimate.', 'checkout/cart'); ?>
 			</p>
 			<table>
 				<tr>
-					<td><span class="required">*</span> <?php echo $entry_country; ?></td>
+					<td><span class="required">*</span> <?php echo __('Country:', 'checkout/cart'); ?>
+					</td>
 					<td><select name="country_id">
 							<option value="">
 								<?php echo $text_select; ?>
@@ -212,12 +216,13 @@
 					</select></td>
 				</tr>
 				<tr>
-					<td><span class="required">*</span> <?php echo $entry_zone; ?></td>
+					<td><span class="required">*</span> <?php echo __('Region / State:', 'checkout/cart'); ?>
+					</td>
 					<td><select name="zone_id">
 					</select></td>
 				</tr>
 				<tr>
-					<td><span id="postcode-required" class="required">*</span> <?php echo $entry_postcode; ?>
+					<td><span id="postcode-required" class="required">*</span> <?php echo __('Post Code:', 'checkout/cart'); ?>
 					</td>
 					<td><input type="text" name="postcode"
 						value="<?php echo $postcode; ?>" /></td>
@@ -299,7 +304,7 @@ $('#button-quote').on('click', function() {
 			}
 			
 			if (json['shipping_method']) {
-				html  = '<h2><?php echo $text_shipping_method; ?></h2>';
+				html  = '<h2><?php echo __('Please select the preferred shipping method to use on this order.', 'checkout/cart'); ?></h2>';
 				html += '<form action="<?php echo $action; ?>" method="post" enctype="multipart/form-data">';
 				html += '  <table class="radio">';
 				

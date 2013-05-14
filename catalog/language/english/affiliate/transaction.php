@@ -1,15 +1,15 @@
 <?php
-// Heading 
-$_['heading_title']      = 'Your Transactions';
+// Heading
+$_['Your Transactions']      = 'Your Transactions';
 
 // Column
-$_['column_date_added']  = 'Date Added';
-$_['column_description'] = 'Description';
-$_['column_amount']      = 'Amount (%s)';
+$_['Date Added']  = 'Date Added';
+$_['Description'] = 'Description';
+$_['Amount (%s)']      = 'Amount (%s)';
 
 // Text
-$_['text_account']       = 'Account';
-$_['text_transaction']   = 'Your Transactions';
-$_['text_balance']       = 'Your current balance is:';
-$_['text_empty']         = 'You do not have any transactions!';
+$_['Account']       = 'Account';
+$_['Your Transactions']   = 'Your Transactions';
+$_['Your current balance is:']       = 'Your current balance is:';
+$_['You do not have any transactions!']         = 'You do not have any transactions!';
 ?>

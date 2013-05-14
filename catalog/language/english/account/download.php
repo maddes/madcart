@@ -1,14 +1,14 @@
 <?php
-// Heading 
-$_['heading_title']   = 'Account Downloads';
+// Heading
+$_['Account Downloads']   = 'Account Downloads';
 
 // Text
-$_['text_account']    = 'Account';
-$_['text_downloads']  = 'Downloads';
-$_['text_order']      = 'Order ID:';
-$_['text_date_added'] = 'Date Added:';
-$_['text_name']       = 'Name:';
-$_['text_remaining']  = 'Remaining:';
-$_['text_size']       = 'Size:';
-$_['text_empty']      = 'You have not made any previous downloadable orders!';
+$_['Account']    = 'Account';
+$_['Downloads']  = 'Downloads';
+$_['Order ID:']      = 'Order ID:';
+$_['Date Added:'] = 'Date Added:';
+$_['Name:']       = 'Name:';
+$_['Remaining:']  = 'Remaining:';
+$_['Size:']       = 'Size:';
+$_['You have not made any previous downloadable orders!']      = 'You have not made any previous downloadable orders!';
 ?>

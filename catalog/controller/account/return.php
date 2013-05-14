@@ -1,43 +1,43 @@
 <?php 
-class ControllerAccountReturn extends Controller { 
+class ControllerAccountReturn extends Controller {
 	private $error = array();
-	
+
 	public function index() {
-    	if (!$this->customer->isLogged()) {
-      		$this->session->data['redirect'] = $this->url->link('account/return', '', 'SSL');
+		if (!$this->customer->isLogged()) {
+			$this->session->data['redirect'] = $this->url->link('account/return', '', 'SSL');
 
-	  		$this->redirect($this->url->link('account/login', '', 'SSL'));
-    	}
- 
-    	$this->language->load('account/return');
+			$this->redirect($this->url->link('account/login', '', 'SSL'));
+		}
 
-    	$this->document->setTitle(__('heading_title'));
-								
-      	$this->data['breadcrumbs'] = array();
+		$this->language->load('account/return');
 
-      	$this->data['breadcrumbs'][] = array(
-        	'text' => __('text_home'),
-			'href' => $this->url->link('common/home')
-      	); 
+		$this->document->setTitle(__('heading_title'));
 
-      	$this->data['breadcrumbs'][] = array(
-        	'text' => __('text_account'),
-			'href' => $this->url->link('account/account', '', 'SSL')
-      	);
-		
+		$this->data['breadcrumbs'] = array();
+
+		$this->data['breadcrumbs'][] = array(
+				'text' => __('text_home'),
+				'href' => $this->url->link('common/home')
+		);
+
+		$this->data['breadcrumbs'][] = array(
+				'text' => __('text_account'),
+				'href' => $this->url->link('account/account', '', 'SSL')
+		);
+
 		$url = '';
-		
+
 		if (isset($this->request->get['page'])) {
 			$url .= '&page=' . $this->request->get['page'];
 		}
-				
-      	$this->data['breadcrumbs'][] = array(
-        	'text' => __('heading_title'),
-			'href' => $this->url->link('account/return', $url, 'SSL')
-      	);
+
+		$this->data['breadcrumbs'][] = array(
+				'text' => __('heading_title'),
+				'href' => $this->url->link('account/return', $url, 'SSL')
+		);
 
 		$this->data['heading_title'] = __('heading_title');
-		
+
 		$this->data['text_return_id'] = __('text_return_id');
 		$this->data['text_order_id'] = __('text_order_id');
 		$this->data['text_status'] = __('text_status');
@@ -47,29 +47,29 @@ class ControllerAccountReturn extends Controller {
 
 		$this->data['button_view'] = __('button_view');
 		$this->data['button_continue'] = __('button_continue');
-		
+
 		$this->load->model('account/return');
-		
+
 		if (isset($this->request->get['page'])) {
 			$page = $this->request->get['page'];
 		} else {
 			$page = 1;
 		}
-		
+
 		$this->data['returns'] = array();
-		
+
 		$return_total = $this->model_account_return->getTotalReturns();
-		
+
 		$results = $this->model_account_return->getReturns(($page - 1) * 10, 10);
-		
+
 		foreach ($results as $result) {
 			$this->data['returns'][] = array(
-				'return_id'  => $result['return_id'],
-				'order_id'   => $result['order_id'],
-				'name'       => $result['firstname'] . ' ' . $result['lastname'],
-				'status'     => $result['status'],
-				'date_added' => date(__('date_format_short'), strtotime($result['date_added'])),
-				'href'       => $this->url->link('account/return/info', 'return_id=' . $result['return_id'] . $url, 'SSL')
+					'return_id'  => $result['return_id'],
+					'order_id'   => $result['order_id'],
+					'name'       => $result['firstname'] . ' ' . $result['lastname'],
+					'status'     => $result['status'],
+					'date_added' => date(__('date_format_short'), strtotime($result['date_added'])),
+					'href'       => $this->url->link('account/return/info', 'return_id=' . $result['return_id'] . $url, 'SSL')
 			);
 		}
 
@@ -78,108 +78,108 @@ class ControllerAccountReturn extends Controller {
 		$pagination->page = $page;
 		$pagination->limit = $this->config->get('config_catalog_limit');
 		$pagination->url = $this->url->link('account/history', 'page={page}', 'SSL');
-		
+
 		$this->data['pagination'] = $pagination->render();
-		
+
 		$this->data['results'] = sprintf(__('text_pagination'), ($return_total) ? (($page - 1) * $this->config->get('config_catalog_limit')) + 1 : 0, ((($page - 1) * $this->config->get('config_catalog_limit')) > ($return_total - $this->config->get('config_catalog_limit'))) ? $return_total : ((($page - 1) * $this->config->get('config_catalog_limit')) + $this->config->get('config_catalog_limit')), $return_total, ceil($return_total / $this->config->get('config_catalog_limit')));
 
 		$this->data['continue'] = $this->url->link('account/account', '', 'SSL');
-		
+
 		if (file_exists(DIR_TEMPLATE . $this->config->get('config_template') . '/template/account/return_list.tpl')) {
 			$this->template = $this->config->get('config_template') . '/template/account/return_list.tpl';
 		} else {
 			$this->template = 'default/template/account/return_list.tpl';
 		}
-		
+
 		$this->children = array(
-			'common/column_left',
-			'common/column_right',
-			'common/content_top',
-			'common/content_bottom',
-			'common/footer',
-			'common/header'
+				'common/column_left',
+				'common/column_right',
+				'common/content_top',
+				'common/content_bottom',
+				'common/footer',
+				'common/header'
 		);
-						
-		$this->response->setOutput($this->render());				
+
+		$this->response->setOutput($this->render());
 	}
-	
+
 	public function info() {
 		$this->language->load('account/return');
-		
+
 		if (isset($this->request->get['return_id'])) {
 			$return_id = $this->request->get['return_id'];
 		} else {
 			$return_id = 0;
 		}
-    	
+		 
 		if (!$this->customer->isLogged()) {
 			$this->session->data['redirect'] = $this->url->link('account/return/info', 'return_id=' . $return_id, 'SSL');
-			
+				
 			$this->redirect($this->url->link('account/login', '', 'SSL'));
-    	}
-		
+		}
+
 		$this->load->model('account/return');
-						
+
 		$return_info = $this->model_account_return->getReturn($return_id);
 
 		if ($return_info) {
 			$this->document->setTitle(__('text_return'));
 
 			$this->data['breadcrumbs'] = array();
-	
+
 			$this->data['breadcrumbs'][] = array(
-				'text' => __('text_home'),
-				'href' => $this->url->link('common/home', '', 'SSL')
+					'text' => __('text_home'),
+					'href' => $this->url->link('common/home', '', 'SSL')
 			);
-	
+
 			$this->data['breadcrumbs'][] = array(
-				'text' => __('text_account'),
-				'href' => $this->url->link('account/account', '', 'SSL')
+					'text' => __('text_account'),
+					'href' => $this->url->link('account/account', '', 'SSL')
 			);
-			
+				
 			$url = '';
-			
+				
 			if (isset($this->request->get['page'])) {
 				$url .= '&page=' . $this->request->get['page'];
-			}	
-					
+			}
+				
 			$this->data['breadcrumbs'][] = array(
-				'text' => __('heading_title'),
-				'href' => $this->url->link('account/return', $url, 'SSL')
+					'text' => __('heading_title'),
+					'href' => $this->url->link('account/return', $url, 'SSL')
 			);
-						
+
 			$this->data['breadcrumbs'][] = array(
-				'text' => __('text_return'),
-				'href' => $this->url->link('account/return/info', 'return_id=' . $this->request->get['return_id'] . $url, 'SSL')
-			);			
-			
+					'text' => __('text_return'),
+					'href' => $this->url->link('account/return/info', 'return_id=' . $this->request->get['return_id'] . $url, 'SSL')
+			);
+				
 			$this->data['heading_title'] = __('text_return');
-			
+				
 			$this->data['text_return_detail'] = __('text_return_detail');
 			$this->data['text_return_id'] = __('text_return_id');
 			$this->data['text_order_id'] = __('text_order_id');
 			$this->data['text_date_ordered'] = __('text_date_ordered');
 			$this->data['text_customer'] = __('text_customer');
 			$this->data['text_email'] = __('text_email');
-			$this->data['text_telephone'] = __('text_telephone');			
+			$this->data['text_telephone'] = __('text_telephone');
 			$this->data['text_status'] = __('text_status');
 			$this->data['text_date_added'] = __('text_date_added');
 			$this->data['text_product'] = __('text_product');
 			$this->data['text_comment'] = __('text_comment');
-      		$this->data['text_history'] = __('text_history');
-			
-      		$this->data['column_product'] = __('column_product');
-      		$this->data['column_model'] = __('column_model');
-      		$this->data['column_quantity'] = __('column_quantity');
-      		$this->data['column_opened'] = __('column_opened');
+			$this->data['text_history'] = __('text_history');
+				
+			$this->data['column_product'] = __('column_product');
+			$this->data['column_model'] = __('column_model');
+			$this->data['column_quantity'] = __('column_quantity');
+			$this->data['column_opened'] = __('column_opened');
 			$this->data['column_reason'] = __('column_reason');
 			$this->data['column_action'] = __('column_action');
 			$this->data['column_date_added'] = __('column_date_added');
-      		$this->data['column_status'] = __('column_status');
-      		$this->data['column_comment'] = __('column_comment');
-							
+			$this->data['column_status'] = __('column_status');
+			$this->data['column_comment'] = __('column_comment');
+				
 			$this->data['button_continue'] = __('button_continue');
-			
+				
 			$this->data['return_id'] = $return_info['return_id'];
 			$this->data['order_id'] = $return_info['order_id'];
 			$this->data['date_ordered'] = date(__('date_format_short'), strtotime($return_info['date_ordered']));
@@ -187,7 +187,7 @@ class ControllerAccountReturn extends Controller {
 			$this->data['firstname'] = $return_info['firstname'];
 			$this->data['lastname'] = $return_info['lastname'];
 			$this->data['email'] = $return_info['email'];
-			$this->data['telephone'] = $return_info['telephone'];						
+			$this->data['telephone'] = $return_info['telephone'];
 			$this->data['product'] = $return_info['product'];
 			$this->data['model'] = $return_info['model'];
 			$this->data['quantity'] = $return_info['quantity'];
@@ -195,19 +195,19 @@ class ControllerAccountReturn extends Controller {
 			$this->data['opened'] = $return_info['opened'] ? __('text_yes') : __('text_no');
 			$this->data['comment'] = nl2br($return_info['comment']);
 			$this->data['action'] = $return_info['action'];
-						
+
 			$this->data['histories'] = array();
-			
+				
 			$results = $this->model_account_return->getReturnHistories($this->request->get['return_id']);
-			
-      		foreach ($results as $result) {
-        		$this->data['histories'][] = array(
-          			'date_added' => date(__('date_format_short'), strtotime($result['date_added'])),
-          			'status'     => $result['status'],
-          			'comment'    => nl2br($result['comment'])
-        		);
-      		}
-			
+				
+			foreach ($results as $result) {
+				$this->data['histories'][] = array(
+						'date_added' => date(__('date_format_short'), strtotime($result['date_added'])),
+						'status'     => $result['status'],
+						'comment'    => nl2br($result['comment'])
+				);
+			}
+				
 			$this->data['continue'] = $this->url->link('account/return', $url, 'SSL');
 
 			if (file_exists(DIR_TEMPLATE . $this->config->get('config_template') . '/template/account/return_info.tpl')) {
@@ -215,48 +215,48 @@ class ControllerAccountReturn extends Controller {
 			} else {
 				$this->template = 'default/template/account/return_info.tpl';
 			}
-			
+				
 			$this->children = array(
-				'common/column_left',
-				'common/column_right',
-				'common/content_top',
-				'common/content_bottom',
-				'common/footer',
-				'common/header'	
+					'common/column_left',
+					'common/column_right',
+					'common/content_top',
+					'common/content_bottom',
+					'common/footer',
+					'common/header'
 			);
-									
-			$this->response->setOutput($this->render());		
+				
+			$this->response->setOutput($this->render());
 		} else {
 			$this->document->setTitle(__('text_return'));
-						
+
 			$this->data['breadcrumbs'] = array();
 
 			$this->data['breadcrumbs'][] = array(
-				'text' => __('text_home'),
-				'href' => $this->url->link('common/home')
+					'text' => __('text_home'),
+					'href' => $this->url->link('common/home')
 			);
 
 			$this->data['breadcrumbs'][] = array(
-				'text' => __('text_account'),
-				'href' => $this->url->link('account/account', '', 'SSL')
+					'text' => __('text_account'),
+					'href' => $this->url->link('account/account', '', 'SSL')
 			);
-			
+				
 			$this->data['breadcrumbs'][] = array(
-				'text' => __('heading_title'),
-				'href' => $this->url->link('account/return', '', 'SSL')
+					'text' => __('heading_title'),
+					'href' => $this->url->link('account/return', '', 'SSL')
 			);
-			
+				
 			$url = '';
-			
+				
 			if (isset($this->request->get['page'])) {
 				$url .= '&page=' . $this->request->get['page'];
 			}
-									
+				
 			$this->data['breadcrumbs'][] = array(
-				'text' => __('text_return'),
-				'href' => $this->url->link('account/return/info', 'return_id=' . $return_id . $url, 'SSL')
+					'text' => __('text_return'),
+					'href' => $this->url->link('account/return/info', 'return_id=' . $return_id . $url, 'SSL')
 			);
-			
+				
 			$this->data['heading_title'] = __('text_return');
 
 			$this->data['text_error'] = __('text_error');
@@ -270,244 +270,244 @@ class ControllerAccountReturn extends Controller {
 			} else {
 				$this->template = 'default/template/error/not_found.tpl';
 			}
-			
+				
 			$this->children = array(
-				'common/column_left',
-				'common/column_right',
-				'common/content_top',
-				'common/content_bottom',
-				'common/footer',
-				'common/header'	
+					'common/column_left',
+					'common/column_right',
+					'common/content_top',
+					'common/content_bottom',
+					'common/footer',
+					'common/header'
 			);
-						
-			$this->response->setOutput($this->render());			
+
+			$this->response->setOutput($this->render());
 		}
 	}
-		
+
 	public function insert() {
 		$this->language->load('account/return');
 
 		$this->load->model('account/return');
 
-    	if (($this->request->server['REQUEST_METHOD'] == 'POST') && $this->validate()) {
+		if (($this->request->server['REQUEST_METHOD'] == 'POST') && $this->validate()) {
 			$this->model_account_return->addReturn($this->request->post);
-	  		
+			 
 			$this->redirect($this->url->link('account/return/success', '', 'SSL'));
-    	} 
-							
+		}
+			
 		$this->document->setTitle(__('heading_title'));
-		
+
 		$this->document->addScript('catalog/view/javascript/jquery/colorbox/jquery.colorbox-min.js');
 		$this->document->addStyle('catalog/view/javascript/jquery/colorbox/colorbox.css');
-	  		
-      	$this->data['breadcrumbs'] = array();
+	  
+		$this->data['breadcrumbs'] = array();
 
-      	$this->data['breadcrumbs'][] = array(
-        	'text' => __('text_home'),
-			'href' => $this->url->link('common/home')
-      	); 
-		
-      	$this->data['breadcrumbs'][] = array(       	
-        	'text' => __('text_account'),
-			'href' => $this->url->link('account/account', '', 'SSL')
-      	);
-		
-      	$this->data['breadcrumbs'][] = array(       	
-        	'text' => __('heading_title'),
-			'href' => $this->url->link('account/return/insert', '', 'SSL')
-      	);
-		
-    	$this->data['heading_title'] = __('heading_title');
+		$this->data['breadcrumbs'][] = array(
+				'text' => __('text_home'),
+				'href' => $this->url->link('common/home')
+		);
+
+		$this->data['breadcrumbs'][] = array(
+				'text' => __('text_account'),
+				'href' => $this->url->link('account/account', '', 'SSL')
+		);
+
+		$this->data['breadcrumbs'][] = array(
+				'text' => __('heading_title'),
+				'href' => $this->url->link('account/return/insert', '', 'SSL')
+		);
+
+		$this->data['heading_title'] = __('heading_title');
 
 		$this->data['text_description'] = __('text_description');
 		$this->data['text_order'] = __('text_order');
 		$this->data['text_product'] = __('text_product');
 		$this->data['text_yes'] = __('text_yes');
 		$this->data['text_no'] = __('text_no');
-		
-		$this->data['entry_order_id'] = __('entry_order_id');	
-		$this->data['entry_date_ordered'] = __('entry_date_ordered');	    	
+
+		$this->data['entry_order_id'] = __('entry_order_id');
+		$this->data['entry_date_ordered'] = __('entry_date_ordered');
 		$this->data['entry_firstname'] = __('entry_firstname');
-    	$this->data['entry_lastname'] = __('entry_lastname');
-    	$this->data['entry_email'] = __('entry_email');
-    	$this->data['entry_telephone'] = __('entry_telephone');
-		$this->data['entry_product'] = __('entry_product');	
-		$this->data['entry_model'] = __('entry_model');			
-		$this->data['entry_quantity'] = __('entry_quantity');				
-		$this->data['entry_reason'] = __('entry_reason');	
-		$this->data['entry_opened'] = __('entry_opened');	
-		$this->data['entry_fault_detail'] = __('entry_fault_detail');	
+		$this->data['entry_lastname'] = __('entry_lastname');
+		$this->data['entry_email'] = __('entry_email');
+		$this->data['entry_telephone'] = __('entry_telephone');
+		$this->data['entry_product'] = __('entry_product');
+		$this->data['entry_model'] = __('entry_model');
+		$this->data['entry_quantity'] = __('entry_quantity');
+		$this->data['entry_reason'] = __('entry_reason');
+		$this->data['entry_opened'] = __('entry_opened');
+		$this->data['entry_fault_detail'] = __('entry_fault_detail');
 		$this->data['entry_captcha'] = __('entry_captcha');
-				
+
 		$this->data['button_continue'] = __('button_continue');
 		$this->data['button_back'] = __('button_back');
-		    
+
 		if (isset($this->error['warning'])) {
 			$this->data['error_warning'] = $this->error['warning'];
 		} else {
 			$this->data['error_warning'] = '';
 		}
-		
+
 		if (isset($this->error['order_id'])) {
 			$this->data['error_order_id'] = $this->error['order_id'];
 		} else {
 			$this->data['error_order_id'] = '';
 		}
-				
+
 		if (isset($this->error['firstname'])) {
 			$this->data['error_firstname'] = $this->error['firstname'];
 		} else {
 			$this->data['error_firstname'] = '';
-		}	
-		
+		}
+
 		if (isset($this->error['lastname'])) {
 			$this->data['error_lastname'] = $this->error['lastname'];
 		} else {
 			$this->data['error_lastname'] = '';
-		}		
-	
+		}
+
 		if (isset($this->error['email'])) {
 			$this->data['error_email'] = $this->error['email'];
 		} else {
 			$this->data['error_email'] = '';
 		}
-		
+
 		if (isset($this->error['telephone'])) {
 			$this->data['error_telephone'] = $this->error['telephone'];
 		} else {
 			$this->data['error_telephone'] = '';
 		}
-				
+
 		if (isset($this->error['product'])) {
 			$this->data['error_product'] = $this->error['product'];
 		} else {
 			$this->data['error_product'] = '';
 		}
-		
+
 		if (isset($this->error['model'])) {
 			$this->data['error_model'] = $this->error['model'];
 		} else {
 			$this->data['error_model'] = '';
 		}
-						
+
 		if (isset($this->error['reason'])) {
 			$this->data['error_reason'] = $this->error['reason'];
 		} else {
 			$this->data['error_reason'] = '';
 		}
-		
- 		if (isset($this->error['captcha'])) {
+
+		if (isset($this->error['captcha'])) {
 			$this->data['error_captcha'] = $this->error['captcha'];
 		} else {
 			$this->data['error_captcha'] = '';
-		}	
+		}
 
 		$this->data['action'] = $this->url->link('account/return/insert', '', 'SSL');
-	
+
 		$this->load->model('account/order');
-		
+
 		if (isset($this->request->get['order_id'])) {
 			$order_info = $this->model_account_order->getOrder($this->request->get['order_id']);
 		}
-		
+
 		$this->load->model('catalog/product');
-		
+
 		if (isset($this->request->get['product_id'])) {
 			$product_info = $this->model_catalog_product->getProduct($this->request->get['product_id']);
 		}
-		
-    	if (isset($this->request->post['order_id'])) {
-      		$this->data['order_id'] = $this->request->post['order_id']; 	
+
+		if (isset($this->request->post['order_id'])) {
+			$this->data['order_id'] = $this->request->post['order_id'];
 		} elseif (!empty($order_info)) {
 			$this->data['order_id'] = $order_info['order_id'];
 		} else {
-      		$this->data['order_id'] = ''; 
-    	}
-				
-    	if (isset($this->request->post['date_ordered'])) {
-      		$this->data['date_ordered'] = $this->request->post['date_ordered']; 	
+			$this->data['order_id'] = '';
+		}
+
+		if (isset($this->request->post['date_ordered'])) {
+			$this->data['date_ordered'] = $this->request->post['date_ordered'];
 		} elseif (!empty($order_info)) {
 			$this->data['date_ordered'] = date('Y-m-d', strtotime($order_info['date_added']));
 		} else {
-      		$this->data['date_ordered'] = '';
-    	}
-				
+			$this->data['date_ordered'] = '';
+		}
+
 		if (isset($this->request->post['firstname'])) {
-    		$this->data['firstname'] = $this->request->post['firstname'];
+			$this->data['firstname'] = $this->request->post['firstname'];
 		} elseif (!empty($order_info)) {
-			$this->data['firstname'] = $order_info['firstname'];	
+			$this->data['firstname'] = $order_info['firstname'];
 		} else {
 			$this->data['firstname'] = $this->customer->getFirstName();
 		}
 
 		if (isset($this->request->post['lastname'])) {
-    		$this->data['lastname'] = $this->request->post['lastname'];
+			$this->data['lastname'] = $this->request->post['lastname'];
 		} elseif (!empty($order_info)) {
-			$this->data['lastname'] = $order_info['lastname'];			
+			$this->data['lastname'] = $order_info['lastname'];
 		} else {
 			$this->data['lastname'] = $this->customer->getLastName();
 		}
-		
+
 		if (isset($this->request->post['email'])) {
-    		$this->data['email'] = $this->request->post['email'];
+			$this->data['email'] = $this->request->post['email'];
 		} elseif (!empty($order_info)) {
-			$this->data['email'] = $order_info['email'];				
+			$this->data['email'] = $order_info['email'];
 		} else {
 			$this->data['email'] = $this->customer->getEmail();
 		}
-		
+
 		if (isset($this->request->post['telephone'])) {
-    		$this->data['telephone'] = $this->request->post['telephone'];
+			$this->data['telephone'] = $this->request->post['telephone'];
 		} elseif (!empty($order_info)) {
-			$this->data['telephone'] = $order_info['telephone'];				
+			$this->data['telephone'] = $order_info['telephone'];
 		} else {
 			$this->data['telephone'] = $this->customer->getTelephone();
 		}
-		
+
 		if (isset($this->request->post['product'])) {
-    		$this->data['product'] = $this->request->post['product'];
+			$this->data['product'] = $this->request->post['product'];
 		} elseif (!empty($product_info)) {
-			$this->data['product'] = $product_info['name'];				
+			$this->data['product'] = $product_info['name'];
 		} else {
 			$this->data['product'] = '';
 		}
-		
+
 		if (isset($this->request->post['model'])) {
-    		$this->data['model'] = $this->request->post['model'];
+			$this->data['model'] = $this->request->post['model'];
 		} elseif (!empty($product_info)) {
-			$this->data['model'] = $product_info['model'];				
+			$this->data['model'] = $product_info['model'];
 		} else {
 			$this->data['model'] = '';
 		}
 			
 		if (isset($this->request->post['quantity'])) {
-    		$this->data['quantity'] = $this->request->post['quantity'];
+			$this->data['quantity'] = $this->request->post['quantity'];
 		} else {
 			$this->data['quantity'] = 1;
-		}	
-				
+		}
+
 		if (isset($this->request->post['opened'])) {
-    		$this->data['opened'] = $this->request->post['opened'];
+			$this->data['opened'] = $this->request->post['opened'];
 		} else {
 			$this->data['opened'] = false;
-		}	
-		
+		}
+
 		if (isset($this->request->post['return_reason_id'])) {
-    		$this->data['return_reason_id'] = $this->request->post['return_reason_id'];
+			$this->data['return_reason_id'] = $this->request->post['return_reason_id'];
 		} else {
 			$this->data['return_reason_id'] = '';
-		}	
-														
+		}
+
 		$this->load->model('localisation/return_reason');
-		
-    	$this->data['return_reasons'] = $this->model_localisation_return_reason->getReturnReasons();
-		
+
+		$this->data['return_reasons'] = $this->model_localisation_return_reason->getReturnReasons();
+
 		if (isset($this->request->post['comment'])) {
-    		$this->data['comment'] = $this->request->post['comment'];
+			$this->data['comment'] = $this->request->post['comment'];
 		} else {
 			$this->data['comment'] = '';
-		}	
-		
+		}
+
 		if (isset($this->request->post['captcha'])) {
 			$this->data['captcha'] = $this->request->post['captcha'];
 		} else {
@@ -516,9 +516,9 @@ class ControllerAccountReturn extends Controller {
 
 		if ($this->config->get('config_return_id')) {
 			$this->load->model('catalog/information');
-			
+				
 			$information_info = $this->model_catalog_information->getInformation($this->config->get('config_return_id'));
-			
+				
 			if ($information_info) {
 				$this->data['text_agree'] = sprintf(__('text_agree'), $this->url->link('information/information/info', 'information_id=' . $this->config->get('config_return_id'), 'SSL'), $information_info['title'], $information_info['title']);
 			} else {
@@ -527,154 +527,154 @@ class ControllerAccountReturn extends Controller {
 		} else {
 			$this->data['text_agree'] = '';
 		}
-		
+
 		if (isset($this->request->post['agree'])) {
-      		$this->data['agree'] = $this->request->post['agree'];
+			$this->data['agree'] = $this->request->post['agree'];
 		} else {
 			$this->data['agree'] = false;
 		}
 
 		$this->data['back'] = $this->url->link('account/account', '', 'SSL');
-				
+
 		if (file_exists(DIR_TEMPLATE . $this->config->get('config_template') . '/template/account/return_form.tpl')) {
 			$this->template = $this->config->get('config_template') . '/template/account/return_form.tpl';
 		} else {
 			$this->template = 'default/template/account/return_form.tpl';
 		}
-		
+
 		$this->children = array(
-			'common/column_left',
-			'common/column_right',
-			'common/content_top',
-			'common/content_bottom',
-			'common/footer',
-			'common/header'	
+				'common/column_left',
+				'common/column_right',
+				'common/content_top',
+				'common/content_bottom',
+				'common/footer',
+				'common/header'
 		);
-				
-		$this->response->setOutput($this->render());		
-  	}
-	
-  	public function success() {
+
+		$this->response->setOutput($this->render());
+	}
+
+	public function success() {
 		$this->language->load('account/return');
 
-		$this->document->setTitle(__('heading_title')); 
-      
-	  	$this->data['breadcrumbs'] = array();
+		$this->document->setTitle(__('heading_title'));
 
-      	$this->data['breadcrumbs'][] = array(
-        	'text' => __('text_home'),
-			'href' => $this->url->link('common/home')
-      	);
+		$this->data['breadcrumbs'] = array();
 
-      	$this->data['breadcrumbs'][] = array(
-        	'text' => __('heading_title'),
-			'href' => $this->url->link('account/return', '', 'SSL')
-      	);	
-				
-    	$this->data['heading_title'] = __('heading_title');
+		$this->data['breadcrumbs'][] = array(
+				'text' => __('text_home'),
+				'href' => $this->url->link('common/home')
+		);
 
-    	$this->data['text_message'] = __('text_message');
+		$this->data['breadcrumbs'][] = array(
+				'text' => __('heading_title'),
+				'href' => $this->url->link('account/return', '', 'SSL')
+		);
 
-    	$this->data['button_continue'] = __('button_continue');
-	
-    	$this->data['continue'] = $this->url->link('common/home');
+		$this->data['heading_title'] = __('heading_title');
+
+		$this->data['text_message'] = __('text_message');
+
+		$this->data['button_continue'] = __('button_continue');
+
+		$this->data['continue'] = $this->url->link('common/home');
 
 		if (file_exists(DIR_TEMPLATE . $this->config->get('config_template') . '/template/common/success.tpl')) {
 			$this->template = $this->config->get('config_template') . '/template/common/success.tpl';
 		} else {
 			$this->template = 'default/template/common/success.tpl';
 		}
-		
+
 		$this->children = array(
-			'common/column_left',
-			'common/column_right',
-			'common/content_top',
-			'common/content_bottom',
-			'common/footer',
-			'common/header'	
+				'common/column_left',
+				'common/column_right',
+				'common/content_top',
+				'common/content_bottom',
+				'common/footer',
+				'common/header'
 		);
-				
- 		$this->response->setOutput($this->render()); 
+
+		$this->response->setOutput($this->render());
 	}
-		
-  	protected function validate() {
-    	if (!$this->request->post['order_id']) {
-      		$this->error['order_id'] = __('error_order_id');
-    	}
-		
+
+	protected function validate() {
+		if (!$this->request->post['order_id']) {
+			$this->error['order_id'] = __('error_order_id');
+		}
+
 		if ((utf8_strlen($this->request->post['firstname']) < 1) || (utf8_strlen($this->request->post['firstname']) > 32)) {
-      		$this->error['firstname'] = __('error_firstname');
-    	}
+			$this->error['firstname'] = __('error_firstname');
+		}
 
-    	if ((utf8_strlen($this->request->post['lastname']) < 1) || (utf8_strlen($this->request->post['lastname']) > 32)) {
-      		$this->error['lastname'] = __('error_lastname');
-    	}
+		if ((utf8_strlen($this->request->post['lastname']) < 1) || (utf8_strlen($this->request->post['lastname']) > 32)) {
+			$this->error['lastname'] = __('error_lastname');
+		}
 
-    	if ((utf8_strlen($this->request->post['email']) > 96) || !preg_match('/^[^\@]+@.*\.[a-z]{2,6}$/i', $this->request->post['email'])) {
-      		$this->error['email'] = __('error_email');
-    	}
-		
-    	if ((utf8_strlen($this->request->post['telephone']) < 3) || (utf8_strlen($this->request->post['telephone']) > 32)) {
-      		$this->error['telephone'] = __('error_telephone');
-    	}		
-		
+		if ((utf8_strlen($this->request->post['email']) > 96) || !preg_match('/^[^\@]+@.*\.[a-z]{2,6}$/i', $this->request->post['email'])) {
+			$this->error['email'] = __('error_email');
+		}
+
+		if ((utf8_strlen($this->request->post['telephone']) < 3) || (utf8_strlen($this->request->post['telephone']) > 32)) {
+			$this->error['telephone'] = __('error_telephone');
+		}
+
 		if ((utf8_strlen($this->request->post['product']) < 1) || (utf8_strlen($this->request->post['product']) > 255)) {
 			$this->error['product'] = __('error_product');
-		}	
-		
+		}
+
 		if ((utf8_strlen($this->request->post['model']) < 1) || (utf8_strlen($this->request->post['model']) > 64)) {
 			$this->error['model'] = __('error_model');
-		}							
+		}
 
 		if (empty($this->request->post['return_reason_id'])) {
 			$this->error['reason'] = __('error_reason');
-		}	
-				
-    	if (empty($this->session->data['captcha']) || ($this->session->data['captcha'] != $this->request->post['captcha'])) {
-      		$this->error['captcha'] = __('error_captcha');
-    	}
-		
+		}
+
+		if (empty($this->session->data['captcha']) || ($this->session->data['captcha'] != $this->request->post['captcha'])) {
+			$this->error['captcha'] = __('error_captcha');
+		}
+
 		if ($this->config->get('config_return_id')) {
 			$this->load->model('catalog/information');
-			
+				
 			$information_info = $this->model_catalog_information->getInformation($this->config->get('config_return_id'));
-			
+				
 			if ($information_info && !isset($this->request->post['agree'])) {
-      			$this->error['warning'] = sprintf(__('error_agree'), $information_info['title']);
+				$this->error['warning'] = sprintf(__('error_agree'), $information_info['title']);
 			}
 		}
 
 		if (!$this->error) {
-      		return true;
-    	} else {
-      		return false;
-    	}
-  	}
-	
+			return true;
+		} else {
+			return false;
+		}
+	}
+
 	public function captcha() {
 		$this->session->data['captcha'] = substr(sha1(mt_rand()), 17, 6);
-		
+
 		$image = imagecreatetruecolor(150, 35);
 
-		$width = imagesx($image); 
+		$width = imagesx($image);
 		$height = imagesy($image);
 
-		$black = imagecolorallocate($image, 0, 0, 0); 
-		$white = imagecolorallocate($image, 255, 255, 255); 
-		$red = imagecolorallocatealpha($image, 255, 0, 0, 75); 
-		$green = imagecolorallocatealpha($image, 0, 255, 0, 75); 
-		$blue = imagecolorallocatealpha($image, 0, 0, 255, 75); 
+		$black = imagecolorallocate($image, 0, 0, 0);
+		$white = imagecolorallocate($image, 255, 255, 255);
+		$red = imagecolorallocatealpha($image, 255, 0, 0, 75);
+		$green = imagecolorallocatealpha($image, 0, 255, 0, 75);
+		$blue = imagecolorallocatealpha($image, 0, 0, 255, 75);
 
-		imagefilledrectangle($image, 0, 0, $width, $height, $white); 
+		imagefilledrectangle($image, 0, 0, $width, $height, $white);
 
-		imagefilledellipse($image, ceil(rand(5, 145)), ceil(rand(0, 35)), 30, 30, $red); 
-		imagefilledellipse($image, ceil(rand(5, 145)), ceil(rand(0, 35)), 30, 30, $green); 
-		imagefilledellipse($image, ceil(rand(5, 145)), ceil(rand(0, 35)), 30, 30, $blue); 
+		imagefilledellipse($image, ceil(rand(5, 145)), ceil(rand(0, 35)), 30, 30, $red);
+		imagefilledellipse($image, ceil(rand(5, 145)), ceil(rand(0, 35)), 30, 30, $green);
+		imagefilledellipse($image, ceil(rand(5, 145)), ceil(rand(0, 35)), 30, 30, $blue);
 
-		imagefilledrectangle($image, 0, 0, $width, 0, $black); 
-		imagefilledrectangle($image, $width - 1, 0, $width - 1, $height - 1, $black); 
-		imagefilledrectangle($image, 0, 0, 0, $height - 1, $black); 
-		imagefilledrectangle($image, 0, $height - 1, $width, $height - 1, $black); 
+		imagefilledrectangle($image, 0, 0, $width, 0, $black);
+		imagefilledrectangle($image, $width - 1, 0, $width - 1, $height - 1, $black);
+		imagefilledrectangle($image, 0, 0, 0, $height - 1, $black);
+		imagefilledrectangle($image, 0, $height - 1, $width, $height - 1, $black);
 
 		imagestring($image, 10, intval(($width - (strlen($this->session->data['captcha']) * 9)) / 2),  intval(($height - 15) / 2), $this->session->data['captcha'], $black);
 
@@ -683,6 +683,6 @@ class ControllerAccountReturn extends Controller {
 		imagejpeg($image);
 
 		imagedestroy($image);
-	}	
+	}
 }
 ?>

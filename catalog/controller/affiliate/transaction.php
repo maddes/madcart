@@ -3,83 +3,83 @@ class ControllerAffiliateTransaction extends Controller {
 	public function index() {
 		if (!$this->affiliate->isLogged()) {
 			$this->session->data['redirect'] = $this->url->link('affiliate/transaction', '', 'SSL');
-			
-	  		$this->redirect($this->url->link('affiliate/login', '', 'SSL'));
-    	}		
-		
+				
+			$this->redirect($this->url->link('affiliate/login', '', 'SSL'));
+		}
+
 		$this->language->load('affiliate/transaction');
 
-		$this->document->setTitle(__('heading_title'));
+		$this->document->setTitle(__('Your Transactions','affiliate/transaction'));
 
-      	$this->data['breadcrumbs'] = array();
+		$this->data['breadcrumbs'] = array();
 
-      	$this->data['breadcrumbs'][] = array(
-        	'text' => __('text_home'),
-			'href' => $this->url->link('common/home')
-      	); 
+		$this->data['breadcrumbs'][] = array(
+				'text' => __('text_home'),
+				'href' => $this->url->link('common/home')
+		);
 
-      	$this->data['breadcrumbs'][] = array(       	
-        	'text' => __('text_account'),
-			'href' => $this->url->link('affiliate/account', '', 'SSL')
-      	);
-		
-      	$this->data['breadcrumbs'][] = array(       	
-        	'text' => __('text_transaction'),
-			'href' => $this->url->link('affiliate/transaction', '', 'SSL')
-      	);
-		
+		$this->data['breadcrumbs'][] = array(
+				'text' => __('Account','affiliate/transaction'),
+				'href' => $this->url->link('affiliate/account', '', 'SSL')
+		);
+
+		$this->data['breadcrumbs'][] = array(
+				'text' => __('Your Transactions','affiliate/transaction'),
+				'href' => $this->url->link('affiliate/transaction', '', 'SSL')
+		);
+
 		$this->load->model('affiliate/transaction');
 
-    	$this->data['heading_title'] = __('heading_title');
-		
-		$this->data['column_date_added'] = __('column_date_added');
-		$this->data['column_description'] = __('column_description');
-		$this->data['column_amount'] = sprintf(__('column_amount'), $this->config->get('config_currency'));
-		
-		$this->data['text_balance'] = __('text_balance');
-		$this->data['text_empty'] = __('text_empty');
-		
+		$this->data['heading_title'] = __('Your Transactions','affiliate/transaction');
+
+		$this->data['column_date_added'] = __('Date Added','affiliate/transaction');
+		$this->data['column_description'] = __('Description','affiliate/transaction');
+		$this->data['column_amount'] = sprintf(__('Amount (%s)','affiliate/transaction'), $this->config->get('config_currency'));
+
+		$this->data['text_balance'] = __('Your current balance is:','affiliate/transaction');
+		$this->data['text_empty'] = __('You do not have any transactions!','affiliate/transaction');
+
 		$this->data['button_continue'] = __('button_continue');
-				
+
 		if (isset($this->request->get['page'])) {
 			$page = $this->request->get['page'];
 		} else {
 			$page = 1;
-		}		
-		
+		}
+
 		$this->data['transactions'] = array();
-		
-		$data = array(				  
-			'sort'  => 't.date_added',
-			'order' => 'DESC',
-			'start' => ($page - 1) * 10,
-			'limit' => 10
+
+		$data = array(
+				'sort'  => 't.date_added',
+				'order' => 'DESC',
+				'start' => ($page - 1) * 10,
+				'limit' => 10
 		);
-		
+
 		$transaction_total = $this->model_affiliate_transaction->getTotalTransactions($data);
-	
+
 		$results = $this->model_affiliate_transaction->getTransactions($data);
- 		
-    	foreach ($results as $result) {
+			
+		foreach ($results as $result) {
 			$this->data['transactions'][] = array(
-				'amount'      => $this->currency->format($result['amount'], $this->config->get('config_currency')),
-				'description' => $result['description'],
-				'date_added'  => date(__('date_format_short'), strtotime($result['date_added']))
+					'amount'      => $this->currency->format($result['amount'], $this->config->get('config_currency')),
+					'description' => $result['description'],
+					'date_added'  => date(__('date_format_short'), strtotime($result['date_added']))
 			);
-		}	
+		}
 
 		$pagination = new Pagination();
 		$pagination->total = $transaction_total;
 		$pagination->page = $page;
-		$pagination->limit = 10; 
+		$pagination->limit = 10;
 		$pagination->url = $this->url->link('affiliate/transaction', 'page={page}', 'SSL');
 			
 		$this->data['pagination'] = $pagination->render();
-		
+
 		$this->data['results'] = sprintf(__('text_pagination'), ($transaction_total) ? (($page - 1) * 10) + 1 : 0, ((($page - 1) * 10) > ($transaction_total - 10)) ? $transaction_total : ((($page - 1) * 10) + 10), $transaction_total, ceil($transaction_total / 10));
-		
+
 		$this->data['balance'] = $this->currency->format($this->model_affiliate_transaction->getBalance());
-		
+
 		$this->data['continue'] = $this->url->link('affiliate/account', '', 'SSL');
 
 		if (file_exists(DIR_TEMPLATE . $this->config->get('config_template') . '/template/affiliate/transaction.tpl')) {
@@ -87,17 +87,17 @@ class ControllerAffiliateTransaction extends Controller {
 		} else {
 			$this->template = 'default/template/affiliate/transaction.tpl';
 		}
-		
+
 		$this->children = array(
-			'common/column_left',
-			'common/column_right',
-			'common/content_top',
-			'common/content_bottom',
-			'common/footer',
-			'common/header'	
+				'common/column_left',
+				'common/column_right',
+				'common/content_top',
+				'common/content_bottom',
+				'common/footer',
+				'common/header'
 		);
-						
-		$this->response->setOutput($this->render());		
-	} 		
+
+		$this->response->setOutput($this->render());
+	}
 }
 ?>

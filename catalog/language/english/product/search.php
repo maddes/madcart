@@ -1,38 +1,38 @@
 <?php
 // Heading
-$_['heading_title']     = 'Search';
- 
+$_['Search']     = 'Search';
+
 // Text
-$_['text_search']       = 'Products meeting the search criteria';
-$_['text_keyword']      = 'Keywords';
-$_['text_category']     = 'All Categories';
-$_['text_sub_category'] = 'Search in subcategories';
-$_['text_critea']       = 'Search Criteria';
-$_['text_empty']        = 'There is no product that matches the search criteria.';
-$_['text_quantity']     = 'Qty:';
-$_['text_manufacturer'] = 'Brand:';
-$_['text_model']        = 'Product Code:'; 
-$_['text_points']       = 'Reward Points:'; 
-$_['text_price']        = 'Price:'; 
-$_['text_tax']          = 'Ex Tax:'; 
-$_['text_reviews']      = 'Based on %s reviews.'; 
-$_['text_compare']      = 'Product Compare (%s)'; 
-$_['text_display']      = 'Display:';
-$_['text_list']         = 'List';
-$_['text_grid']         = 'Grid';
-$_['text_sort']         = 'Sort By:';
-$_['text_default']      = 'Default';
-$_['text_name_asc']     = 'Name (A - Z)';
-$_['text_name_desc']    = 'Name (Z - A)';
-$_['text_price_asc']    = 'Price (Low &gt; High)';
-$_['text_price_desc']   = 'Price (High &gt; Low)';
-$_['text_rating_asc']   = 'Rating (Lowest)';
-$_['text_rating_desc']  = 'Rating (Highest)';
-$_['text_model_asc']    = 'Model (A - Z)';
-$_['text_model_desc']   = 'Model (Z - A)';
-$_['text_limit']        = 'Show:';
+$_['Products meeting the search criteria']       = 'Products meeting the search criteria';
+$_['Keywords']      = 'Keywords';
+$_['All Categories']     = 'All Categories';
+$_['Search in subcategories'] = 'Search in subcategories';
+$_['Search Criteria']       = 'Search Criteria';
+$_['There is no product that matches the search criteria.']        = 'There is no product that matches the search criteria.';
+$_['Qty:']     = 'Qty:';
+$_['Brand:'] = 'Brand:';
+$_['Product Code:']        = 'Product Code:';
+$_['Reward Points:']       = 'Reward Points:';
+$_['Price:']        = 'Price:';
+$_['Ex Tax:']          = 'Ex Tax:';
+$_['Based on %s reviews.']      = 'Based on %s reviews.';
+$_['Product Compare (%s)']      = 'Product Compare (%s)';
+$_['Display:']      = 'Display:';
+$_['List']         = 'List';
+$_['Grid']         = 'Grid';
+$_['Sort By:']         = 'Sort By:';
+$_['Default']      = 'Default';
+$_['Name (A - Z)']     = 'Name (A - Z)';
+$_['Name (Z - A)']    = 'Name (Z - A)';
+$_['Price (Low &gt; High)']    = 'Price (Low &gt; High)';
+$_['Price (High &gt; Low)']   = 'Price (High &gt; Low)';
+$_['Rating (Lowest)']   = 'Rating (Lowest)';
+$_['Rating (Highest)']  = 'Rating (Highest)';
+$_['Model (A - Z)']    = 'Model (A - Z)';
+$_['Model (Z - A)']   = 'Model (Z - A)';
+$_['Show:']        = 'Show:';
 
 // Entry
-$_['entry_search']      = 'Search:';
-$_['entry_description'] = 'Search in product descriptions';
+$_['Search:']      = 'Search:';
+$_['Search in product descriptions'] = 'Search in product descriptions';
 ?>

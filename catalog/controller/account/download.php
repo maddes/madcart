@@ -6,41 +6,41 @@ class ControllerAccountDownload extends Controller {
 
 			$this->redirect($this->url->link('account/login', '', 'SSL'));
 		}
-         		
+		 
 		$this->language->load('account/download');
 
-		$this->document->setTitle(__('heading_title'));
+		$this->document->setTitle(__('Account Downloads','account/download'));
 
-      	$this->data['breadcrumbs'] = array();
+		$this->data['breadcrumbs'] = array();
 
-      	$this->data['breadcrumbs'][] = array(
-        	'text' => __('text_home'),
-			'href' => $this->url->link('common/home')
-      	); 
+		$this->data['breadcrumbs'][] = array(
+				'text' => __('text_home'),
+				'href' => $this->url->link('common/home')
+		);
 
-      	$this->data['breadcrumbs'][] = array(
-        	'text' => __('text_account'),
-			'href' => $this->url->link('account/account', '', 'SSL')
-      	);
-		
-      	$this->data['breadcrumbs'][] = array(
-        	'text' => __('text_downloads'),
-			'href' => $this->url->link('account/download', '', 'SSL')
-      	);
-				
+		$this->data['breadcrumbs'][] = array(
+				'text' => __('Account','account/download'),
+				'href' => $this->url->link('account/account', '', 'SSL')
+		);
+
+		$this->data['breadcrumbs'][] = array(
+				'text' => __('Downloads','account/download'),
+				'href' => $this->url->link('account/download', '', 'SSL')
+		);
+
 		$this->load->model('account/download');
 
 		$download_total = $this->model_account_download->getTotalDownloads();
-		
-		if ($download_total) {
-			$this->data['heading_title'] = __('heading_title');
 
-			$this->data['text_order'] = __('text_order');
-			$this->data['text_date_added'] = __('text_date_added');
-			$this->data['text_name'] = __('text_name');
-			$this->data['text_remaining'] = __('text_remaining');
-			$this->data['text_size'] = __('text_size');
-			
+		if ($download_total) {
+			$this->data['heading_title'] = __('Account Downloads','account/download');
+
+			$this->data['text_order'] = __('Order ID:','account/download');
+			$this->data['text_date_added'] = __('Date Added:','account/download');
+			$this->data['text_name'] = __('Name:','account/download');
+			$this->data['text_remaining'] = __('Remaining:','account/download');
+			$this->data['text_size'] = __('Size:','account/download');
+				
 			$this->data['button_download'] = __('button_download');
 			$this->data['button_continue'] = __('button_continue');
 
@@ -48,12 +48,12 @@ class ControllerAccountDownload extends Controller {
 				$page = $this->request->get['page'];
 			} else {
 				$page = 1;
-			}			
-	
+			}
+
 			$this->data['downloads'] = array();
-			
+				
 			$results = $this->model_account_download->getDownloads(($page - 1) * $this->config->get('config_catalog_limit'), $this->config->get('config_catalog_limit'));
-			
+				
 			foreach ($results as $result) {
 				if (file_exists(DIR_DOWNLOAD . $result['filename'])) {
 					$size = filesize(DIR_DOWNLOAD . $result['filename']);
@@ -61,15 +61,15 @@ class ControllerAccountDownload extends Controller {
 					$i = 0;
 
 					$suffix = array(
-						'B',
-						'KB',
-						'MB',
-						'GB',
-						'TB',
-						'PB',
-						'EB',
-						'ZB',
-						'YB'
+							'B',
+							'KB',
+							'MB',
+							'GB',
+							'TB',
+							'PB',
+							'EB',
+							'ZB',
+							'YB'
 					);
 
 					while (($size / 1024) > 1) {
@@ -78,26 +78,26 @@ class ControllerAccountDownload extends Controller {
 					}
 
 					$this->data['downloads'][] = array(
-						'order_id'   => $result['order_id'],
-						'date_added' => date(__('date_format_short'), strtotime($result['date_added'])),
-						'name'       => $result['name'],
-						'remaining'  => $result['remaining'],
-						'size'       => round(substr($size, 0, strpos($size, '.') + 4), 2) . $suffix[$i],
-						'href'       => $this->url->link('account/download/download', 'order_download_id=' . $result['order_download_id'], 'SSL')
+							'order_id'   => $result['order_id'],
+							'date_added' => date(__('date_format_short'), strtotime($result['date_added'])),
+							'name'       => $result['name'],
+							'remaining'  => $result['remaining'],
+							'size'       => round(substr($size, 0, strpos($size, '.') + 4), 2) . $suffix[$i],
+							'href'       => $this->url->link('account/download/download', 'order_download_id=' . $result['order_download_id'], 'SSL')
 					);
 				}
 			}
-		
+
 			$pagination = new Pagination();
 			$pagination->total = $download_total;
 			$pagination->page = $page;
 			$pagination->limit = $this->config->get('config_catalog_limit');
 			$pagination->url = $this->url->link('account/download', 'page={page}', 'SSL');
-			
+				
 			$this->data['pagination'] = $pagination->render();
-			
+				
 			$this->data['results'] = sprintf(__('text_pagination'), ($download_total) ? (($page - 1) * $this->config->get('config_catalog_limit')) + 1 : 0, ((($page - 1) * $this->config->get('config_catalog_limit')) > ($download_total - $this->config->get('config_catalog_limit'))) ? $download_total : ((($page - 1) * $this->config->get('config_catalog_limit')) + $this->config->get('config_catalog_limit')), $download_total, ceil($download_total / $this->config->get('config_catalog_limit')));
-			
+				
 			$this->data['continue'] = $this->url->link('account/account', '', 'SSL');
 
 			if (file_exists(DIR_TEMPLATE . $this->config->get('config_template') . '/template/account/download.tpl')) {
@@ -105,21 +105,21 @@ class ControllerAccountDownload extends Controller {
 			} else {
 				$this->template = 'default/template/account/download.tpl';
 			}
-			
+				
 			$this->children = array(
-				'common/column_left',
-				'common/column_right',
-				'common/content_top',
-				'common/content_bottom',
-				'common/footer',
-				'common/header'		
+					'common/column_left',
+					'common/column_right',
+					'common/content_top',
+					'common/content_bottom',
+					'common/footer',
+					'common/header'
 			);
-							
-			$this->response->setOutput($this->render());				
+				
+			$this->response->setOutput($this->render());
 		} else {
-			$this->data['heading_title'] = __('heading_title');
+			$this->data['heading_title'] = __('Account Downloads','account/download');
 
-			$this->data['text_error'] = __('text_empty');
+			$this->data['text_error'] = __('You have not made any previous downloadable orders!','account/download');
 
 			$this->data['button_continue'] = __('button_continue');
 
@@ -130,16 +130,16 @@ class ControllerAccountDownload extends Controller {
 			} else {
 				$this->template = 'default/template/error/not_found.tpl';
 			}
-			
+				
 			$this->children = array(
-				'common/column_left',
-				'common/column_right',
-				'common/content_top',
-				'common/content_bottom',
-				'common/footer',
-				'common/header'		
+					'common/column_left',
+					'common/column_right',
+					'common/content_top',
+					'common/content_bottom',
+					'common/footer',
+					'common/header'
 			);
-										
+
 			$this->response->setOutput($this->render());
 		}
 	}
@@ -152,15 +152,15 @@ class ControllerAccountDownload extends Controller {
 		}
 
 		$this->load->model('account/download');
-		
+
 		if (isset($this->request->get['order_download_id'])) {
 			$order_download_id = $this->request->get['order_download_id'];
 		} else {
 			$order_download_id = 0;
 		}
-		
+
 		$download_info = $this->model_account_download->getDownload($order_download_id);
-		
+
 		if ($download_info) {
 			$file = DIR_DOWNLOAD . $download_info['filename'];
 			$mask = basename($download_info['mask']);
@@ -173,13 +173,13 @@ class ControllerAccountDownload extends Controller {
 					header('Cache-Control: must-revalidate, post-check=0, pre-check=0');
 					header('Pragma: public');
 					header('Content-Length: ' . filesize($file));
-					
+						
 					if (ob_get_level()) ob_end_clean();
-					
+						
 					readfile($file, 'rb');
-					
+						
 					$this->model_account_download->updateRemaining($this->request->get['order_download_id']);
-					
+						
 					exit;
 				} else {
 					exit('Error: Could not find file ' . $file . '!');

@@ -1,7 +1,7 @@
 <?php
 class ControllerProductSearch extends Controller {
 	public function index() {
-    	$this->language->load('product/search');
+		$this->language->load('product/search');
 
 		$this->load->model('catalog/category');
 
@@ -66,11 +66,11 @@ class ControllerProductSearch extends Controller {
 		}
 
 		if (isset($this->request->get['search'])) {
-			$this->document->setTitle(__('heading_title') .  ' - ' . $this->request->get['search']);
+			$this->document->setTitle(__('Search','product/search') .  ' - ' . $this->request->get['search']);
 		} elseif (isset($this->request->get['tag'])) {
-			$this->document->setTitle(__('heading_title') .  ' - ' . ' tag - ' . $this->request->get['tag']);
+			$this->document->setTitle(__('Search','product/search') .  ' - ' . ' tag - ' . $this->request->get['tag']);
 		} else {
-			$this->document->setTitle(__('heading_title'));
+			$this->document->setTitle(__('Search','product/search'));
 		}
 
 		$this->document->addScript('catalog/view/javascript/jquery/jquery.cookie.js');
@@ -78,10 +78,10 @@ class ControllerProductSearch extends Controller {
 
 		$this->data['breadcrumbs'] = array();
 
-   		$this->data['breadcrumbs'][] = array(
-       		'text' => __('text_home'),
-			'href' => $this->url->link('common/home')
-   		);
+		$this->data['breadcrumbs'][] = array(
+				'text' => __('text_home'),
+				'href' => $this->url->link('common/home')
+		);
 
 		$url = '';
 
@@ -121,40 +121,40 @@ class ControllerProductSearch extends Controller {
 			$url .= '&limit=' . $this->request->get['limit'];
 		}
 
-   		$this->data['breadcrumbs'][] = array(
-       		'text' => __('heading_title'),
-			'href' => $this->url->link('product/search', $url)
-   		);
+		$this->data['breadcrumbs'][] = array(
+				'text' => __('Search','product/search'),
+				'href' => $this->url->link('product/search', $url)
+		);
 
 		if (isset($this->request->get['search'])) {
-    		$this->data['heading_title'] = __('heading_title') .  ' - ' . $this->request->get['search'];
+			$this->data['heading_title'] = __('Search','product/search') .  ' - ' . $this->request->get['search'];
 		} else {
-			$this->data['heading_title'] = __('heading_title');
+			$this->data['heading_title'] = __('Search','product/search');
 		}
 
-		$this->data['text_empty'] = __('text_empty');
-    	$this->data['text_critea'] = __('text_critea');
-    	$this->data['text_search'] = __('text_search');
-		$this->data['text_keyword'] = __('text_keyword');
-		$this->data['text_category'] = __('text_category');
-		$this->data['text_sub_category'] = __('text_sub_category');
-		$this->data['text_quantity'] = __('text_quantity');
-		$this->data['text_manufacturer'] = __('text_manufacturer');
-		$this->data['text_model'] = __('text_model');
-		$this->data['text_price'] = __('text_price');
-		$this->data['text_tax'] = __('text_tax');
-		$this->data['text_points'] = __('text_points');
-		$this->data['text_compare'] = sprintf(__('text_compare'), (isset($this->session->data['compare']) ? count($this->session->data['compare']) : 0));
-		$this->data['text_display'] = __('text_display');
-		$this->data['text_list'] = __('text_list');
-		$this->data['text_grid'] = __('text_grid');
-		$this->data['text_sort'] = __('text_sort');
-		$this->data['text_limit'] = __('text_limit');
+		$this->data['text_empty'] = __('There is no product that matches the search criteria.','product/search');
+		$this->data['text_critea'] = __('Search Criteria','product/search');
+		$this->data['text_search'] = __('Products meeting the search criteria','product/search');
+		$this->data['text_keyword'] = __('Keywords','product/search');
+		$this->data['text_category'] = __('All Categories','product/search');
+		$this->data['text_sub_category'] = __('Search in subcategories','product/search');
+		$this->data['text_quantity'] = __('Qty:','product/search');
+		$this->data['text_manufacturer'] = __('Brand:','product/search');
+		$this->data['text_model'] = __('Product Code:','product/search');
+		$this->data['text_price'] = __('Price:','product/search');
+		$this->data['text_tax'] = __('Ex Tax:','product/search');
+		$this->data['text_points'] = __('Reward Points:','product/search');
+		$this->data['text_compare'] = sprintf(__('Product Compare (%s)','product/search'), (isset($this->session->data['compare']) ? count($this->session->data['compare']) : 0));
+		$this->data['text_display'] = __('Display:','product/search');
+		$this->data['text_list'] = __('List','product/search');
+		$this->data['text_grid'] = __('Grid','product/search');
+		$this->data['text_sort'] = __('Sort By:','product/search');
+		$this->data['text_limit'] = __('Show:','product/search');
 
-		$this->data['entry_search'] = __('entry_search');
-    	$this->data['entry_description'] = __('entry_description');
+		$this->data['entry_search'] = __('Search:','product/search');
+		$this->data['entry_description'] = __('Search in product descriptions','product/search');
 
-    	$this->data['button_search'] = __('button_search');
+		$this->data['button_search'] = __('button_search');
 		$this->data['button_cart'] = __('button_cart');
 		$this->data['button_wishlist'] = __('button_wishlist');
 		$this->data['button_compare'] = __('button_compare');
@@ -180,22 +180,22 @@ class ControllerProductSearch extends Controller {
 
 				foreach ($categories_3 as $category_3) {
 					$level_3_data[] = array(
-						'category_id' => $category_3['category_id'],
-						'name'        => $category_3['name'],
+							'category_id' => $category_3['category_id'],
+							'name'        => $category_3['name'],
 					);
 				}
 
 				$level_2_data[] = array(
-					'category_id' => $category_2['category_id'],
-					'name'        => $category_2['name'],
-					'children'    => $level_3_data
+						'category_id' => $category_2['category_id'],
+						'name'        => $category_2['name'],
+						'children'    => $level_3_data
 				);
 			}
 
 			$this->data['categories'][] = array(
-				'category_id' => $category_1['category_id'],
-				'name'        => $category_1['name'],
-				'children'    => $level_2_data
+					'category_id' => $category_1['category_id'],
+					'name'        => $category_1['name'],
+					'children'    => $level_2_data
 			);
 		}
 
@@ -203,19 +203,19 @@ class ControllerProductSearch extends Controller {
 
 		if (isset($this->request->get['search']) || isset($this->request->get['tag'])) {
 			$data = array(
-				'filter_name'         => $search,
-				'filter_tag'          => $tag,
-				'filter_description'  => $description,
-				'filter_category_id'  => $category_id,
-				'filter_sub_category' => $sub_category,
-				'sort'                => $sort,
-				'order'               => $order,
-				'start'               => ($page - 1) * $limit,
-				'limit'               => $limit
+					'filter_name'         => $search,
+					'filter_tag'          => $tag,
+					'filter_description'  => $description,
+					'filter_category_id'  => $category_id,
+					'filter_sub_category' => $sub_category,
+					'sort'                => $sort,
+					'order'               => $order,
+					'start'               => ($page - 1) * $limit,
+					'limit'               => $limit
 			);
 
 			$results = $this->model_catalog_product->getProducts($data);
-			
+				
 			$product_total = $this->model_catalog_product->getFoundProducts();
 
 			foreach ($results as $result) {
@@ -250,16 +250,16 @@ class ControllerProductSearch extends Controller {
 				}
 
 				$this->data['products'][] = array(
-					'product_id'  => $result['product_id'],
-					'thumb'       => $image,
-					'name'        => $result['name'],
-					'description' => utf8_substr(strip_tags(html_entity_decode($result['description'], ENT_QUOTES, 'UTF-8')), 0, $this->config->get('config_list_description_limit')) . '..',
-					'price'       => $price,
-					'special'     => $special,
-					'tax'         => $tax,
-					'rating'      => $result['rating'],
-					'reviews'     => sprintf(__('text_reviews'), (int)$result['reviews']),
-					'href'        => $this->url->link('product/product', 'product_id=' . $result['product_id'] . $url)
+						'product_id'  => $result['product_id'],
+						'thumb'       => $image,
+						'name'        => $result['name'],
+						'description' => utf8_substr(strip_tags(html_entity_decode($result['description'], ENT_QUOTES, 'UTF-8')), 0, $this->config->get('config_list_description_limit')) . '..',
+						'price'       => $price,
+						'special'     => $special,
+						'tax'         => $tax,
+						'rating'      => $result['rating'],
+						'reviews'     => sprintf(__('Based on %s reviews.','product/search'), (int)$result['reviews']),
+						'href'        => $this->url->link('product/product', 'product_id=' . $result['product_id'] . $url)
 				);
 			}
 
@@ -292,59 +292,59 @@ class ControllerProductSearch extends Controller {
 			$this->data['sorts'] = array();
 
 			$this->data['sorts'][] = array(
-				'text'  => __('text_default'),
-				'value' => 'p.sort_order-ASC',
-				'href'  => $this->url->link('product/search', 'sort=p.sort_order&order=ASC' . $url)
+					'text'  => __('Default','product/search'),
+					'value' => 'p.sort_order-ASC',
+					'href'  => $this->url->link('product/search', 'sort=p.sort_order&order=ASC' . $url)
 			);
 
 			$this->data['sorts'][] = array(
-				'text'  => __('text_name_asc'),
-				'value' => 'pd.name-ASC',
-				'href'  => $this->url->link('product/search', 'sort=pd.name&order=ASC' . $url)
+					'text'  => __('Name (A - Z)','product/search'),
+					'value' => 'pd.name-ASC',
+					'href'  => $this->url->link('product/search', 'sort=pd.name&order=ASC' . $url)
 			);
 
 			$this->data['sorts'][] = array(
-				'text'  => __('text_name_desc'),
-				'value' => 'pd.name-DESC',
-				'href'  => $this->url->link('product/search', 'sort=pd.name&order=DESC' . $url)
+					'text'  => __('Name (Z - A)','product/search'),
+					'value' => 'pd.name-DESC',
+					'href'  => $this->url->link('product/search', 'sort=pd.name&order=DESC' . $url)
 			);
 
 			$this->data['sorts'][] = array(
-				'text'  => __('text_price_asc'),
-				'value' => 'p.price-ASC',
-				'href'  => $this->url->link('product/search', 'sort=p.price&order=ASC' . $url)
+					'text'  => __('Price (Low &gt; High)','product/search'),
+					'value' => 'p.price-ASC',
+					'href'  => $this->url->link('product/search', 'sort=p.price&order=ASC' . $url)
 			);
 
 			$this->data['sorts'][] = array(
-				'text'  => __('text_price_desc'),
-				'value' => 'p.price-DESC',
-				'href'  => $this->url->link('product/search', 'sort=p.price&order=DESC' . $url)
+					'text'  => __('Price (High &gt; Low)','product/search'),
+					'value' => 'p.price-DESC',
+					'href'  => $this->url->link('product/search', 'sort=p.price&order=DESC' . $url)
 			);
 
 			if ($this->config->get('config_review_status')) {
 				$this->data['sorts'][] = array(
-					'text'  => __('text_rating_desc'),
-					'value' => 'rating-DESC',
-					'href'  => $this->url->link('product/search', 'sort=rating&order=DESC' . $url)
+						'text'  => __('Rating (Highest)','product/search'),
+						'value' => 'rating-DESC',
+						'href'  => $this->url->link('product/search', 'sort=rating&order=DESC' . $url)
 				);
 
 				$this->data['sorts'][] = array(
-					'text'  => __('text_rating_asc'),
-					'value' => 'rating-ASC',
-					'href'  => $this->url->link('product/search', 'sort=rating&order=ASC' . $url)
+						'text'  => __('Rating (Lowest)','product/search'),
+						'value' => 'rating-ASC',
+						'href'  => $this->url->link('product/search', 'sort=rating&order=ASC' . $url)
 				);
 			}
 
 			$this->data['sorts'][] = array(
-				'text'  => __('text_model_asc'),
-				'value' => 'p.model-ASC',
-				'href'  => $this->url->link('product/search', 'sort=p.model&order=ASC' . $url)
+					'text'  => __('Model (A - Z)','product/search'),
+					'value' => 'p.model-ASC',
+					'href'  => $this->url->link('product/search', 'sort=p.model&order=ASC' . $url)
 			);
 
 			$this->data['sorts'][] = array(
-				'text'  => __('text_model_desc'),
-				'value' => 'p.model-DESC',
-				'href'  => $this->url->link('product/search', 'sort=p.model&order=DESC' . $url)
+					'text'  => __('Model (Z - A)','product/search'),
+					'value' => 'p.model-DESC',
+					'href'  => $this->url->link('product/search', 'sort=p.model&order=DESC' . $url)
 			);
 
 			$url = '';
@@ -385,9 +385,9 @@ class ControllerProductSearch extends Controller {
 
 			foreach($limits as $limits){
 				$this->data['limits'][] = array(
-					'text'  => $limits,
-					'value' => $limits,
-					'href'  => $this->url->link('product/search', $url . '&limit=' . $limits)
+						'text'  => $limits,
+						'value' => $limits,
+						'href'  => $this->url->link('product/search', $url . '&limit=' . $limits)
 				);
 			}
 
@@ -432,7 +432,7 @@ class ControllerProductSearch extends Controller {
 			$pagination->url = $this->url->link('product/search', $url . '&page={page}');
 
 			$this->data['pagination'] = $pagination->render();
-			
+				
 			$this->data['results'] = sprintf(__('text_pagination'), ($product_total) ? (($page - 1) * $limit) + 1 : 0, ((($page - 1) * $limit) > ($product_total - $limit)) ? $product_total : ((($page - 1) * $limit) + $limit), $product_total, ceil($product_total / $limit));
 		}
 
@@ -452,15 +452,15 @@ class ControllerProductSearch extends Controller {
 		}
 
 		$this->children = array(
-			'common/column_left',
-			'common/column_right',
-			'common/content_top',
-			'common/content_bottom',
-			'common/footer',
-			'common/header'
+				'common/column_left',
+				'common/column_right',
+				'common/content_top',
+				'common/content_bottom',
+				'common/footer',
+				'common/header'
 		);
 
 		$this->response->setOutput($this->render());
-  	}
+	}
 }
 ?>

@@ -1,40 +1,40 @@
 <?php 
-class ControllerToolErrorLog extends Controller { 
+class ControllerToolErrorLog extends Controller {
 	private $error = array();
-	
-	public function index() {		
+
+	public function index() {
 		$this->language->load('tool/error_log');
 
 		$this->document->setTitle(__('heading_title'));
-		
+
 		$this->data['heading_title'] = __('heading_title');
-		 
+			
 		$this->data['button_clear'] = __('button_clear');
 
 		if (isset($this->session->data['success'])) {
 			$this->data['success'] = $this->session->data['success'];
-		
+
 			unset($this->session->data['success']);
 		} else {
 			$this->data['success'] = '';
 		}
-		
-  		$this->data['breadcrumbs'] = array();
 
-   		$this->data['breadcrumbs'][] = array(
-       		'text' => __('text_home'),
-			'href' => $this->url->link('common/home', 'token=' . $this->session->data['token'], 'SSL')
-   		);
+		$this->data['breadcrumbs'] = array();
 
-   		$this->data['breadcrumbs'][] = array(
-       		'text' => __('heading_title'),
-			'href' => $this->url->link('tool/error_log', 'token=' . $this->session->data['token'], 'SSL')
-   		);
-		
+		$this->data['breadcrumbs'][] = array(
+				'text' => __('text_home'),
+				'href' => $this->url->link('common/home', 'token=' . $this->session->data['token'], 'SSL')
+		);
+
+		$this->data['breadcrumbs'][] = array(
+				'text' => __('heading_title'),
+				'href' => $this->url->link('tool/error_log', 'token=' . $this->session->data['token'], 'SSL')
+		);
+
 		$this->data['clear'] = $this->url->link('tool/error_log/clear', 'token=' . $this->session->data['token'], 'SSL');
-		
+
 		$file = DIR_LOGS . $this->config->get('config_error_filename');
-		
+
 		if (file_exists($file)) {
 			$this->data['log'] = file_get_contents($file, FILE_USE_INCLUDE_PATH, null);
 		} else {
@@ -43,25 +43,25 @@ class ControllerToolErrorLog extends Controller {
 
 		$this->template = 'tool/error_log.tpl';
 		$this->children = array(
-			'common/header',
-			'common/footer'
+				'common/header',
+				'common/footer'
 		);
-				
+
 		$this->response->setOutput($this->render());
 	}
-	
+
 	public function clear() {
 		$this->language->load('tool/error_log');
-		
+
 		$file = DIR_LOGS . $this->config->get('config_error_filename');
-		
-		$handle = fopen($file, 'w+'); 
-				
-		fclose($handle); 			
-		
+
+		$handle = fopen($file, 'w+');
+
+		fclose($handle);
+
 		$this->session->data['success'] = __('text_success');
-		
-		$this->redirect($this->url->link('tool/error_log', 'token=' . $this->session->data['token'], 'SSL'));		
+
+		$this->redirect($this->url->link('tool/error_log', 'token=' . $this->session->data['token'], 'SSL'));
 	}
 }
 ?>

@@ -4,55 +4,83 @@
 <meta charset="UTF-8" />
 <title><?php echo $title; ?></title>
 <base href="<?php echo $base; ?>" />
-<script type="text/javascript" src="//code.jquery.com/jquery-2.0.0.min.js"></script>
-<link href="view/javascript/bootstrap/css/bootstrap.css" rel="stylesheet" media="screen" />
-<link href="view/javascript/bootstrap/css/bootstrap-responsive.css" rel="stylesheet" />
+<script type="text/javascript"
+	src="//code.jquery.com/jquery-2.0.0.min.js"></script>
+<link href="view/javascript/bootstrap/css/bootstrap.css"
+	rel="stylesheet" media="screen" />
+<link href="view/javascript/bootstrap/css/bootstrap-responsive.css"
+	rel="stylesheet" />
 <script src="view/javascript/bootstrap/js/bootstrap.js"></script>
-<link rel="stylesheet" href="view/javascript/font-awesome/css/font-awesome.min.css" rel="stylesheet" />
+<link rel="stylesheet"
+	href="view/javascript/font-awesome/css/font-awesome.min.css"
+	rel="stylesheet" />
 <style type="text/css">
-#directory, ul {
-	list-style: none;	
+#directory,ul {
+	list-style: none;
 }
 </style>
 </head>
 <body>
-<div class="container-fluid">
-<div id="menu">
-  <div class="row">
-    <div class="span3">
-      <div class="well well-small">
-        <ul id="directory">
-          <li><a href="#"><i class="icon-folder-close"></i> Image <i class="icon-edit pull-right"></i> <i class="icon-remove pull-right"></i></a></li>
-        </ul>
-      </div>
-    </div>
-    <div class="span9">
-      <div class="well well-small">
-        <ul id="files" class="thumbnails">
-        </ul>
-      </div>
-    </div>
-  </div>
-  
-    <button id="button-create" class="btn"><i class="icon-folder-close"></i> <?php echo $button_folder; ?></button>
-    <button id="button-delete" class="btn"><i class="icon-trash"></i> <?php echo $button_delete; ?></button>
-    <button id="button-upload" class="btn"><i class="icon-upload"></i> <?php echo $button_upload; ?></button>
-    <button id="button-refresh" class="btn"><i class="icon-refresh"></i> <?php echo $button_refresh; ?></button>
-    <div class="btn-group">
-    <button id="button-move" class="btn"><i class="icon-remove-sign"></i> <?php echo $button_move; ?></button>
-    <button id="button-copy" class="btn"><i class="icon-copy"></i> <?php echo $button_copy; ?></button>
-    <button id="button-rename" class="btn"><i class="icon-edit"></i> <?php echo $button_rename; ?></button>
-   </div>
+	<div class="container-fluid">
+		<div id="menu">
+			<div class="row">
+				<div class="span3">
+					<div class="well well-small">
+						<ul id="directory">
+							<li><a href="#"><i class="icon-folder-close"></i> Image <i
+									class="icon-edit pull-right"></i> <i
+									class="icon-remove pull-right"></i> </a></li>
+						</ul>
+					</div>
+				</div>
+				<div class="span9">
+					<div class="well well-small">
+						<ul id="files" class="thumbnails">
+						</ul>
+					</div>
+				</div>
+			</div>
 
-  
-</div>
-<div id="upload">
-  <form enctype="multipart/form-data">
-    <input type="file" name="image" id="image" />
-    <input type="hidden" name="directory" />
-  </form>
-</div>
-<script type="text/javascript"><!--
+			<button id="button-create" class="btn">
+				<i class="icon-folder-close"></i>
+				<?php echo $button_folder; ?>
+			</button>
+			<button id="button-delete" class="btn">
+				<i class="icon-trash"></i>
+				<?php echo $button_delete; ?>
+			</button>
+			<button id="button-upload" class="btn">
+				<i class="icon-upload"></i>
+				<?php echo $button_upload; ?>
+			</button>
+			<button id="button-refresh" class="btn">
+				<i class="icon-refresh"></i>
+				<?php echo $button_refresh; ?>
+			</button>
+			<div class="btn-group">
+				<button id="button-move" class="btn">
+					<i class="icon-remove-sign"></i>
+					<?php echo $button_move; ?>
+				</button>
+				<button id="button-copy" class="btn">
+					<i class="icon-copy"></i>
+					<?php echo $button_copy; ?>
+				</button>
+				<button id="button-rename" class="btn">
+					<i class="icon-edit"></i>
+					<?php echo $button_rename; ?>
+				</button>
+			</div>
+
+
+		</div>
+		<div id="upload">
+			<form enctype="multipart/form-data">
+				<input type="file" name="image" id="image" /> <input type="hidden"
+					name="directory" />
+			</form>
+		</div>
+		<script type="text/javascript"><!--
 $('#directory').delegate('a .icon-folder-close', 'click', function(e) {
 	event.preventDefault();
 
@@ -706,5 +734,6 @@ $(document).ready(function() {
 });
 */
 //--></script>
+
 </body>
 </html>

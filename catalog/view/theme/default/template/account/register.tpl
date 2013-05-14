@@ -1,138 +1,184 @@
 <?php echo $header; ?><?php echo $column_left; ?><?php echo $column_right; ?>
-<div id="content"><?php echo $content_top; ?>
-  <ul class="breadcrumb">
-    <?php foreach ($breadcrumbs as $breadcrumb) { ?>
-    <li><a href="<?php echo $breadcrumb['href']; ?>"><?php echo $breadcrumb['text']; ?></a></li>
-    <?php } ?>
-  </ul>
-  <h1><?php _e('heading_title','account/register'); ?></h1>
-  <p><?php echo $text_account_already; ?></p>
-  <form action="<?php echo $action; ?>" method="post" enctype="multipart/form-data" class="form-horizontal">
-    <h2><?php _e('text_your_details','account/register'); ?></h2>
-    <div class="content">
-      <table class="form">
-        <tr>
-          <td><span class="required">*</span> <?php _e('entry_firstname','account/register'); ?></td>
-          <td><input type="text" name="firstname" value="" /></td>
-        </tr>
-        <tr>
-          <td><span class="required">*</span> <?php _e('entry_lastname','account/register'); ?></td>
-          <td><input type="text" name="lastname" value="" /></td>
-        </tr>
-        <tr>
-          <td><span class="required">*</span> <?php _e('entry_email','account/register'); ?></td>
-          <td><input type="text" name="email" value="" /></td>
-        </tr>
-        <tr>
-          <td><span class="required">*</span> <?php _e('entry_telephone','account/register'); ?></td>
-          <td><input type="text" name="telephone" value="" /></td>
-        </tr>
-        <tr>
-          <td><?php _e('entry_fax','account/register'); ?></td>
-          <td><input type="text" name="fax" value="" /></td>
-        </tr>
-      </table>
-    </div>
-    <h2><?php _e('text_your_address','account/register'); ?></h2>
-    <div class="content">
-      <table class="form">
-        <tr>
-          <td><?php _e('entry_company','account/register'); ?></td>
-          <td><input type="text" name="company" value="" /></td>
-        </tr>
-        <tr style="display: <?php echo (count($customer_groups) > 1 ? 'table-row' : 'none'); ?>;">
-          <td><?php _e('entry_customer_group','account/register'); ?></td>
-          <td><select name="customer_group_id">
-              <?php foreach ($customer_groups as $customer_group) { ?>
-              <?php if ($customer_group['customer_group_id'] == $customer_group_id) { ?>
-              <option value="<?php echo $customer_group['customer_group_id']; ?>" selected="selected"><?php echo $customer_group['name']; ?></option>
-              <?php } else { ?>
-              <option value="<?php echo $customer_group['customer_group_id']; ?>"><?php echo $customer_group['name']; ?></option>
-              <?php } ?>
-              <?php } ?>
-            </select></td>
-        </tr>
-        <tr>
-          <td><span class="required">*</span> <?php _e('entry_address_1','account/register'); ?></td>
-          <td><input type="text" name="address_1" value="" /></td>
-        </tr>
-        <tr>
-          <td><?php _e('entry_address_2','account/register'); ?></td>
-          <td><input type="text" name="address_2" value="" /></td>
-        </tr>
-        <tr>
-          <td><span class="required">*</span> <?php _e('entry_city','account/register'); ?></td>
-          <td><input type="text" name="city" value="" /></td>
-        </tr>
-        <tr>
-          <td><span id="postcode-required" class="required">*</span> <?php _e('entry_postcode','account/register'); ?></td>
-          <td><input type="text" name="postcode" value="<?php echo $postcode; ?>" /></td>
-        </tr>
-        <tr>
-          <td><span class="required">*</span> <?php _e('entry_country','account/register'); ?></td>
-          <td><select name="country_id">
-              <option value=""><?php _e('text_select','account/register'); ?></option>
-              <?php foreach ($countries as $country) { ?>
-              <?php if ($country['country_id'] == $country_id) { ?>
-              <option value="<?php echo $country['country_id']; ?>" selected="selected"><?php echo $country['name']; ?></option>
-              <?php } else { ?>
-              <option value="<?php echo $country['country_id']; ?>"><?php echo $country['name']; ?></option>
-              <?php } ?>
-              <?php } ?>
-            </select></td>
-        </tr>
-        <tr>
-          <td><span class="required">*</span> <?php _e('entry_zone','account/register'); ?></td>
-          <td><select name="zone_id">
-            </select></td>
-        </tr>
-      </table>
-    </div>
-    <h2><?php _e('text_your_password','account/register'); ?></h2>
-    <div class="content">
-      <table class="form">
-        <tr>
-          <td><span class="required">*</span> <?php _e('entry_password','account/register'); ?></td>
-          <td><input type="password" name="password" value="" /></td>
-        </tr>
-        <tr>
-          <td><span class="required">*</span> <?php _e('entry_confirm','account/register'); ?></td>
-          <td><input type="password" name="confirm" value="" /></td>
-        </tr>
-      </table>
-    </div>
-    <h2><?php _e('text_newsletter','account/register'); ?></h2>
-    <div class="content">
-      <table class="form">
-        <tr>
-          <td><?php _e('entry_newsletter','account/register'); ?></td>
-          <td><input type="radio" name="newsletter" value="1" />
-            <?php _e('text_yes','account/register'); ?>
-            <input type="radio" name="newsletter" value="0" checked="checked" />
-            <?php _e('text_no','account/register'); ?></td>
-        </tr>
-      </table>
-    </div>
-    <?php if ($text_agree) { ?>
-    <div class="buttons">
-      <div class="right"><?php echo $text_agree; ?>
-        <input type="checkbox" name="agree" value="1" />
-        <input type="button" value="<?php _e('button_continue','account/register'); ?>" id="button-register" class="btn" />
-      </div>
-    </div>
-    <?php } else { ?>
-    <div class="buttons">
-      <div class="right">
-        <input type="button" value="<?php _e('button_continue','account/register'); ?>" id="button-register" class="btn" />
-      </div>
-    </div>
-    <?php } ?>
-  </form>
-  <?php echo $content_bottom; ?></div>
+<div id="content">
+	<?php echo $content_top; ?>
+	<ul class="breadcrumb">
+		<?php foreach ($breadcrumbs as $breadcrumb) { ?>
+		<li><a href="<?php echo $breadcrumb['href']; ?>"><?php echo $breadcrumb['text']; ?>
+		</a></li>
+		<?php } ?>
+	</ul>
+	<h1>
+		<?php _e('heading_title','account/register'); ?>
+	</h1>
+	<p>
+		<?php echo $text_account_already; ?>
+	</p>
+	<form action="<?php echo $action; ?>" method="post"
+		enctype="multipart/form-data" class="form-horizontal">
+		<h2>
+			<?php _e('text_your_details','account/register'); ?>
+		</h2>
+		<div class="content">
+			<table class="form">
+				<tr>
+					<td><span class="required">*</span> <?php _e('entry_firstname','account/register'); ?>
+					</td>
+					<td><input type="text" name="firstname" value="" /></td>
+				</tr>
+				<tr>
+					<td><span class="required">*</span> <?php _e('entry_lastname','account/register'); ?>
+					</td>
+					<td><input type="text" name="lastname" value="" /></td>
+				</tr>
+				<tr>
+					<td><span class="required">*</span> <?php _e('entry_email','account/register'); ?>
+					</td>
+					<td><input type="text" name="email" value="" /></td>
+				</tr>
+				<tr>
+					<td><span class="required">*</span> <?php _e('entry_telephone','account/register'); ?>
+					</td>
+					<td><input type="text" name="telephone" value="" /></td>
+				</tr>
+				<tr>
+					<td><?php _e('entry_fax','account/register'); ?></td>
+					<td><input type="text" name="fax" value="" /></td>
+				</tr>
+			</table>
+		</div>
+		<h2>
+			<?php _e('text_your_address','account/register'); ?>
+		</h2>
+		<div class="content">
+			<table class="form">
+				<tr>
+					<td><?php _e('entry_company','account/register'); ?></td>
+					<td><input type="text" name="company" value="" /></td>
+				</tr>
+				<tr style="display: <?php echo (count($customer_groups) > 1 ? 'table-row' : 'none'); ?>;">
+					<td><?php _e('entry_customer_group','account/register'); ?></td>
+					<td><select name="customer_group_id">
+							<?php foreach ($customer_groups as $customer_group) { ?>
+							<?php if ($customer_group['customer_group_id'] == $customer_group_id) { ?>
+							<option
+								value="<?php echo $customer_group['customer_group_id']; ?>"
+								selected="selected">
+								<?php echo $customer_group['name']; ?>
+							</option>
+							<?php } else { ?>
+							<option
+								value="<?php echo $customer_group['customer_group_id']; ?>">
+								<?php echo $customer_group['name']; ?>
+							</option>
+							<?php } ?>
+							<?php } ?>
+					</select></td>
+				</tr>
+				<tr>
+					<td><span class="required">*</span> <?php _e('entry_address_1','account/register'); ?>
+					</td>
+					<td><input type="text" name="address_1" value="" /></td>
+				</tr>
+				<tr>
+					<td><?php _e('entry_address_2','account/register'); ?></td>
+					<td><input type="text" name="address_2" value="" /></td>
+				</tr>
+				<tr>
+					<td><span class="required">*</span> <?php _e('entry_city','account/register'); ?>
+					</td>
+					<td><input type="text" name="city" value="" /></td>
+				</tr>
+				<tr>
+					<td><span id="postcode-required" class="required">*</span> <?php _e('entry_postcode','account/register'); ?>
+					</td>
+					<td><input type="text" name="postcode"
+						value="<?php echo $postcode; ?>" /></td>
+				</tr>
+				<tr>
+					<td><span class="required">*</span> <?php _e('entry_country','account/register'); ?>
+					</td>
+					<td><select name="country_id">
+							<option value="">
+								<?php _e('text_select','account/register'); ?>
+							</option>
+							<?php foreach ($countries as $country) { ?>
+							<?php if ($country['country_id'] == $country_id) { ?>
+							<option value="<?php echo $country['country_id']; ?>"
+								selected="selected">
+								<?php echo $country['name']; ?>
+							</option>
+							<?php } else { ?>
+							<option value="<?php echo $country['country_id']; ?>">
+								<?php echo $country['name']; ?>
+							</option>
+							<?php } ?>
+							<?php } ?>
+					</select></td>
+				</tr>
+				<tr>
+					<td><span class="required">*</span> <?php _e('entry_zone','account/register'); ?>
+					</td>
+					<td><select name="zone_id">
+					</select></td>
+				</tr>
+			</table>
+		</div>
+		<h2>
+			<?php _e('text_your_password','account/register'); ?>
+		</h2>
+		<div class="content">
+			<table class="form">
+				<tr>
+					<td><span class="required">*</span> <?php _e('entry_password','account/register'); ?>
+					</td>
+					<td><input type="password" name="password" value="" /></td>
+				</tr>
+				<tr>
+					<td><span class="required">*</span> <?php _e('entry_confirm','account/register'); ?>
+					</td>
+					<td><input type="password" name="confirm" value="" /></td>
+				</tr>
+			</table>
+		</div>
+		<h2>
+			<?php _e('text_newsletter','account/register'); ?>
+		</h2>
+		<div class="content">
+			<table class="form">
+				<tr>
+					<td><?php _e('entry_newsletter','account/register'); ?></td>
+					<td><input type="radio" name="newsletter" value="1" /> <?php _e('text_yes','account/register'); ?>
+						<input type="radio" name="newsletter" value="0" checked="checked" />
+						<?php _e('text_no','account/register'); ?></td>
+				</tr>
+			</table>
+		</div>
+		<?php if ($text_agree) { ?>
+		<div class="buttons">
+			<div class="right">
+				<?php echo $text_agree; ?>
+				<input type="checkbox" name="agree" value="1" /> <input
+					type="button"
+					value="<?php _e('button_continue','account/register'); ?>"
+					id="button-register" class="btn" />
+			</div>
+		</div>
+		<?php } else { ?>
+		<div class="buttons">
+			<div class="right">
+				<input type="button"
+					value="<?php _e('button_continue','account/register'); ?>"
+					id="button-register" class="btn" />
+			</div>
+		</div>
+		<?php } ?>
+	</form>
+	<?php echo $content_bottom; ?>
+</div>
 <div style="display: none;">
-  <form enctype="multipart/form-data">
-    <input type="file" name="file" id="file" />
-  </form>
+	<form enctype="multipart/form-data">
+		<input type="file" name="file" id="file" />
+	</form>
 </div>
 <script type="text/javascript"><!--
 $('#button-register').on('click', function() {
@@ -360,7 +406,7 @@ function upload(custom_field_id) {
 	
 	$('input[name=\'file\']').click();
 }
-//--></script> 
+//--></script>
 <script type="text/javascript"><!--
 $('select[name=\'country_id\']').on('change', function() {
 	$.ajax({
@@ -404,7 +450,7 @@ $('select[name=\'country_id\']').on('change', function() {
 });
 
 $('select[name=\'country_id\']').trigger('change');
-//--></script> 
+//--></script>
 <script type="text/javascript"><!--
 $(document).ready(function() {
 	$('.colorbox').colorbox({
@@ -412,5 +458,5 @@ $(document).ready(function() {
 		height: 480
 	});
 });
-//--></script> 
+//--></script>
 <?php echo $footer; ?>

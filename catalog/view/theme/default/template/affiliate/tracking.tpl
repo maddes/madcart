@@ -1,25 +1,42 @@
 <?php echo $header; ?><?php echo $column_left; ?><?php echo $column_right; ?>
-<div id="content"><?php echo $content_top; ?>
-  <ul class="breadcrumb">
-    <?php foreach ($breadcrumbs as $breadcrumb) { ?>
-    <li><a href="<?php echo $breadcrumb['href']; ?>"><?php echo $breadcrumb['text']; ?></a></li>
-    <?php } ?>
-  </ul>
-  <h1><?php echo $heading_title; ?></h1>
-  <p><?php echo $text_description; ?></p>
-  <p><?php echo $text_code; ?><br />
-    <textarea cols="40" rows="5"><?php echo $code; ?></textarea>
-  </p>
-  <p><?php echo $text_generator; ?><br />
-    <input type="text" name="product" value="" />
-  </p>
-  <p><?php echo $text_link; ?><br />
-    <textarea name="link" cols="40" rows="5"></textarea>
-  </p>
-  <div class="buttons">
-    <div class="right"><a href="<?php echo $continue; ?>" class="btn"><?php echo $button_continue; ?></a></div>
-  </div>
-  <?php echo $content_bottom; ?></div>
+<div id="content">
+	<?php echo $content_top; ?>
+	<ul class="breadcrumb">
+		<?php foreach ($breadcrumbs as $breadcrumb) { ?>
+		<li><a href="<?php echo $breadcrumb['href']; ?>"><?php echo $breadcrumb['text']; ?>
+		</a></li>
+		<?php } ?>
+	</ul>
+	<h1>
+		<?php echo __('Affiliate Tracking', 'affiliate/tracking'); ?>
+	</h1>
+	<p>
+		<?php echo $text_description; ?>
+	</p>
+	<p>
+		<?php echo __('<b>Your Tracking Code:</b>', 'affiliate/tracking'); ?>
+		<br />
+		<textarea cols="40" rows="5">
+			<?php echo $code; ?>
+		</textarea>
+	</p>
+	<p>
+		<?php echo __('<b>Tracking Link Generator</b><br />Type in the name of a product you would like to link to:', 'affiliate/tracking'); ?>
+		<br /> <input type="text" name="product" value="" />
+	</p>
+	<p>
+		<?php echo __('<b>Tracking Link:</b>', 'affiliate/tracking'); ?>
+		<br />
+		<textarea name="link" cols="40" rows="5"></textarea>
+	</p>
+	<div class="buttons">
+		<div class="right">
+			<a href="<?php echo $continue; ?>" class="btn"><?php echo $button_continue; ?>
+			</a>
+		</div>
+	</div>
+	<?php echo $content_bottom; ?>
+</div>
 <script type="text/javascript"><!--
 $('input[name=\'product\']').autocomplete({
 	delay: 500,
@@ -47,5 +64,5 @@ $('input[name=\'product\']').autocomplete({
       return false;
    }
 });
-//--></script> 
+//--></script>
 <?php echo $footer; ?>

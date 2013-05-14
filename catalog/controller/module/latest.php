@@ -2,22 +2,22 @@
 class ControllerModuleLatest extends Controller {
 	protected function index($setting) {
 		$this->language->load('module/latest');
-		
-      	$this->data['heading_title'] = __('heading_title');
-		
+
+		$this->data['heading_title'] = __('Latest','module/latest');
+
 		$this->data['button_cart'] = __('button_cart');
-				
+
 		$this->load->model('catalog/product');
-		
+
 		$this->load->model('tool/image');
-		
+
 		$this->data['products'] = array();
-		
+
 		$data = array(
-			'sort'  => 'p.date_added',
-			'order' => 'DESC',
-			'start' => 0,
-			'limit' => $setting['limit']
+				'sort'  => 'p.date_added',
+				'order' => 'DESC',
+				'start' => 0,
+				'limit' => $setting['limit']
 		);
 
 		$results = $this->model_catalog_product->getProducts($data);
@@ -28,34 +28,34 @@ class ControllerModuleLatest extends Controller {
 			} else {
 				$image = false;
 			}
-						
+
 			if (($this->config->get('config_customer_price') && $this->customer->isLogged()) || !$this->config->get('config_customer_price')) {
 				$price = $this->currency->format($this->tax->calculate($result['price'], $result['tax_class_id'], $this->config->get('config_tax')));
 			} else {
 				$price = false;
 			}
-					
+				
 			if ((float)$result['special']) {
 				$special = $this->currency->format($this->tax->calculate($result['special'], $result['tax_class_id'], $this->config->get('config_tax')));
 			} else {
 				$special = false;
 			}
-			
+				
 			if ($this->config->get('config_review_status')) {
 				$rating = $result['rating'];
 			} else {
 				$rating = false;
 			}
-			
+				
 			$this->data['products'][] = array(
-				'product_id' => $result['product_id'],
-				'thumb'   	 => $image,
-				'name'    	 => $result['name'],
-				'price'   	 => $price,
-				'special' 	 => $special,
-				'rating'     => $rating,
-				'reviews'    => sprintf(__('text_reviews'), (int)$result['reviews']),
-				'href'    	 => $this->url->link('product/product', 'product_id=' . $result['product_id']),
+					'product_id' => $result['product_id'],
+					'thumb'   	 => $image,
+					'name'    	 => $result['name'],
+					'price'   	 => $price,
+					'special' 	 => $special,
+					'rating'     => $rating,
+					'reviews'    => sprintf(__('Based on %s reviews.','module/latest'), (int)$result['reviews']),
+					'href'    	 => $this->url->link('product/product', 'product_id=' . $result['product_id']),
 			);
 		}
 

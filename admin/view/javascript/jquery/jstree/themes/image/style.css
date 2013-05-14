@@ -1,11 +1,14 @@
 /* LOCKED */
-.tree-image .locked li a { color:gray; }
+.tree-image .locked li a {
+	color: gray;
+}
 /* DOTS */
 .tree-image ul {
 	margin: 0;
 	padding: 0;
-	direction:ltr;
+	direction: ltr;
 }
+
 .tree-image li {
 	float: left;
 	clear: none;
@@ -14,10 +17,12 @@
 	height: 150px;
 	text-align: center;
 }
+
 .tree-image li ins img {
 	clear: both;
 	border: 1px solid #F00;
 }
+
 .tree-image li ins {
 	clear: both;
 	border: 1px solid #00F;
@@ -28,13 +33,19 @@
 	width: auto;
 	height: auto;
 }
+
 .tree-image li a {
 	display: inline-block;
 	border: 1px solid #0F0;
 }
 /* NO DOTS */
-.tree-image .no_dots, .tree-image .no_dots ul {  }
-.tree-image .no_dots li.leaf { }
+.tree-image .no_dots,.tree-image .no_dots ul {
+	
+}
+
+.tree-image .no_dots li.leaf {
+	
+}
 /* OPEN or CLOSED */
 /*.tree-image li.open { }
 .tree-image li.closed, #jstree-dragged.tree-image li li.open { background:url("icons.png") -48px -32px no-repeat; }
