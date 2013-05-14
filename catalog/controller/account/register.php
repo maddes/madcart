@@ -5,9 +5,9 @@ class ControllerAccountRegister extends Controller {
 	  		$this->redirect($this->url->link('account/account', '', 'SSL'));
     	}
 
-    	$this->language->load('account/register');
-		
-		$this->document->setTitle($this->language->get('heading_title'));
+    	// $this->language->load('account/register');
+		$this->document->setTitle(__('heading_title','account/register'));
+		$this->data['text_account_already'] = sprintf(__('text_account_already','account/register'), $this->url->link('account/login', '', 'SSL'));
 		
 		$this->document->addScript('catalog/view/javascript/jquery/colorbox/jquery.colorbox-min.js');
 		$this->document->addStyle('catalog/view/javascript/jquery/colorbox/colorbox.css');
@@ -15,51 +15,20 @@ class ControllerAccountRegister extends Controller {
       	$this->data['breadcrumbs'] = array();
 
       	$this->data['breadcrumbs'][] = array(
-        	'text' => $this->language->get('text_home'),
+        	'text' => __('text_home','account/register'),
 			'href' => $this->url->link('common/home')
       	); 
 
       	$this->data['breadcrumbs'][] = array(
-        	'text' => $this->language->get('text_account'),
+        	'text' => __('text_account','account/register'),
 			'href' => $this->url->link('account/account', '', 'SSL')
       	);
 		
       	$this->data['breadcrumbs'][] = array(
-        	'text' => $this->language->get('text_register'),
+        	'text' => __('text_register','account/register'),
 			'href' => $this->url->link('account/register', '', 'SSL')
       	);
 		
-    	$this->data['heading_title'] = $this->language->get('heading_title');
-		
-		$this->data['text_account_already'] = sprintf($this->language->get('text_account_already'), $this->url->link('account/login', '', 'SSL'));
-		$this->data['text_your_details'] = $this->language->get('text_your_details');
-    	$this->data['text_your_address'] = $this->language->get('text_your_address');
-    	$this->data['text_your_password'] = $this->language->get('text_your_password');
-		$this->data['text_newsletter'] = $this->language->get('text_newsletter');
-		$this->data['text_yes'] = $this->language->get('text_yes');
-		$this->data['text_no'] = $this->language->get('text_no');
-		$this->data['text_select'] = $this->language->get('text_select');
-		$this->data['text_none'] = $this->language->get('text_none');
-						
-    	$this->data['entry_firstname'] = $this->language->get('entry_firstname');
-    	$this->data['entry_lastname'] = $this->language->get('entry_lastname');
-    	$this->data['entry_email'] = $this->language->get('entry_email');
-    	$this->data['entry_telephone'] = $this->language->get('entry_telephone');
-    	$this->data['entry_fax'] = $this->language->get('entry_fax');
-		$this->data['entry_company'] = $this->language->get('entry_company');
-		$this->data['entry_customer_group'] = $this->language->get('entry_customer_group');
-    	$this->data['entry_address_1'] = $this->language->get('entry_address_1');
-    	$this->data['entry_address_2'] = $this->language->get('entry_address_2');
-    	$this->data['entry_postcode'] = $this->language->get('entry_postcode');
-    	$this->data['entry_city'] = $this->language->get('entry_city');
-    	$this->data['entry_country'] = $this->language->get('entry_country');
-    	$this->data['entry_zone'] = $this->language->get('entry_zone');
-		$this->data['entry_newsletter'] = $this->language->get('entry_newsletter');
-    	$this->data['entry_password'] = $this->language->get('entry_password');
-    	$this->data['entry_confirm'] = $this->language->get('entry_confirm');
-
-		$this->data['button_continue'] = $this->language->get('button_continue');
-    	$this->data['button_upload'] = $this->language->get('button_upload');
 
 		$this->load->model('account/customer_group');
 		
@@ -105,7 +74,7 @@ class ControllerAccountRegister extends Controller {
 			$information_info = $this->model_catalog_information->getInformation($this->config->get('config_account_id'));
 			
 			if ($information_info) {
-				$this->data['text_agree'] = sprintf($this->language->get('text_agree'), $this->url->link('information/information/info', 'information_id=' . $this->config->get('config_account_id'), 'SSL'), $information_info['title'], $information_info['title']);
+				$this->data['text_agree'] = sprintf(__('text_agree','account/register'), $this->url->link('information/information/info', 'information_id=' . $this->config->get('config_account_id'), 'SSL'), $information_info['title'], $information_info['title']);
 			} else {
 				$this->data['text_agree'] = '';
 			}
@@ -145,31 +114,31 @@ class ControllerAccountRegister extends Controller {
 			$this->load->model('account/customer');
 							
 			if ((utf8_strlen($this->request->post['firstname']) < 1) || (utf8_strlen($this->request->post['firstname']) > 32)) {
-				$json['error']['firstname'] = $this->language->get('error_firstname');
+				$json['error']['firstname'] = __('error_firstname','account/register');
 			}
 	
 			if ((utf8_strlen($this->request->post['lastname']) < 1) || (utf8_strlen($this->request->post['lastname']) > 32)) {
-				$json['error']['lastname'] = $this->language->get('error_lastname');
+				$json['error']['lastname'] = __('error_lastname','account/register');
 			}
 	
 			if ((utf8_strlen($this->request->post['email']) > 96) || !preg_match('/^[^\@]+@.*\.[a-z]{2,6}$/i', $this->request->post['email'])) {
-				$json['error']['email'] = $this->language->get('error_email');
+				$json['error']['email'] = __('error_email','account/register');
 			}
 	
 			if ($this->model_account_customer->getTotalCustomersByEmail($this->request->post['email'])) {
-				$json['error']['warning'] = $this->language->get('error_exists');
+				$json['error']['warning'] = __('error_exists','account/register');
 			}
 			
 			if ((utf8_strlen($this->request->post['telephone']) < 3) || (utf8_strlen($this->request->post['telephone']) > 32)) {
-				$json['error']['telephone'] = $this->language->get('error_telephone');
+				$json['error']['telephone'] = __('error_telephone','account/register');
 			}
 					
 			if ((utf8_strlen($this->request->post['address_1']) < 3) || (utf8_strlen($this->request->post['address_1']) > 128)) {
-				$json['error']['address_1'] = $this->language->get('error_address_1');
+				$json['error']['address_1'] = __('error_address_1','account/register');
 			}
 	
 			if ((utf8_strlen($this->request->post['city']) < 2) || (utf8_strlen($this->request->post['city']) > 128)) {
-				$json['error']['city'] = $this->language->get('error_city');
+				$json['error']['city'] = __('error_city','account/register');
 			}
 	
 			$this->load->model('localisation/country');
@@ -177,23 +146,23 @@ class ControllerAccountRegister extends Controller {
 			$country_info = $this->model_localisation_country->getCountry($this->request->post['country_id']);
 			
 			if ($country_info && $country_info['postcode_required'] && (utf8_strlen($this->request->post['postcode']) < 2) || (utf8_strlen($this->request->post['postcode']) > 10)) {
-				$json['error']['postcode'] = $this->language->get('error_postcode');
+				$json['error']['postcode'] = __('error_postcode','account/register');
 			}
 	
 			if ($this->request->post['country_id'] == '') {
-				$json['error']['country'] = $this->language->get('error_country');
+				$json['error']['country'] = __('error_country','account/register');
 			}
 			
 			if (!isset($this->request->post['zone_id']) || $this->request->post['zone_id'] == '') {
-				$json['error']['zone'] = $this->language->get('error_zone');
+				$json['error']['zone'] = __('error_zone','account/register');
 			}
 	
 			if ((utf8_strlen($this->request->post['password']) < 4) || (utf8_strlen($this->request->post['password']) > 20)) {
-				$json['error']['password'] = $this->language->get('error_password');
+				$json['error']['password'] = __('error_password','account/register');
 			}
 	
 			if ($this->request->post['confirm'] != $this->request->post['password']) {
-				$json['error']['confirm'] = $this->language->get('error_confirm');
+				$json['error']['confirm'] = __('error_confirm','account/register');
 			}
 			
 			// Custom Fields
@@ -203,7 +172,7 @@ class ControllerAccountRegister extends Controller {
 			 
 			foreach ($custom_fields as $custom_field) {
 				if ($custom_field['required'] && empty($this->request->post['custom_field'][$custom_field['custom_field_id']])) {
-					$json['error']['custom_field'][$custom_field['custom_field_id']] = sprintf($this->language->get('error_required'), $custom_field['name']);
+					$json['error']['custom_field'][$custom_field['custom_field_id']] = sprintf(__('error_required','account/register'), $custom_field['name']);
 				}
 			}
 			
@@ -213,7 +182,7 @@ class ControllerAccountRegister extends Controller {
 				$information_info = $this->model_catalog_information->getInformation($this->config->get('config_account_id'));
 				
 				if ($information_info && !isset($this->request->post['agree'])) {
-					$json['error']['warning'] = sprintf($this->language->get('error_agree'), $information_info['title']);
+					$json['error']['warning'] = sprintf(__('error_agree','account/register'), $information_info['title']);
 				}
 			}
 		}

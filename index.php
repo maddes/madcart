@@ -115,7 +115,7 @@ function error_handler($errno, $errstr, $errfile, $errline) {
 
 	return true;
 }
-	
+
 // Error Handler
 set_error_handler('error_handler');
 
@@ -189,6 +189,7 @@ $config->set('config_language', $languages[$code]['code']);
 $language = new Language($languages[$code]['directory']);
 $language->load($languages[$code]['filename']);	
 $registry->set('language', $language); 
+$language->setAsDefault();
 
 // Document
 $registry->set('document', new Document()); 		
